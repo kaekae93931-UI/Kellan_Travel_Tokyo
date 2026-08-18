@@ -18,7 +18,9 @@
   --white:#fff;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html{
   scroll-behavior:smooth;
@@ -172,7 +174,7 @@ main{
 
 .flight-row{
   display:grid;
-  grid-template-columns:80px 1fr;
+  grid-template-columns:90px 1fr;
   gap:8px;
   margin-bottom:6px;
   font-size:14px;
@@ -192,11 +194,26 @@ main{
 
 .hotel-name{
   font-weight:bold;
-  font-size:16px;
+  font-size:17px;
+}
+
+.hotel-subtitle{
+  color:#666;
+  font-size:13px;
+  margin-top:2px;
 }
 
 .hotel p{
-  margin:5px 0;
+  margin:6px 0;
+  font-size:13px;
+}
+
+.hotel-highlight{
+  background:#fff;
+  border-left:4px solid var(--blue);
+  border-radius:7px;
+  padding:9px 11px;
+  margin-top:10px;
   font-size:13px;
 }
 
@@ -345,6 +362,37 @@ main{
   border-left:4px solid var(--green);
 }
 
+/* ===== Table ===== */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  border-bottom:1px solid var(--line);
+  padding:9px 8px;
+  text-align:left;
+  vertical-align:top;
+}
+
+th{
+  background:#f7f7f8;
+}
+
+.table-input{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:6px;
+  font:inherit;
+}
+
 /* ===== Textarea ===== */
 
 textarea{
@@ -407,9 +455,9 @@ button{
 
 .footer{
   text-align:center;
-  color:#888;
+  color:#777;
   font-size:12px;
-  padding:10px 0 20px;
+  padding:8px 0 20px;
 }
 
 /* ===== Responsive ===== */
@@ -504,13 +552,13 @@ button{
     </div>
 
     <div class="info-box">
-      <small>成田</small>
-      <strong>第 1 航廈 T1</strong>
+      <small>機場</small>
+      <strong>桃園 T1 ↔ 成田 T1</strong>
     </div>
 
     <div class="info-box">
       <small>住宿</small>
-      <strong>銀座</strong>
+      <strong>Millennium Mitsui Garden Hotel Tokyo</strong>
     </div>
 
   </div>
@@ -563,24 +611,33 @@ button{
     </div>
 
     <div class="flight-row">
-      <b>出發</b>
-      <span>桃園　06:45</span>
+      <b>出發機場</b>
+      <span>桃園國際機場</span>
+    </div>
+
+    <div class="flight-row">
+      <b>出發航廈</b>
+      <span><b>第 1 航廈 T1</b></span>
+    </div>
+
+    <div class="flight-row">
+      <b>起飛</b>
+      <span>06:45</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達機場</b>
+      <span>成田國際機場</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達航廈</b>
+      <span><b>第 1 航廈 T1</b></span>
     </div>
 
     <div class="flight-row">
       <b>抵達</b>
-      <span>成田　11:15</span>
-    </div>
-
-    <div class="flight-row">
-      <b>成田</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
-
-    <!-- 修改：桃園固定 T1 -->
-    <div class="flight-row">
-      <b>桃園</b>
-      <span><b>第 1 航廈 T1</b></span>
+      <span>11:15</span>
     </div>
 
   </div>
@@ -601,24 +658,33 @@ button{
     </div>
 
     <div class="flight-row">
-      <b>出發</b>
-      <span>成田　21:15</span>
+      <b>出發機場</b>
+      <span>成田國際機場</span>
+    </div>
+
+    <div class="flight-row">
+      <b>出發航廈</b>
+      <span><b>第 1 航廈 T1</b></span>
+    </div>
+
+    <div class="flight-row">
+      <b>起飛</b>
+      <span>21:15</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達機場</b>
+      <span>桃園國際機場</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達航廈</b>
+      <span><b>第 1 航廈 T1</b></span>
     </div>
 
     <div class="flight-row">
       <b>抵達</b>
-      <span>桃園　23:55</span>
-    </div>
-
-    <div class="flight-row">
-      <b>成田</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
-
-    <!-- 修改：桃園固定 T1 -->
-    <div class="flight-row">
-      <b>桃園</b>
-      <span><b>第 1 航廈 T1</b></span>
+      <span>23:55</span>
     </div>
 
   </div>
@@ -627,7 +693,7 @@ button{
 </div>
 
 <div class="notice warning">
-⚠️ 航班時間、航廈、登機門可能調整，出發前再次確認。
+⚠️ 航班時間、航廈、登機門仍可能由航空公司調整，出發前請再次確認。
 </div>
 
 </section>
@@ -637,7 +703,7 @@ button{
 
 <section class="section" id="hotel">
 
-<h2 class="section-title">🏨 飯店</h2>
+<h2 class="section-title">🏨 住宿</h2>
 
 <div class="hotel">
 
@@ -645,12 +711,28 @@ button{
     Millennium Mitsui Garden Hotel Tokyo
   </div>
 
-  <p>ミレニアム 三井ガーデンホテル 東京</p>
-  <p>📍 東京都中央區銀座 5-11-1</p>
-  <p>🚇 東銀座站 A1：約 1 分鐘</p>
-  <p>🚇 銀座站 A5：約 2 分鐘</p>
-  <p>🕒 Check-in：15:00</p>
-  <p>🕛 Check-out：12:00</p>
+  <div class="hotel-subtitle">
+    ミレニアム 三井ガーデンホテル 東京
+  </div>
+
+  <p>📍 <b>東京都中央區銀座 5-11-1</b></p>
+
+  <p>🚇 <b>東銀座站 A1 出口：約 1 分鐘</b></p>
+
+  <p>🚇 <b>銀座站 A5 出口：約 2 分鐘</b></p>
+
+  <p>🚉 有樂町站：約 10 分鐘步行</p>
+
+  <p>🕒 <b>Check-in：15:00</b></p>
+
+  <p>🕛 <b>Check-out：12:00</b></p>
+
+  <div class="hotel-highlight">
+    ⭐ 住宿地點：銀座<br>
+    ⭐ 飯店正式名稱：Millennium Mitsui Garden Hotel Tokyo<br>
+    ⭐ 地址：5-11-1 Ginza, Chuo-ku, Tokyo 104-0061<br>
+    ⭐ 電話：+81-3-3549-3331
+  </div>
 
 </div>
 
@@ -673,7 +755,7 @@ button{
 
 <div class="day-header">
   <h3>Day 1｜9/25（五）</h3>
-  <span>桃園 → 成田 → 銀座 → 皇居外苑</span>
+  <span>桃園 T1 → 成田 T1 → 銀座 → 皇居外苑</span>
 </div>
 
 <div class="schedule">
@@ -681,8 +763,8 @@ button{
 <div class="time-row">
   <div class="time">06:00</div>
   <div class="event">
-    <div class="event-title">✈️ 桃園機場 T1</div>
-    <div class="event-detail">報到／托運／安檢</div>
+    <div class="event-title">✈️ 桃園國際機場 T1</div>
+    <div class="event-detail">報到／托運／安檢／前往登機門</div>
   </div>
 </div>
 
@@ -697,15 +779,15 @@ button{
 <div class="time-row">
   <div class="time">11:15</div>
   <div class="event">
-    <div class="event-title">🛬 抵達成田</div>
-    <div class="event-detail">第 1 航廈 T1｜入境／領行李</div>
+    <div class="event-title">🛬 抵達成田國際機場 T1</div>
+    <div class="event-detail">第 1 航廈 T1｜入境／領行李／海關</div>
   </div>
 </div>
 
 <div class="time-row">
   <div class="time">12:00</div>
   <div class="event">
-    <div class="event-title">🚆 成田 → 銀座</div>
+    <div class="event-title">🚆 成田 T1 → 銀座</div>
     <div class="event-detail">
       交通：
       <span class="edit" contenteditable="true"
@@ -717,7 +799,7 @@ button{
 <div class="time-row">
   <div class="time">13:00</div>
   <div class="event">
-    <div class="event-title">🏨 飯店</div>
+    <div class="event-title">🏨 Millennium Mitsui Garden Hotel Tokyo</div>
     <div class="event-detail">
       寄放行李／午餐：
       <span class="edit" contenteditable="true"
@@ -1013,7 +1095,7 @@ button{
 
 <div class="day-header">
   <h3>Day 4｜9/28（一）</h3>
-  <span>東京 → 成田 → 桃園 T1</span>
+  <span>東京 → 成田 T1 → 桃園 T1</span>
 </div>
 
 <div class="schedule">
@@ -1051,8 +1133,8 @@ button{
 <div class="time-row">
   <div class="time">11:30</div>
   <div class="event">
-    <div class="event-title">🏨 回飯店</div>
-    <div class="event-detail">退房／寄放行李</div>
+    <div class="event-title">🏨 Millennium Mitsui Garden Hotel Tokyo</div>
+    <div class="event-detail">Check-out：12:00／退房／寄放行李</div>
   </div>
 </div>
 
@@ -1107,7 +1189,7 @@ button{
 <div class="time-row">
   <div class="time">＿＿</div>
   <div class="event">
-    <div class="event-title">🚆 銀座 → 成田 T1</div>
+    <div class="event-title">🚆 銀座 → 成田國際機場 T1</div>
     <div class="event-detail">
       交通方式：
       <span class="edit" contenteditable="true"
@@ -1120,17 +1202,16 @@ button{
   <div class="time">21:15</div>
   <div class="event">
     <div class="event-title">✈️ TR875 起飛</div>
-    <div class="event-detail">成田 T1 → 桃園 T1</div>
+    <div class="event-detail">成田國際機場 T1 → 桃園國際機場 T1</div>
   </div>
 </div>
 
-<!-- 修改：桃園固定 T1 -->
 <div class="time-row">
   <div class="time">23:55</div>
   <div class="event">
-    <div class="event-title">🛬 抵達桃園 T1</div>
+    <div class="event-title">🛬 抵達桃園國際機場 T1</div>
     <div class="event-detail">
-      桃園國際機場第 1 航廈 T1
+      第 1 航廈 T1｜入境／領行李
     </div>
   </div>
 </div>
@@ -1400,8 +1481,11 @@ button{
 <h3>🏨 飯店</h3>
 
 <div class="notice info">
+• Millennium Mitsui Garden Hotel Tokyo<br>
 • Check-in：15:00<br>
 • Check-out：12:00<br>
+• 東銀座站 A1：約 1 分鐘<br>
+• 銀座站 A5：約 2 分鐘<br>
 • 退房後確認房間<br>
 • 回程確認護照與行李
 </div>
@@ -1553,6 +1637,7 @@ function saveData(key, value){
     );
 
     showSaved();
+
   }catch(error){
     console.log("儲存失敗", error);
   }
@@ -1572,18 +1657,24 @@ function loadData(){
     if(saved === null) return;
 
     if(element.type === "checkbox"){
+
       element.checked = saved === "true";
+
     }
 
     else if(
       element.tagName === "TEXTAREA" ||
       element.tagName === "INPUT"
     ){
+
       element.value = saved;
+
     }
 
     else if(element.contentEditable === "true"){
+
       element.innerText = saved;
+
     }
 
   });
@@ -1620,9 +1711,13 @@ document.querySelectorAll(
     let value;
 
     if(this.contentEditable === "true"){
+
       value = this.innerText;
+
     }else{
+
       value = this.value;
+
     }
 
     saveData(
@@ -1681,7 +1776,6 @@ function clearAllData(){
     );
 
   location.reload();
-
 }
 
 
