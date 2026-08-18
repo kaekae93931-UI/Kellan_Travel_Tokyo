@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東京 4天3夜｜2026/9/25～9/28</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #f5f6f8;
+    color: #222;
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+                 "Microsoft JhengHei", sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: auto;
+    padding: 12px;
+  }
+  header {
+    background: #222;
+    color: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    margin: 0 0 4px;
+    font-size: 21px;
+  }
+  header p {
+    margin: 0;
+    font-size: 13px;
+    opacity: .85;
+  }
+  section {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  .flight {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 3px 8px;
+    font-size: 14px;
+  }
+  .day {
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  .day:last-child { border-bottom: 0; }
+  .date {
+    font-weight: bold;
+    color: #b23a48;
+  }
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 12px;
+  }
+  label {
+    font-size: 14px;
+    cursor: pointer;
+  }
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+    margin-right: 5px;
+  }
+  .warning {
+    background: #fff7e6;
+    border-left: 4px solid #f0a000;
+    padding: 8px 10px;
+    font-size: 13px;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+  .small {
+    font-size: 12px;
+    color: #666;
+  }
+  a { color: #1769aa; }
+  @media (max-width: 500px) {
+    .checklist {
+      grid-template-columns: 1fr 1fr;
+    }
+    .flight {
+      grid-template-columns: 70px 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <h1>🇯🇵 東京 4天3夜</h1>
+  <p>2026/9/25（五）～ 9/28（一）｜銀座住宿</p>
+</header>
+
+<section>
+  <h2>✈️ 航班</h2>
+  <div class="flight">
+    <b>9/25</b>
+    <span>TR866｜桃園 06:45 → 成田 11:15｜<b>成田 T1</b></span>
+
+    <b>9/28</b>
+    <span>TR875｜成田 21:15 → 桃園 23:55｜<b>成田 T1</b></span>
+  </div>
+  <div class="warning">
+    ⚠️ 航班時間與航廈出發前再確認。
+  </div>
+</section>
+
+<section>
+  <h2>🏨 飯店</h2>
+  <b>Millennium Mitsui Garden Hotel Tokyo</b><br>
+  銀座 5-11-1｜東銀座 A1 約1分鐘<br>
+  Check-in 15:00｜Check-out 12:00
+</section>
+
+<section>
+  <h2>🗓️ 行程</h2>
+
+  <div class="day">
+    <span class="date">9/25 Day 1</span><br>
+    ✈️ 成田 → 銀座 → 🧳 放行李 → 🏯 皇居外苑
+    → 🏙️ 銀座 → 🍽️ ________
+  </div>
+
+  <div class="day">
+    <span class="date">9/26 Day 2</span><br>
+    🌅 上午：________ → 🍜 午餐：________
+    → 📍 下午：________ → 🍽️ 晚餐：________
+  </div>
+
+  <div class="day">
+    <span class="date">9/27 Day 3</span><br>
+    🌅 上午：________ → 🍜 午餐：________
+    → 📍 下午：________ → 🍽️ 晚餐：________
+  </div>
+
+  <div class="day">
+    <span class="date">9/28 Day 4</span><br>
+    🌅 上午：________ → 🍜 午餐：________
+    → 🛍️ 下午：________ → 🧳 拿行李
+    → ✈️ 成田 T1
+  </div>
+</section>
+
+<section>
+  <h2>🛂 出發前</h2>
+  <div class="checklist">
+    <label><input type="checkbox">護照</label>
+    <label><input type="checkbox">Visit Japan Web</label>
+    <label><input type="checkbox">機票</label>
+    <label><input type="checkbox">飯店訂單</label>
+    <label><input type="checkbox">旅平險</label>
+    <label><input type="checkbox">日幣</label>
+    <label><input type="checkbox">信用卡</label>
+    <label><input type="checkbox">eSIM／漫遊</label>
+    <label><input type="checkbox">Suica／交通卡</label>
+  </div>
+</section>
+
+<section>
+  <h2>🚫 日本入境注意</h2>
+  <div class="checklist">
+    <label><input type="checkbox">不帶毒品／大麻</label>
+    <label><input type="checkbox">不帶槍械／彈藥</label>
+    <label><input type="checkbox">不帶爆裂物</label>
+    <label><input type="checkbox">不帶肉類</label>
+    <label><input type="checkbox">不帶肉乾／香腸</label>
+    <label><input type="checkbox">不帶水果</label>
+    <label><input type="checkbox">不帶植物／種子</label>
+    <label><input type="checkbox">避免仿冒品</label>
+  </div>
+
+  <div class="warning">
+    🍖 最簡單原則：肉類、水果、植物不要從台灣帶進日本。
+  </div>
+</section>
+
+<section>
+  <h2>💊 藥品</h2>
+  <div class="checklist">
+    <label><input type="checkbox">感冒藥</label>
+    <label><input type="checkbox">止痛／退燒</label>
+    <label><input type="checkbox">腸胃藥</label>
+    <label><input type="checkbox">止瀉藥</label>
+    <label><input type="checkbox">暈車藥</label>
+    <label><input type="checkbox">過敏藥</label>
+    <label><input type="checkbox">喉糖</label>
+    <label><input type="checkbox">鼻炎／鼻塞藥</label>
+    <label><input type="checkbox">OK繃</label>
+    <label><input type="checkbox">外用藥</label>
+    <label><input type="checkbox">處方藥</label>
+    <label><input type="checkbox">眼藥水</label>
+    <label><input type="checkbox">隱形眼鏡／藥水</label>
+  </div>
+
+  <div class="warning">
+    ⚠️ 藥品保留原包裝與說明書。部分成分在日本有管制，
+    出發前應確認。
+  </div>
+</section>
+
+<section>
+  <h2>🎒 隨身行李</h2>
+  <div class="checklist">
+    <label><input type="checkbox">護照</label>
+    <label><input type="checkbox">手機</label>
+    <label><input type="checkbox">錢包</label>
+    <label><input type="checkbox">日幣</label>
+    <label><input type="checkbox">信用卡</label>
+    <label><input type="checkbox">行動電源</label>
+    <label><input type="checkbox">充電線</label>
+    <label><input type="checkbox">充電頭</label>
+    <label><input type="checkbox">耳機</label>
+    <label><input type="checkbox">常備藥</label>
+    <label><input type="checkbox">衛生紙</label>
+    <label><input type="checkbox">濕紙巾</label>
+    <label><input type="checkbox">雨傘</label>
+  </div>
+</section>
+
+<section>
+  <h2>🧳 行李箱</h2>
+  <div class="checklist">
+    <label><input type="checkbox">衣服</label>
+    <label><input type="checkbox">內衣褲</label>
+    <label><input type="checkbox">襪子</label>
+    <label><input type="checkbox">薄外套</label>
+    <label><input type="checkbox">好走的鞋</label>
+    <label><input type="checkbox">睡衣</label>
+    <label><input type="checkbox">盥洗用品</label>
+    <label><input type="checkbox">保養品</label>
+    <label><input type="checkbox">化妝品</label>
+    <label><input type="checkbox">防曬</label>
+    <label><input type="checkbox">雨具</label>
+    <label><input type="checkbox">眼鏡</label>
+    <label><input type="checkbox">購物袋</label>
+    <label><input type="checkbox">行李秤</label>
+  </div>
+</section>
+
+<section>
+  <h2>🔌 3C</h2>
+  <div class="checklist">
+    <label><input type="checkbox">手機</label>
+    <label><input type="checkbox">充電器</label>
+    <label><input type="checkbox">充電線</label>
+    <label><input type="checkbox">行動電源</label>
+    <label><input type="checkbox">耳機</label>
+    <label><input type="checkbox">相機</label>
+    <label><input type="checkbox">相機電池</label>
+    <label><input type="checkbox">記憶卡</label>
+  </div>
+</section>
+
+<section>
+  <h2>⭐ 最重要</h2>
+  <b>護照＋手機＋信用卡＋日幣＋網路＋Visit Japan Web＋藥品</b>
+</section>
+
+<section class="small">
+  官方資訊：
+  <br>
+  <a href="https://www.narita-airport.jp/en/flight/airline-search/tgw/" target="_blank">
+    成田機場｜Scoot 航廈
+  </a>
+  <br>
+  <a href="https://www.customs.go.jp/english/passenger/" target="_blank">
+    日本海關｜旅客入境規定
+  </a>
+  <br>
+  <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iyakuhin/kojinyunyu/topics/tp010401-1_00001.html" target="_blank">
+    日本厚生勞動省｜攜帶藥品
+  </a>
+</section>
+
+</div>
+</body>
+</html>
