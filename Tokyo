@@ -3,294 +3,1716 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>東京 4天3夜｜2026/9/25～9/28</title>
+
+<title>🇯🇵 東京 4天3夜｜2026/09/25～09/28</title>
+
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: #f5f6f8;
-    color: #222;
-    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
-                 "Microsoft JhengHei", sans-serif;
-    line-height: 1.5;
+:root{
+  --red:#b83245;
+  --dark:#252525;
+  --gray:#f4f5f7;
+  --line:#e1e3e6;
+  --blue:#2468a8;
+  --green:#2e7d5b;
+  --orange:#c77a00;
+  --white:#fff;
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--gray);
+  color:#222;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans TC",
+    "Microsoft JhengHei",
+    Arial,
+    sans-serif;
+  line-height:1.55;
+}
+
+.container{
+  width:min(1180px,calc(100% - 24px));
+  margin:auto;
+}
+
+/* ===== Header ===== */
+
+.header{
+  background:linear-gradient(135deg,#252525,#454545);
+  color:white;
+  padding:26px 0;
+}
+
+.header h1{
+  margin:0;
+  font-size:clamp(24px,4vw,36px);
+}
+
+.subtitle{
+  margin-top:5px;
+  font-size:14px;
+  opacity:.85;
+}
+
+.trip-info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.info-box{
+  background:rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:10px 12px;
+}
+
+.info-box small{
+  display:block;
+  opacity:.7;
+  font-size:11px;
+}
+
+.info-box strong{
+  display:block;
+  margin-top:2px;
+  font-size:14px;
+}
+
+/* ===== Navigation ===== */
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(8px);
+}
+
+.nav-inner{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  padding:8px 0;
+}
+
+.nav a{
+  flex:0 0 auto;
+  text-decoration:none;
+  color:#333;
+  background:#f0f1f3;
+  border-radius:20px;
+  padding:6px 12px;
+  font-size:13px;
+}
+
+/* ===== Main ===== */
+
+main{
+  padding:18px 0 45px;
+}
+
+.section{
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 14px;
+  font-size:20px;
+}
+
+.section-title small{
+  color:#777;
+  font-size:12px;
+  font-weight:normal;
+}
+
+/* ===== Grid ===== */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+/* ===== Flight ===== */
+
+.flight-card{
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.flight-head{
+  background:#f8e9ec;
+  padding:10px 12px;
+  font-weight:bold;
+  color:var(--red);
+}
+
+.flight-body{
+  padding:12px;
+}
+
+.flight-row{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:8px;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.flight-row:last-child{
+  margin-bottom:0;
+}
+
+/* ===== Hotel ===== */
+
+.hotel{
+  background:#f7f8fa;
+  border-radius:10px;
+  padding:14px;
+}
+
+.hotel-name{
+  font-weight:bold;
+  font-size:16px;
+}
+
+.hotel p{
+  margin:5px 0;
+  font-size:13px;
+}
+
+/* ===== Schedule ===== */
+
+.day-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.day-header{
+  padding:13px 16px;
+  background:var(--dark);
+  color:white;
+}
+
+.day-header h3{
+  margin:0;
+  font-size:18px;
+}
+
+.day-header span{
+  font-size:12px;
+  opacity:.75;
+}
+
+.schedule{
+  padding:8px 16px 14px;
+}
+
+.time-row{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  min-height:58px;
+  border-bottom:1px solid #eee;
+}
+
+.time-row:last-child{
+  border-bottom:0;
+}
+
+.time{
+  color:var(--red);
+  font-weight:bold;
+  padding:13px 8px 10px 0;
+  font-size:14px;
+}
+
+.event{
+  border-left:2px solid #ddd;
+  padding:10px 0 10px 14px;
+}
+
+.event-title{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.event-detail{
+  color:#666;
+  font-size:12px;
+  margin-top:3px;
+}
+
+/* ===== Editable fields ===== */
+
+.edit{
+  display:inline-block;
+  min-width:160px;
+  border-bottom:1px dashed #999;
+  color:#333;
+  padding:0 3px;
+  outline:none;
+}
+
+.edit:focus{
+  background:#fff8df;
+  border-bottom-color:var(--orange);
+}
+
+.edit:empty:before{
+  content:"點此輸入";
+  color:#aaa;
+}
+
+/* ===== Checklist ===== */
+
+.check-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px 14px;
+}
+
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:7px;
+  padding:5px 0;
+  font-size:14px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.check-item input{
+  width:18px;
+  height:18px;
+  margin:1px 0 0;
+  flex-shrink:0;
+  accent-color:var(--green);
+  cursor:pointer;
+}
+
+.check-item input:checked + span{
+  color:#999;
+  text-decoration:line-through;
+}
+
+/* ===== Notice ===== */
+
+.notice{
+  padding:12px 14px;
+  border-radius:9px;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.notice.warning{
+  background:#fff6df;
+  border-left:4px solid var(--orange);
+}
+
+.notice.danger{
+  background:#fff0f0;
+  border-left:4px solid #d33;
+}
+
+.notice.info{
+  background:#eef6ff;
+  border-left:4px solid var(--blue);
+}
+
+.notice.success{
+  background:#eef8f2;
+  border-left:4px solid var(--green);
+}
+
+/* ===== Table ===== */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  border-bottom:1px solid var(--line);
+  padding:9px 8px;
+  text-align:left;
+  vertical-align:top;
+}
+
+th{
+  background:#f7f7f8;
+}
+
+.table-input{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:6px;
+  font:inherit;
+}
+
+/* ===== Textarea ===== */
+
+textarea{
+  width:100%;
+  min-height:110px;
+  resize:vertical;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px;
+  font:inherit;
+}
+
+/* ===== Save status ===== */
+
+.save-status{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:100;
+  background:#222;
+  color:#fff;
+  border-radius:20px;
+  padding:7px 12px;
+  font-size:12px;
+  opacity:.85;
+  transition:.3s;
+}
+
+.save-status.saved{
+  background:var(--green);
+}
+
+/* ===== Buttons ===== */
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:9px 14px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.btn-reset{
+  background:#f8dddd;
+  color:#a00000;
+}
+
+.btn-top{
+  background:#eee;
+  color:#333;
+}
+
+/* ===== Responsive ===== */
+
+@media(max-width:800px){
+
+  .trip-info{
+    grid-template-columns:repeat(2,1fr);
   }
-  .wrap {
-    max-width: 760px;
-    margin: auto;
-    padding: 12px;
+
+  .grid{
+    grid-template-columns:1fr;
   }
-  header {
-    background: #222;
-    color: white;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 10px;
+
+  .check-grid{
+    grid-template-columns:repeat(2,1fr);
   }
-  header h1 {
-    margin: 0 0 4px;
-    font-size: 21px;
+
+}
+
+@media(max-width:480px){
+
+  .container{
+    width:calc(100% - 16px);
   }
-  header p {
-    margin: 0;
-    font-size: 13px;
-    opacity: .85;
+
+  .header{
+    padding:20px 0;
   }
-  section {
-    background: white;
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 10px;
+
+  .section{
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:10px;
   }
-  h2 {
-    font-size: 16px;
-    margin: 0 0 8px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+
+  .section-title{
+    font-size:18px;
   }
-  .flight {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 3px 8px;
-    font-size: 14px;
+
+  .check-grid{
+    grid-template-columns:1fr 1fr;
+    gap:3px 8px;
   }
-  .day {
-    padding: 7px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
+
+  .check-item{
+    font-size:13px;
   }
-  .day:last-child { border-bottom: 0; }
-  .date {
-    font-weight: bold;
-    color: #b23a48;
+
+  .time-row{
+    grid-template-columns:58px 1fr;
   }
-  .checklist {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4px 12px;
+
+  .time{
+    font-size:13px;
   }
-  label {
-    font-size: 14px;
-    cursor: pointer;
+
+  .event{
+    padding-left:10px;
   }
-  input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    vertical-align: -3px;
-    margin-right: 5px;
+
+  .edit{
+    min-width:100px;
   }
-  .warning {
-    background: #fff7e6;
-    border-left: 4px solid #f0a000;
-    padding: 8px 10px;
-    font-size: 13px;
-    margin-top: 8px;
-    border-radius: 4px;
-  }
-  .small {
-    font-size: 12px;
-    color: #666;
-  }
-  a { color: #1769aa; }
-  @media (max-width: 500px) {
-    .checklist {
-      grid-template-columns: 1fr 1fr;
-    }
-    .flight {
-      grid-template-columns: 70px 1fr;
-    }
-  }
+}
 </style>
 </head>
 
 <body>
-<div class="wrap">
 
-<header>
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+<div class="container">
+
   <h1>🇯🇵 東京 4天3夜</h1>
-  <p>2026/9/25（五）～ 9/28（一）｜銀座住宿</p>
-</header>
 
-<section>
-  <h2>✈️ 航班</h2>
-  <div class="flight">
-    <b>9/25</b>
-    <span>TR866｜桃園 06:45 → 成田 11:15｜<b>成田 T1</b></span>
-
-    <b>9/28</b>
-    <span>TR875｜成田 21:15 → 桃園 23:55｜<b>成田 T1</b></span>
-  </div>
-  <div class="warning">
-    ⚠️ 航班時間與航廈出發前再確認。
-  </div>
-</section>
-
-<section>
-  <h2>🏨 飯店</h2>
-  <b>Millennium Mitsui Garden Hotel Tokyo</b><br>
-  銀座 5-11-1｜東銀座 A1 約1分鐘<br>
-  Check-in 15:00｜Check-out 12:00
-</section>
-
-<section>
-  <h2>🗓️ 行程</h2>
-
-  <div class="day">
-    <span class="date">9/25 Day 1</span><br>
-    ✈️ 成田 → 銀座 → 🧳 放行李 → 🏯 皇居外苑
-    → 🏙️ 銀座 → 🍽️ ________
+  <div class="subtitle">
+    2026/09/25（五）～ 09/28（一）
   </div>
 
-  <div class="day">
-    <span class="date">9/26 Day 2</span><br>
-    🌅 上午：________ → 🍜 午餐：________
-    → 📍 下午：________ → 🍽️ 晚餐：________
+  <div class="trip-info">
+
+    <div class="info-box">
+      <small>去程</small>
+      <strong>TR866｜06:45 → 11:15</strong>
+    </div>
+
+    <div class="info-box">
+      <small>回程</small>
+      <strong>TR875｜21:15 → 23:55</strong>
+    </div>
+
+    <div class="info-box">
+      <small>成田</small>
+      <strong>第 1 航廈 T1</strong>
+    </div>
+
+    <div class="info-box">
+      <small>住宿</small>
+      <strong>銀座</strong>
+    </div>
+
   </div>
-
-  <div class="day">
-    <span class="date">9/27 Day 3</span><br>
-    🌅 上午：________ → 🍜 午餐：________
-    → 📍 下午：________ → 🍽️ 晚餐：________
-  </div>
-
-  <div class="day">
-    <span class="date">9/28 Day 4</span><br>
-    🌅 上午：________ → 🍜 午餐：________
-    → 🛍️ 下午：________ → 🧳 拿行李
-    → ✈️ 成田 T1
-  </div>
-</section>
-
-<section>
-  <h2>🛂 出發前</h2>
-  <div class="checklist">
-    <label><input type="checkbox">護照</label>
-    <label><input type="checkbox">Visit Japan Web</label>
-    <label><input type="checkbox">機票</label>
-    <label><input type="checkbox">飯店訂單</label>
-    <label><input type="checkbox">旅平險</label>
-    <label><input type="checkbox">日幣</label>
-    <label><input type="checkbox">信用卡</label>
-    <label><input type="checkbox">eSIM／漫遊</label>
-    <label><input type="checkbox">Suica／交通卡</label>
-  </div>
-</section>
-
-<section>
-  <h2>🚫 日本入境注意</h2>
-  <div class="checklist">
-    <label><input type="checkbox">不帶毒品／大麻</label>
-    <label><input type="checkbox">不帶槍械／彈藥</label>
-    <label><input type="checkbox">不帶爆裂物</label>
-    <label><input type="checkbox">不帶肉類</label>
-    <label><input type="checkbox">不帶肉乾／香腸</label>
-    <label><input type="checkbox">不帶水果</label>
-    <label><input type="checkbox">不帶植物／種子</label>
-    <label><input type="checkbox">避免仿冒品</label>
-  </div>
-
-  <div class="warning">
-    🍖 最簡單原則：肉類、水果、植物不要從台灣帶進日本。
-  </div>
-</section>
-
-<section>
-  <h2>💊 藥品</h2>
-  <div class="checklist">
-    <label><input type="checkbox">感冒藥</label>
-    <label><input type="checkbox">止痛／退燒</label>
-    <label><input type="checkbox">腸胃藥</label>
-    <label><input type="checkbox">止瀉藥</label>
-    <label><input type="checkbox">暈車藥</label>
-    <label><input type="checkbox">過敏藥</label>
-    <label><input type="checkbox">喉糖</label>
-    <label><input type="checkbox">鼻炎／鼻塞藥</label>
-    <label><input type="checkbox">OK繃</label>
-    <label><input type="checkbox">外用藥</label>
-    <label><input type="checkbox">處方藥</label>
-    <label><input type="checkbox">眼藥水</label>
-    <label><input type="checkbox">隱形眼鏡／藥水</label>
-  </div>
-
-  <div class="warning">
-    ⚠️ 藥品保留原包裝與說明書。部分成分在日本有管制，
-    出發前應確認。
-  </div>
-</section>
-
-<section>
-  <h2>🎒 隨身行李</h2>
-  <div class="checklist">
-    <label><input type="checkbox">護照</label>
-    <label><input type="checkbox">手機</label>
-    <label><input type="checkbox">錢包</label>
-    <label><input type="checkbox">日幣</label>
-    <label><input type="checkbox">信用卡</label>
-    <label><input type="checkbox">行動電源</label>
-    <label><input type="checkbox">充電線</label>
-    <label><input type="checkbox">充電頭</label>
-    <label><input type="checkbox">耳機</label>
-    <label><input type="checkbox">常備藥</label>
-    <label><input type="checkbox">衛生紙</label>
-    <label><input type="checkbox">濕紙巾</label>
-    <label><input type="checkbox">雨傘</label>
-  </div>
-</section>
-
-<section>
-  <h2>🧳 行李箱</h2>
-  <div class="checklist">
-    <label><input type="checkbox">衣服</label>
-    <label><input type="checkbox">內衣褲</label>
-    <label><input type="checkbox">襪子</label>
-    <label><input type="checkbox">薄外套</label>
-    <label><input type="checkbox">好走的鞋</label>
-    <label><input type="checkbox">睡衣</label>
-    <label><input type="checkbox">盥洗用品</label>
-    <label><input type="checkbox">保養品</label>
-    <label><input type="checkbox">化妝品</label>
-    <label><input type="checkbox">防曬</label>
-    <label><input type="checkbox">雨具</label>
-    <label><input type="checkbox">眼鏡</label>
-    <label><input type="checkbox">購物袋</label>
-    <label><input type="checkbox">行李秤</label>
-  </div>
-</section>
-
-<section>
-  <h2>🔌 3C</h2>
-  <div class="checklist">
-    <label><input type="checkbox">手機</label>
-    <label><input type="checkbox">充電器</label>
-    <label><input type="checkbox">充電線</label>
-    <label><input type="checkbox">行動電源</label>
-    <label><input type="checkbox">耳機</label>
-    <label><input type="checkbox">相機</label>
-    <label><input type="checkbox">相機電池</label>
-    <label><input type="checkbox">記憶卡</label>
-  </div>
-</section>
-
-<section>
-  <h2>⭐ 最重要</h2>
-  <b>護照＋手機＋信用卡＋日幣＋網路＋Visit Japan Web＋藥品</b>
-</section>
-
-<section class="small">
-  官方資訊：
-  <br>
-  <a href="https://www.narita-airport.jp/en/flight/airline-search/tgw/" target="_blank">
-    成田機場｜Scoot 航廈
-  </a>
-  <br>
-  <a href="https://www.customs.go.jp/english/passenger/" target="_blank">
-    日本海關｜旅客入境規定
-  </a>
-  <br>
-  <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iyakuhin/kojinyunyu/topics/tp010401-1_00001.html" target="_blank">
-    日本厚生勞動省｜攜帶藥品
-  </a>
-</section>
 
 </div>
+</header>
+
+
+<!-- ================= NAV ================= -->
+
+<nav class="nav">
+<div class="container nav-inner">
+
+  <a href="#schedule">🗓 行程</a>
+  <a href="#flight">✈️ 航班</a>
+  <a href="#hotel">🏨 飯店</a>
+  <a href="#before">🛂 出發前</a>
+  <a href="#customs">🚫 入境</a>
+  <a href="#medicine">💊 藥品</a>
+  <a href="#carry">🎒 隨身</a>
+  <a href="#luggage">🧳 行李</a>
+  <a href="#tips">⚠️ 注意事項</a>
+
+</div>
+</nav>
+
+
+<main class="container">
+
+
+<!-- ================= FLIGHT ================= -->
+
+<section class="section" id="flight">
+
+<h2 class="section-title">✈️ 航班</h2>
+
+<div class="grid">
+
+<div class="flight-card">
+
+  <div class="flight-head">
+    9/25（五）｜去程
+  </div>
+
+  <div class="flight-body">
+
+    <div class="flight-row">
+      <b>航班</b>
+      <span>TR866</span>
+    </div>
+
+    <div class="flight-row">
+      <b>出發</b>
+      <span>桃園　06:45</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達</b>
+      <span>成田　11:15</span>
+    </div>
+
+    <div class="flight-row">
+      <b>成田</b>
+      <span><b>第 1 航廈 T1</b></span>
+    </div>
+
+    <div class="flight-row">
+      <b>桃園</b>
+      <span class="edit" contenteditable="true"
+            data-save="flight-tpe-terminal-1"></span>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="flight-card">
+
+  <div class="flight-head">
+    9/28（一）｜回程
+  </div>
+
+  <div class="flight-body">
+
+    <div class="flight-row">
+      <b>航班</b>
+      <span>TR875</span>
+    </div>
+
+    <div class="flight-row">
+      <b>出發</b>
+      <span>成田　21:15</span>
+    </div>
+
+    <div class="flight-row">
+      <b>抵達</b>
+      <span>桃園　23:55</span>
+    </div>
+
+    <div class="flight-row">
+      <b>成田</b>
+      <span><b>第 1 航廈 T1</b></span>
+    </div>
+
+    <div class="flight-row">
+      <b>桃園</b>
+      <span class="edit" contenteditable="true"
+            data-save="flight-tpe-terminal-2"></span>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="notice warning">
+⚠️ 航班時間、航廈、登機門可能調整，出發前再次確認。
+</div>
+
+</section>
+
+
+<!-- ================= HOTEL ================= -->
+
+<section class="section" id="hotel">
+
+<h2 class="section-title">🏨 飯店</h2>
+
+<div class="hotel">
+
+  <div class="hotel-name">
+    Millennium Mitsui Garden Hotel Tokyo
+  </div>
+
+  <p>ミレニアム 三井ガーデンホテル 東京</p>
+  <p>📍 東京都中央區銀座 5-11-1</p>
+  <p>🚇 東銀座站 A1：約 1 分鐘</p>
+  <p>🚇 銀座站 A5：約 2 分鐘</p>
+  <p>🕒 Check-in：15:00</p>
+  <p>🕛 Check-out：12:00</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= SCHEDULE ================= -->
+
+<section class="section" id="schedule">
+
+<h2 class="section-title">
+🗓️ 每日時間表
+<small>空白欄位可以直接輸入，會自動儲存</small>
+</h2>
+
+
+<!-- DAY 1 -->
+
+<div class="day-card">
+
+<div class="day-header">
+  <h3>Day 1｜9/25（五）</h3>
+  <span>桃園 → 成田 → 銀座 → 皇居外苑</span>
+</div>
+
+<div class="schedule">
+
+<div class="time-row">
+  <div class="time">06:00</div>
+  <div class="event">
+    <div class="event-title">✈️ 桃園機場</div>
+    <div class="event-detail">報到／托運／安檢</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">06:45</div>
+  <div class="event">
+    <div class="event-title">✈️ TR866 起飛</div>
+    <div class="event-detail">桃園 → 成田</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">11:15</div>
+  <div class="event">
+    <div class="event-title">🛬 抵達成田</div>
+    <div class="event-detail">第 1 航廈 T1｜入境／領行李</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">12:00</div>
+  <div class="event">
+    <div class="event-title">🚆 成田 → 銀座</div>
+    <div class="event-detail">
+      交通：<span class="edit" contenteditable="true"
+      data-save="day1-1200"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">13:00</div>
+  <div class="event">
+    <div class="event-title">🏨 飯店</div>
+    <div class="event-detail">
+      寄放行李／午餐：
+      <span class="edit" contenteditable="true"
+      data-save="day1-1300"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">14:00</div>
+  <div class="event">
+    <div class="event-title">📍 行程</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true"
+      data-save="day1-1400"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">15:00</div>
+  <div class="event">
+    <div class="event-title">🏯 皇居外苑</div>
+    <div class="event-detail">
+      皇居外苑／二重橋／
+      <span class="edit" contenteditable="true"
+      data-save="day1-1500"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">17:00</div>
+  <div class="event">
+    <div class="event-title">📍 下午</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true"
+      data-save="day1-1700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">18:30</div>
+  <div class="event">
+    <div class="event-title">🍽️ 晚餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true"
+      data-save="day1-1830"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">20:00</div>
+  <div class="event">
+    <div class="event-title">🌃 晚上</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true"
+      data-save="day1-2000"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">＿＿</div>
+  <div class="event">
+    <div class="event-title">🏨 回飯店</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true"
+      data-save="day1-hotel"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<!-- DAY 2 -->
+
+<div class="day-card">
+
+<div class="day-header">
+  <h3>Day 2｜9/26（六）</h3>
+  <span>行程待安排</span>
+</div>
+
+<div class="schedule">
+
+<div class="time-row">
+  <div class="time">07:00</div>
+  <div class="event">
+    <div class="event-title">🌅 起床</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-0700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">08:00</div>
+  <div class="event">
+    <div class="event-title">🍳 早餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-0800"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">09:00</div>
+  <div class="event">
+    <div class="event-title">📍 上午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-0900"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">11:30</div>
+  <div class="event">
+    <div class="event-title">📍 景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-1130"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">12:30</div>
+  <div class="event">
+    <div class="event-title">🍜 午餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-1230"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">14:00</div>
+  <div class="event">
+    <div class="event-title">📍 下午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-1400"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">17:00</div>
+  <div class="event">
+    <div class="event-title">🛍️ 逛街／購物</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-1700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">18:30</div>
+  <div class="event">
+    <div class="event-title">🍽️ 晚餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-1830"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">20:00</div>
+  <div class="event">
+    <div class="event-title">🌃 晚上</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day2-2000"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<!-- DAY 3 -->
+
+<div class="day-card">
+
+<div class="day-header">
+  <h3>Day 3｜9/27（日）</h3>
+  <span>行程待安排</span>
+</div>
+
+<div class="schedule">
+
+<div class="time-row">
+  <div class="time">07:00</div>
+  <div class="event">
+    <div class="event-title">🌅 起床</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-0700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">08:00</div>
+  <div class="event">
+    <div class="event-title">🍳 早餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-0800"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">09:00</div>
+  <div class="event">
+    <div class="event-title">📍 上午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-0900"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">11:30</div>
+  <div class="event">
+    <div class="event-title">📍 景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-1130"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">12:30</div>
+  <div class="event">
+    <div class="event-title">🍜 午餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-1230"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">14:00</div>
+  <div class="event">
+    <div class="event-title">📍 下午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-1400"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">17:00</div>
+  <div class="event">
+    <div class="event-title">🛍️ 逛街／購物</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-1700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">18:30</div>
+  <div class="event">
+    <div class="event-title">🍽️ 晚餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-1830"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">20:00</div>
+  <div class="event">
+    <div class="event-title">🌃 晚上</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day3-2000"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<!-- DAY 4 -->
+
+<div class="day-card">
+
+<div class="day-header">
+  <h3>Day 4｜9/28（一）</h3>
+  <span>東京 → 成田 → 桃園</span>
+</div>
+
+<div class="schedule">
+
+<div class="time-row">
+  <div class="time">07:00</div>
+  <div class="event">
+    <div class="event-title">🌅 起床</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-0700"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">08:00</div>
+  <div class="event">
+    <div class="event-title">🍳 早餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-0800"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">09:00</div>
+  <div class="event">
+    <div class="event-title">📍 上午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-0900"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">11:30</div>
+  <div class="event">
+    <div class="event-title">🏨 回飯店</div>
+    <div class="event-detail">退房／寄放行李</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">12:30</div>
+  <div class="event">
+    <div class="event-title">🍜 午餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-1230"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">14:00</div>
+  <div class="event">
+    <div class="event-title">📍 下午景點</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-1400"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">16:30</div>
+  <div class="event">
+    <div class="event-title">🛍️ 最後購物</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-1630"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">18:00</div>
+  <div class="event">
+    <div class="event-title">🍽️ 晚餐</div>
+    <div class="event-detail">
+      <span class="edit" contenteditable="true" data-save="day4-1800"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">19:00</div>
+  <div class="event">
+    <div class="event-title">🧳 回飯店拿行李</div>
+    <div class="event-detail">護照／行李／隨身物品確認</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">＿＿</div>
+  <div class="event">
+    <div class="event-title">🚆 銀座 → 成田 T1</div>
+    <div class="event-detail">
+      交通方式：
+      <span class="edit" contenteditable="true"
+      data-save="day4-airport"></span>
+    </div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">21:15</div>
+  <div class="event">
+    <div class="event-title">✈️ TR875 起飛</div>
+    <div class="event-detail">成田 T1 → 桃園</div>
+  </div>
+</div>
+
+<div class="time-row">
+  <div class="time">23:55</div>
+  <div class="event">
+    <div class="event-title">🛬 抵達桃園</div>
+    <div class="event-detail">
+      桃園航廈：
+      <span class="edit" contenteditable="true"
+      data-save="day4-tpe-terminal"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- ================= BEFORE ================= -->
+
+<section class="section" id="before">
+
+<h2 class="section-title">🛂 出發前 Checklist</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="before-passport"><span>護照</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-passport-info"><span>確認護照資料</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-ticket"><span>機票</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-hotel"><span>飯店訂單</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-insurance"><span>旅遊保險</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-vjw"><span>Visit Japan Web</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-esim"><span>手機網路／eSIM</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-credit"><span>信用卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-yen"><span>日幣</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-ic"><span>交通 IC 卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-flight"><span>確認航班</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-terminal"><span>確認航廈</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-map"><span>下載地圖</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-translate"><span>翻譯 App</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-backup"><span>備份重要資料</span></label>
+<label class="check-item"><input type="checkbox" data-save="before-card"><span>確認信用卡海外使用</span></label>
+
+</div>
+
+</section>
+
+
+<!-- ================= CUSTOMS ================= -->
+
+<section class="section" id="customs">
+
+<h2 class="section-title">🚫 日本入境／海關</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="customs-drugs"><span>不攜帶毒品</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-cannabis"><span>不攜帶大麻／THC</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-gun"><span>不攜帶槍械</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-ammo"><span>不攜帶彈藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-explosive"><span>不攜帶爆裂物</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-weapon"><span>不攜帶違禁武器</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-meat"><span>不攜帶肉類</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-jerky"><span>不攜帶肉乾</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-sausage"><span>不攜帶香腸</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-bacon"><span>不攜帶培根／火腿</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-cured"><span>不攜帶臘肉</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-meatfood"><span>不攜帶含肉食品</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-fruit"><span>不攜帶水果</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-plant"><span>不攜帶植物</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-seed"><span>不攜帶種子</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-soil"><span>不攜帶帶泥土植物</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-food"><span>確認特殊食品規定</span></label>
+<label class="check-item"><input type="checkbox" data-save="customs-declare"><span>確認需要申報物品</span></label>
+
+</div>
+
+<div class="notice danger">
+<b>🍖 肉類：</b>
+肉乾、香腸、培根、火腿、臘肉、肉鬆及其他肉製品不要隨意帶入日本。
+</div>
+
+<div class="notice warning">
+<b>🍎 水果／植物：</b>
+部分水果、蔬菜、植物、種子及土壤受到檢疫或禁止進口規定。
+不確定的東西不要帶。
+</div>
+
+</section>
+
+
+<!-- ================= MEDICINE ================= -->
+
+<section class="section" id="medicine">
+
+<h2 class="section-title">💊 藥品 Checklist</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="med-cold"><span>感冒藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-pain"><span>止痛藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-fever"><span>退燒藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-stomach"><span>腸胃藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-diarrhea"><span>止瀉藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-motion"><span>暈車藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-allergy"><span>過敏藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-throat"><span>喉糖</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-nose"><span>鼻炎／鼻塞藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-eye"><span>眼藥水</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-bandage"><span>OK繃</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-disinfect"><span>消毒用品</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-ointment"><span>外用藥膏</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-prescription"><span>個人固定用藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-prescription-paper"><span>處方箋／醫師證明</span></label>
+<label class="check-item"><input type="checkbox" data-save="med-contact"><span>隱形眼鏡／藥水</span></label>
+
+</div>
+
+<div class="notice danger">
+<b>⚠️ 注意：</b>
+部分藥品成分在日本受到管制。尤其部分感冒藥、鼻塞藥及含偽麻黃鹼等成分，
+不能只看台灣藥名判斷是否可以攜入。
+</div>
+
+<div class="notice info">
+<b>建議：</b>
+藥品保留原包裝、藥袋、說明書；處方藥保留處方或醫師證明。
+</div>
+
+</section>
+
+
+<!-- ================= CARRY ================= -->
+
+<section class="section" id="carry">
+
+<h2 class="section-title">🎒 隨身行李 Checklist</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="carry-passport"><span>護照</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-phone"><span>手機</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-wallet"><span>錢包</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-card"><span>信用卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-yen"><span>日幣</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-powerbank"><span>行動電源</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-cable"><span>充電線</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-charger"><span>充電頭</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-earphone"><span>耳機</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-medicine"><span>常備藥</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-tissue"><span>衛生紙</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-wet"><span>濕紙巾</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-mask"><span>口罩</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-umbrella"><span>小雨傘</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-glasses"><span>眼鏡</span></label>
+<label class="check-item"><input type="checkbox" data-save="carry-earplug"><span>耳塞</span></label>
+
+</div>
+
+<div class="notice warning">
+🔋 行動電源通常應放在隨身行李，不要放進託運行李；實際容量及數量依航空公司規定。
+</div>
+
+</section>
+
+
+<!-- ================= LUGGAGE ================= -->
+
+<section class="section" id="luggage">
+
+<h2 class="section-title">🧳 行李箱 Checklist</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="bag-shirt"><span>上衣</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-pants"><span>褲子／裙子</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-underwear"><span>內衣褲</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-socks"><span>襪子</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-pajama"><span>睡衣</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-jacket"><span>薄外套</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-shoes"><span>好走的鞋</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-slippers"><span>拖鞋</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-toiletries"><span>盥洗用品</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-skincare"><span>保養品</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-makeup"><span>化妝品</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-sunscreen"><span>防曬</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-rain"><span>雨具</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-glasses"><span>眼鏡</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-contact"><span>隱形眼鏡</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-shopping"><span>購物袋</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-storage"><span>收納袋</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-scale"><span>行李秤</span></label>
+<label class="check-item"><input type="checkbox" data-save="bag-tag"><span>行李吊牌</span></label>
+
+</div>
+
+</section>
+
+
+<!-- ================= 3C ================= -->
+
+<section class="section">
+
+<h2 class="section-title">🔌 3C／電子用品</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="tech-phone"><span>手機</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-charger"><span>手機充電器</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-cable"><span>充電線</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-power"><span>行動電源</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-earphone"><span>耳機</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-camera"><span>相機</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-battery"><span>相機電池</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-card"><span>記憶卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="tech-adapter"><span>轉接頭</span></label>
+
+</div>
+
+</section>
+
+
+<!-- ================= MONEY ================= -->
+
+<section class="section">
+
+<h2 class="section-title">💴 金錢／交通</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="money-yen"><span>日幣現金</span></label>
+<label class="check-item"><input type="checkbox" data-save="money-card"><span>信用卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="money-backup"><span>備用信用卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="money-ic"><span>交通 IC 卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="money-coin"><span>零錢包</span></label>
+
+</div>
+
+</section>
+
+
+<!-- ================= TIPS ================= -->
+
+<section class="section" id="tips">
+
+<h2 class="section-title">⚠️ 日本旅遊注意事項</h2>
+
+<div class="grid">
+
+<div>
+
+<h3>🛂 入境</h3>
+
+<div class="notice info">
+• 護照隨身保管<br>
+• 入境資料提前準備<br>
+• 海關申報如實填寫<br>
+• 不確定的物品不要攜入
+</div>
+
+<h3>🚆 交通</h3>
+
+<div class="notice info">
+• 確認電車方向與月台<br>
+• 注意末班車時間<br>
+• 轉乘預留時間<br>
+• 行李多時避免尖峰時段
+</div>
+
+</div>
+
+
+<div>
+
+<h3>🏨 飯店</h3>
+
+<div class="notice info">
+• Check-in：15:00<br>
+• Check-out：12:00<br>
+• 退房後確認房間<br>
+• 回程確認護照與行李
+</div>
+
+<h3>💴 金錢</h3>
+
+<div class="notice info">
+• 現金與信用卡分開放<br>
+• 保留部分日幣現金<br>
+• 退稅文件妥善保存<br>
+• 大額購物注意行李重量
+</div>
+
+</div>
+
+</div>
+
+
+<h3>📱 手機</h3>
+
+<div class="notice info">
+保持手機有電；飯店名稱、航班、重要資料建議截圖保存，
+避免沒有網路時找不到。
+</div>
+
+
+<h3>🌧️ 天氣</h3>
+
+<div class="notice warning">
+9月底東京仍可能偏熱，也可能下雨。
+出發前幾天再確認天氣，決定短袖、薄外套及雨具。
+</div>
+
+
+<h3>🗑️ 垃圾</h3>
+
+<div class="notice info">
+日本街上公共垃圾桶較少，建議隨身帶小袋子，
+垃圾先自行收好，再於適當地方分類丟棄。
+</div>
+
+
+<h3>🚶 禮儀</h3>
+
+<div class="notice info">
+• 電車內避免大聲講電話<br>
+• 排隊依序進入<br>
+• 不隨意拍攝他人<br>
+• 部分店家禁止攝影<br>
+• 依店家及場所規定行動
+</div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="section">
+
+<h2 class="section-title">⭐ 出發前最後確認</h2>
+
+<div class="check-grid">
+
+<label class="check-item"><input type="checkbox" data-save="final-passport"><span>護照</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-ticket"><span>機票</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-hotel"><span>飯店</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-vjw"><span>Visit Japan Web</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-network"><span>手機網路</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-card"><span>信用卡</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-yen"><span>日幣</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-medicine"><span>藥品</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-power"><span>行動電源</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-cable"><span>充電線</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-rain"><span>雨具</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-luggage"><span>行李</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-flight"><span>航班</span></label>
+<label class="check-item"><input type="checkbox" data-save="final-terminal"><span>航廈</span></label>
+
+</div>
+
+</section>
+
+
+<!-- ================= NOTES ================= -->
+
+<section class="section">
+
+<h2 class="section-title">📝 我的備忘錄</h2>
+
+<textarea
+  data-save="memo"
+  placeholder="想去的地方、餐廳、購物清單、預約、其他備註……"
+></textarea>
+
+</section>
+
+
+<!-- ================= DATA CONTROL ================= -->
+
+<section class="section">
+
+<h2 class="section-title">💾 資料</h2>
+
+<div class="actions">
+
+<button class="btn-reset" onclick="clearAllData()">
+🗑️ 清除所有已儲存資料
+</button>
+
+<button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+⬆️ 回到頂端
+</button>
+
+</div>
+
+<div class="notice info">
+💾 所有勾選與輸入內容會自動儲存在目前裝置的瀏覽器。
+關閉網頁後重新開啟，資料會保留。
+</div>
+
+</section>
+
+
+<div class="footer">
+🇯🇵 Tokyo Trip｜2026/09/25 ～ 09/28
+</div>
+
+</main>
+
+
+<div class="save-status" id="saveStatus">
+✓ 已自動儲存
+</div>
+
+
+<script>
+
+/* =========================================
+   自動儲存系統
+   ========================================= */
+
+const STORAGE_PREFIX = "tokyo_trip_2026_";
+
+function saveData(key, value){
+  try{
+    localStorage.setItem(
+      STORAGE_PREFIX + key,
+      value
+    );
+
+    showSaved();
+  }catch(error){
+    console.log("儲存失敗", error);
+  }
+}
+
+
+function loadData(){
+  document.querySelectorAll("[data-save]").forEach(element => {
+
+    const key = element.dataset.save;
+
+    const saved = localStorage.getItem(
+      STORAGE_PREFIX + key
+    );
+
+    if(saved === null) return;
+
+    if(element.type === "checkbox"){
+      element.checked = saved === "true";
+    }
+
+    else if(
+      element.tagName === "TEXTAREA" ||
+      element.tagName === "INPUT"
+    ){
+      element.value = saved;
+    }
+
+    else if(element.contentEditable === "true"){
+      element.innerText = saved;
+    }
+
+  });
+}
+
+
+/* Checkbox 自動儲存 */
+
+document.querySelectorAll(
+  'input[type="checkbox"][data-save]'
+).forEach(checkbox => {
+
+  checkbox.addEventListener("change", function(){
+
+    saveData(
+      this.dataset.save,
+      this.checked
+    );
+
+  });
+
+});
+
+
+/* 文字輸入自動儲存 */
+
+document.querySelectorAll(
+  '[data-save]:not(input[type="checkbox"])'
+).forEach(element => {
+
+  element.addEventListener("input", function(){
+
+    let value;
+
+    if(this.contentEditable === "true"){
+      value = this.innerText;
+    }else{
+      value = this.value;
+    }
+
+    saveData(
+      this.dataset.save,
+      value
+    );
+
+  });
+
+});
+
+
+/* =========================================
+   儲存提示
+   ========================================= */
+
+let saveTimer;
+
+function showSaved(){
+
+  const status =
+    document.getElementById("saveStatus");
+
+  status.classList.add("saved");
+  status.textContent = "✓ 已自動儲存";
+
+  clearTimeout(saveTimer);
+
+  saveTimer = setTimeout(() => {
+
+    status.classList.remove("saved");
+
+  },1500);
+}
+
+
+/* =========================================
+   清除全部資料
+   ========================================= */
+
+function clearAllData(){
+
+  const ok = confirm(
+    "確定要清除所有已儲存的行程、輸入內容與勾選嗎？\n\n此操作無法復原。"
+  );
+
+  if(!ok) return;
+
+  Object.keys(localStorage)
+    .filter(key =>
+      key.startsWith(STORAGE_PREFIX)
+    )
+    .forEach(key =>
+      localStorage.removeItem(key)
+    );
+
+  location.reload();
+}
+
+
+/* =========================================
+   載入上次資料
+   ========================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  loadData
+);
+
+</script>
+
 </body>
 </html>
