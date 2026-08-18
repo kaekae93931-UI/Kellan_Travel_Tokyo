@@ -345,37 +345,6 @@ main{
   border-left:4px solid var(--green);
 }
 
-/* ===== Table ===== */
-
-.table-wrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
-}
-
-th,td{
-  border-bottom:1px solid var(--line);
-  padding:9px 8px;
-  text-align:left;
-  vertical-align:top;
-}
-
-th{
-  background:#f7f7f8;
-}
-
-.table-input{
-  width:100%;
-  border:1px solid #ddd;
-  border-radius:6px;
-  padding:6px;
-  font:inherit;
-}
-
 /* ===== Textarea ===== */
 
 textarea{
@@ -432,6 +401,15 @@ button{
 .btn-top{
   background:#eee;
   color:#333;
+}
+
+/* ===== Footer ===== */
+
+.footer{
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  padding:10px 0 20px;
 }
 
 /* ===== Responsive ===== */
@@ -599,10 +577,10 @@ button{
       <span><b>第 1 航廈 T1</b></span>
     </div>
 
+    <!-- 修改：桃園固定 T1 -->
     <div class="flight-row">
       <b>桃園</b>
-      <span class="edit" contenteditable="true"
-            data-save="flight-tpe-terminal-1"></span>
+      <span><b>第 1 航廈 T1</b></span>
     </div>
 
   </div>
@@ -637,10 +615,10 @@ button{
       <span><b>第 1 航廈 T1</b></span>
     </div>
 
+    <!-- 修改：桃園固定 T1 -->
     <div class="flight-row">
       <b>桃園</b>
-      <span class="edit" contenteditable="true"
-            data-save="flight-tpe-terminal-2"></span>
+      <span><b>第 1 航廈 T1</b></span>
     </div>
 
   </div>
@@ -703,7 +681,7 @@ button{
 <div class="time-row">
   <div class="time">06:00</div>
   <div class="event">
-    <div class="event-title">✈️ 桃園機場</div>
+    <div class="event-title">✈️ 桃園機場 T1</div>
     <div class="event-detail">報到／托運／安檢</div>
   </div>
 </div>
@@ -712,7 +690,7 @@ button{
   <div class="time">06:45</div>
   <div class="event">
     <div class="event-title">✈️ TR866 起飛</div>
-    <div class="event-detail">桃園 → 成田</div>
+    <div class="event-detail">桃園 T1 → 成田 T1</div>
   </div>
 </div>
 
@@ -729,7 +707,8 @@ button{
   <div class="event">
     <div class="event-title">🚆 成田 → 銀座</div>
     <div class="event-detail">
-      交通：<span class="edit" contenteditable="true"
+      交通：
+      <span class="edit" contenteditable="true"
       data-save="day1-1200"></span>
     </div>
   </div>
@@ -1034,7 +1013,7 @@ button{
 
 <div class="day-header">
   <h3>Day 4｜9/28（一）</h3>
-  <span>東京 → 成田 → 桃園</span>
+  <span>東京 → 成田 → 桃園 T1</span>
 </div>
 
 <div class="schedule">
@@ -1141,18 +1120,17 @@ button{
   <div class="time">21:15</div>
   <div class="event">
     <div class="event-title">✈️ TR875 起飛</div>
-    <div class="event-detail">成田 T1 → 桃園</div>
+    <div class="event-detail">成田 T1 → 桃園 T1</div>
   </div>
 </div>
 
+<!-- 修改：桃園固定 T1 -->
 <div class="time-row">
   <div class="time">23:55</div>
   <div class="event">
-    <div class="event-title">🛬 抵達桃園</div>
+    <div class="event-title">🛬 抵達桃園 T1</div>
     <div class="event-detail">
-      桃園航廈：
-      <span class="edit" contenteditable="true"
-      data-save="day4-tpe-terminal"></span>
+      桃園國際機場第 1 航廈 T1
     </div>
   </div>
 </div>
@@ -1582,6 +1560,7 @@ function saveData(key, value){
 
 
 function loadData(){
+
   document.querySelectorAll("[data-save]").forEach(element => {
 
     const key = element.dataset.save;
@@ -1608,6 +1587,7 @@ function loadData(){
     }
 
   });
+
 }
 
 
@@ -1676,6 +1656,7 @@ function showSaved(){
     status.classList.remove("saved");
 
   },1500);
+
 }
 
 
@@ -1700,6 +1681,7 @@ function clearAllData(){
     );
 
   location.reload();
+
 }
 
 
