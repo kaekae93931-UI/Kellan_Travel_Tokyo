@@ -994,6 +994,64 @@ textarea:focus{
 }
 
   
+
+.attraction-gallery{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:14px 0 18px;
+}
+.attraction-photo{
+  position:relative;
+  min-height:190px;
+  overflow:hidden;
+  border-radius:13px;
+  background:#dfe3e7;
+  box-shadow:var(--shadow);
+}
+.attraction-photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:190px;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.attraction-photo:hover img{
+  transform:scale(1.04);
+}
+.attraction-photo-caption{
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  padding:24px 10px 9px;
+  color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.78));
+  font-size:12px;
+  font-weight:800;
+}
+.attraction-photo-source{
+  display:block;
+  margin-top:2px;
+  color:#e1e5e8;
+  font-size:9px;
+  font-weight:500;
+}
+@media(max-width:800px){
+  .attraction-gallery{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:560px){
+  .attraction-gallery{
+    gap:7px;
+  }
+  .attraction-photo,
+  .attraction-photo img{
+    min-height:145px;
+  }
+}
 </style>
 </head>
 
@@ -1057,6 +1115,24 @@ textarea:focus{
 
 <div class="notice info">
 完成行程請勾選左側 □；餐廳、門票或指定席確認後按「已預約」，會變成綠色動畫。
+</div>
+<div class="attraction-gallery">
+<a class="attraction-photo" target="_blank" rel="noopener noreferrer" href="https://commons.wikimedia.org/wiki/File:Sensoji_Temple_(40909716384).jpg">
+<img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Sensoji_Temple_(40909716384).jpg/960px-Sensoji_Temple_(40909716384).jpg" alt="淺草寺實景">
+<span class="attraction-photo-caption">淺草寺<span class="attraction-photo-source">照片：Wikimedia Commons</span></span>
+</a>
+<a class="attraction-photo" target="_blank" rel="noopener noreferrer" href="https://commons.wikimedia.org/wiki/File:Tokyo_Sky_Tree_2012.JPG">
+<img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tokyo_Sky_Tree_2012.JPG" alt="東京晴空塔實景">
+<span class="attraction-photo-caption">東京晴空塔<span class="attraction-photo-source">照片：Wikimedia Commons</span></span>
+</a>
+<a class="attraction-photo" target="_blank" rel="noopener noreferrer" href="https://commons.wikimedia.org/wiki/Category:Tokyo_Tower">
+<img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tokyo_Tower_2023.jpg/960px-Tokyo_Tower_2023.jpg" alt="東京鐵塔實景">
+<span class="attraction-photo-caption">東京鐵塔<span class="attraction-photo-source">照片：Wikimedia Commons</span></span>
+</a>
+<a class="attraction-photo" target="_blank" rel="noopener noreferrer" href="https://commons.wikimedia.org/wiki/File:Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg">
+<img loading="lazy" decoding="async" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/1280px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg" alt="澀谷十字路口實景">
+<span class="attraction-photo-caption">澀谷<span class="attraction-photo-source">照片：Wikimedia Commons</span></span>
+</a>
 </div>
 
 <div class="day-card">
@@ -2896,7 +2972,7 @@ function updateAllCounts(){
     const done=dayCard.querySelectorAll("[data-complete]:checked").length;
     const percent=all ? Math.round((done/all)*100) : 0;
 
-    const coun*=dayCard.querySelector("[data-day-count]");
+    const count=dayCard.querySelector("[data-day-count]");
     if(count){
       count.textContent=`${done} / ${all}`;
     }
