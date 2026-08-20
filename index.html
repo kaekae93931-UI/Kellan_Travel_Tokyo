@@ -2,25 +2,28 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#172033">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🇯🇵 東京 4天3夜｜2026/09/25～09/28</title>
 
 <style>
 :root{
-  --bg:#f3f6fa;
+  --bg:#f3f5f8;
   --card:#fff;
-  --text:#172033;
-  --muted:#718096;
-  --line:#e4e9f0;
-  --blue:#2878d8;
-  --blue2:#eaf3ff;
-  --green:#16845a;
-  --green2:#e8f8f0;
-  --red:#c53d50;
-  --orange:#d88a00;
-  --purple:#7655c7;
-  --shadow:0 4px 18px rgba(25,45,75,.07);
+  --text:#222;
+  --muted:#70757d;
+  --line:#e4e7eb;
+  --dark:#24262a;
+  --red:#b83245;
+  --blue:#2474b8;
+  --blue-soft:#eef6ff;
+  --green:#27865b;
+  --green-soft:#eef9f3;
+  --yellow:#f4c542;
+  --yellow-bg:#fff8d8;
+  --orange:#d68100;
+  --red-bg:#fff0f1;
+  --shadow:0 4px 18px rgba(20,25,30,.06);
   --radius:16px;
 }
 
@@ -36,18 +39,20 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans TC",
+    "Microsoft JhengHei",
+    Arial,
+    sans-serif;
   line-height:1.55;
 }
 
 button,
-input,
+select,
 textarea{
   font:inherit;
-}
-
-button{
-  -webkit-tap-highlight-color:transparent;
 }
 
 a{
@@ -55,62 +60,91 @@ a{
 }
 
 .container{
-  width:min(1080px,calc(100% - 24px));
+  width:min(1180px,calc(100% - 24px));
   margin:auto;
 }
 
-.hero{
-  background:
-    radial-gradient(circle at 85% 20%,rgba(255,255,255,.14),transparent 25%),
-    linear-gradient(135deg,#151d2d,#263550);
+.header{
   color:#fff;
-  padding:28px 0 24px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.12),transparent 30%),
+    linear-gradient(135deg,#202226,#41454b);
+  padding:26px 0 24px;
 }
 
-.hero h1{
+.header h1{
   margin:0;
-  font-size:clamp(25px,5vw,38px);
-  letter-spacing:.3px;
+  font-size:clamp(26px,4vw,38px);
+  letter-spacing:-.5px;
 }
 
-.hero-sub{
+.subtitle{
   margin-top:5px;
-  color:rgba(255,255,255,.72);
-  font-size:13px;
+  color:#d9d9d9;
+  font-size:14px;
 }
 
-.hero-grid{
+.header-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:9px;
+  gap:10px;
   margin-top:20px;
 }
 
-.hero-box{
+.header-box{
   background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
   border-radius:12px;
-  padding:11px;
+  padding:11px 13px;
+  min-width:0;
 }
 
-.hero-box small{
+.header-box small{
   display:block;
-  color:rgba(255,255,255,.55);
-  font-size:10px;
+  color:#aaa;
+  font-size:11px;
 }
 
-.hero-box strong{
+.header-box strong{
   display:block;
   margin-top:3px;
-  font-size:13px;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.progress-wrap{
+  margin-top:16px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#ddd;
+  margin-bottom:6px;
+}
+
+.progress{
+  height:8px;
+  background:rgba(255,255,255,.13);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:#69d69a;
+  border-radius:20px;
+  transition:.3s;
 }
 
 .nav{
   position:sticky;
   top:0;
-  z-index:50;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(12px);
+  z-index:100;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 
@@ -128,43 +162,38 @@ a{
 
 .nav a{
   flex:0 0 auto;
-  padding:7px 12px;
+  padding:7px 13px;
   border-radius:20px;
-  background:#f0f3f7;
+  background:#f0f1f3;
   text-decoration:none;
-  font-size:12px;
-  color:#344054;
+  font-size:13px;
+  color:#333;
 }
 
 main{
-  padding:16px 0 50px;
+  padding:18px 0 45px;
 }
 
 .section{
   background:var(--card);
   border-radius:var(--radius);
-  box-shadow:var(--shadow);
   padding:18px;
   margin-bottom:16px;
-}
-
-.section-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:15px;
+  box-shadow:var(--shadow);
 }
 
 .section-title{
-  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 15px;
   font-size:20px;
 }
 
-.section-sub{
+.section-title span{
   color:var(--muted);
-  font-size:11px;
-  margin-top:2px;
+  font-size:12px;
+  font-weight:400;
 }
 
 .day{
@@ -180,360 +209,401 @@ main{
 }
 
 .day-head{
-  background:#1c273b;
+  background:linear-gradient(135deg,#27292d,#404349);
   color:#fff;
-  padding:15px 16px;
+  padding:15px 17px;
 }
 
-.day-head-top{
+.day-head-row{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:10px;
+  align-items:flex-start;
+  gap:12px;
 }
 
 .day-title{
-  font-size:18px;
+  font-size:19px;
   font-weight:800;
 }
 
 .day-route{
   margin-top:3px;
-  font-size:11px;
-  color:rgba(255,255,255,.67);
+  color:#cfd2d5;
+  font-size:12px;
 }
 
-.progress{
-  white-space:nowrap;
+.day-counter{
+  flex:0 0 auto;
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.12);
   border-radius:20px;
-  padding:5px 8px;
-  font-size:10px;
+  padding:5px 9px;
+  font-size:11px;
+  white-space:nowrap;
 }
 
-.timeline{
-  padding:9px;
+.schedule{
+  padding:8px;
 }
 
 .item{
-  position:relative;
-  margin:6px 0;
-  border:1px solid #e0e7ef;
-  border-radius:14px;
-  background:#fff;
-  overflow:hidden;
-  transition:.2s;
-}
-
-.item.done{
-  background:var(--green2);
-  border-color:#94d7b9;
-}
-
-.item.done .item-main{
-  background:var(--green2);
-}
-
-.item.done .time{
-  color:var(--green);
-}
-
-.item.done .item-title{
-  color:#176445;
-}
-
-.item-main{
   display:grid;
-  grid-template-columns:62px 1fr 30px;
-  align-items:center;
-  gap:8px;
-  width:100%;
-  border:0;
-  background:#fff;
-  text-align:left;
-  padding:11px 10px;
-  cursor:pointer;
+  grid-template-columns:82px 1fr;
+  gap:0;
+  position:relative;
+  border-bottom:1px solid #eee;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.item.tight{
+  background:var(--yellow-bg);
+}
+
+.item.danger{
+  background:#fff0f0;
 }
 
 .time{
-  color:var(--blue);
+  padding:15px 9px 15px 7px;
+  color:var(--red);
+  font-size:13px;
   font-weight:800;
-  font-size:12px;
+  text-align:right;
+  white-space:nowrap;
+  line-height:1.35;
 }
 
-.item-center{
+.item-content{
   min-width:0;
+  padding:11px 10px 12px 13px;
+  border-left:2px solid #dfe2e5;
+}
+
+.item-main{
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+}
+
+.done{
+  width:21px;
+  height:21px;
+  flex:0 0 21px;
+  margin-top:1px;
+  accent-color:var(--green);
+  cursor:pointer;
+}
+
+.item-body{
+  min-width:0;
+  flex:1;
 }
 
 .item-title{
-  font-size:14px;
-  font-weight:800;
-  color:#172033;
-}
-
-.item-type{
-  display:inline-block;
-  margin-left:5px;
-  padding:2px 6px;
-  border-radius:5px;
-  background:#edf2f7;
-  color:#667085;
-  font-size:9px;
-  font-weight:600;
-  vertical-align:middle;
-}
-
-.item.done .item-type{
-  background:#d3f0e1;
-  color:#277653;
-}
-
-.item-summary{
-  margin-top:2px;
-  color:var(--muted);
-  font-size:11px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.arrow{
-  color:#8a96a8;
-  font-size:15px;
-  transition:.2s;
-}
-
-.item.open .arrow{
-  transform:rotate(90deg);
-}
-
-.check{
-  width:21px;
-  height:21px;
-  accent-color:var(--green);
-  cursor:pointer;
-  margin:0;
-}
-
-.item-detail{
-  display:none;
-  border-top:1px solid #e6ebf1;
-  padding:12px;
-  background:#fafcff;
-}
-
-.item.open .item-detail{
-  display:block;
-}
-
-.item.done .item-detail{
-  background:#f5fcf8;
-  border-color:#bde7d2;
-}
-
-.detail-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:7px;
-}
-
-.detail{
-  background:#fff;
-  border:1px solid #e6ebf1;
-  border-radius:9px;
-  padding:8px 9px;
-  min-width:0;
-}
-
-.detail.full{
-  grid-column:1/-1;
-}
-
-.detail-label{
-  display:block;
-  color:#8994a5;
-  font-size:9px;
-  margin-bottom:2px;
-}
-
-.detail-value{
-  font-size:12px;
-  font-weight:600;
-  word-break:break-word;
-}
-
-.detail-actions{
   display:flex;
-  gap:7px;
   flex-wrap:wrap;
-  margin-top:9px;
+  align-items:center;
+  gap:6px;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.4;
+}
+
+.item-title a{
+  text-decoration:none;
+}
+
+.item-title a:hover{
+  text-decoration:underline;
+}
+
+.item-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+  line-height:1.5;
+}
+
+.item-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:8px;
 }
 
 .action{
+  border:1px solid #dfe3e7;
+  background:#fff;
+  color:#444;
+  border-radius:7px;
+  padding:5px 8px;
+  cursor:pointer;
+  font-size:11px;
+}
+
+.action:hover{
+  background:#f5f6f7;
+}
+
+.item.completed{
+  background:var(--green-soft);
+}
+
+.item.completed .item-content{
+  border-left-color:#61b98b;
+}
+
+.item.completed .item-title{
+  color:var(--green);
+}
+
+.item.completed .item-sub{
+  color:#6c8b7a;
+}
+
+.item.completed .time{
+  color:var(--green);
+}
+
+.status{
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  min-height:34px;
-  padding:7px 11px;
-  border-radius:8px;
-  text-decoration:none;
-  font-size:11px;
+  padding:2px 6px;
+  border-radius:10px;
+  font-size:10px;
   font-weight:700;
-  border:1px solid #dbe2ea;
-  background:#fff;
+  white-space:nowrap;
 }
 
-.action.map{
-  color:#2468a8;
-  border-color:#cfe0f4;
-  background:#f1f7ff;
+.status.normal{
+  background:#edf1f5;
+  color:#626b74;
 }
 
-.action.official{
-  color:#5b45a5;
-  border-color:#ddd5f4;
-  background:#f7f4ff;
+.status.tight{
+  background:#ffe38a;
+  color:#725600;
+}
+
+.status.danger{
+  background:#ffc8ca;
+  color:#a60008;
+}
+
+.status.open{
+  background:#e8f7ee;
+  color:#27734e;
 }
 
 .booking{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-top:10px;
-  padding:9px 10px;
-  border-radius:9px;
-  background:#f4f6f9;
+  gap:6px;
+  margin-top:8px;
 }
 
-.booking span{
+.booking-label{
   font-size:11px;
-  font-weight:700;
+  color:#777;
 }
 
 .booking select{
-  border:1px solid #d8dee7;
+  border:1px solid #ddd;
   border-radius:7px;
-  padding:6px 8px;
+  padding:5px 7px;
   background:#fff;
   font-size:11px;
 }
 
-.transport{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 10px;
-  margin:0 5px;
-  color:#697586;
-  font-size:10px;
+.details{
+  display:none;
+  margin-top:9px;
+  border:1px solid #e1e4e8;
+  border-radius:10px;
+  overflow:hidden;
+  background:#fafbfc;
 }
 
-.transport-line{
-  height:1px;
-  flex:1;
-  background:#dfe5ec;
+.details.open{
+  display:block;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+}
+
+.detail{
+  padding:8px 10px;
+  border-bottom:1px solid #e8eaed;
+}
+
+.detail:nth-child(odd){
+  border-right:1px solid #e8eaed;
+}
+
+.detail b{
+  display:block;
+  font-size:10px;
+  color:#858b91;
+  margin-bottom:2px;
+}
+
+.detail span{
+  display:block;
+  font-size:12px;
+  color:#333;
+}
+
+.map-btn{
+  display:inline-flex;
+  margin:10px;
+  padding:7px 10px;
+  border-radius:8px;
+  background:#4285f4;
+  color:white;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+}
+
+.route-line{
+  padding:9px 10px;
+  background:#eef6ff;
+  border-bottom:1px solid #dfeaf5;
+  font-size:12px;
+  color:#255b8a;
+}
+
+.warning-box{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  margin:9px 10px 10px;
+  padding:8px 9px;
+  border-radius:8px;
+  background:#fff5d7;
+  border-left:3px solid var(--yellow);
+  color:#735700;
+  font-size:11px;
+}
+
+.info-box{
+  padding:11px 12px;
+  border-radius:10px;
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+  font-size:12px;
+  color:#315b7d;
+  margin-top:10px;
 }
 
 .hotel-card{
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.hotel-top{
-  background:#f2f6fb;
-  padding:14px;
+  background:#f7f8fa;
+  border-radius:13px;
+  padding:15px;
 }
 
 .hotel-name{
-  font-size:17px;
+  font-size:18px;
   font-weight:800;
 }
 
 .hotel-jp{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:2px;
-}
-
-.hotel-body{
-  padding:12px;
-}
-
-.info-row{
-  display:flex;
-  gap:8px;
-  padding:7px 0;
-  border-bottom:1px solid #edf0f4;
+  color:#777;
   font-size:12px;
 }
 
-.info-row:last-child{
-  border-bottom:0;
+.hotel-data{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:12px;
 }
 
-.info-row b{
-  width:74px;
-  color:#667085;
-  flex:0 0 auto;
+.hotel-data div{
+  background:#fff;
+  border:1px solid #e6e8eb;
+  border-radius:9px;
+  padding:9px;
 }
 
-.breakfast{
-  margin-top:11px;
-  padding:11px;
-  border-radius:10px;
-  background:#fff8e8;
-  border-left:4px solid #df970e;
-}
-
-.breakfast strong{
+.hotel-data small{
   display:block;
-  font-size:13px;
+  color:#888;
+  font-size:10px;
 }
 
-.breakfast small{
-  color:#80651d;
-  font-size:10px;
+.hotel-data strong{
+  display:block;
+  font-size:12px;
+  margin-top:2px;
+}
+
+.compact-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.compact-card{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:11px;
+  background:#fafbfc;
+}
+
+.compact-card h3{
+  margin:0 0 8px;
+  font-size:14px;
 }
 
 .check-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:7px;
+  gap:5px 13px;
 }
 
-.check-item{
+.check{
   display:flex;
-  align-items:center;
   gap:7px;
-  padding:9px;
-  background:#f7f9fb;
-  border:1px solid #e7ebf0;
-  border-radius:9px;
-  font-size:12px;
+  align-items:flex-start;
+  padding:5px 0;
+  font-size:13px;
   cursor:pointer;
 }
 
-.check-item input{
+.check input{
   width:17px;
   height:17px;
+  flex:0 0 17px;
   accent-color:var(--green);
-  flex:0 0 auto;
+  margin:1px 0 0;
 }
 
-.check-item:has(input:checked){
-  background:var(--green2);
-  border-color:#9bd8bb;
-  color:#267251;
+.check input:checked + span{
+  color:#999;
+  text-decoration:line-through;
 }
 
 .notice{
-  padding:11px 12px;
-  border-radius:10px;
-  font-size:11px;
+  padding:11px 13px;
+  border-radius:9px;
   margin-top:10px;
+  font-size:12px;
+}
+
+.notice.warning{
+  background:#fff6df;
+  border-left:4px solid var(--orange);
+}
+
+.notice.danger{
+  background:#fff0f0;
+  border-left:4px solid #d33;
 }
 
 .notice.info{
@@ -541,30 +611,36 @@ main{
   border-left:4px solid var(--blue);
 }
 
-.notice.warning{
-  background:#fff7e5;
-  border-left:4px solid var(--orange);
-}
-
-.notice.danger{
-  background:#fff0f1;
-  border-left:4px solid var(--red);
-}
-
-.memo{
+textarea{
   width:100%;
   min-height:130px;
   resize:vertical;
-  border:1px solid #dce2ea;
+  border:1px solid var(--line);
   border-radius:10px;
-  padding:10px;
+  padding:11px;
   outline:none;
-  font-size:13px;
 }
 
-.memo:focus{
-  border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(40,120,216,.08);
+textarea:focus{
+  border-color:#a9c6df;
+  box-shadow:0 0 0 3px rgba(36,104,168,.08);
+}
+
+.legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.legend span{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 8px;
+  background:#f6f7f8;
+  border-radius:7px;
+  font-size:11px;
 }
 
 .actions{
@@ -573,96 +649,116 @@ main{
   flex-wrap:wrap;
 }
 
-.btn{
+.primary-btn,
+.secondary-btn,
+.danger-btn{
   border:0;
   border-radius:9px;
   padding:9px 13px;
   cursor:pointer;
-  font-size:11px;
-  font-weight:700;
+  font-size:12px;
 }
 
-.btn-danger{
-  background:#ffe5e7;
-  color:#a72d3e;
-}
-
-.btn-top{
-  background:#edf1f5;
-  color:#344054;
-}
-
-.save{
-  position:fixed;
-  right:14px;
-  bottom:14px;
-  z-index:100;
-  background:#172033;
+.primary-btn{
+  background:#25272b;
   color:#fff;
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:10px;
-  opacity:.88;
 }
 
-.save.ok{
+.secondary-btn{
+  background:#edf0f3;
+  color:#333;
+}
+
+.danger-btn{
+  background:#ffe1e1;
+  color:#a00000;
+}
+
+.save-status{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  z-index:200;
+  background:#25272b;
+  color:#fff;
+  border-radius:22px;
+  padding:8px 12px;
+  font-size:11px;
+  opacity:.9;
+  transition:.25s;
+}
+
+.save-status.saved{
   background:var(--green);
 }
 
 .footer{
   text-align:center;
-  color:#8994a5;
-  font-size:10px;
-  padding:8px 0 20px;
+  color:#777;
+  font-size:11px;
+  padding:3px 0 20px;
 }
 
 @media(max-width:800px){
-  .hero-grid{
+
+  .header-grid{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .compact-grid{
+    grid-template-columns:1fr;
   }
 
   .check-grid{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
-@media(max-width:520px){
+@media(max-width:560px){
+
   .container{
-    width:calc(100% - 14px);
+    width:calc(100% - 12px);
   }
 
-  .hero{
-    padding:21px 0;
+  .header{
+    padding:19px 0;
   }
 
-  .hero h1{
-    font-size:26px;
+  .header h1{
+    font-size:25px;
   }
 
-  .hero-box{
+  .header-grid{
+    gap:7px;
+  }
+
+  .header-box{
     padding:9px;
   }
 
-  .hero-box strong{
-    font-size:11px;
-  }
-
-  main{
-    padding-top:10px;
+  .header-box strong{
+    font-size:12px;
   }
 
   .section{
-    padding:12px;
-    border-radius:13px;
+    padding:11px;
+    border-radius:12px;
     margin-bottom:10px;
   }
 
   .section-title{
-    font-size:17px;
+    font-size:18px;
+    margin-bottom:12px;
+  }
+
+  .day{
+    border-radius:12px;
+    margin-bottom:11px;
   }
 
   .day-head{
-    padding:13px;
+    padding:12px;
   }
 
   .day-title{
@@ -670,16 +766,85 @@ main{
   }
 
   .day-route{
-    max-width:260px;
+    font-size:11px;
   }
 
-  .timeline{
-    padding:6px;
+  .day-counter{
+    font-size:10px;
+    padding:4px 7px;
   }
 
-  .item-main{
-    grid-template-columns:54px 1fr 28px;
-    padding:10px 8px;
+  .schedule{
+    padding:4px;
+  }
+
+  .item{
+    grid-template-columns:64px minmax(0,1fr);
+  }
+
+  .time{
+    padding:14px 7px 14px 3px;
+    font-size:12px;
+    text-align:right;
+  }
+
+  .item-content{
+    padding:10px 7px 11px 9px;
+  }
+
+  .item-title{
+    font-size:14px;
+  }
+
+  .item-sub{
+    font-size:11px;
+  }
+
+  .item-actions{
+    margin-top:7px;
+  }
+
+  .action{
+    font-size:10px;
+    padding:5px 7px;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail{
+    border-right:0!important;
+  }
+
+  .detail:nth-last-child(1),
+  .detail:nth-last-child(2){
+    border-bottom:0;
+  }
+
+  .hotel-data{
+    grid-template-columns:1fr;
+  }
+
+  .check-grid{
+    grid-template-columns:1fr 1fr;
+    gap:2px 8px;
+  }
+
+  .check{
+    font-size:12px;
+  }
+
+  .save-status{
+    right:10px;
+    bottom:10px;
+  }
+}
+
+@media(max-width:360px){
+
+  .item{
+    grid-template-columns:58px minmax(0,1fr);
   }
 
   .time{
@@ -690,35 +855,8 @@ main{
     font-size:13px;
   }
 
-  .item-summary{
-    font-size:10px;
-  }
-
-  .detail-grid{
-    grid-template-columns:1fr;
-  }
-
-  .detail.full{
-    grid-column:auto;
-  }
-
-  .check-grid{
-    grid-template-columns:1fr 1fr;
-    gap:5px;
-  }
-
-  .check-item{
-    padding:8px 6px;
+  .check{
     font-size:11px;
-  }
-
-  .booking{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .booking select{
-    width:100%;
   }
 }
 </style>
@@ -726,1260 +864,1440 @@ main{
 
 <body>
 
-<header class="hero">
-  <div class="container">
-    <h1>🇯🇵 東京 4天3夜</h1>
-    <div class="hero-sub">2026/09/25（五）～ 09/28（一）｜行程管理版</div>
+<header class="header">
+<div class="container">
 
-    <div class="hero-grid">
-      <div class="hero-box">
-        <small>去程</small>
-        <strong>TR866｜06:45</strong>
-      </div>
-      <div class="hero-box">
-        <small>回程</small>
-        <strong>TR875｜21:15</strong>
-      </div>
-      <div class="hero-box">
-        <small>住宿</small>
-        <strong>銀座｜3晚</strong>
-      </div>
-      <div class="hero-box">
-        <small>機場</small>
-        <strong>成田 T1</strong>
-      </div>
-    </div>
-  </div>
+<h1>🇯🇵 東京 4天3夜</h1>
+
+<div class="subtitle">
+2026/09/25（五）～09/28（一）｜銀座住宿｜行程／交通／預約／完成度整合版
+</div>
+
+<div class="header-grid">
+
+<div class="header-box">
+<small>去程</small>
+<strong>TR866｜06:45 → 11:15</strong>
+</div>
+
+<div class="header-box">
+<small>回程</small>
+<strong>TR875｜21:15 → 23:55</strong>
+</div>
+
+<div class="header-box">
+<small>機場</small>
+<strong>桃園 T1 ↔ 成田 T1</strong>
+</div>
+
+<div class="header-box">
+<small>住宿</small>
+<strong>Millennium Mitsui Garden Hotel Tokyo</strong>
+</div>
+
+</div>
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span id="progressText">行程完成度 0%</span>
+<span id="progressCount">0 / 0</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+</div>
+
+</div>
 </header>
 
 <nav class="nav">
-  <div class="container nav-inner">
-    <a href="#schedule">🗓 行程</a>
-    <a href="#hotel">🏨 飯店</a>
-    <a href="#check">✅ Checklist</a>
-    <a href="#notes">📝 備忘</a>
-  </div>
+<div class="container nav-inner">
+<a href="#schedule">🗓 行程</a>
+<a href="#hotel">🏨 飯店</a>
+<a href="#prepare">🛂 出發前</a>
+<a href="#packing">🧳 行李</a>
+<a href="#notes">📝 備忘</a>
+</div>
 </nav>
 
 <main class="container">
 
 <section class="section" id="schedule">
-  <div class="section-head">
-    <div>
-      <h2 class="section-title">🗓 東京每日行程</h2>
-      <div class="section-sub">點行程看詳細資料；☑️ 完成後整張卡片變綠色</div>
-    </div>
-  </div>
 
-  <div id="days"></div>
+<h2 class="section-title">
+🗓 完整行程
+<span>黃色＝該時段趕路／緩衝不足</span>
+</h2>
+
+<div class="legend">
+<span>🟢 正常</span>
+<span>🟡 趕路</span>
+<span>🔴 高風險／指定時間</span>
+<span>☐ 尚未完成</span>
+<span>✓ 已完成</span>
+</div>
+
+<div id="days"></div>
+
 </section>
 
 <section class="section" id="hotel">
-  <div class="section-head">
-    <div>
-      <h2 class="section-title">🏨 住宿</h2>
-      <div class="section-sub">三晚都住同一間，減少搬行李</div>
-    </div>
-  </div>
 
-  <div class="hotel-card">
-    <div class="hotel-top">
-      <div class="hotel-name">Millennium Mitsui Garden Hotel Tokyo</div>
-      <div class="hotel-jp">ミレニアム 三井ガーデンホテル 東京</div>
-    </div>
+<h2 class="section-title">🏨 住宿</h2>
 
-    <div class="hotel-body">
-      <div class="info-row">
-        <b>📍 地址</b>
-        <span>東京都中央區銀座5-11-1</span>
-      </div>
+<div class="hotel-card">
 
-      <div class="info-row">
-        <b>🚇 東銀座</b>
-        <span>A1出口步行約1分鐘</span>
-      </div>
+<div class="hotel-name">Millennium Mitsui Garden Hotel Tokyo</div>
 
-      <div class="info-row">
-        <b>🚇 銀座</b>
-        <span>A5出口步行約2分鐘</span>
-      </div>
+<div class="hotel-jp">ミレニアム 三井ガーデンホテル 東京</div>
 
-      <div class="info-row">
-        <b>🕒 入住</b>
-        <span>15:00</span>
-      </div>
+<div class="hotel-data">
 
-      <div class="info-row">
-        <b>🕛 退房</b>
-        <span>12:00</span>
-      </div>
+<div>
+<small>📍 地址</small>
+<strong>東京都中央區銀座5-11-1</strong>
+</div>
 
-      <div class="info-row">
-        <b>☎️ 電話</b>
-        <span>+81-3-3549-3331</span>
-      </div>
+<div>
+<small>🚇 最近車站</small>
+<strong>東銀座 A1 約1分鐘</strong>
+</div>
 
-      <div class="breakfast">
-        <strong>🍳 飯店早餐｜ZEN HOUSE</strong>
-        <small>06:30–10:30｜最後入店 10:00｜住宿客早餐 ¥3,630</small>
-      </div>
+<div>
+<small>🚇 另一站</small>
+<strong>銀座 A5 約2分鐘</strong>
+</div>
 
-      <div class="detail-actions">
-        <a class="action map" href="#" data-map="Millennium Mitsui Garden Hotel Tokyo" target="_blank">📍 Google Maps</a>
-        <a class="action official" href="#" data-official="https://www.gardenhotels.co.jp/millennium-tokyo/" target="_blank">🌐 官方網站</a>
-      </div>
-    </div>
-  </div>
+<div>
+<small>🕒 Check-in</small>
+<strong>15:00</strong>
+</div>
 
-  <div class="notice info">
-    💡 早餐已直接放進 Day 2、Day 3、Day 4；Day 1 因為 06:45 已搭機，不安排飯店早餐。
-  </div>
+<div>
+<small>🕛 Check-out</small>
+<strong>12:00</strong>
+</div>
+
+<div>
+<small>🍳 ZEN HOUSE 早餐</small>
+<strong>06:30–10:30｜最晚入店10:00</strong>
+</div>
+
+</div>
+
+<div class="item-actions">
+<a
+class="action"
+target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Millennium+Mitsui+Garden+Hotel+Tokyo+5-11-1+Ginza+Tokyo"
+>📍 Google Maps</a>
+</div>
+
+<div class="info-box">
+早餐已經直接排進 Day 2、Day 3、Day 4，不需要另外再算。Day 1 因為 11:15 才抵達成田，因此不安排飯店早餐。
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="check">
-  <div class="section-head">
-    <div>
-      <h2 class="section-title">✅ 出發前 Checklist</h2>
-      <div class="section-sub">勾選會自動保存</div>
-    </div>
-  </div>
+<section class="section" id="prepare">
 
-  <div class="check-grid">
-    <label class="check-item"><input type="checkbox" data-save="passport">護照</label>
-    <label class="check-item"><input type="checkbox" data-save="flight">機票／航班</label>
-    <label class="check-item"><input type="checkbox" data-save="hotel">飯店訂單</label>
-    <label class="check-item"><input type="checkbox" data-save="vjw">Visit Japan Web</label>
-    <label class="check-item"><input type="checkbox" data-save="esim">eSIM／網路</label>
-    <label class="check-item"><input type="checkbox" data-save="credit">信用卡</label>
-    <label class="check-item"><input type="checkbox" data-save="yen">日幣</label>
-    <label class="check-item"><input type="checkbox" data-save="medicine">常備藥</label>
-    <label class="check-item"><input type="checkbox" data-save="power">行動電源</label>
-    <label class="check-item"><input type="checkbox" data-save="cable">充電線</label>
-    <label class="check-item"><input type="checkbox" data-save="umbrella">雨具</label>
-    <label class="check-item"><input type="checkbox" data-save="luggage">行李</label>
-    <label class="check-item"><input type="checkbox" data-save="terminal">確認航廈</label>
-    <label class="check-item"><input type="checkbox" data-save="reservation">確認預約</label>
-  </div>
+<h2 class="section-title">🛂 出發前</h2>
 
-  <div class="notice warning">
-    ⚠️ 藥品、肉製品、植物、水果等入境物品不要只依台灣商品名稱判斷，出發前應再次確認日本官方規定。
-  </div>
+<div class="check-grid">
+
+<label class="check"><input type="checkbox" data-save="passport"><span>護照</span></label>
+<label class="check"><input type="checkbox" data-save="ticket"><span>機票</span></label>
+<label class="check"><input type="checkbox" data-save="hotel"><span>飯店訂單</span></label>
+<label class="check"><input type="checkbox" data-save="vjw"><span>Visit Japan Web</span></label>
+<label class="check"><input type="checkbox" data-save="insurance"><span>旅遊保險</span></label>
+<label class="check"><input type="checkbox" data-save="esim"><span>eSIM／網路</span></label>
+<label class="check"><input type="checkbox" data-save="card"><span>信用卡</span></label>
+<label class="check"><input type="checkbox" data-save="yen"><span>日幣</span></label>
+<label class="check"><input type="checkbox" data-save="ic"><span>交通 IC 卡</span></label>
+<label class="check"><input type="checkbox" data-save="map"><span>地圖離線資料</span></label>
+<label class="check"><input type="checkbox" data-save="translate"><span>翻譯 App</span></label>
+<label class="check"><input type="checkbox" data-save="backup"><span>重要資料備份</span></label>
+
+</div>
+
+<div class="notice warning">
+⚠️ 藥品請保留原包裝、藥袋及說明；部分感冒藥、鼻塞藥等成分在日本可能受管制，不要只用台灣商品名稱判斷。
+</div>
+
+<div class="notice danger">
+🍖 肉類、肉乾、香腸、培根、火腿、肉鬆等不要任意攜入日本；水果、植物、種子等也可能受到檢疫規定。
+</div>
+
+</section>
+
+<section class="section" id="packing">
+
+<h2 class="section-title">🧳 行李快速檢查</h2>
+
+<div class="compact-grid">
+
+<div class="compact-card">
+<h3>🎒 隨身</h3>
+
+<label class="check"><input type="checkbox" data-save="bag-passport"><span>護照</span></label>
+<label class="check"><input type="checkbox" data-save="bag-phone"><span>手機</span></label>
+<label class="check"><input type="checkbox" data-save="bag-wallet"><span>錢包</span></label>
+<label class="check"><input type="checkbox" data-save="bag-card"><span>信用卡</span></label>
+<label class="check"><input type="checkbox" data-save="bag-yen"><span>日幣</span></label>
+<label class="check"><input type="checkbox" data-save="bag-power"><span>行動電源</span></label>
+<label class="check"><input type="checkbox" data-save="bag-cable"><span>充電線</span></label>
+<label class="check"><input type="checkbox" data-save="bag-medicine"><span>常備藥</span></label>
+</div>
+
+<div class="compact-card">
+<h3>🧳 行李箱</h3>
+
+<label class="check"><input type="checkbox" data-save="clothes"><span>衣物</span></label>
+<label class="check"><input type="checkbox" data-save="underwear"><span>內衣褲</span></label>
+<label class="check"><input type="checkbox" data-save="socks"><span>襪子</span></label>
+<label class="check"><input type="checkbox" data-save="jacket"><span>薄外套</span></label>
+<label class="check"><input type="checkbox" data-save="shoes"><span>好走的鞋</span></label>
+<label class="check"><input type="checkbox" data-save="toiletries"><span>盥洗用品</span></label>
+<label class="check"><input type="checkbox" data-save="rain"><span>雨具</span></label>
+<label class="check"><input type="checkbox" data-save="bag-tag"><span>行李吊牌</span></label>
+</div>
+
+<div class="compact-card">
+<h3>💊 藥品</h3>
+
+<label class="check"><input type="checkbox" data-save="med-cold"><span>感冒藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-pain"><span>止痛藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-stomach"><span>腸胃藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-motion"><span>暈車藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-allergy"><span>過敏藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-eye"><span>眼藥水</span></label>
+<label class="check"><input type="checkbox" data-save="med-personal"><span>固定用藥</span></label>
+<label class="check"><input type="checkbox" data-save="med-doc"><span>處方／證明</span></label>
+</div>
+
+</div>
+
+<div class="notice warning">
+🔋 行動電源請放隨身行李，不要放託運行李；容量與數量仍以實際航空公司規定為準。
+</div>
+
 </section>
 
 <section class="section" id="notes">
-  <div class="section-head">
-    <div>
-      <h2 class="section-title">📝 我的備忘錄</h2>
-      <div class="section-sub">餐廳、購物、預約編號都可以記</div>
-    </div>
-  </div>
 
-  <textarea class="memo" id="memo" placeholder="例如：餐廳預約姓名、票券、購物清單、想吃的東西……"></textarea>
-</section>
+<h2 class="section-title">📝 我的備忘錄</h2>
 
-<section class="section">
-  <div class="actions">
-    <button class="btn btn-danger" onclick="clearAll()">🗑 清除全部資料</button>
-    <button class="btn btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ 回到頂端</button>
-  </div>
+<textarea
+id="memo"
+data-save="memo"
+placeholder="想吃的餐廳、購物清單、預約編號、票券、其他備註……"
+></textarea>
+
+<div class="actions" style="margin-top:10px">
+<button class="primary-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️ 回到頂端</button>
+<button class="danger-btn" onclick="clearAll()">🗑 清除所有資料</button>
+</div>
+
 </section>
 
 <div class="footer">
-  🇯🇵 Tokyo Trip｜2026/09/25 ～ 09/28
+🇯🇵 Tokyo Trip｜2026/09/25 ～ 09/28
 </div>
 
 </main>
 
-<div class="save" id="save">✓ 已自動儲存</div>
+<div class="save-status" id="saveStatus">✓ 已儲存</div>
 
 <script>
-const KEY="tokyo_trip_2026_v3_";
+const STORAGE="tokyo_trip_2026_v3_";
 
 const days=[
 {
-date:"9/25（五）",
-title:"Day 1",
+id:"d1",
+title:"Day 1｜9/25（五）",
 route:"成田 → 銀座 → 上野 → 淺草 → 晴空塔",
 items:[
 {
 time:"11:15",
-title:"抵達成田國際機場 T1",
-type:"機場",
-summary:"入境、領行李、海關",
-address:"千葉縣成田市古込1-1",
-hours:"24小時機場",
-transport:"下機後辦理入境與領行李",
-duration:"約45–60分鐘",
-distance:"—",
-note:"TR866｜桃園 T1 → 成田 T1",
+title:"🛬 抵達成田國際機場 T1",
+sub:"入境 → 領行李 → 海關 → 前往成田機場站",
+level:"danger",
+detail:[
+["📍 地點","成田國際機場第1航廈"],
+["🕒 建議","抵達後直接前往車站"],
+["🚶 動線","T1 入境大廳 → 成田機場站"],
+["⚠️ 注意","這裡開始計算後面 12:20 車次的緩衝"]
+],
 map:"Narita International Airport Terminal 1"
 },
 {
-time:"12:20",
-title:"Access Express → 東銀座",
-type:"交通",
-summary:"成田 T1 → 東銀座｜推薦直達路線",
-address:"東銀座站",
-hours:"依鐵路班次",
-transport:"京成成田空港線／都營淺草線 Access Express",
-duration:"約60–70分鐘",
-distance:"約70 km",
-note:"優先選擇可直達東銀座的 Access Express，避免拖行李轉乘",
-map:"Higashi-Ginza Station Tokyo"
+time:"12:20–13:22",
+title:"🚆 成田 T1 → 東銀座",
+sub:"Keisei Access Express｜直達主方案｜約62分鐘",
+level:"danger",
+detail:[
+["🚉 上車","成田機場站 Terminal 1"],
+["🚇 路線","Keisei Narita Sky Access／Access Express"],
+["➡️ 方向","往羽田空港／西馬込方向之直通班次"],
+["🚉 下車","東銀座站"],
+["🚪 出站","A1 出口"],
+["🚶 步行","約1分鐘到飯店"],
+["⏱ 車程","約62分鐘"],
+["📏 距離","約70 km 級距"],
+["💴 參考","IC 約 ¥1,318"],
+["⚠️ 緩衝","11:15 抵達 → 12:20 上車，65分鐘，偏趕"]
+],
+map:"Higashi-Ginza Station"
 },
 {
 time:"13:30",
-title:"Millennium Mitsui Garden Hotel Tokyo",
-type:"飯店",
-summary:"寄放行李／整理／準備午餐",
-address:"東京都中央區銀座5-11-1",
-hours:"Check-in 15:00",
-transport:"東銀座站 A1 → 步行",
-duration:"約1分鐘",
-distance:"約100 m",
-note:"正式入住時間15:00；13:30先寄放行李",
-map:"Millennium Mitsui Garden Hotel Tokyo"
+title:"🏨 Millennium Mitsui Garden Hotel Tokyo",
+sub:"寄放行李／辦理入住準備",
+detail:[
+["📍 地址","5-11-1 Ginza, Chuo-ku, Tokyo"],
+["🚪 最近出口","東銀座 A1"],
+["🚶 距離","約1分鐘"],
+["🕒 Check-in","15:00"],
+["🧳 現在","先寄放行李"],
+["⚠️ 緩衝","到13:35午餐只有5分鐘，偏趕"]
+],
+map:"Millennium Mitsui Garden Hotel Tokyo",
+level:"tight"
 },
 {
-time:"13:35",
-title:"步行 → 牛庵 銀座店",
-type:"午餐",
-summary:"飯店 → 午餐",
-address:"銀座一帶",
-hours:"請以餐廳當日公告／預約頁為準",
-transport:"步行",
-duration:"約5–10分鐘",
-distance:"約500–800 m",
-note:"午餐時間較緊，建議事前確認是否接受預約",
-booking:"未確認",
-map:"牛庵 銀座店"
-},
-{
-time:"13:40–14:20",
-title:"牛庵 銀座店",
-type:"午餐",
-summary:"🥩 Day 1 午餐",
-address:"東京都中央區銀座",
-hours:"請以店家最新公告為準",
-transport:"—",
-duration:"40分鐘",
-distance:"—",
-note:"第一天午餐；若沒有預約，建議預留排隊時間",
-booking:"未確認",
+time:"13:35–14:20",
+title:"🍱 牛庵 銀座店｜午餐",
+sub:"銀座和牛午餐",
+booking:"pending",
+level:"tight",
+detail:[
+["🚶 前往","飯店 → 牛庵銀座店"],
+["🚶 步行","約5–10分鐘"],
+["🍽️ 類型","午餐"],
+["🕒 安排","13:40–14:20"],
+["⚠️ 注意","建議事先確認當日營業／候位狀況"],
+["📌 預約","建議確認"]
+],
 map:"牛庵 銀座店"
 },
 {
 time:"14:20–14:40",
-title:"回飯店 Check-in",
-type:"飯店",
-summary:"正式入住／放行李",
-address:"東京都中央區銀座5-11-1",
-hours:"Check-in 15:00",
-transport:"步行回飯店",
-duration:"約5–10分鐘",
-distance:"約500–800 m",
-note:"原行程時間較早；若14:20抵達，實際入住仍依飯店當日狀況",
+title:"🏨 回飯店 → Check-in",
+sub:"午餐後回飯店完成入住",
+level:"tight",
+detail:[
+["🚶 路線","牛庵 → Millennium Mitsui Garden Hotel"],
+["🚶 步行","約5–10分鐘"],
+["🕒 Check-in","15:00 官方入住時間"],
+["⚠️ 緩衝","20分鐘，需控制午餐時間"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
 time:"14:40–15:05",
-title:"東銀座 → 上野",
-type:"交通",
-summary:"日比谷線｜推薦最簡單路線",
-address:"上野站",
-hours:"依東京Metro班次",
-transport:"東京Metro日比谷線",
-duration:"約20–25分鐘",
-distance:"約5 km",
-note:"東銀座 → 上野，避免多次轉乘",
-map:"Ueno Station Tokyo"
+title:"🚇 東銀座 → 上野",
+sub:"日比谷線｜中目黑方向／約20–25分鐘含站內步行",
+detail:[
+["🚉 上車","東銀座 H10"],
+["🚇 路線","東京Metro 日比谷線"],
+["➡️ 方向","往北千住方面"],
+["🚉 下車","上野 H18"],
+["🚪 出站","建議 7號出口方向"],
+["🚶 步行","上野站 → 東京國立博物館約10–15分鐘"],
+["⏱ 交通","約20–25分鐘門到門"],
+["📏 距離","約6 km"]
+],
+map:"Ueno Station"
 },
 {
 time:"15:05–16:10",
-title:"東京國立博物館",
-type:"景點",
-summary:"🏛️ 本館／園區重點參觀",
-address:"東京都台東區上野公園13-9",
-hours:"依日期；出發前再確認9/25特別開館時間",
-transport:"上野站步行",
-duration:"約10分鐘",
-distance:"約700 m",
-note:"實際閉館時間以官方當日公告為準",
-map:"Tokyo National Museum",
-official:"https://www.tnm.jp/"
+title:"🏛️ 東京國立博物館",
+sub:"本館中心參觀",
+detail:[
+["🕒 營業","9:30–17:00；9/25週五延長至20:00"],
+["🚪 最晚入館","閉館前30分鐘"],
+["📍 地址","東京都台東區上野公園13-9"],
+["🚶 最近","JR上野公園口／東京Metro上野"],
+["⏱ 行程","65分鐘"],
+["📌 建議","時間有限以本館為主"]
+],
+map:"Tokyo National Museum"
 },
 {
 time:"16:10–16:35",
-title:"上野公園",
-type:"散步",
-summary:"散步、拍照",
-address:"東京都台東區上野公園",
-hours:"戶外空間",
-transport:"東京國立博物館步行",
-duration:"約5分鐘",
-distance:"約300 m",
-note:"不安排長時間停留，避免影響淺草行程",
-map:"Ueno Park Tokyo"
+title:"🌳 上野公園",
+sub:"散步／拍照",
+detail:[
+["📍 地點","上野公園"],
+["🚶 動線","東京國立博物館 → 上野公園"],
+["⏱ 時間","25分鐘"],
+["📌 建議","不要拖到16:35後"]
+],
+map:"Ueno Park"
 },
 {
 time:"16:35–16:55",
-title:"上野 → 淺草",
-type:"交通",
-summary:"銀座線｜直達",
-address:"淺草站",
-hours:"依東京Metro班次",
-transport:"東京Metro銀座線",
-duration:"約15–20分鐘",
-distance:"約3 km",
-note:"上野 → 淺草不需轉乘",
-map:"Asakusa Station Tokyo"
+title:"🚇 上野 → 淺草",
+sub:"銀座線｜淺草方向｜約15–20分鐘含步行",
+level:"tight",
+detail:[
+["🚉 上車","上野 G16"],
+["🚇 路線","東京Metro 銀座線"],
+["➡️ 方向","往淺草方面"],
+["🚉 下車","淺草 G19"],
+["🚪 出站","1號／3號出口方向較適合雷門一帶"],
+["🚶 步行","約5分鐘到淺草寺"],
+["⏱ 交通","約15–20分鐘"],
+["📏 距離","約2.2 km"],
+["⚠️ 緩衝","只有20分鐘，需準時離開上野"]
+],
+map:"Asakusa Station"
 },
 {
 time:"16:55–18:05",
-title:"淺草寺",
-type:"景點",
-summary:"雷門 → 仲見世 → 淺草寺",
-address:"東京都台東區淺草2-3-1",
-hours:"境內可參拜；各設施時間不同",
-transport:"淺草站步行",
-duration:"約5–10分鐘",
-distance:"約500 m",
-note:"傍晚適合拍雷門與仲見世",
-map:"Senso-ji Temple Tokyo",
-official:"https://www.senso-ji.jp/"
+title:"⛩️ 淺草寺",
+sub:"雷門 → 仲見世 → 本堂",
+detail:[
+["📍 地址","東京都台東區淺草2-3-1"],
+["🚉 車站","淺草站"],
+["🚪 出口","都營淺草線 A4"],
+["🚶 步行","約5分鐘"],
+["🕒 本堂","06:00–17:00（9月）"],
+["⚠️ 注意","16:55抵達，已接近本堂關閉時間"],
+["📌 重點","雷門／仲見世／本堂外觀"]
+],
+map:"Senso-ji Temple",
+level:"danger"
 },
 {
 time:"18:05–18:30",
-title:"淺草 → 東京晴空塔",
-type:"交通",
-summary:"前往押上／晴空塔",
-address:"東京都墨田區押上1-1-2",
-hours:"依晴空塔當日營業時間",
-transport:"都營淺草線／步行組合",
-duration:"約25分鐘",
-distance:"約2 km",
-note:"以當日Google Maps即時路線確認月台",
+title:"🚆 淺草 → 東京晴空塔",
+sub:"東武晴空塔線／最簡單快速方案",
+level:"tight",
+detail:[
+["🚉 上車","淺草站"],
+["🚇 路線","東武晴空塔線"],
+["➡️ 方向","往とうきょうスカイツリー／曳舟方向"],
+["🚉 下車","とうきょうスカイツリー站"],
+["🚶 步行","約數分鐘至東京晴空塔入口"],
+["⏱ 車程","約3–5分鐘；門到門抓20–25分鐘"],
+["📏 距離","約1.5 km"],
+["⚠️ 緩衝","18:30開始入場，這段不能拖"]
+],
 map:"Tokyo Skytree"
 },
 {
 time:"18:30–18:40",
-title:"東京晴空塔",
-type:"景點",
-summary:"入場 → 345F餐廳",
-address:"東京都墨田區押上1-1-2",
-hours:"展望台依日期公告",
-transport:"押上站步行",
-duration:"約10分鐘",
-distance:"約700 m",
-note:"餐廳位於天望Deck 345F，需搭配展望台入場",
-map:"Tokyo Skytree",
-official:"https://www.tokyo-skytree.jp/"
+title:"🎫 東京晴空塔｜入場",
+sub:"前往 Sky Restaurant 634",
+level:"danger",
+booking:"pending",
+detail:[
+["📍 地址","東京都墨田區押上1-1-2"],
+["🚪 入口","4F Ticket Counter／Entrance"],
+["🚶 動線","車站 → Tokyo Skytree Town → 4F"],
+["🕒 展望台","依9/25當日官方營業時間"],
+["⚠️ 注意","指定餐廳時間，建議提前確認預約"]
+],
+map:"Tokyo Skytree"
 },
 {
 time:"18:40–20:00",
-title:"Sky Restaurant 634 (musashi)",
-type:"晚餐",
-summary:"🍽️ 345F｜東京夜景晚餐",
-address:"東京都墨田區押上1-1-2 東京晴空塔天望Deck 345F",
-hours:"晚餐17:30–22:00｜最終入店19:30",
-transport:"晴空塔內",
-duration:"80分鐘",
-distance:"—",
-note:"18:40安排在官方晚餐時段內",
-booking:"未確認",
-map:"Sky Restaurant 634 Musashi",
-official:"https://www.tokyo-skytree.jp/shop/restaurant/"
+title:"🍽️ Sky Restaurant 634 Musashi｜345F",
+sub:"東京晴空塔 345F 晚餐",
+booking:"pending",
+level:"danger",
+detail:[
+["🍽️ 類型","高樓景觀晚餐"],
+["📍 樓層","Tokyo Skytree Tembo Deck 345F"],
+["🕒 晚餐","官方目前資料為17:30–22:00"],
+["🎫 預約","強烈建議事先預約"],
+["⚠️ 注意","18:30入場 → 18:40餐廳，緩衝極小"]
+],
+map:"Sky Restaurant 634 Musashi"
 },
 {
 time:"20:00–21:00",
-title:"東京晴空塔展望台",
-type:"景點",
-summary:"🌃 東京夜景",
-address:"東京都墨田區押上1-1-2",
-hours:"依9/25當日官方營業時間",
-transport:"餐廳同館",
-duration:"60分鐘",
-distance:"—",
-note:"展望台開放時間會依日期變動，票券建議提前確認",
-map:"Tokyo Skytree",
-official:"https://www.tokyo-skytree.jp/open-hours/"
+title:"🌃 東京晴空塔展望台",
+sub:"夜景／拍照",
+booking:"pending",
+detail:[
+["📍 地點","Tokyo Skytree Tembo Deck"],
+["🕒 營業","依9/25官方日別時間"],
+["📌 建議","345F餐廳後直接前往展望區"],
+["🎫 預約","若購票有指定時段需依票券"]
+],
+map:"Tokyo Skytree Tembo Deck"
 },
 {
 time:"21:00–21:35",
-title:"押上 → 東銀座",
-type:"交通",
-summary:"都營淺草線｜直達",
-address:"東銀座站",
-hours:"依都營地鐵班次",
-transport:"都營淺草線",
-duration:"約25–30分鐘",
-distance:"約8 km",
-note:"避免轉乘，直接回東銀座",
-map:"Higashi-Ginza Station Tokyo"
+title:"🚇 押上 → 東銀座",
+sub:"都營淺草線｜直達",
+detail:[
+["🚉 上車","押上〈スカイツリー前〉"],
+["🚇 路線","都營淺草線"],
+["➡️ 方向","往西馬込／羽田空港方面"],
+["🚉 下車","東銀座 A1"],
+["🚶 步行","約1分鐘到飯店"],
+["⏱ 交通","約25–30分鐘"],
+["📏 距離","約10 km"]
+],
+map:"Higashi-Ginza Station"
 },
 {
 time:"21:35",
-title:"回 Millennium Mitsui Garden Hotel",
-type:"飯店",
-summary:"Day 1 完成",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"東銀座站步行",
-duration:"約1分鐘",
-distance:"約100 m",
-note:"休息",
+title:"🏨 回飯店",
+sub:"Millennium Mitsui Garden Hotel Tokyo",
+detail:[
+["📍 地址","5-11-1 Ginza"],
+["🚶 最近出口","東銀座 A1"],
+["🕒 今日","行程結束"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 }
 ]
 },
 {
-date:"9/26（六）",
-title:"Day 2",
-route:"銀座 → 六本木 → 增上寺 → 東京鐵塔 → 澀谷",
+id:"d2",
+title:"Day 2｜9/26（六）",
+route:"銀座 → 六本木 → 增上寺 → 東京鐵塔 → 六本木 → 澀谷",
 items:[
 {
-time:"07:00–07:30",
-title:"起床／整理",
-type:"飯店",
-summary:"準備 Day 2",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"—",
-duration:"30分鐘",
-distance:"—",
-note:"早餐前整理",
+time:"07:30–08:20",
+title:"🍳 飯店早餐｜ZEN HOUSE",
+sub:"已正式排入行程",
+detail:[
+["🍽️ 地點","飯店 B1 ZEN HOUSE"],
+["🕒 早餐","06:30–10:30"],
+["🚪 最晚入店","10:00"],
+["⏱ 安排","07:30–08:20"],
+["📌 建議","08:20前結束，準備出發"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
-time:"07:30–08:30",
-title:"飯店早餐｜ZEN HOUSE",
-type:"早餐",
-summary:"🍳 日式／西式 Buffet",
-address:"東京都中央區銀座5-11-1｜B1 ZEN HOUSE",
-hours:"06:30–10:30｜最後入店10:00",
-transport:"飯店內",
-duration:"60分鐘",
-distance:"—",
-note:"官方早餐時段；建議07:30開始",
-booking:"未確認",
-map:"Millennium Mitsui Garden Hotel Tokyo"
-},
-{
-time:"08:30–09:00",
-title:"銀座 → 六本木",
-type:"交通",
-summary:"日比谷線｜少轉乘",
-address:"六本木站",
-hours:"依東京Metro班次",
-transport:"東京Metro日比谷線",
-duration:"約20–25分鐘",
-distance:"約4 km",
-note:"東銀座直接前往六本木",
-map:"Roppongi Station Tokyo"
+time:"09:00",
+title:"🚇 銀座 → 六本木",
+sub:"日比谷線直達",
+detail:[
+["🚉 上車","東銀座 H10"],
+["🚇 路線","日比谷線"],
+["➡️ 方向","往中目黑方面"],
+["🚉 下車","六本木 H04"],
+["🚪 出站","1C出口方向／Roppongi Hills"],
+["🚶 步行","約5–10分鐘"],
+["⏱ 交通","約20–25分鐘"]
+],
+map:"Roppongi Station"
 },
 {
 time:"09:30–10:00",
-title:"六本木之丘",
-type:"景點",
-summary:"抵達／逛街／拍照",
-address:"東京都港區六本木6-10-1",
-hours:"依商場／展望台公告",
-transport:"六本木站步行",
-duration:"約10分鐘",
-distance:"約600 m",
-note:"預留30分鐘緩衝",
-map:"Roppongi Hills",
-official:"https://www.roppongihills.com/"
+title:"🏙️ 六本木之丘",
+sub:"抵達／找入口／拍照",
+detail:[
+["📍 地址","東京都港區六本木6-10-1"],
+["🚪 入口","Roppongi Hills Mori Tower"],
+["📌 建議","提早找到52F入口"]
+],
+map:"Roppongi Hills"
 },
 {
 time:"10:00–11:00",
-title:"Tokyo City View",
-type:"景點",
-summary:"🌆 六本木展望",
-address:"東京都港區六本木6-10-1",
-hours:"依當日官方公告",
-transport:"六本木之丘內",
-duration:"60分鐘",
-distance:"—",
-note:"票券／展望台開放時間需依當日公告",
-booking:"未確認",
-map:"Tokyo City View Roppongi",
-official:"https://tcv.roppongihills.com/"
+title:"🌇 Tokyo City View",
+sub:"52F 展望台",
+booking:"pending",
+detail:[
+["🕒 營業","10:00–22:00"],
+["🚪 最晚入館","21:30"],
+["📍 樓層","Mori Tower 52F"],
+["🎫 預約","建議購票"],
+["⏱ 行程","60分鐘"]
+],
+map:"Tokyo City View Roppongi Hills"
 },
 {
 time:"11:00–12:00",
-title:"六本木之丘逛街",
-type:"購物",
-summary:"商場／拍照",
-address:"東京都港區六本木6-10-1",
-hours:"依各店舖",
-transport:"步行",
-duration:"60分鐘",
-distance:"—",
-note:"保留彈性",
-map:"Roppongi Hills Tokyo"
+title:"🛍️ 六本木之丘逛街",
+sub:"商場／拍照／休息",
+detail:[
+["📍 地點","Roppongi Hills"],
+["⏱ 時間","60分鐘"],
+["📌 建議","不要拖過12:00"]
+],
+map:"Roppongi Hills"
 },
 {
 time:"12:00–13:00",
-title:"六本木午餐",
-type:"午餐",
-summary:"🍜 六本木午餐",
-address:"六本木一帶",
-hours:"依選定餐廳",
-transport:"步行",
-duration:"60分鐘",
-distance:"—",
-note:"尚未指定餐廳，避免亂填店家資料",
-booking:"未確認",
-map:"Roppongi Tokyo"
+title:"🍜 六本木午餐",
+sub:"自由安排",
+booking:"pending",
+detail:[
+["🍽️ 類型","午餐"],
+["⏱ 時間","60分鐘"],
+["📌 建議","選六本木站附近，避免跨區"],
+["🎫 預約","視餐廳決定"]
+],
+map:"Roppongi Tokyo restaurants"
 },
 {
 time:"13:00–13:30",
-title:"六本木 → 增上寺",
-type:"交通",
-summary:"前往芝公園",
-address:"東京都港區芝公園4-7-35",
-hours:"依寺院公告",
-transport:"都營大江戶線／步行",
-duration:"約25–30分鐘",
-distance:"約3 km",
-note:"以當日Google Maps確認最適班次",
-map:"Zojoji Temple Tokyo"
+title:"🚇 六本木 → 增上寺",
+sub:"都營大江戶線 → 大門，再步行",
+detail:[
+["🚉 上車","六本木 E23"],
+["🚇 路線","都營大江戶線"],
+["➡️ 方向","往都廳前／光が丘方面"],
+["🚉 下車","大門 E20"],
+["🚶 步行","大門 → 增上寺約10–12分鐘"],
+["⏱ 交通","約25–30分鐘門到門"]
+],
+map:"Zojoji Temple"
 },
 {
 time:"13:30–14:30",
-title:"增上寺",
-type:"景點",
-summary:"⛩️ 東京鐵塔前最佳拍攝區之一",
-address:"東京都港區芝公園4-7-35",
-hours:"境內依官方公告",
-transport:"芝公園一帶步行",
-duration:"60分鐘",
-distance:"—",
-note:"與東京鐵塔安排在同一區，減少交通",
-map:"Zojoji Temple Tokyo",
-official:"https://www.zojoji.or.jp/"
+title:"⛩️ 增上寺",
+sub:"寺院／東京鐵塔景觀",
+detail:[
+["📍 地址","東京都港區芝公園4-7-35"],
+["🚉 最近","大門／御成門／芝公園"],
+["⏱ 行程","60分鐘"],
+["📌 重點","三解脫門＋東京鐵塔"]
+],
+map:"Zojoji Temple"
 },
 {
 time:"14:30–16:00",
-title:"芝公園＋東京鐵塔",
-type:"景點",
-summary:"📸 拍攝東京鐵塔",
-address:"東京都港區芝公園4-2-8等",
-hours:"戶外公園",
-transport:"增上寺步行",
-duration:"90分鐘",
-distance:"約500 m",
-note:"戶外拍照行程",
+title:"🌳 芝公園＋東京鐵塔拍照",
+sub:"步行拍攝路線",
+detail:[
+["🚶 路線","增上寺 → 芝公園 → 東京鐵塔"],
+["⏱ 時間","90分鐘"],
+["📌 重點","芝公園視角／鐵塔下方"],
+["🚪 東京鐵塔","可由赤羽橋口方向進入"]
+],
 map:"Tokyo Tower"
 },
 {
 time:"16:00–17:30",
-title:"東京鐵塔周邊",
-type:"散步",
-summary:"休息＋拍照",
-address:"東京都港區芝公園4-2-8",
-hours:"戶外／各設施另計",
-transport:"步行",
-duration:"90分鐘",
-distance:"—",
-note:"留時間給咖啡／休息",
-map:"Tokyo Tower",
-official:"https://www.tokyotower.co.jp/"
+title:"🗼 東京鐵塔周邊休息＋拍照",
+sub:"保留緩衝",
+detail:[
+["📍 地址","東京都港區芝公園4-2-8"],
+["🚉 最近","赤羽橋／神谷町／御成門"],
+["🚶 赤羽橋","赤羽橋口約5分鐘"],
+["🚶 神谷町","1號出口約7分鐘"],
+["🚶 御成門","A1約6分鐘"]
+],
+map:"Tokyo Tower"
 },
 {
 time:"17:30–18:00",
-title:"東京鐵塔點燈＋拍照",
-type:"景點",
-summary:"🌇 傍晚東京鐵塔",
-address:"東京都港區芝公園4-2-8",
-hours:"點燈依季節／活動",
-transport:"步行",
-duration:"30分鐘",
-distance:"—",
-note:"實際點燈時間以當日官方資訊為準",
+title:"🌆 東京鐵塔點燈＋拍照",
+sub:"黃昏／夜景切換",
+level:"tight",
+detail:[
+["🕒 安排","17:30–18:00"],
+["📌 注意","9月底日落約18:00前後，實際點燈依當日"],
+["⚠️ 緩衝","18:00必須離開前往晚餐"]
+],
 map:"Tokyo Tower"
 },
 {
 time:"18:00–18:30",
-title:"前往鰻の成瀨 六本木店",
-type:"交通",
-summary:"東京鐵塔 → 六本木",
-address:"六本木一帶",
-hours:"依餐廳公告",
-transport:"地鐵／步行",
-duration:"約30分鐘",
-distance:"約3 km",
-note:"晚餐前移動",
+title:"🚇 東京鐵塔 → 鰻の成瀨 六本木店",
+sub:"日比谷線快速回六本木",
+level:"tight",
+detail:[
+["🚶 前往","東京鐵塔 → 神谷町站"],
+["🚪 進站","神谷町 H05"],
+["🚇 路線","日比谷線"],
+["➡️ 方向","往中目黑方面"],
+["🚉 下車","六本木 H04"],
+["🚶 步行","約5–10分鐘"],
+["⏱ 門到門","約25–30分鐘"],
+["⚠️ 緩衝","30分鐘，偏趕"]
+],
 map:"Unagi no Naruse Roppongi"
 },
 {
 time:"18:30–19:30",
-title:"鰻の成瀨 六本木店",
-type:"晚餐",
-summary:"🍱 鰻魚飯",
-address:"六本木店地址以預約頁為準",
-hours:"以店家最新公告為準",
-transport:"—",
-duration:"60分鐘",
-distance:"—",
-note:"店家分店資訊請依預約時確認",
-booking:"未確認",
+title:"🍱 鰻の成瀨 六本木店",
+sub:"鰻魚飯晚餐",
+booking:"pending",
+level:"tight",
+detail:[
+["🍽️ 類型","晚餐"],
+["⏱ 安排","60分鐘"],
+["🎫 預約","建議確認"],
+["⚠️ 注意","19:30必須離開前往澀谷"]
+],
 map:"鰻の成瀨 六本木店"
 },
 {
 time:"19:30–20:00",
-title:"六本木 → 澀谷",
-type:"交通",
-summary:"前往 SHIBUYA SKY",
-address:"東京都澀谷區澀谷2-24-12",
-hours:"依班次",
-transport:"東京Metro／JR組合",
-duration:"約30分鐘",
-distance:"約5 km",
-note:"以即時班次確認最快路線",
-map:"Shibuya Station Tokyo"
+title:"🚇 六本木 → 澀谷",
+sub:"最快主方案：日比谷線＋轉乘",
+level:"danger",
+detail:[
+["🚉 上車","六本木 H04"],
+["🚇 路線","日比谷線 → 惠比壽轉 JR／或依當日最快班次"],
+["🚉 目的","澀谷站"],
+["🚶 到場","SHIBUYA SCRAMBLE SQUARE"],
+["⏱ 門到門","約25–30分鐘"],
+["⚠️ 風險","20:00 SHIBUYA SKY，只有30分鐘"],
+["🎫 重點","指定入場時間不能拖"]
+],
+map:"SHIBUYA SKY"
 },
 {
 time:"20:00–21:30",
-title:"SHIBUYA SKY",
-type:"景點",
-summary:"🌃 澀谷夜景",
-address:"東京都澀谷區澀谷2-24-12",
-hours:"依官方當日公告",
-transport:"澀谷站步行",
-duration:"90分鐘",
-distance:"約500 m",
-note:"強烈建議事前購票",
-booking:"未確認",
-map:"SHIBUYA SKY",
-official:"https://www.shibuya-scramble-square.com/sky/"
+title:"🌃 SHIBUYA SKY",
+sub:"229m 夜景",
+booking:"pending",
+level:"danger",
+detail:[
+["🕒 營業","10:00–22:30"],
+["🚪 最晚入場","21:20"],
+["📍 地址","東京都渋谷區渋谷2-24-12"],
+["🎫 預約","強烈建議事先購票"],
+["⚠️ 注意","指定入場時間遲到可能無法入場"]
+],
+map:"SHIBUYA SKY"
 },
 {
 time:"21:30–22:00",
-title:"澀谷逛街",
-type:"購物",
-summary:"Scramble／澀谷街區",
-address:"東京都澀谷區澀谷",
-hours:"各店不同",
-transport:"步行",
-duration:"30分鐘",
-distance:"—",
-note:"視體力調整",
-map:"Shibuya Scramble Crossing"
+title:"🛍️ 澀谷逛街",
+sub:"SHIBUYA SCRAMBLE／附近商圈",
+detail:[
+["⏱ 時間","30分鐘"],
+["📌 建議","只做快速逛街，不要安排長時間購物"]
+],
+map:"Shibuya Scramble Square"
 },
 {
 time:"22:00",
-title:"澀谷 → 銀座飯店",
-type:"交通",
-summary:"返回飯店",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"東京Metro／都營線",
-duration:"約30–40分鐘",
-distance:"約8 km",
-note:"以當日Google Maps確認末班車",
+title:"🚇 澀谷 → 銀座飯店",
+sub:"銀座線直達銀座，再步行",
+detail:[
+["🚉 上車","澀谷 G01"],
+["🚇 路線","東京Metro 銀座線"],
+["➡️ 方向","往淺草方面"],
+["🚉 下車","銀座 G09"],
+["🚪 出站","A5方向"],
+["🚶 步行","銀座 → 飯店約2分鐘"],
+["⏱ 交通","約20–25分鐘"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 }
 ]
 },
 {
-date:"9/27（日）",
-title:"Day 3",
-route:"銀座 → 根津 → 東京站 → 新宿 → 銀座",
+id:"d3",
+title:"Day 3｜9/27（日）",
+route:"銀座 → 根津神社 → 東京站 → 新宿 → 都廳",
 items:[
 {
-time:"07:00–07:30",
-title:"起床／整理",
-type:"飯店",
-summary:"準備 Day 3",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"—",
-duration:"30分鐘",
-distance:"—",
-note:"早餐前整理",
+time:"07:30–08:20",
+title:"🍳 飯店早餐｜ZEN HOUSE",
+sub:"早餐已排入",
+detail:[
+["🍽️ 地點","飯店 B1 ZEN HOUSE"],
+["🕒 早餐","06:30–10:30"],
+["🚪 最晚入店","10:00"],
+["⏱ 安排","07:30–08:20"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
-time:"07:30–08:30",
-title:"飯店早餐｜ZEN HOUSE",
-type:"早餐",
-summary:"🍳 飯店早餐",
-address:"東京都中央區銀座5-11-1｜B1 ZEN HOUSE",
-hours:"06:30–10:30｜最後入店10:00",
-transport:"飯店內",
-duration:"60分鐘",
-distance:"—",
-note:"官方早餐時間",
-booking:"未確認",
-map:"Millennium Mitsui Garden Hotel Tokyo"
+time:"09:00",
+title:"🚇 銀座 → 根津",
+sub:"千代田線方案",
+detail:[
+["🚉 上車","銀座站"],
+["🚇 路線","日比谷線至日比谷 → 千代田線"],
+["➡️ 方向","往北綾瀬方面"],
+["🚉 下車","根津 C14"],
+["🚪 出站","1號／2號出口方向"],
+["🚶 步行","約5分鐘"],
+["⏱ 門到門","約25–30分鐘"]
+],
+map:"Nezu Shrine"
 },
 {
-time:"08:30–09:00",
-title:"銀座 → 根津",
-type:"交通",
-summary:"前往根津神社",
-address:"東京都文京區根津1-28-9",
-hours:"依神社／祭典公告",
-transport:"東京Metro千代田線",
-duration:"約25–30分鐘",
-distance:"約6 km",
-note:"祭典日建議提早抵達",
-map:"Nezu Shrine Tokyo"
-},
-{
-time:"09:00–12:30",
-title:"根津神社例大祭／神幸祭",
-type:"祭典",
-summary:"⛩️ 9/27 特別活動",
-address:"東京都文京區根津1-28-9",
-hours:"以2026官方祭典時間表為準",
-transport:"根津站步行",
-duration:"3.5小時",
-distance:"約500 m",
-note:"此為日期限定活動，出發前務必再核對2026官方公告",
-booking:"免預約",
-map:"Nezu Shrine Tokyo",
-official:"https://nedujinja.or.jp/"
+time:"09:30–12:30",
+title:"⛩️ 根津神社例大祭／神賑行事",
+sub:"2026/9/26～9/27｜9/27為重點日",
+level:"tight",
+detail:[
+["📍 地址","東京都文京區根津1-28-9"],
+["🚉 最近","根津站／千駄木站"],
+["🚶 步行","約5分鐘"],
+["📅 2026","9/26（六）～9/27（日）"],
+["📌 重點","例大祭神賑行事／傳統藝能／祭典氣氛"],
+["⚠️ 注意","當日人潮可能明顯增加"],
+["🎫 入場","一般參觀免費"]
+],
+map:"Nezu Shrine"
 },
 {
 time:"12:30–13:00",
-title:"根津 → 東京站",
-type:"交通",
-summary:"前往東京站／KITTE",
-address:"東京都千代田區丸之內",
-hours:"依鐵路班次",
-transport:"東京Metro＋步行",
-duration:"約30分鐘",
-distance:"約7 km",
-note:"午餐前移動",
+title:"🚇 根津 → 東京站",
+sub:"千代田線 → 大手町／東京站方向",
+level:"tight",
+detail:[
+["🚉 上車","根津 C14"],
+["🚇 路線","千代田線"],
+["➡️ 方向","往代代木上原方面"],
+["🚉 轉乘","大手町"],
+["🚶 進入","東京站／丸之內方向"],
+["⏱ 門到門","約25–30分鐘"],
+["⚠️ 緩衝","祭典結束後立即離開"]
+],
 map:"Tokyo Station"
 },
 {
 time:"13:00–14:30",
-title:"KITTE＋東京車站",
-type:"景點",
-summary:"🏛️ 車站建築＋購物",
-address:"東京都千代田區丸之內2-7-2",
-hours:"各店舖不同",
-transport:"東京站步行",
-duration:"90分鐘",
-distance:"—",
-note:"安排在新宿前，路線順",
-map:"KITTE Marunouchi",
-official:"https://marunouchi.jp-kitte.jp/"
+title:"🏙️ KITTE＋東京車站",
+sub:"丸之內南口／KITTE",
+detail:[
+["📍 KITTE","東京都千代田區丸之內2-7-2"],
+["🚉 JR","東京站約1分鐘"],
+["🚇 Metro","丸之內線東京站地下道直結"],
+["🕒 KITTE商店","11:00–20:00"],
+["🍽️ 餐廳","11:00–22:00"],
+["⏱ 行程","90分鐘"]
+],
+map:"KITTE Marunouchi"
 },
 {
 time:"14:30–15:00",
-title:"東京 → 新宿",
-type:"交通",
-summary:"JR中央線快速",
-address:"新宿站",
-hours:"依JR班次",
-transport:"JR中央線快速",
-duration:"約15–20分鐘",
-distance:"約10 km",
-note:"東京站 → 新宿直達",
-map:"Shinjuku Station Tokyo"
+title:"🚇 東京 → 新宿",
+sub:"JR中央線快速｜最快簡單方案",
+detail:[
+["🚉 上車","JR東京站"],
+["🚆 路線","中央線快速"],
+["➡️ 方向","往高尾方面"],
+["🚉 下車","新宿站"],
+["🚶 出站","東口／歌舞伎町方向"],
+["⏱ 車程","約15分鐘"],
+["📏 距離","約10 km"]
+],
+map:"Shinjuku Station"
 },
 {
 time:"15:00–16:30",
-title:"歌舞伎町／哥吉拉",
-type:"景點",
-summary:"🦖 歌舞伎町一番街＋哥吉拉",
-address:"東京都新宿區歌舞伎町",
-hours:"戶外街區",
-transport:"新宿站步行",
-duration:"90分鐘",
-distance:"約1 km",
-note:"白天拍照較輕鬆",
+title:"🦖 歌舞伎町／哥吉拉",
+sub:"歌舞伎町一番街＋哥吉拉頭",
+detail:[
+["📍 地點","新宿歌舞伎町"],
+["🚪 方向","新宿站東口"],
+["🚶 步行","約10分鐘"],
+["⏱ 行程","90分鐘"],
+["📌 建議","以戶外拍照為主"]
+],
 map:"Godzilla Head Shinjuku"
 },
 {
 time:"16:30–18:00",
-title:"新宿逛街",
-type:"購物",
-summary:"新宿商圈",
-address:"東京都新宿區",
-hours:"各店不同",
-transport:"步行",
-duration:"90分鐘",
-distance:"—",
-note:"預留購物時間",
-map:"Shinjuku Tokyo"
+title:"🛍️ 新宿逛街",
+sub:"新宿商圈",
+detail:[
+["📍 範圍","新宿東口／百貨／電器"],
+["⏱ 時間","90分鐘"],
+["📌 建議","18:00前離開"]
+],
+map:"Shinjuku"
 },
 {
 time:"18:00–19:00",
-title:"新宿晚餐",
-type:"晚餐",
-summary:"🍽️ 新宿晚餐",
-address:"新宿商圈",
-hours:"依選定餐廳",
-transport:"步行",
-duration:"60分鐘",
-distance:"—",
-note:"尚未指定餐廳，不預填未確認店家",
-booking:"未確認",
-map:"Shinjuku Tokyo"
+title:"🍽️ 新宿晚餐",
+sub:"新宿站周邊",
+booking:"pending",
+detail:[
+["🍽️ 類型","晚餐"],
+["⏱ 時間","60分鐘"],
+["📌 建議","選東京都廳方向或新宿站西口附近"],
+["🎫 預約","依餐廳決定"]
+],
+map:"Shinjuku restaurants"
 },
 {
 time:"19:00–19:30",
-title:"東京都廳",
-type:"景點",
-summary:"東京都廳周邊",
-address:"東京都新宿區西新宿2-8-1",
-hours:"依展望室／活動公告",
-transport:"新宿步行",
-duration:"30分鐘",
-distance:"約1 km",
-note:"若要進展望室需另外確認開放時間",
-map:"Tokyo Metropolitan Government Building",
-official:"https://www.yokoso.metro.tokyo.lg.jp/"
-},
-{
-time:"19:30–20:00",
-title:"東京都廳光雕秀",
-type:"活動",
-summary:"✨ Projection Mapping",
-address:"東京都新宿區西新宿2-8-1",
-hours:"以2026/9/27官方場次為準",
-transport:"東京都廳前",
-duration:"30分鐘",
-distance:"—",
-note:"場次與是否當日演出必須於出發前再次確認",
-booking:"免預約",
+title:"🏢 東京都廳",
+sub:"前往展望／都廳周邊",
+level:"tight",
+detail:[
+["📍 地址","東京都新宿區西新宿2-8-1"],
+["🚶 路線","新宿站西口 → 東京都廳"],
+["⏱ 步行","約10–15分鐘"],
+["⚠️ 注意","19:30光雕秀前必須到場"]
+],
 map:"Tokyo Metropolitan Government Building"
 },
 {
-time:"20:00–21:30",
-title:"新宿 → 銀座",
-type:"交通",
-summary:"返回飯店",
-address:"東京都中央區銀座5-11-1",
-hours:"依鐵路班次",
-transport:"東京Metro丸之內線／日比谷線組合",
-duration:"約35–45分鐘",
-distance:"約10 km",
-note:"以即時路線確認最快方式",
+time:"19:30–20:00",
+title:"✨ 東京都廳投影秀",
+sub:"指定時間觀看",
+booking:"pending",
+level:"danger",
+detail:[
+["📍 地點","東京都廳都民廣場"],
+["🕒 時段","依官方當日公告"],
+["📌 目前資料","夜間有多個場次"],
+["⚠️ 注意","屬指定時間行程，不能拖延"],
+["🎫 建議","出發前再次確認9/27場次"]
+],
+map:"Tokyo Metropolitan Government Building"
+},
+{
+time:"20:00–20:40",
+title:"🚇 新宿 → 銀座",
+sub:"丸之內線主方案",
+detail:[
+["🚉 上車","新宿站"],
+["🚇 路線","東京Metro 丸之內線"],
+["➡️ 方向","往池袋方面"],
+["🚉 下車","銀座 M16"],
+["🚪 出站","A5方向"],
+["🚶 步行","約2分鐘至飯店"],
+["⏱ 門到門","約30–40分鐘"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
-time:"21:30",
-title:"回飯店",
-type:"飯店",
-summary:"Day 3 完成",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"東銀座站步行",
-duration:"約1分鐘",
-distance:"約100 m",
-note:"休息／整理購物品",
+time:"21:00–21:30",
+title:"🏨 回飯店",
+sub:"休息／整理隔日行李",
+detail:[
+["📍 飯店","Millennium Mitsui Garden Hotel Tokyo"],
+["📌 建議","整理9/28回程行李"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 }
 ]
 },
 {
-date:"9/28（一）",
-title:"Day 4",
-route:"銀座早餐 → 最後購物 → 成田 T1 → 桃園 T1",
+id:"d4",
+title:"Day 4｜9/28（一）",
+route:"銀座 → 東京 → 最後購物 → 成田 T1 → 桃園 T1",
 items:[
 {
-time:"07:30–08:30",
-title:"飯店早餐｜ZEN HOUSE",
-type:"早餐",
-summary:"🍳 最後一次飯店早餐",
-address:"東京都中央區銀座5-11-1｜B1 ZEN HOUSE",
-hours:"06:30–10:30｜最後入店10:00",
-transport:"飯店內",
-duration:"60分鐘",
-distance:"—",
-note:"早餐後回房整理",
-booking:"未確認",
+time:"07:00–07:40",
+title:"🍳 飯店早餐｜ZEN HOUSE",
+sub:"最後一天早餐",
+detail:[
+["🍽️ 地點","飯店 B1 ZEN HOUSE"],
+["🕒 早餐","06:30–10:30"],
+["🚪 最晚入店","10:00"],
+["⏱ 安排","07:00–07:40"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
-time:"08:30–09:30",
-title:"整理行李",
-type:"飯店",
-summary:"🧳 Check-out前整理",
-address:"東京都中央區銀座5-11-1",
-hours:"Check-out 12:00",
-transport:"—",
-duration:"60分鐘",
-distance:"—",
-note:"護照、錢包、充電器先放隨身包",
-map:"Millennium Mitsui Garden Hotel Tokyo"
+time:"08:00–09:00",
+title:"🧳 房間整理／退房準備",
+sub:"護照、購物品、充電用品確認",
+detail:[
+["📌 確認","護照／錢包／手機／充電器"],
+["🧳 行李","整理成回程狀態"],
+["🕒 Check-out","12:00"]
+]
 },
 {
-time:"09:30–11:30",
-title:"銀座最後購物／散步",
-type:"購物",
-summary:"🛍️ 最後採買",
-address:"東京都中央區銀座",
-hours:"依各店開店時間",
-transport:"步行",
-duration:"120分鐘",
-distance:"—",
-note:"不要安排太遠，方便回飯店拿行李",
+time:"09:00–11:30",
+title:"🏙️ 東京上午自由行",
+sub:"銀座／東京站方向",
+detail:[
+["📌 建議","不要排需要預約的遠距離景點"],
+["⏱ 時間","150分鐘"],
+["⚠️ 注意","11:30前返回飯店"]
+],
 map:"Ginza Tokyo"
 },
 {
 time:"11:30–12:00",
-title:"回飯店 Check-out",
-type:"飯店",
-summary:"退房／寄放行李",
-address:"東京都中央區銀座5-11-1",
-hours:"Check-out 12:00",
-transport:"步行",
-duration:"約5–10分鐘",
-distance:"—",
-note:"退房後寄放行李",
+title:"🏨 Check-out＋寄放行李",
+sub:"12:00前完成退房",
+detail:[
+["🕛 Check-out","12:00"],
+["🧳 行李","寄放飯店"],
+["📌 注意","護照及貴重物品隨身"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
 time:"12:30–13:30",
-title:"銀座午餐",
-type:"午餐",
-summary:"🍜 回程前午餐",
-address:"銀座商圈",
-hours:"依選定餐廳",
-transport:"步行",
-duration:"60分鐘",
-distance:"—",
-note:"不排太遠，方便回飯店取行李",
-booking:"未確認",
+title:"🍜 午餐",
+sub:"銀座午餐",
+booking:"pending",
+detail:[
+["🍽️ 類型","午餐"],
+["⏱ 時間","60分鐘"],
+["📌 建議","留在銀座／有樂町，不跨太遠"],
+["🎫 預約","依餐廳決定"]
+],
+map:"Ginza Tokyo restaurants"
+},
+{
+time:"14:00–16:00",
+title:"🛍️ 下午景點／最後購物",
+sub:"銀座／有樂町",
+detail:[
+["📌 建議","購買最後伴手禮"],
+["⏱ 時間","120分鐘"],
+["⚠️ 注意","不要再安排新宿、澀谷等遠距離行程"]
+],
 map:"Ginza Tokyo"
 },
 {
-time:"13:30–16:00",
-title:"銀座／有樂町最後購物",
-type:"購物",
-summary:"購物＋咖啡＋備用時間",
-address:"東京都中央區銀座／有樂町",
-hours:"各店不同",
-transport:"步行",
-duration:"150分鐘",
-distance:"—",
-note:"最後採買，控制行李重量",
+time:"16:00–17:00",
+title:"☕ 休息／整理戰利品",
+sub:"銀座附近休息",
+detail:[
+["📌 目的","避免回程前過度疲勞"],
+["🧳 行李","確認購物品是否能裝入行李"]
+],
 map:"Ginza Tokyo"
 },
 {
-time:"16:00–16:30",
-title:"回飯店拿行李",
-type:"行李",
-summary:"護照／行李／手機／錢包確認",
-address:"東京都中央區銀座5-11-1",
-hours:"—",
-transport:"步行",
-duration:"約10分鐘",
-distance:"—",
-note:"離開飯店前做最後一次房間檢查",
+time:"17:00–17:45",
+title:"🍽️ 提前晚餐",
+sub:"回程日提早吃，避免壓縮機場時間",
+booking:"pending",
+level:"tight",
+detail:[
+["🍽️ 類型","回程前晚餐"],
+["⏱ 建議","17:00–17:45"],
+["⚠️ 原因","21:15國際航班，不能把晚餐拖到19:00"],
+["📌 建議","選飯店附近"]
+],
+map:"Ginza Tokyo restaurants"
+},
+{
+time:"17:45–18:15",
+title:"🏨 回飯店取行李",
+sub:"護照／行李／手機／錢包最後確認",
+level:"tight",
+detail:[
+["🧳 必查","護照"],
+["🧳 必查","行李"],
+["🔋 必查","行動電源"],
+["💳 必查","信用卡"],
+["📱 必查","手機"],
+["⚠️ 建議","18:15前離開飯店"]
+],
 map:"Millennium Mitsui Garden Hotel Tokyo"
 },
 {
-time:"16:30–18:00",
-title:"銀座 → 成田國際機場 T1",
-type:"交通",
-summary:"前往成田機場",
-address:"千葉縣成田市古込1-1",
-hours:"依鐵路班次",
-transport:"成田特快／Access Express等，以當日最快班次為準",
-duration:"約70–90分鐘",
-distance:"約70 km",
-note:"21:15起飛，預留充足機場時間",
+time:"18:15–19:17",
+title:"🚆 東銀座 → 成田機場 T1",
+sub:"Keisei Access Express｜直達主方案",
+level:"danger",
+detail:[
+["🚉 上車","東銀座站"],
+["🚇 路線","都營淺草線／京成線直通 Access Express"],
+["➡️ 方向","往成田空港方面"],
+["🚉 下車","成田空港 第1ターミナル"],
+["🚪 出站","機場站後依 Terminal 1 指標"],
+["⏱ 車程","約62分鐘"],
+["📏 距離","約70 km 級距"],
+["⚠️ 風險","21:15航班，這個版本仍屬偏趕"],
+["📌 更安全","若可行，建議17:45左右就離開飯店"]
+],
 map:"Narita International Airport Terminal 1"
 },
 {
-time:"18:00–19:00",
-title:"成田 T1 報到／托運",
-type:"機場",
-summary:"Check-in／行李托運",
-address:"千葉縣成田市古込1-1",
-hours:"依航空公司櫃檯",
-transport:"機場內",
-duration:"60分鐘",
-distance:"—",
-note:"TR875｜成田 T1 → 桃園 T1",
-map:"Narita International Airport Terminal 1"
-},
-{
-time:"19:00–20:30",
-title:"成田 T1 安檢／免稅店／登機口",
-type:"機場",
-summary:"完成出境程序",
-address:"成田國際機場 T1",
-hours:"依航班",
-transport:"機場內",
-duration:"90分鐘",
-distance:"—",
-note:"確認登機門與最終登機時間",
+time:"19:17–21:15",
+title:"🛫 成田機場 T1｜回程",
+sub:"報到／托運／安檢／登機",
+level:"danger",
+detail:[
+["✈️ 航班","TR875"],
+["🕒 起飛","21:15"],
+["🏢 航廈","Terminal 1"],
+["⚠️ 注意","19:17抵達機場僅約118分鐘"],
+["📌 建議","若有託運行李，盡量不要再延後離開銀座"]
+],
 map:"Narita International Airport Terminal 1"
 },
 {
 time:"21:15",
-title:"TR875 起飛",
-type:"航班",
-summary:"成田 T1 → 桃園 T1",
-address:"Narita International Airport T1",
-hours:"—",
-transport:"TR875",
-duration:"約3小時",
-distance:"約2,100 km",
-note:"回程航班",
-map:"Narita International Airport Terminal 1"
+title:"✈️ TR875 起飛",
+sub:"成田 T1 → 桃園 T1",
+detail:[
+["✈️ 航班","TR875"],
+["🛫 出發","成田 T1"],
+["🛬 抵達","桃園 T1"],
+["🕒 抵達","23:55"]
+]
 },
 {
 time:"23:55",
-title:"抵達桃園國際機場 T1",
-type:"抵達",
-summary:"入境／領行李",
-address:"桃園國際機場第一航廈",
-hours:"—",
-transport:"—",
-duration:"—",
-distance:"—",
-note:"東京旅程結束 🇯🇵",
+title:"🛬 抵達桃園國際機場 T1",
+sub:"入境／領行李",
+detail:[
+["🏢 航廈","桃園 T1"],
+["📌 行程","東京4天3夜結束"]
+],
 map:"Taoyuan International Airport Terminal 1"
 }
 ]
 }
 ];
 
-function mapUrl(place){
-  const q=encodeURIComponent(place);
-  return "https://"+"www.google.com/maps/search/?api=1&query="+q;
+function mapUrl(name){
+  return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(name);
 }
 
-function officialUrl(url){
-  return url || "";
+function save(key,value){
+  try{
+    localStorage.setItem(STORAGE+key,value);
+    showSaved();
+  }catch(e){}
 }
 
-function safe(text){
-  return String(text||"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
-}
-
-function getItemKey(dayIndex,itemIndex){
-  return "d"+dayIndex+"i"+itemIndex;
-}
-
-function render(){
-  const root=document.getElementById("days");
-  root.innerHTML="";
-
-  days.forEach((day,di)=>{
-    const dayEl=document.createElement("div");
-    dayEl.className="day";
-    dayEl.dataset.day=di;
-
-    dayEl.innerHTML=`
-      <div class="day-head">
-        <div class="day-head-top">
-          <div>
-            <div class="day-title">${safe(day.title)}｜${safe(day.date)}</div>
-            <div class="day-route">${safe(day.route)}</div>
-          </div>
-          <div class="progress" id="progress-${di}">0 / ${day.items.length}</div>
-        </div>
-      </div>
-      <div class="timeline"></div>
-    `;
-
-    const timeline=dayEl.querySelector(".timeline");
-
-    day.items.forEach((item,ii)=>{
-      const key=getItemKey(di,ii);
-      const done=localStorage.getItem(KEY+"done-"+key)==="true";
-      const booking=localStorage.getItem(KEY+"booking-"+key)||item.booking||"未確認";
-
-      const el=document.createElement("div");
-      el.className="item"+(done?" done":"");
-      el.dataset.key=key;
-
-      const isTransport=item.type==="交通";
-
-      el.innerHTML=`
-        <div class="item-main">
-          <div class="time">${safe(item.time)}</div>
-          <div class="item-center">
-            <div class="item-title">
-              ${safe(item.title)}
-              <span class="item-type">${safe(item.type)}</span>
-            </div>
-            <div class="item-summary">${safe(item.summary)}</div>
-          </div>
-          <input class="check" type="checkbox" ${done?"checked":""} aria-label="完成">
-        </div>
-
-        <div class="item-detail">
-          <div class="detail-grid">
-            <div class="detail">
-              <span class="detail-label">📍 地址／位置</span>
-              <span class="detail-value">${safe(item.address)}</span>
-            </div>
-
-            <div class="detail">
-              <span class="detail-label">🕒 營業／開放時間</span>
-              <span class="detail-value">${safe(item.hours)}</span>
-            </div>
-
-            <div class="detail">
-              <span class="detail-label">🚆 交通方式</span>
-              <span class="detail-value">${safe(item.transport)}</span>
-            </div>
-
-            <div class="detail">
-              <span class="detail-label">⏱️ 所需時間</span>
-              <span class="detail-value">${safe(item.duration)}</span>
-            </div>
-
-            <div class="detail">
-              <span class="detail-label">📏 距離</span>
-              <span class="detail-value">${safe(item.distance)}</span>
-            </div>
-
-            <div class="detail">
-              <span class="detail-label">💡 行程備註</span>
-              <span class="detail-value">${safe(item.note)}</span>
-            </div>
-
-            ${!isTransport && ["午餐","晚餐","早餐"].includes(item.type) ? `
-            <div class="detail full">
-              <div class="booking">
-                <span>🎫 預約狀態</span>
-                <select class="booking-select">
-                  <option ${booking==="未確認"?"selected":""}>未確認</option>
-                  <option ${booking==="已預約"?"selected":""}>已預約</option>
-                  <option ${booking==="免預約"?"selected":""}>免預約</option>
-                  <option ${booking==="候補"?"selected":""}>候補</option>
-                </select>
-              </div>
-            </div>
-            `:""}
-          </div>
-
-          <div class="detail-actions">
-            <a class="action map" href="${mapUrl(item.map||item.title)}" target="_blank" rel="noopener">
-              📍 Google Maps
-            </a>
-
-            ${item.official ? `
-              <a class="action official" href="${officialUrl(item.official)}" target="_blank" rel="noopener">
-                🌐 官方網站
-              </a>
-            `:""}
-          </div>
-        </div>
-      `;
-
-      const main=el.querySelector(".item-main");
-      const checkbox=el.querySelector(".check");
-      const select=el.querySelector(".booking-select");
-
-      main.addEventListener("click",e=>{
-        if(e.target===checkbox)return;
-        el.classList.toggle("open");
-      });
-
-      checkbox.addEventListener("change",e=>{
-        const value=e.target.checked;
-        el.classList.toggle("done",value);
-        localStorage.setItem(KEY+"done-"+key,value);
-        updateProgress(di);
-        saved();
-      });
-
-      if(select){
-        select.addEventListener("change",e=>{
-          localStorage.setItem(KEY+"booking-"+key,e.target.value);
-          saved();
-        });
-      }
-
-      timeline.appendChild(el);
-
-      if(ii<day.items.length-1){
-        const next=day.items[ii+1];
-        if(next.type==="交通"){
-          const t=document.createElement("div");
-          t.className="transport";
-          t.innerHTML=`
-            <span>↓</span>
-            <div class="transport-line"></div>
-            <span>${safe(next.summary)}</span>
-          `;
-          timeline.appendChild(t);
-        }
-      }
-    });
-
-    root.appendChild(dayEl);
-    updateProgress(di);
-  });
-}
-
-function updateProgress(di){
-  const total=days[di].items.length;
-  let done=0;
-
-  days[di].items.forEach((_,ii)=>{
-    if(localStorage.getItem(KEY+"done-"+getItemKey(di,ii))==="true"){
-      done++;
-    }
-  });
-
-  const el=document.getElementById("progress-"+di);
-  if(el){
-    el.textContent=done+" / "+total;
+function get(key){
+  try{
+    return localStorage.getItem(STORAGE+key);
+  }catch(e){
+    return null;
   }
 }
 
-function saved(){
-  const el=document.getElementById("save");
-  el.classList.add("ok");
+function showSaved(){
+  const el=document.getElementById("saveStatus");
+  el.classList.add("saved");
   el.textContent="✓ 已自動儲存";
-
   clearTimeout(window.saveTimer);
-
   window.saveTimer=setTimeout(()=>{
-    el.classList.remove("ok");
+    el.classList.remove("saved");
   },1300);
 }
 
-document.querySelectorAll("[data-save]").forEach(el=>{
-  el.addEventListener("change",()=>{
-    localStorage.setItem(KEY+el.dataset.save,el.checked);
-    saved();
+function renderDays(){
+
+  const root=document.getElementById("days");
+  root.innerHTML="";
+
+  days.forEach(day=>{
+
+    const box=document.createElement("div");
+    box.className="day";
+    box.id=day.id;
+
+    box.innerHTML=`
+      <div class="day-head">
+        <div class="day-head-row">
+          <div>
+            <div class="day-title">${day.title}</div>
+            <div class="day-route">${day.route}</div>
+          </div>
+          <div class="day-counter" id="${day.id}-counter">0 / ${day.items.length}</div>
+        </div>
+      </div>
+      <div class="schedule" id="${day.id}-schedule"></div>
+    `;
+
+    root.appendChild(box);
+
+    const schedule=box.querySelector(".schedule");
+
+    day.items.forEach((item,index)=>{
+
+      const key=day.id+"-"+index;
+
+      const article=document.createElement("article");
+      article.className="item";
+
+      if(item.level==="tight"){
+        article.classList.add("tight");
+      }
+
+      if(item.level==="danger"){
+        article.classList.add("danger");
+      }
+
+      const completed=get(key+"-done")==="true";
+
+      if(completed){
+        article.classList.add("completed");
+      }
+
+      let status="";
+
+      if(item.level==="tight"){
+        status='<span class="status tight">🟡 趕路</span>';
+      }else if(item.level==="danger"){
+        status='<span class="status danger">🔴 高風險</span>';
+      }else{
+        status='<span class="status normal">正常</span>';
+      }
+
+      let booking="";
+
+      if(item.booking){
+        const saved=get(key+"-booking")||item.booking;
+
+        booking=`
+        <div class="booking">
+          <span class="booking-label">預約</span>
+          <select data-booking="${key}">
+            <option value="pending" ${saved==="pending"?"selected":""}>○ 待確認</option>
+            <option value="no" ${saved==="no"?"selected":""}>○ 未預約</option>
+            <option value="yes" ${saved==="yes"?"selected":""}>✓ 已預約</option>
+          </select>
+        </div>`;
+      }
+
+      const details=(item.detail||[]).map(x=>`
+        <div class="detail">
+          <b>${x[0]}</b>
+          <span>${x[1]}</span>
+        </div>
+      `).join("");
+
+      const warning=item.level==="danger"
+        ? `<div class="warning-box">⚠️ 這個時段是整份行程的高風險點，建議不要再增加臨時行程。</div>`
+        : item.level==="tight"
+        ? `<div class="warning-box">🟡 時間較緊，上一個行程請準時離開。</div>`
+        : "";
+
+      article.innerHTML=`
+        <div class="time">${item.time}</div>
+
+        <div class="item-content">
+
+          <div class="item-main">
+
+            <input
+              class="done"
+              type="checkbox"
+              data-done="${key}"
+              ${completed?"checked":""}
+            >
+
+            <div class="item-body">
+
+              <div class="item-title">
+                ${item.map
+                  ? `<a href="${mapUrl(item.map)}" target="_blank">${item.title}</a>`
+                  : item.title
+                }
+                ${status}
+              </div>
+
+              <div class="item-sub">
+                ${item.sub||""}
+              </div>
+
+              ${booking}
+
+              <div class="item-actions">
+
+                <button
+                  class="action"
+                  data-detail="${key}"
+                >
+                  🚇 ${item.detail ? "交通／行程詳情" : "詳細"}
+                </button>
+
+                ${item.map ? `
+                <a
+                  class="action"
+                  target="_blank"
+                  href="${mapUrl(item.map)}"
+                >
+                  📍 Google Maps
+                </a>`:""}
+
+              </div>
+
+              <div class="details" id="detail-${key}">
+
+                ${item.detail ? `
+                <div class="detail-grid">
+                  ${details}
+                </div>`:""}
+
+                ${warning}
+
+                ${item.map ? `
+                <a
+                  class="map-btn"
+                  target="_blank"
+                  href="${mapUrl(item.map)}"
+                >
+                  📍 開啟 Google Maps
+                </a>`:""}
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      schedule.appendChild(article);
+    });
+
   });
-});
 
-const memo=document.getElementById("memo");
+  bindEvents();
+  updateProgress();
+}
 
-memo.value=localStorage.getItem(KEY+"memo")||"";
+function bindEvents(){
 
-memo.addEventListener("input",()=>{
-  localStorage.setItem(KEY+"memo",memo.value);
-  saved();
-});
+  document.querySelectorAll("[data-done]").forEach(input=>{
+    input.addEventListener("change",function(){
+
+      const key=this.dataset.done;
+
+      save(key+"-done",this.checked);
+
+      const item=this.closest(".item");
+
+      if(this.checked){
+        item.classList.add("completed");
+      }else{
+        item.classList.remove("completed");
+      }
+
+      updateProgress();
+
+    });
+  });
+
+  document.querySelectorAll("[data-detail]").forEach(btn=>{
+    btn.addEventListener("click",function(){
+
+      const key=this.dataset.detail;
+      const box=document.getElementById("detail-"+key);
+
+      box.classList.toggle("open");
+
+      this.textContent=
+        box.classList.contains("open")
+        ? "▲ 收起詳細"
+        : "🚇 交通／行程詳情";
+
+    });
+  });
+
+  document.querySelectorAll("[data-booking]").forEach(select=>{
+    select.addEventListener("change",function(){
+
+      save(
+        this.dataset.booking+"-booking",
+        this.value
+      );
+
+    });
+  });
+
+  document.querySelectorAll("[data-save]").forEach(el=>{
+
+    const key=el.dataset.save;
+    const stored=get(key);
+
+    if(stored!==null){
+
+      if(el.type==="checkbox"){
+        el.checked=stored==="true";
+      }else{
+        el.value=stored;
+      }
+
+    }
+
+    el.addEventListener("change",function(){
+
+      if(this.type==="checkbox"){
+        save(key,this.checked);
+      }else{
+        save(key,this.value);
+      }
+
+    });
+
+    el.addEventListener("input",function(){
+      if(this.type!=="checkbox"){
+        save(key,this.value);
+      }
+    });
+
+  });
+}
+
+function updateProgress(){
+
+  let total=0;
+  let done=0;
+
+  days.forEach(day=>{
+
+    const dayDone=day.items.filter((item,index)=>{
+      total++;
+      return get(day.id+"-"+index+"-done")==="true";
+    }).length;
+
+    done+=dayDone;
+
+    const counter=document.getElementById(day.id+"-counter");
+
+    if(counter){
+      counter.textContent=dayDone+" / "+day.items.length;
+    }
+
+  });
+
+  const percent=total
+    ? Math.round(done/total*100)
+    : 0;
+
+  document.getElementById("progressText").textContent=
+    "行程完成度 "+percent+"%";
+
+  document.getElementById("progressCount").textContent=
+    done+" / "+total;
+
+  document.getElementById("progressBar").style.width=
+    percent+"%";
+}
 
 function clearAll(){
-  if(!confirm("確定要清除所有行程完成狀態、預約狀態與備忘錄嗎？"))return;
+
+  const ok=confirm(
+    "確定要清除所有已儲存的完成狀態、預約狀態、Checklist與備忘錄嗎？"
+  );
+
+  if(!ok) return;
 
   Object.keys(localStorage)
-    .filter(k=>k.startsWith(KEY))
+    .filter(k=>k.startsWith(STORAGE))
     .forEach(k=>localStorage.removeItem(k));
 
   location.reload();
 }
 
-render();
+document.addEventListener("DOMContentLoaded",()=>{
 
-document.querySelectorAll("[data-official]").forEach(a=>{
-  a.href=a.dataset.official;
+  renderDays();
+
+  const memo=document.getElementById("memo");
+  const stored=get("memo");
+
+  if(stored!==null){
+    memo.value=stored;
+  }
+
+  memo.addEventListener("input",()=>{
+    save("memo",memo.value);
+  });
+
 });
 </script>
 
