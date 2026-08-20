@@ -960,6 +960,40 @@ textarea:focus{
     align-items:flex-start;
   }
 }
+
+.day-progress{
+  margin-top:12px;
+}
+
+.day-progress-info{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:5px;
+  color:#d8dce0;
+  font-size:10px;
+}
+
+.day-progress-track{
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+}
+
+.day-progress-bar{
+  width:0;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#44d17d,#8cf0af);
+  transition:width .35s ease;
+}
+
+.day-progress.complete .day-progress-bar{
+  background:#7df2a7;
+  box-shadow:0 0 8px rgba(125,242,167,.55);
+}
+
+  
 </style>
 </head>
 
@@ -2857,22 +2891,41 @@ function setBooking(btn,shouldSave=true){
 }
 
 function updateAllCounts(){
-  for(let day=1;day<=4;day++){
-    const cards=document.querySelectorAll(
-      `.day-card:nth-of-type(${day}) [data-complete]`
-    );
+  document.querySelectorAll(".day-card").forEach((dayCard,index)=>{
+    const all=dayCard.querySelectorAll("[data-complete]").length;
+    const done=dayCard.querySelectorAll("[data-complete]:checked").length;
+    const percent=all ? Math.round((done/all)*100) : 0;
 
-    const parent=document.querySelectorAll(".day-card")[day-1];
-    if(!parent)continue;
-
-    const all=parent.querySelectorAll("[data-complete]").length;
-    const done=parent.querySelectorAll("[data-complete]:checked").length;
-
-    const count=parent.querySelector("[data-day-count]");
+    const coun*=dayCard.querySelector("[data-day-count]");
     if(count){
       count.textContent=`${done} / ${all}`;
     }
-  }
+
+    const header=dayCard.querySelector(".day-header");
+    if(!header)return;
+
+    let progress=header.querySelector(".day-progress");
+
+    if(!progress){
+      progress=document.createElement("div");
+      progress.className="day-progress";
+      progress.innerHTML=`
+        <div class="day-progress-info">
+          <span>行程進度</span>
+          <span class="day-progress-percent">0%</span>
+        </div>
+        <div class="day-progress-track">
+          <div class="day-progress-bar"></div>
+        </div>
+      `;
+
+      header.appendChild(progress);
+    }
+
+    progress.querySelector(".day-progress-bar").style.width=`${percent}%`;
+    progress.querySelector(".day-progress-percent").textContent=`${percent}%`;
+    progress.classList.toggle("complete",all>0 && done===all);
+  });
 }
 
 document.querySelectorAll("[data-complete]").forEach(input=>{
