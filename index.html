@@ -9,13 +9,19 @@
 <style>
 :root{
   --red:#b83245;
+  --red-dark:#982b3c;
   --dark:#252525;
+  --dark2:#3d3d3d;
   --gray:#f4f5f7;
   --line:#e1e3e6;
   --blue:#2468a8;
   --green:#2e7d5b;
   --orange:#c77a00;
+  --yellow:#f4b400;
+  --danger:#c62828;
   --white:#fff;
+  --purple:#7356a8;
+  --shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 *{
@@ -40,17 +46,32 @@ body{
   line-height:1.55;
 }
 
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .container{
   width:min(1180px,calc(100% - 24px));
   margin:auto;
 }
 
-/* ===== Header ===== */
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
-  background:linear-gradient(135deg,#252525,#454545);
+  background:
+    radial-gradient(circle at top right,rgba(255,255,255,.12),transparent 35%),
+    linear-gradient(135deg,#252525,#454545);
   color:white;
-  padding:26px 0;
+  padding:26px 0 22px;
 }
 
 .header h1{
@@ -73,6 +94,7 @@ body{
 
 .info-box{
   background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.08);
   border-radius:10px;
   padding:10px 12px;
 }
@@ -89,7 +111,9 @@ body{
   font-size:14px;
 }
 
-/* ===== Navigation ===== */
+/* =====================================================
+   NAV
+===================================================== */
 
 .nav{
   position:sticky;
@@ -97,7 +121,7 @@ body{
   z-index:50;
   background:rgba(255,255,255,.96);
   border-bottom:1px solid var(--line);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
 }
 
 .nav-inner{
@@ -105,6 +129,11 @@ body{
   gap:6px;
   overflow-x:auto;
   padding:8px 0;
+  scrollbar-width:none;
+}
+
+.nav-inner::-webkit-scrollbar{
+  display:none;
 }
 
 .nav a{
@@ -117,7 +146,13 @@ body{
   font-size:13px;
 }
 
-/* ===== Main ===== */
+.nav a:hover{
+  background:#e6e7e9;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 main{
   padding:18px 0 45px;
@@ -128,7 +163,7 @@ main{
   border-radius:14px;
   padding:18px;
   margin-bottom:16px;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);
+  box-shadow:var(--shadow);
 }
 
 .section-title{
@@ -145,7 +180,58 @@ main{
   font-weight:normal;
 }
 
-/* ===== Grid ===== */
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.stat{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+  background:#fafafa;
+}
+
+.stat-icon{
+  font-size:20px;
+}
+
+.stat-label{
+  color:#777;
+  font-size:11px;
+  margin-top:2px;
+}
+
+.stat-number{
+  font-size:22px;
+  font-weight:800;
+  margin-top:2px;
+}
+
+.stat.red .stat-number{
+  color:var(--red);
+}
+
+.stat.green .stat-number{
+  color:var(--green);
+}
+
+.stat.orange .stat-number{
+  color:var(--orange);
+}
+
+.stat.blue .stat-number{
+  color:var(--blue);
+}
+
+/* =====================================================
+   GRID
+===================================================== */
 
 .grid{
   display:grid;
@@ -153,7 +239,9 @@ main{
   gap:16px;
 }
 
-/* ===== Flight ===== */
+/* =====================================================
+   FLIGHT
+===================================================== */
 
 .flight-card{
   border:1px solid var(--line);
@@ -184,7 +272,9 @@ main{
   margin-bottom:0;
 }
 
-/* ===== Hotel ===== */
+/* =====================================================
+   HOTEL
+===================================================== */
 
 .hotel{
   background:#f7f8fa;
@@ -217,19 +307,30 @@ main{
   font-size:13px;
 }
 
-/* ===== Schedule ===== */
+/* =====================================================
+   DAY
+===================================================== */
 
 .day-card{
   border:1px solid var(--line);
   border-radius:14px;
   overflow:hidden;
   margin-bottom:16px;
+  background:#fff;
 }
 
 .day-header{
-  padding:13px 16px;
-  background:var(--dark);
+  padding:14px 16px;
+  background:
+    linear-gradient(135deg,#252525,#414141);
   color:white;
+}
+
+.day-header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
 
 .day-header h3{
@@ -242,6 +343,12 @@ main{
   opacity:.75;
 }
 
+.day-route{
+  margin-top:5px;
+  color:#ddd;
+  font-size:12px;
+}
+
 .schedule{
   padding:8px 16px 14px;
 }
@@ -249,7 +356,7 @@ main{
 .time-row{
   display:grid;
   grid-template-columns:72px 1fr;
-  min-height:58px;
+  min-height:72px;
   border-bottom:1px solid #eee;
 }
 
@@ -260,13 +367,20 @@ main{
 .time{
   color:var(--red);
   font-weight:bold;
-  padding:13px 8px 10px 0;
+  padding:14px 8px 10px 0;
   font-size:14px;
 }
 
 .event{
   border-left:2px solid #ddd;
   padding:10px 0 10px 14px;
+}
+
+.event-title-line{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
 }
 
 .event-title{
@@ -280,11 +394,210 @@ main{
   margin-top:3px;
 }
 
-/* ===== Editable fields ===== */
+.event-actions{
+  margin-top:8px;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.detail-btn{
+  border:1px solid #ddd;
+  background:#f7f7f8;
+  color:#333;
+  border-radius:7px;
+  padding:5px 9px;
+  font-size:11px;
+}
+
+.detail-btn:hover{
+  background:#eee;
+}
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  border-radius:20px;
+  padding:3px 8px;
+  font-size:10px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.badge-green{
+  color:#17623f;
+  background:#e5f5ec;
+}
+
+.badge-red{
+  color:#9c2020;
+  background:#fde8e8;
+}
+
+.badge-yellow{
+  color:#8a5a00;
+  background:#fff4d5;
+}
+
+.badge-blue{
+  color:#1d5b91;
+  background:#e8f3ff;
+}
+
+.badge-purple{
+  color:#5b408d;
+  background:#f0eafa;
+}
+
+/* =====================================================
+   EXPAND DETAIL
+===================================================== */
+
+.detail-panel{
+  display:none;
+  margin-top:10px;
+  border:1px solid #e2e4e7;
+  border-radius:10px;
+  background:#fafbfc;
+  overflow:hidden;
+}
+
+.detail-panel.open{
+  display:block;
+  animation:fadeIn .18s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(-3px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.detail-section{
+  padding:11px 12px;
+  border-bottom:1px solid #e7e7e7;
+}
+
+.detail-section:last-child{
+  border-bottom:0;
+}
+
+.detail-title{
+  font-weight:bold;
+  font-size:12px;
+  margin-bottom:7px;
+  color:#444;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+}
+
+.detail-item{
+  background:white;
+  border:1px solid #e7e7e7;
+  border-radius:7px;
+  padding:7px 9px;
+  font-size:12px;
+}
+
+.detail-item small{
+  display:block;
+  color:#888;
+  font-size:10px;
+}
+
+.detail-item strong{
+  display:block;
+  margin-top:1px;
+}
+
+.route-box{
+  background:#eef6ff;
+  border-left:4px solid var(--blue);
+  border-radius:7px;
+  padding:9px 11px;
+  font-size:12px;
+}
+
+.route-line{
+  display:flex;
+  gap:8px;
+  margin:5px 0;
+}
+
+.route-icon{
+  width:20px;
+  flex-shrink:0;
+}
+
+.reservation-box{
+  background:#fff;
+  border:1px solid #e5e5e5;
+  border-radius:8px;
+  padding:9px;
+}
+
+.reservation-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+}
+
+.form-label{
+  display:block;
+  color:#777;
+  font-size:10px;
+  margin-bottom:3px;
+}
+
+.form-control{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:6px 7px;
+  background:#fff;
+  font-size:12px;
+  color:#333;
+}
+
+.form-control:focus{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px rgba(36,104,168,.08);
+}
+
+.detail-link{
+  display:inline-block;
+  margin-top:7px;
+  color:var(--blue);
+  font-size:12px;
+  text-decoration:none;
+}
+
+.detail-link:hover{
+  text-decoration:underline;
+}
+
+/* =====================================================
+   EDITABLE
+===================================================== */
 
 .edit{
   display:inline-block;
-  min-width:160px;
+  min-width:120px;
   border-bottom:1px dashed #999;
   color:#333;
   padding:0 3px;
@@ -301,7 +614,9 @@ main{
   color:#aaa;
 }
 
-/* ===== Checklist ===== */
+/* =====================================================
+   CHECKLIST
+===================================================== */
 
 .check-grid{
   display:grid;
@@ -333,7 +648,9 @@ main{
   text-decoration:line-through;
 }
 
-/* ===== Notice ===== */
+/* =====================================================
+   NOTICE
+===================================================== */
 
 .notice{
   padding:12px 14px;
@@ -362,7 +679,9 @@ main{
   border-left:4px solid var(--green);
 }
 
-/* ===== Table ===== */
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrap{
   overflow-x:auto;
@@ -374,7 +693,8 @@ table{
   font-size:13px;
 }
 
-th,td{
+th,
+td{
   border-bottom:1px solid var(--line);
   padding:9px 8px;
   text-align:left;
@@ -385,15 +705,9 @@ th{
   background:#f7f7f8;
 }
 
-.table-input{
-  width:100%;
-  border:1px solid #ddd;
-  border-radius:6px;
-  padding:6px;
-  font:inherit;
-}
-
-/* ===== Textarea ===== */
+/* =====================================================
+   TEXTAREA
+===================================================== */
 
 textarea{
   width:100%;
@@ -405,27 +719,14 @@ textarea{
   font:inherit;
 }
 
-/* ===== Save status ===== */
-
-.save-status{
-  position:fixed;
-  right:16px;
-  bottom:16px;
-  z-index:100;
-  background:#222;
-  color:#fff;
-  border-radius:20px;
-  padding:7px 12px;
-  font-size:12px;
-  opacity:.85;
-  transition:.3s;
+textarea:focus{
+  outline:none;
+  border-color:var(--blue);
 }
 
-.save-status.saved{
-  background:var(--green);
-}
-
-/* ===== Buttons ===== */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .actions{
   display:flex;
@@ -437,7 +738,6 @@ button{
   border:0;
   border-radius:8px;
   padding:9px 14px;
-  cursor:pointer;
   font-size:13px;
 }
 
@@ -451,7 +751,41 @@ button{
   color:#333;
 }
 
-/* ===== Footer ===== */
+.btn-primary{
+  background:var(--dark);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#000;
+}
+
+/* =====================================================
+   SAVE STATUS
+===================================================== */
+
+.save-status{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:100;
+  background:#222;
+  color:#fff;
+  border-radius:20px;
+  padding:7px 12px;
+  font-size:12px;
+  opacity:.85;
+  transition:.3s;
+  pointer-events:none;
+}
+
+.save-status.saved{
+  background:var(--green);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer{
   text-align:center;
@@ -460,7 +794,9 @@ button{
   padding:8px 0 20px;
 }
 
-/* ===== Responsive ===== */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:800px){
 
@@ -470,6 +806,10 @@ button{
 
   .grid{
     grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .check-grid{
@@ -498,6 +838,18 @@ button{
     font-size:18px;
   }
 
+  .dashboard{
+    gap:7px;
+  }
+
+  .stat{
+    padding:10px;
+  }
+
+  .stat-number{
+    font-size:19px;
+  }
+
   .check-grid{
     grid-template-columns:1fr 1fr;
     gap:3px 8px;
@@ -508,88 +860,195 @@ button{
   }
 
   .time-row{
-    grid-template-columns:58px 1fr;
+    grid-template-columns:54px 1fr;
   }
 
   .time{
-    font-size:13px;
+    font-size:12px;
+    padding-right:6px;
   }
 
   .event{
-    padding-left:10px;
+    padding-left:9px;
+  }
+
+  .event-title{
+    font-size:13px;
+  }
+
+  .event-detail{
+    font-size:11px;
+  }
+
+  .detail-grid,
+  .reservation-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .detail-item{
+    font-size:11px;
   }
 
   .edit{
     min-width:100px;
   }
+
+  .day-header-top{
+    align-items:flex-start;
+  }
+
+  .day-header h3{
+    font-size:16px;
+  }
+
+}
+
+/* =====================================================
+   VERY SMALL PHONE
+===================================================== */
+
+@media(max-width:350px){
+
+  .trip-info{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .detail-grid,
+  .reservation-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
+
 <div class="container">
 
-  <h1>🇯🇵 東京 4天3夜</h1>
+<h1>🇯🇵 東京 4天3夜</h1>
 
-  <div class="subtitle">
-    2026/09/25（五）～ 09/28（一）
-  </div>
+<div class="subtitle">
+2026/09/25（五）～ 09/28（一）｜銀座住宿
+</div>
 
-  <div class="trip-info">
+<div class="trip-info">
 
-    <div class="info-box">
-      <small>去程</small>
-      <strong>TR866｜06:45 → 11:15</strong>
-    </div>
+<div class="info-box">
+<small>去程</small>
+<strong>TR866｜06:45 → 11:15</strong>
+</div>
 
-    <div class="info-box">
-      <small>回程</small>
-      <strong>TR875｜21:15 → 23:55</strong>
-    </div>
+<div class="info-box">
+<small>回程</small>
+<strong>TR875｜21:15 → 23:55</strong>
+</div>
 
-    <div class="info-box">
-      <small>機場</small>
-      <strong>桃園 T1 ↔ 成田 T1</strong>
-    </div>
+<div class="info-box">
+<small>機場</small>
+<strong>桃園 T1 ↔ 成田 T1</strong>
+</div>
 
-    <div class="info-box">
-      <small>住宿</small>
-      <strong>Millennium Mitsui Garden Hotel Tokyo</strong>
-    </div>
-
-  </div>
+<div class="info-box">
+<small>住宿</small>
+<strong>Millennium Mitsui Garden Hotel Tokyo</strong>
+</div>
 
 </div>
+
+</div>
+
 </header>
 
 
-<!-- ================= NAV ================= -->
+<!-- =====================================================
+     NAV
+===================================================== -->
 
 <nav class="nav">
+
 <div class="container nav-inner">
 
-  <a href="#schedule">🗓 行程</a>
-  <a href="#flight">✈️ 航班</a>
-  <a href="#hotel">🏨 飯店</a>
-  <a href="#before">🛂 出發前</a>
-  <a href="#customs">🚫 入境</a>
-  <a href="#medicine">💊 藥品</a>
-  <a href="#carry">🎒 隨身</a>
-  <a href="#luggage">🧳 行李</a>
-  <a href="#tips">⚠️ 注意事項</a>
+<a href="#dashboard">📊 總覽</a>
+<a href="#schedule">🗓 行程</a>
+<a href="#flight">✈️ 航班</a>
+<a href="#hotel">🏨 飯店</a>
+<a href="#before">🛂 出發前</a>
+<a href="#customs">🚫 入境</a>
+<a href="#medicine">💊 藥品</a>
+<a href="#carry">🎒 隨身</a>
+<a href="#luggage">🧳 行李</a>
+<a href="#tips">⚠️ 注意</a>
 
 </div>
+
 </nav>
 
 
 <main class="container">
 
 
-<!-- ================= FLIGHT ================= -->
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section class="section" id="dashboard">
+
+<h2 class="section-title">
+📊 行程總覽
+<small>預約與行程完成度</small>
+</h2>
+
+<div class="dashboard">
+
+<div class="stat red">
+<div class="stat-icon">📅</div>
+<div class="stat-label">行程項目</div>
+<div class="stat-number" id="totalEvents">0</div>
+</div>
+
+<div class="stat green">
+<div class="stat-icon">✅</div>
+<div class="stat-label">已預約</div>
+<div class="stat-number" id="reservedEvents">0</div>
+</div>
+
+<div class="stat orange">
+<div class="stat-icon">🟡</div>
+<div class="stat-label">待確認</div>
+<div class="stat-number" id="pendingEvents">0</div>
+</div>
+
+<div class="stat blue">
+<div class="stat-icon">☑️</div>
+<div class="stat-label">Checklist</div>
+<div class="stat-number" id="checkedItems">0</div>
+</div>
+
+</div>
+
+<div class="notice info">
+💡 <b>使用方式：</b>
+每個行程右下角的「查看詳細」都可以展開。
+裡面可以查看交通路線、距離、時間、營業時間、預約狀態、預約時間與備註。
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FLIGHT
+===================================================== -->
 
 <section class="section" id="flight">
 
@@ -599,95 +1058,97 @@ button{
 
 <div class="flight-card">
 
-  <div class="flight-head">
-    9/25（五）｜去程
-  </div>
+<div class="flight-head">
+9/25（五）｜去程
+</div>
 
-  <div class="flight-body">
+<div class="flight-body">
 
-    <div class="flight-row">
-      <b>航班</b>
-      <span>TR866</span>
-    </div>
+<div class="flight-row">
+<b>航班</b>
+<span>TR866</span>
+</div>
 
-    <div class="flight-row">
-      <b>出發機場</b>
-      <span>桃園國際機場</span>
-    </div>
+<div class="flight-row">
+<b>出發機場</b>
+<span>桃園國際機場</span>
+</div>
 
-    <div class="flight-row">
-      <b>出發航廈</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
+<div class="flight-row">
+<b>出發航廈</b>
+<span><b>第 1 航廈 T1</b></span>
+</div>
 
-    <div class="flight-row">
-      <b>起飛</b>
-      <span>06:45</span>
-    </div>
+<div class="flight-row">
+<b>起飛</b>
+<span>06:45</span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達機場</b>
-      <span>成田國際機場</span>
-    </div>
+<div class="flight-row">
+<b>抵達機場</b>
+<span>成田國際機場</span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達航廈</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
+<div class="flight-row">
+<b>抵達航廈</b>
+<span><b>第 1 航廈 T1</b></span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達</b>
-      <span>11:15</span>
-    </div>
+<div class="flight-row">
+<b>抵達</b>
+<span>11:15</span>
+</div>
 
-  </div>
+</div>
+
 </div>
 
 
 <div class="flight-card">
 
-  <div class="flight-head">
-    9/28（一）｜回程
-  </div>
+<div class="flight-head">
+9/28（一）｜回程
+</div>
 
-  <div class="flight-body">
+<div class="flight-body">
 
-    <div class="flight-row">
-      <b>航班</b>
-      <span>TR875</span>
-    </div>
+<div class="flight-row">
+<b>航班</b>
+<span>TR875</span>
+</div>
 
-    <div class="flight-row">
-      <b>出發機場</b>
-      <span>成田國際機場</span>
-    </div>
+<div class="flight-row">
+<b>出發機場</b>
+<span>成田國際機場</span>
+</div>
 
-    <div class="flight-row">
-      <b>出發航廈</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
+<div class="flight-row">
+<b>出發航廈</b>
+<span><b>第 1 航廈 T1</b></span>
+</div>
 
-    <div class="flight-row">
-      <b>起飛</b>
-      <span>21:15</span>
-    </div>
+<div class="flight-row">
+<b>起飛</b>
+<span>21:15</span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達機場</b>
-      <span>桃園國際機場</span>
-    </div>
+<div class="flight-row">
+<b>抵達機場</b>
+<span>桃園國際機場</span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達航廈</b>
-      <span><b>第 1 航廈 T1</b></span>
-    </div>
+<div class="flight-row">
+<b>抵達航廈</b>
+<span><b>第 1 航廈 T1</b></span>
+</div>
 
-    <div class="flight-row">
-      <b>抵達</b>
-      <span>23:55</span>
-    </div>
+<div class="flight-row">
+<b>抵達</b>
+<span>23:55</span>
+</div>
 
-  </div>
+</div>
+
 </div>
 
 </div>
@@ -699,7 +1160,9 @@ button{
 </section>
 
 
-<!-- ================= HOTEL ================= -->
+<!-- =====================================================
+     HOTEL
+===================================================== -->
 
 <section class="section" id="hotel">
 
@@ -707,522 +1170,2810 @@ button{
 
 <div class="hotel">
 
-  <div class="hotel-name">
-    Millennium Mitsui Garden Hotel Tokyo
-  </div>
+<div class="hotel-name">
+Millennium Mitsui Garden Hotel Tokyo
+</div>
 
-  <div class="hotel-subtitle">
-    ミレニアム 三井ガーデンホテル 東京
-  </div>
+<div class="hotel-subtitle">
+ミレニアム 三井ガーデンホテル 東京
+</div>
 
-  <p>📍 <b>東京都中央區銀座 5-11-1</b></p>
+<p>📍 <b>東京都中央區銀座 5-11-1</b></p>
 
-  <p>🚇 <b>東銀座站 A1 出口：約 1 分鐘</b></p>
+<p>🚇 <b>東銀座站 A1 出口：約 1 分鐘</b></p>
 
-  <p>🚇 <b>銀座站 A5 出口：約 2 分鐘</b></p>
+<p>🚇 <b>銀座站 A5 出口：約 2 分鐘</b></p>
 
-  <p>🚉 有樂町站：約 10 分鐘步行</p>
+<p>🚉 有樂町站：約 10 分鐘步行</p>
 
-  <p>🕒 <b>Check-in：15:00</b></p>
+<p>🕒 <b>Check-in：15:00</b></p>
 
-  <p>🕛 <b>Check-out：12:00</b></p>
+<p>🕛 <b>Check-out：12:00</b></p>
 
-  <div class="hotel-highlight">
-    ⭐ 住宿地點：銀座<br>
-    ⭐ 飯店正式名稱：Millennium Mitsui Garden Hotel Tokyo<br>
-    ⭐ 地址：5-11-1 Ginza, Chuo-ku, Tokyo 104-0061<br>
-    ⭐ 電話：+81-3-3549-3331
-  </div>
+<div class="hotel-highlight">
+⭐ 住宿地點：銀座<br>
+⭐ 飯店正式名稱：Millennium Mitsui Garden Hotel Tokyo<br>
+⭐ 地址：5-11-1 Ginza, Chuo-ku, Tokyo 104-0061<br>
+⭐ 電話：+81-3-3549-3331
+</div>
 
 </div>
 
 </section>
 
 
-<!-- ================= SCHEDULE ================= -->
+<!-- =====================================================
+     SCHEDULE
+===================================================== -->
 
 <section class="section" id="schedule">
 
 <h2 class="section-title">
 🗓️ 每日時間表
-<small>空白欄位可以直接輸入，會自動儲存</small>
+<small>點開每個行程查看隱藏細節</small>
 </h2>
 
 
-<!-- DAY 1 -->
+<!-- =====================================================
+     DAY 1
+===================================================== -->
 
 <div class="day-card">
 
 <div class="day-header">
-  <h3>Day 1｜9/25（五）</h3>
-  <span>桃園 T1 → 成田 T1 → 銀座 → 皇居外苑</span>
+
+<div class="day-header-top">
+
+<div>
+<h3>Day 1｜9/25（五）</h3>
+<span>抵達東京・銀座・皇居</span>
 </div>
+
+<div>✈️ 入境日</div>
+
+</div>
+
+<div class="day-route">
+桃園 T1 → 成田 T1 → 銀座 → 皇居外苑 → 銀座
+</div>
+
+</div>
+
 
 <div class="schedule">
 
-<div class="time-row">
-  <div class="time">06:00</div>
-  <div class="event">
-    <div class="event-title">✈️ 桃園國際機場 T1</div>
-    <div class="event-detail">報到／托運／安檢／前往登機門</div>
-  </div>
-</div>
+
+<!-- 06:00 -->
 
 <div class="time-row">
-  <div class="time">06:45</div>
-  <div class="event">
-    <div class="event-title">✈️ TR866 起飛</div>
-    <div class="event-detail">桃園 T1 → 成田 T1</div>
-  </div>
+
+<div class="time">06:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">✈️ 桃園國際機場 T1</div>
+<span class="badge badge-blue">機場</span>
 </div>
+
+<div class="event-detail">
+報到／托運／安檢／前往登機門
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-0600')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-0600">
+
+<div class="detail-section">
+
+<div class="detail-title">✈️ 航班資訊</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>航班</small>
+<strong>TR866</strong>
+</div>
+
+<div class="detail-item">
+<small>起飛</small>
+<strong>06:45</strong>
+</div>
+
+<div class="detail-item">
+<small>航廈</small>
+<strong>T1</strong>
+</div>
+
+<div class="detail-item">
+<small>建議</small>
+<strong>提前抵達</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 備註</div>
+
+<div>
+<span class="edit"
+contenteditable="true"
+data-save="d1-0600-note"></span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 06:45 -->
 
 <div class="time-row">
-  <div class="time">11:15</div>
-  <div class="event">
-    <div class="event-title">🛬 抵達成田國際機場 T1</div>
-    <div class="event-detail">第 1 航廈 T1｜入境／領行李／海關</div>
-  </div>
+
+<div class="time">06:45</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">✈️ TR866 起飛</div>
+<span class="badge badge-red">航班</span>
 </div>
+
+<div class="event-detail">
+桃園 T1 → 成田 T1
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-0645')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-0645">
+
+<div class="detail-section">
+
+<div class="detail-title">🛫 航段</div>
+
+<div class="route-box">
+
+<div class="route-line">
+<span class="route-icon">🛫</span>
+<b>桃園國際機場 T1</b>
+</div>
+
+<div class="route-line">
+<span class="route-icon">✈️</span>
+TR866
+</div>
+
+<div class="route-line">
+<span class="route-icon">🛬</span>
+<b>成田國際機場 T1</b>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 備註</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d1-0645-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 11:15 -->
 
 <div class="time-row">
-  <div class="time">12:00</div>
-  <div class="event">
-    <div class="event-title">🚆 成田 T1 → 銀座</div>
-    <div class="event-detail">
-      交通：
-      <span class="edit" contenteditable="true"
-      data-save="day1-1200"></span>
-    </div>
-  </div>
+
+<div class="time">11:15</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🛬 抵達成田國際機場 T1</div>
+<span class="badge badge-blue">入境</span>
 </div>
+
+<div class="event-detail">
+入境／領行李／海關
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1115')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1115">
+
+<div class="detail-section">
+
+<div class="detail-title">🛂 入境流程</div>
+
+<div class="route-box">
+
+<div class="route-line">① 入境審查</div>
+<div class="route-line">② 領取託運行李</div>
+<div class="route-line">③ 海關申報</div>
+<div class="route-line">④ 前往交通設施</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">⏱️ 預留時間</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>預估</small>
+<strong>約 45～75 分鐘</strong>
+</div>
+
+<div class="detail-item">
+<small>備註</small>
+<strong>視現場人潮</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 12:00 -->
 
 <div class="time-row">
-  <div class="time">13:00</div>
-  <div class="event">
-    <div class="event-title">🏨 Millennium Mitsui Garden Hotel Tokyo</div>
-    <div class="event-detail">
-      寄放行李／午餐：
-      <span class="edit" contenteditable="true"
-      data-save="day1-1300"></span>
-    </div>
-  </div>
+
+<div class="time">12:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🚆 成田 T1 → 銀座</div>
+<span class="badge badge-blue">交通</span>
 </div>
+
+<div class="event-detail">
+前往飯店方向
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1200')">
+▼ 查看路線
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1200">
+
+<div class="detail-section">
+
+<div class="detail-title">🚆 隱藏路線</div>
+
+<div class="route-box">
+
+<div class="route-line">
+<span class="route-icon">🚉</span>
+成田機場 T1
+</div>
+
+<div class="route-line">
+<span class="route-icon">↓</span>
+搭乘前往東京方向的機場交通
+</div>
+
+<div class="route-line">
+<span class="route-icon">📍</span>
+銀座／東銀座
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">⏱️ 時間／距離</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>預估交通時間</small>
+<strong>約 70～90 分鐘</strong>
+</div>
+
+<div class="detail-item">
+<small>預估距離</small>
+<strong>約 70 km</strong>
+</div>
+
+<div class="detail-item">
+<small>交通費</small>
+<strong>依實際路線</strong>
+</div>
+
+<div class="detail-item">
+<small>建議</small>
+<strong>先以少轉乘為主</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 實際搭乘方式</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d1-1200-route"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 13:00 -->
 
 <div class="time-row">
-  <div class="time">14:00</div>
-  <div class="event">
-    <div class="event-title">📍 行程</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true"
-      data-save="day1-1400"></span>
-    </div>
-  </div>
+
+<div class="time">13:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🏨 Millennium Mitsui Garden Hotel Tokyo</div>
+<span class="badge badge-yellow">住宿</span>
 </div>
+
+<div class="event-detail">
+寄放行李／午餐
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1300')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1300">
+
+<div class="detail-section">
+
+<div class="detail-title">🏨 飯店</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>Check-in</small>
+<strong>15:00</strong>
+</div>
+
+<div class="detail-item">
+<small>位置</small>
+<strong>銀座 5-11-1</strong>
+</div>
+
+<div class="detail-item">
+<small>最近車站</small>
+<strong>東銀座</strong>
+</div>
+
+<div class="detail-item">
+<small>行李</small>
+<strong>可先詢問寄放</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🍜 午餐</div>
+
+<div class="reservation-box">
+
+<label class="form-label">
+餐廳名稱
+</label>
+
+<input
+class="form-control"
+data-save="d1-lunch-name"
+placeholder="例如：銀座拉麵／壽司"
+>
+
+<br>
+
+<label class="form-label">
+預約狀態
+</label>
+
+<select class="form-control reservation-status"
+data-save="d1-lunch-status"
+data-event="d1-lunch-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+</select>
+
+<br><br>
+
+<label class="form-label">
+預約時間
+</label>
+
+<input
+type="time"
+class="form-control"
+data-save="d1-lunch-time"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 14:00 -->
 
 <div class="time-row">
-  <div class="time">15:00</div>
-  <div class="event">
-    <div class="event-title">🏯 皇居外苑</div>
-    <div class="event-detail">
-      皇居外苑／二重橋／
-      <span class="edit" contenteditable="true"
-      data-save="day1-1500"></span>
-    </div>
-  </div>
+
+<div class="time">14:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 銀座自由行程</div>
+<span class="badge badge-purple">可調整</span>
 </div>
+
+<div class="event-detail">
+銀座街區／百貨／咖啡
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1400')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1400">
+
+<div class="detail-section">
+
+<div class="detail-title">🗺️ 建議安排</div>
+
+<div class="route-box">
+
+<div class="route-line">📍 銀座中央通</div>
+<div class="route-line">🛍️ 百貨／購物</div>
+<div class="route-line">☕ 咖啡休息</div>
+<div class="route-line">🚶 視體力調整</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🕐 營業時間</div>
+
+<div class="detail-item">
+<small>注意</small>
+<strong>各店家時間不同，當天依店家公告為準</strong>
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 想去的店</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d1-1400-place"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 15:00 -->
 
 <div class="time-row">
-  <div class="time">17:00</div>
-  <div class="event">
-    <div class="event-title">📍 下午</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true"
-      data-save="day1-1700"></span>
-    </div>
-  </div>
+
+<div class="time">15:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🏯 皇居外苑</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+皇居外苑／二重橋
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1500')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1500">
+
+<div class="detail-section">
+
+<div class="detail-title">📍 景點資訊</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>建議停留</small>
+<strong>約 60～90 分鐘</strong>
+</div>
+
+<div class="detail-item">
+<small>類型</small>
+<strong>戶外景點</strong>
+</div>
+
+<div class="detail-item">
+<small>適合</small>
+<strong>散步／拍照</strong>
+</div>
+
+<div class="detail-item">
+<small>雨天</small>
+<strong>視天氣調整</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🚆 銀座 → 皇居外苑</div>
+
+<div class="route-box">
+
+<div class="route-line">🚶 銀座出發</div>
+<div class="route-line">🚇 地鐵／步行</div>
+<div class="route-line">📍 皇居外苑</div>
+
+</div>
+
+<div class="detail-grid" style="margin-top:8px;">
+
+<div class="detail-item">
+<small>預估時間</small>
+<strong>約 15～25 分鐘</strong>
+</div>
+
+<div class="detail-item">
+<small>距離</small>
+<strong>約 2 km</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🎫 預約狀態</div>
+
+<select class="form-control reservation-status"
+data-save="d1-1500-status"
+data-event="d1-1500-status">
+
+<option value="none">🔴 不需預約</option>
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 17:00 -->
 
 <div class="time-row">
-  <div class="time">18:30</div>
-  <div class="event">
-    <div class="event-title">🍽️ 晚餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true"
-      data-save="day1-1830"></span>
-    </div>
-  </div>
+
+<div class="time">17:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 下午自由時間</div>
+<span class="badge badge-purple">彈性</span>
 </div>
+
+<div class="event-detail">
+可安排銀座／東京站周邊
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1700')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1700">
+
+<div class="detail-section">
+
+<div class="detail-title">💡 備選行程</div>
+
+<div class="route-box">
+
+<div class="route-line">① 東京站／丸之內</div>
+<div class="route-line">② 銀座購物</div>
+<div class="route-line">③ 咖啡廳休息</div>
+<div class="route-line">④ 回飯店休息</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 最終選擇</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d1-1700-plan"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 18:30 -->
 
 <div class="time-row">
-  <div class="time">20:00</div>
-  <div class="event">
-    <div class="event-title">🌃 晚上</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true"
-      data-save="day1-2000"></span>
-    </div>
-  </div>
+
+<div class="time">18:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍽️ 晚餐</div>
+<span class="badge badge-yellow">用餐</span>
 </div>
+
+<div class="event-detail">
+可安排銀座晚餐
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-1830')">
+▼ 查看餐廳
+</button>
+</div>
+
+<div class="detail-panel" id="d1-1830">
+
+<div class="detail-section">
+
+<div class="detail-title">🍽️ 晚餐資料</div>
+
+<div class="reservation-box">
+
+<label class="form-label">
+餐廳名稱
+</label>
+
+<input
+class="form-control"
+data-save="d1-dinner-name"
+placeholder="輸入餐廳名稱"
+>
+
+<br>
+
+<label class="form-label">
+預約狀態
+</label>
+
+<select
+class="form-control reservation-status"
+data-save="d1-dinner-status"
+data-event="d1-dinner-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<label class="form-label">
+預約時間
+</label>
+
+<input
+type="time"
+class="form-control"
+data-save="d1-dinner-time"
+>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 餐廳備註</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d1-dinner-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- 20:00 -->
 
 <div class="time-row">
-  <div class="time">＿＿</div>
-  <div class="event">
-    <div class="event-title">🏨 回飯店</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true"
-      data-save="day1-hotel"></span>
-    </div>
-  </div>
+
+<div class="time">20:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌃 晚上／回飯店</div>
+<span class="badge badge-blue">休息</span>
+</div>
+
+<div class="event-detail">
+銀座夜間散步／返回飯店
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d1-2000')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d1-2000">
+
+<div class="detail-section">
+
+<div class="detail-title">🌃 晚間安排</div>
+
+<div class="route-box">
+
+<div class="route-line">🌃 銀座夜景</div>
+<div class="route-line">☕ 視體力休息</div>
+<div class="route-line">🏨 返回飯店</div>
+
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 </div>
 
 
-<!-- DAY 2 -->
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     DAY 2
+===================================================== -->
 
 <div class="day-card">
 
 <div class="day-header">
-  <h3>Day 2｜9/26（六）</h3>
-  <span>行程待安排</span>
+
+<div class="day-header-top">
+
+<div>
+<h3>Day 2｜9/26（六）</h3>
+<span>完整行程待安排</span>
+</div>
+
+<div>🗺️ 東京市區</div>
+
+</div>
+
+<div class="day-route">
+銀座 → 景點 → 午餐 → 景點 → 購物 → 晚餐
+</div>
+
 </div>
 
 <div class="schedule">
 
-<div class="time-row">
-  <div class="time">07:00</div>
-  <div class="event">
-    <div class="event-title">🌅 起床</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-0700"></span>
-    </div>
-  </div>
-</div>
 
 <div class="time-row">
-  <div class="time">08:00</div>
-  <div class="event">
-    <div class="event-title">🍳 早餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-0800"></span>
-    </div>
-  </div>
+
+<div class="time">07:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌅 起床</div>
+<span class="badge badge-blue">住宿</span>
 </div>
+
+<div class="event-detail">
+準備／確認今日路線
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-0700')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-0700">
+
+<div class="detail-section">
+
+<div class="detail-title">📝 今日提醒</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d2-0700-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">09:00</div>
-  <div class="event">
-    <div class="event-title">📍 上午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-0900"></span>
-    </div>
-  </div>
+
+<div class="time">08:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍳 早餐</div>
+<span class="badge badge-yellow">早餐</span>
 </div>
+
+<div class="event-detail">
+飯店早餐／附近早餐
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-0800')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-0800">
+
+<div class="detail-section">
+
+<div class="detail-title">🍳 早餐</div>
+
+<div class="reservation-box">
+
+<label class="form-label">早餐地點</label>
+
+<input
+class="form-control"
+data-save="d2-breakfast-name"
+placeholder="輸入早餐店／飯店早餐"
+>
+
+<br>
+
+<label class="form-label">狀態</label>
+
+<select
+class="form-control reservation-status"
+data-save="d2-breakfast-status"
+data-event="d2-breakfast-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">11:30</div>
-  <div class="event">
-    <div class="event-title">📍 景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-1130"></span>
-    </div>
-  </div>
+
+<div class="time">09:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 上午景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入景點
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-0900')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-0900">
+
+<div class="detail-section">
+
+<div class="detail-title">📍 景點資料</div>
+
+<input
+class="form-control"
+data-save="d2-0900-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>建議停留</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-duration"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>門票</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-ticket"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>預約狀態</small>
+
+<select
+class="form-control reservation-status"
+data-save="d2-0900-status"
+data-event="d2-0900-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🚆 從飯店前往</div>
+
+<div class="route-box">
+
+<div class="route-line">
+🚶 出發：銀座飯店
+</div>
+
+<div class="route-line">
+🚇 交通方式：
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-route"></span>
+</div>
+
+<div class="route-line">
+⏱️ 時間：
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-time"></span>
+</div>
+
+<div class="route-line">
+📏 距離：
+<span class="edit"
+contenteditable="true"
+data-save="d2-0900-distance"></span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">12:30</div>
-  <div class="event">
-    <div class="event-title">🍜 午餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-1230"></span>
-    </div>
-  </div>
+
+<div class="time">11:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-1130')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-1130">
+
+<div class="detail-section">
+
+<div class="detail-title">📍 景點名稱</div>
+
+<input
+class="form-control"
+data-save="d2-1130-name"
+placeholder="輸入景點名稱"
+>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🕐 營業／預約</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1130-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>建議停留</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1130-duration"></span>
+</strong>
+</div>
+
+</div>
+
+<br>
+
+<select
+class="form-control reservation-status"
+data-save="d2-1130-status"
+data-event="d2-1130-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">14:00</div>
-  <div class="event">
-    <div class="event-title">📍 下午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-1400"></span>
-    </div>
-  </div>
+
+<div class="time">12:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍜 午餐</div>
+<span class="badge badge-yellow">午餐</span>
 </div>
+
+<div class="event-detail">
+可安排熱門餐廳
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-1230')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-1230">
+
+<div class="detail-section">
+
+<div class="detail-title">🍜 午餐餐廳</div>
+
+<input
+class="form-control"
+data-save="d2-lunch-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<label class="form-label">營業時間</label>
+
+<input
+class="form-control"
+data-save="d2-lunch-hours"
+placeholder="例如 11:30～21:00"
+>
+
+<br>
+
+<label class="form-label">預約狀態</label>
+
+<select
+class="form-control reservation-status"
+data-save="d2-lunch-status"
+data-event="d2-lunch-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<label class="form-label">預約時間</label>
+
+<input
+type="time"
+class="form-control"
+data-save="d2-lunch-time"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">17:00</div>
-  <div class="event">
-    <div class="event-title">🛍️ 逛街／購物</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-1700"></span>
-    </div>
-  </div>
+
+<div class="time">14:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 下午景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-1400')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-1400">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d2-1400-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1400-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>建議停留</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1400-duration"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>距離</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1400-distance"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>交通時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d2-1400-time"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🚆 路線</div>
+
+<div class="route-box">
+
+交通方式：
+<span class="edit"
+contenteditable="true"
+data-save="d2-1400-route"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">18:30</div>
-  <div class="event">
-    <div class="event-title">🍽️ 晚餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-1830"></span>
-    </div>
-  </div>
+
+<div class="time">17:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🛍️ 逛街／購物</div>
+<span class="badge badge-purple">購物</span>
 </div>
+
+<div class="event-detail">
+百貨／藥妝／伴手禮
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-1700')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-1700">
+
+<div class="detail-section">
+
+<div class="detail-title">🛍️ 購物清單</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d2-1700-shopping"></span>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">⏱️ 預留時間</div>
+
+<div class="detail-item">
+<small>建議</small>
+<strong>約 60～120 分鐘</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">20:00</div>
-  <div class="event">
-    <div class="event-title">🌃 晚上</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day2-2000"></span>
-    </div>
-  </div>
+
+<div class="time">18:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍽️ 晚餐</div>
+<span class="badge badge-yellow">晚餐</span>
+</div>
+
+<div class="event-detail">
+輸入餐廳／預約資訊
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d2-1830')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d2-1830">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d2-dinner-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<label class="form-label">
+營業時間
+</label>
+
+<input
+class="form-control"
+data-save="d2-dinner-hours"
+placeholder="例如 17:00～22:00"
+>
+
+<br>
+
+<label class="form-label">
+預約狀態
+</label>
+
+<select
+class="form-control reservation-status"
+data-save="d2-dinner-status"
+data-event="d2-dinner-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<label class="form-label">
+預約時間
+</label>
+
+<input
+type="time"
+class="form-control"
+data-save="d2-dinner-time"
+>
+
 </div>
 
 </div>
+
+</div>
+
 </div>
 
 
-<!-- DAY 3 -->
+<div class="time-row">
+
+<div class="time">20:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌃 晚上</div>
+<span class="badge badge-blue">彈性</span>
+</div>
+
+<div class="event-detail">
+夜景／散步／回飯店
+</div>
+
+<div class="event-actions">
+
+<button class="detail-btn" onclick="toggleDetail('d2-2000')">
+▼ 查看詳細
+</button>
+
+</div>
+
+<div class="detail-panel" id="d2-2000">
+
+<div class="detail-section">
+
+<div class="detail-title">🌃 晚上安排</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d2-2000-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     DAY 3
+===================================================== -->
 
 <div class="day-card">
 
 <div class="day-header">
-  <h3>Day 3｜9/27（日）</h3>
-  <span>行程待安排</span>
+
+<div class="day-header-top">
+
+<div>
+<h3>Day 3｜9/27（日）</h3>
+<span>東京自由安排</span>
+</div>
+
+<div>📸 景點日</div>
+
+</div>
+
+<div class="day-route">
+飯店 → 上午景點 → 午餐 → 下午景點 → 購物 → 晚餐
+</div>
+
 </div>
 
 <div class="schedule">
 
-<div class="time-row">
-  <div class="time">07:00</div>
-  <div class="event">
-    <div class="event-title">🌅 起床</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-0700"></span>
-    </div>
-  </div>
-</div>
 
 <div class="time-row">
-  <div class="time">08:00</div>
-  <div class="event">
-    <div class="event-title">🍳 早餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-0800"></span>
-    </div>
-  </div>
+
+<div class="time">07:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌅 起床</div>
+<span class="badge badge-blue">住宿</span>
 </div>
+
+<div class="event-detail">
+準備今日行程
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-0700')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-0700">
+
+<div class="detail-section">
+
+<div class="detail-title">📝 備註</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d3-0700-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">09:00</div>
-  <div class="event">
-    <div class="event-title">📍 上午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-0900"></span>
-    </div>
-  </div>
+
+<div class="time">08:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍳 早餐</div>
+<span class="badge badge-yellow">早餐</span>
 </div>
+
+<div class="event-detail">
+自行安排
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-0800')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-0800">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-breakfast-name"
+placeholder="早餐店／飯店早餐"
+>
+
+<br><br>
+
+<select
+class="form-control reservation-status"
+data-save="d3-breakfast-status"
+data-event="d3-breakfast-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">11:30</div>
-  <div class="event">
-    <div class="event-title">📍 景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-1130"></span>
-    </div>
-  </div>
+
+<div class="time">09:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 上午景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-0900')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-0900">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-0900-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-0900-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>停留時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-0900-duration"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>交通時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-0900-time"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>距離</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-0900-distance"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">🎫 預約</div>
+
+<select
+class="form-control reservation-status"
+data-save="d3-0900-status"
+data-event="d3-0900-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">12:30</div>
-  <div class="event">
-    <div class="event-title">🍜 午餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-1230"></span>
-    </div>
-  </div>
+
+<div class="time">11:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-1130')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-1130">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-1130-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1130-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>停留時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1130-duration"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">14:00</div>
-  <div class="event">
-    <div class="event-title">📍 下午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-1400"></span>
-    </div>
-  </div>
+
+<div class="time">12:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍜 午餐</div>
+<span class="badge badge-yellow">午餐</span>
 </div>
+
+<div class="event-detail">
+輸入餐廳與預約
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-1230')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-1230">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-lunch-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<input
+class="form-control"
+data-save="d3-lunch-hours"
+placeholder="營業時間"
+>
+
+<br>
+
+<select
+class="form-control reservation-status"
+data-save="d3-lunch-status"
+data-event="d3-lunch-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<input
+type="time"
+class="form-control"
+data-save="d3-lunch-time"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">17:00</div>
-  <div class="event">
-    <div class="event-title">🛍️ 逛街／購物</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-1700"></span>
-    </div>
-  </div>
+
+<div class="time">14:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 下午景點</div>
+<span class="badge badge-green">景點</span>
 </div>
+
+<div class="event-detail">
+自行填入
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-1400')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-1400">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-1400-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1400-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>停留時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1400-duration"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>交通時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1400-time"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>距離</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d3-1400-distance"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<select
+class="form-control reservation-status"
+data-save="d3-1400-status"
+data-event="d3-1400-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">18:30</div>
-  <div class="event">
-    <div class="event-title">🍽️ 晚餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-1830"></span>
-    </div>
-  </div>
+
+<div class="time">17:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🛍️ 逛街／購物</div>
+<span class="badge badge-purple">購物</span>
 </div>
+
+<div class="event-detail">
+藥妝／百貨／伴手禮
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-1700')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-1700">
+
+<div class="detail-section">
+
+<div class="detail-title">🛍️ 購物清單</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d3-1700-shopping"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <div class="time-row">
-  <div class="time">20:00</div>
-  <div class="event">
-    <div class="event-title">🌃 晚上</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day3-2000"></span>
-    </div>
-  </div>
+
+<div class="time">18:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍽️ 晚餐</div>
+<span class="badge badge-yellow">晚餐</span>
+</div>
+
+<div class="event-detail">
+輸入餐廳
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d3-1830')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d3-1830">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d3-dinner-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<input
+class="form-control"
+data-save="d3-dinner-hours"
+placeholder="營業時間"
+>
+
+<br>
+
+<select
+class="form-control reservation-status"
+data-save="d3-dinner-status"
+data-event="d3-dinner-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<input
+type="time"
+class="form-control"
+data-save="d3-dinner-time"
+>
+
 </div>
 
 </div>
+
+</div>
+
 </div>
 
 
-<!-- DAY 4 -->
+<div class="time-row">
+
+<div class="time">20:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌃 晚上</div>
+<span class="badge badge-blue">彈性</span>
+</div>
+
+<div class="event-detail">
+夜景／散步／回飯店
+</div>
+
+<div class="event-actions">
+
+<button class="detail-btn" onclick="toggleDetail('d3-2000')">
+▼ 查看詳細
+</button>
+
+</div>
+
+<div class="detail-panel" id="d3-2000">
+
+<div class="detail-section">
+
+<div class="detail-title">🌃 行程</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d3-2000-note"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     DAY 4
+===================================================== -->
 
 <div class="day-card">
 
 <div class="day-header">
-  <h3>Day 4｜9/28（一）</h3>
-  <span>東京 → 成田 T1 → 桃園 T1</span>
+
+<div class="day-header-top">
+
+<div>
+<h3>Day 4｜9/28（一）</h3>
+<span>最後購物・前往成田</span>
 </div>
+
+<div>✈️ 回程日</div>
+
+</div>
+
+<div class="day-route">
+銀座 → 上午行程 → 午餐 → 最後購物 → 飯店取行李 → 成田 T1
+</div>
+
+</div>
+
 
 <div class="schedule">
 
-<div class="time-row">
-  <div class="time">07:00</div>
-  <div class="event">
-    <div class="event-title">🌅 起床</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-0700"></span>
-    </div>
-  </div>
-</div>
 
 <div class="time-row">
-  <div class="time">08:00</div>
-  <div class="event">
-    <div class="event-title">🍳 早餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-0800"></span>
-    </div>
-  </div>
+
+<div class="time">07:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🌅 起床</div>
+<span class="badge badge-blue">住宿</span>
 </div>
 
-<div class="time-row">
-  <div class="time">09:00</div>
-  <div class="event">
-    <div class="event-title">📍 上午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-0900"></span>
-    </div>
-  </div>
+<div class="event-detail">
+整理行李／確認房間
 </div>
 
-<div class="time-row">
-  <div class="time">11:30</div>
-  <div class="event">
-    <div class="event-title">🏨 Millennium Mitsui Garden Hotel Tokyo</div>
-    <div class="event-detail">Check-out：12:00／退房／寄放行李</div>
-  </div>
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-0700')">
+▼ 查看詳細
+</button>
 </div>
 
-<div class="time-row">
-  <div class="time">12:30</div>
-  <div class="event">
-    <div class="event-title">🍜 午餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-1230"></span>
-    </div>
-  </div>
-</div>
+<div class="detail-panel" id="d4-0700">
 
-<div class="time-row">
-  <div class="time">14:00</div>
-  <div class="event">
-    <div class="event-title">📍 下午景點</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-1400"></span>
-    </div>
-  </div>
-</div>
+<div class="detail-section">
 
-<div class="time-row">
-  <div class="time">16:30</div>
-  <div class="event">
-    <div class="event-title">🛍️ 最後購物</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-1630"></span>
-    </div>
-  </div>
-</div>
+<div class="detail-title">🧳 最後確認</div>
 
-<div class="time-row">
-  <div class="time">18:00</div>
-  <div class="event">
-    <div class="event-title">🍽️ 晚餐</div>
-    <div class="event-detail">
-      <span class="edit" contenteditable="true" data-save="day4-1800"></span>
-    </div>
-  </div>
-</div>
+<div class="route-box">
 
-<div class="time-row">
-  <div class="time">19:00</div>
-  <div class="event">
-    <div class="event-title">🧳 回飯店拿行李</div>
-    <div class="event-detail">護照／行李／隨身物品確認</div>
-  </div>
-</div>
+<div class="route-line">☑️ 護照</div>
+<div class="route-line">☑️ 手機</div>
+<div class="route-line">☑️ 充電器</div>
+<div class="route-line">☑️ 行李</div>
 
-<div class="time-row">
-  <div class="time">＿＿</div>
-  <div class="event">
-    <div class="event-title">🚆 銀座 → 成田國際機場 T1</div>
-    <div class="event-detail">
-      交通方式：
-      <span class="edit" contenteditable="true"
-      data-save="day4-airport"></span>
-    </div>
-  </div>
-</div>
-
-<div class="time-row">
-  <div class="time">21:15</div>
-  <div class="event">
-    <div class="event-title">✈️ TR875 起飛</div>
-    <div class="event-detail">成田國際機場 T1 → 桃園國際機場 T1</div>
-  </div>
-</div>
-
-<div class="time-row">
-  <div class="time">23:55</div>
-  <div class="event">
-    <div class="event-title">🛬 抵達桃園國際機場 T1</div>
-    <div class="event-detail">
-      第 1 航廈 T1｜入境／領行李
-    </div>
-  </div>
 </div>
 
 </div>
+
 </div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">08:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍳 早餐</div>
+<span class="badge badge-yellow">早餐</span>
+</div>
+
+<div class="event-detail">
+飯店／銀座早餐
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">09:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 上午景點</div>
+<span class="badge badge-green">景點</span>
+</div>
+
+<div class="event-detail">
+最後一個景點或銀座周邊
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-0900')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-0900">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d4-0900-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-0900-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>停留時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-0900-duration"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">11:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🏨 飯店 Check-out</div>
+<span class="badge badge-yellow">住宿</span>
+</div>
+
+<div class="event-detail">
+Check-out：12:00／退房／寄放行李
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1130')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1130">
+
+<div class="detail-section">
+
+<div class="detail-title">🏨 退房</div>
+
+<div class="route-box">
+
+<div class="route-line">🕛 正式 Check-out：12:00</div>
+<div class="route-line">🧳 行李寄放：退房後詢問櫃台</div>
+<div class="route-line">💳 確認是否有額外費用</div>
+<div class="route-line">🔑 確認房卡／房間物品</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">12:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍜 午餐</div>
+<span class="badge badge-yellow">午餐</span>
+</div>
+
+<div class="event-detail">
+銀座最後午餐
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1230')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1230">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d4-lunch-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<input
+class="form-control"
+data-save="d4-lunch-hours"
+placeholder="營業時間"
+>
+
+<br>
+
+<select
+class="form-control reservation-status"
+data-save="d4-lunch-status"
+data-event="d4-lunch-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<input
+type="time"
+class="form-control"
+data-save="d4-lunch-time"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">14:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">📍 下午景點</div>
+<span class="badge badge-green">景點</span>
+</div>
+
+<div class="event-detail">
+最後景點／自由時間
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1400')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1400">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d4-1400-name"
+placeholder="景點名稱"
+>
+
+<br><br>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>營業時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-1400-hours"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>停留時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-1400-duration"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>交通時間</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-1400-time"></span>
+</strong>
+</div>
+
+<div class="detail-item">
+<small>距離</small>
+<strong>
+<span class="edit"
+contenteditable="true"
+data-save="d4-1400-distance"></span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">16:30</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🛍️ 最後購物</div>
+<span class="badge badge-purple">購物</span>
+</div>
+
+<div class="event-detail">
+伴手禮／藥妝／最後採買
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1630')">
+▼ 查看詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1630">
+
+<div class="detail-section">
+
+<div class="detail-title">🛍️ 最後購物清單</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d4-shopping"></span>
+
+</div>
+
+<div class="detail-section">
+
+<div class="notice warning" style="margin-top:0;">
+⚠️ 回程前記得確認行李重量與液體物品。
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">18:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🍽️ 晚餐</div>
+<span class="badge badge-yellow">晚餐</span>
+</div>
+
+<div class="event-detail">
+回機場前最後用餐
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1800')">
+▼ 餐廳詳細
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1800">
+
+<div class="detail-section">
+
+<input
+class="form-control"
+data-save="d4-dinner-name"
+placeholder="餐廳名稱"
+>
+
+<br><br>
+
+<input
+class="form-control"
+data-save="d4-dinner-hours"
+placeholder="營業時間"
+>
+
+<br>
+
+<select
+class="form-control reservation-status"
+data-save="d4-dinner-status"
+data-event="d4-dinner-status">
+
+<option value="pending">🟡 待確認</option>
+<option value="reserved">🟢 已預約</option>
+<option value="none">🔴 未預約</option>
+
+</select>
+
+<br><br>
+
+<input
+type="time"
+class="form-control"
+data-save="d4-dinner-time"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">19:00</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🧳 回飯店拿行李</div>
+<span class="badge badge-red">重要</span>
+</div>
+
+<div class="event-detail">
+護照／行李／隨身物品確認
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-1900')">
+▼ 最後確認
+</button>
+</div>
+
+<div class="detail-panel" id="d4-1900">
+
+<div class="detail-section">
+
+<div class="detail-title">🧳 回國前最後確認</div>
+
+<div class="route-box">
+
+<div class="route-line">☑️ 護照</div>
+<div class="route-line">☑️ 手機</div>
+<div class="route-line">☑️ 行動電源</div>
+<div class="route-line">☑️ 信用卡</div>
+<div class="route-line">☑️ 日幣</div>
+<div class="route-line">☑️ 行李</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">＿＿</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🚆 銀座 → 成田國際機場 T1</div>
+<span class="badge badge-red">重要</span>
+</div>
+
+<div class="event-detail">
+回程交通
+</div>
+
+<div class="event-actions">
+<button class="detail-btn" onclick="toggleDetail('d4-airport')">
+▼ 查看路線
+</button>
+</div>
+
+<div class="detail-panel" id="d4-airport">
+
+<div class="detail-section">
+
+<div class="detail-title">🚆 隱藏路線</div>
+
+<div class="route-box">
+
+<div class="route-line">🏨 銀座飯店</div>
+<div class="route-line">↓</div>
+<div class="route-line">🚇 前往成田機場</div>
+<div class="route-line">↓</div>
+<div class="route-line">✈️ 成田 T1</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">⏱️ 建議時間</div>
+
+<div class="detail-grid">
+
+<div class="detail-item">
+<small>交通時間</small>
+<strong>預留約 70～100 分鐘</strong>
+</div>
+
+<div class="detail-item">
+<small>建議抵達</small>
+<strong>起飛前約 2～3 小時</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="detail-section">
+
+<div class="detail-title">📝 實際交通</div>
+
+<span class="edit"
+contenteditable="true"
+data-save="d4-airport-route"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">21:15</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">✈️ TR875 起飛</div>
+<span class="badge badge-red">航班</span>
+</div>
+
+<div class="event-detail">
+成田國際機場 T1 → 桃園國際機場 T1
+</div>
+
+</div>
+
+</div>
+
+
+<div class="time-row">
+
+<div class="time">23:55</div>
+
+<div class="event">
+
+<div class="event-title-line">
+<div class="event-title">🛬 抵達桃園國際機場 T1</div>
+<span class="badge badge-blue">返台</span>
+</div>
+
+<div class="event-detail">
+入境／領行李
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
 
 </section>
 
 
-<!-- ================= BEFORE ================= -->
+<!-- =====================================================
+     BEFORE
+===================================================== -->
 
 <section class="section" id="before">
 
@@ -1230,29 +3981,94 @@ button{
 
 <div class="check-grid">
 
-<label class="check-item"><input type="checkbox" data-save="before-passport"><span>護照</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-passport-info"><span>確認護照資料</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-ticket"><span>機票</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-hotel"><span>飯店訂單</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-insurance"><span>旅遊保險</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-vjw"><span>Visit Japan Web</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-esim"><span>手機網路／eSIM</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-credit"><span>信用卡</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-yen"><span>日幣</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-ic"><span>交通 IC 卡</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-flight"><span>確認航班</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-terminal"><span>確認航廈</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-map"><span>下載地圖</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-translate"><span>翻譯 App</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-backup"><span>備份重要資料</span></label>
-<label class="check-item"><input type="checkbox" data-save="before-card"><span>確認信用卡海外使用</span></label>
+<label class="check-item">
+<input type="checkbox" data-save="before-passport">
+<span>護照</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-passport-info">
+<span>確認護照資料</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-ticket">
+<span>機票</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-hotel">
+<span>飯店訂單</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-insurance">
+<span>旅遊保險</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-vjw">
+<span>Visit Japan Web</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-esim">
+<span>手機網路／eSIM</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-credit">
+<span>信用卡</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-yen">
+<span>日幣</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-ic">
+<span>交通 IC 卡</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-flight">
+<span>確認航班</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-terminal">
+<span>確認航廈</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-map">
+<span>下載地圖</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-translate">
+<span>翻譯 App</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-backup">
+<span>備份重要資料</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="before-card">
+<span>確認信用卡海外使用</span>
+</label>
 
 </div>
 
 </section>
 
 
-<!-- ================= CUSTOMS ================= -->
+<!-- =====================================================
+     CUSTOMS
+===================================================== -->
 
 <section class="section" id="customs">
 
@@ -1260,24 +4076,95 @@ button{
 
 <div class="check-grid">
 
-<label class="check-item"><input type="checkbox" data-save="customs-drugs"><span>不攜帶毒品</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-cannabis"><span>不攜帶大麻／THC</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-gun"><span>不攜帶槍械</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-ammo"><span>不攜帶彈藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-explosive"><span>不攜帶爆裂物</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-weapon"><span>不攜帶違禁武器</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-meat"><span>不攜帶肉類</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-jerky"><span>不攜帶肉乾</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-sausage"><span>不攜帶香腸</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-bacon"><span>不攜帶培根／火腿</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-cured"><span>不攜帶臘肉</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-meatfood"><span>不攜帶含肉食品</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-fruit"><span>不攜帶水果</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-plant"><span>不攜帶植物</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-seed"><span>不攜帶種子</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-soil"><span>不攜帶帶泥土植物</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-food"><span>確認特殊食品規定</span></label>
-<label class="check-item"><input type="checkbox" data-save="customs-declare"><span>確認需要申報物品</span></label>
+<label class="check-item">
+<input type="checkbox" data-save="customs-drugs">
+<span>不攜帶毒品</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-cannabis">
+<span>不攜帶大麻／THC</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-gun">
+<span>不攜帶槍械</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-ammo">
+<span>不攜帶彈藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-explosive">
+<span>不攜帶爆裂物</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-weapon">
+<span>不攜帶違禁武器</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-meat">
+<span>不攜帶肉類</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-jerky">
+<span>不攜帶肉乾</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-sausage">
+<span>不攜帶香腸</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-bacon">
+<span>不攜帶培根／火腿</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-cured">
+<span>不攜帶臘肉</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-meatfood">
+<span>不攜帶含肉食品</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-fruit">
+<span>不攜帶水果</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-plant">
+<span>不攜帶植物</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-seed">
+<span>不攜帶種子</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-soil">
+<span>不攜帶帶泥土植物</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-food">
+<span>確認特殊食品規定</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="customs-declare">
+<span>確認需要申報物品</span>
+</label>
 
 </div>
 
@@ -1295,7 +4182,9 @@ button{
 </section>
 
 
-<!-- ================= MEDICINE ================= -->
+<!-- =====================================================
+     MEDICINE
+===================================================== -->
 
 <section class="section" id="medicine">
 
@@ -1303,22 +4192,85 @@ button{
 
 <div class="check-grid">
 
-<label class="check-item"><input type="checkbox" data-save="med-cold"><span>感冒藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-pain"><span>止痛藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-fever"><span>退燒藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-stomach"><span>腸胃藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-diarrhea"><span>止瀉藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-motion"><span>暈車藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-allergy"><span>過敏藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-throat"><span>喉糖</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-nose"><span>鼻炎／鼻塞藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-eye"><span>眼藥水</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-bandage"><span>OK繃</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-disinfect"><span>消毒用品</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-ointment"><span>外用藥膏</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-prescription"><span>個人固定用藥</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-prescription-paper"><span>處方箋／醫師證明</span></label>
-<label class="check-item"><input type="checkbox" data-save="med-contact"><span>隱形眼鏡／藥水</span></label>
+<label class="check-item">
+<input type="checkbox" data-save="med-cold">
+<span>感冒藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-pain">
+<span>止痛藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-fever">
+<span>退燒藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-stomach">
+<span>腸胃藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-diarrhea">
+<span>止瀉藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-motion">
+<span>暈車藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-allergy">
+<span>過敏藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-throat">
+<span>喉糖</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-nose">
+<span>鼻炎／鼻塞藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-eye">
+<span>眼藥水</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-bandage">
+<span>OK繃</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-disinfect">
+<span>消毒用品</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-ointment">
+<span>外用藥膏</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-prescription">
+<span>個人固定用藥</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-prescription-paper">
+<span>處方箋／醫師證明</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" data-save="med-contact">
+<span>隱形眼鏡／藥水</span>
+</label>
 
 </div>
 
@@ -1336,7 +4288,9 @@ button{
 </section>
 
 
-<!-- ================= CARRY ================= -->
+<!-- =====================================================
+     CARRY
+===================================================== -->
 
 <section class="section" id="carry">
 
@@ -1370,7 +4324,9 @@ button{
 </section>
 
 
-<!-- ================= LUGGAGE ================= -->
+<!-- =====================================================
+     LUGGAGE
+===================================================== -->
 
 <section class="section" id="luggage">
 
@@ -1403,7 +4359,9 @@ button{
 </section>
 
 
-<!-- ================= 3C ================= -->
+<!-- =====================================================
+     3C
+===================================================== -->
 
 <section class="section">
 
@@ -1426,7 +4384,9 @@ button{
 </section>
 
 
-<!-- ================= MONEY ================= -->
+<!-- =====================================================
+     MONEY
+===================================================== -->
 
 <section class="section">
 
@@ -1445,7 +4405,9 @@ button{
 </section>
 
 
-<!-- ================= TIPS ================= -->
+<!-- =====================================================
+     TIPS
+===================================================== -->
 
 <section class="section" id="tips">
 
@@ -1541,7 +4503,9 @@ button{
 </section>
 
 
-<!-- ================= FINAL ================= -->
+<!-- =====================================================
+     FINAL CHECK
+===================================================== -->
 
 <section class="section">
 
@@ -1569,25 +4533,29 @@ button{
 </section>
 
 
-<!-- ================= NOTES ================= -->
+<!-- =====================================================
+     MEMO
+===================================================== -->
 
 <section class="section">
 
 <h2 class="section-title">📝 我的備忘錄</h2>
 
 <textarea
-  data-save="memo"
-  placeholder="想去的地方、餐廳、購物清單、預約、其他備註……"
+data-save="memo"
+placeholder="想去的地方、餐廳、購物清單、預約、其他備註……"
 ></textarea>
 
 </section>
 
 
-<!-- ================= DATA CONTROL ================= -->
+<!-- =====================================================
+     DATA CONTROL
+===================================================== -->
 
 <section class="section">
 
-<h2 class="section-title">💾 資料</h2>
+<h2 class="section-title">💾 資料管理</h2>
 
 <div class="actions">
 
@@ -1602,8 +4570,8 @@ button{
 </div>
 
 <div class="notice info">
-💾 所有勾選與輸入內容會自動儲存在目前裝置的瀏覽器。
-關閉網頁後重新開啟，資料會保留。
+💾 所有勾選、預約狀態、餐廳名稱、時間、交通方式及備註，
+都會自動儲存在目前裝置的瀏覽器。
 </div>
 
 </section>
@@ -1623,14 +4591,17 @@ button{
 
 <script>
 
-/* =========================================
-   自動儲存系統
-   ========================================= */
+/* =====================================================
+   STORAGE
+===================================================== */
 
-const STORAGE_PREFIX = "tokyo_trip_2026_";
+const STORAGE_PREFIX = "tokyo_trip_2026_v2_";
 
-function saveData(key, value){
+
+function saveData(key,value){
+
   try{
+
     localStorage.setItem(
       STORAGE_PREFIX + key,
       value
@@ -1638,42 +4609,57 @@ function saveData(key, value){
 
     showSaved();
 
+    updateDashboard();
+
   }catch(error){
-    console.log("儲存失敗", error);
+
+    console.log("儲存失敗",error);
+
   }
+
 }
 
 
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
 function loadData(){
 
-  document.querySelectorAll("[data-save]").forEach(element => {
+  document
+  .querySelectorAll("[data-save]")
+  .forEach(element=>{
 
-    const key = element.dataset.save;
+    const key=element.dataset.save;
 
-    const saved = localStorage.getItem(
+    const saved=localStorage.getItem(
       STORAGE_PREFIX + key
     );
 
-    if(saved === null) return;
+    if(saved===null)return;
 
-    if(element.type === "checkbox"){
 
-      element.checked = saved === "true";
+    if(element.type==="checkbox"){
+
+      element.checked=saved==="true";
 
     }
 
     else if(
-      element.tagName === "TEXTAREA" ||
-      element.tagName === "INPUT"
+      element.tagName==="TEXTAREA" ||
+      element.tagName==="INPUT" ||
+      element.tagName==="SELECT"
     ){
 
-      element.value = saved;
+      element.value=saved;
 
     }
 
-    else if(element.contentEditable === "true"){
+    else if(
+      element.contentEditable==="true"
+    ){
 
-      element.innerText = saved;
+      element.innerText=saved;
 
     }
 
@@ -1682,71 +4668,115 @@ function loadData(){
 }
 
 
-/* Checkbox 自動儲存 */
+/* =====================================================
+   TOGGLE DETAIL
+===================================================== */
 
-document.querySelectorAll(
+function toggleDetail(id){
+
+  const panel=document.getElementById(id);
+
+  if(!panel)return;
+
+  panel.classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   AUTO SAVE CHECKBOX
+===================================================== */
+
+document
+.querySelectorAll(
   'input[type="checkbox"][data-save]'
-).forEach(checkbox => {
+)
+.forEach(checkbox=>{
 
-  checkbox.addEventListener("change", function(){
+  checkbox.addEventListener(
+    "change",
+    function(){
 
-    saveData(
-      this.dataset.save,
-      this.checked
-    );
-
-  });
-
-});
-
-
-/* 文字輸入自動儲存 */
-
-document.querySelectorAll(
-  '[data-save]:not(input[type="checkbox"])'
-).forEach(element => {
-
-  element.addEventListener("input", function(){
-
-    let value;
-
-    if(this.contentEditable === "true"){
-
-      value = this.innerText;
-
-    }else{
-
-      value = this.value;
+      saveData(
+        this.dataset.save,
+        this.checked
+      );
 
     }
-
-    saveData(
-      this.dataset.save,
-      value
-    );
-
-  });
+  );
 
 });
 
 
-/* =========================================
-   儲存提示
-   ========================================= */
+/* =====================================================
+   AUTO SAVE INPUT
+===================================================== */
+
+document
+.querySelectorAll(
+  '[data-save]:not(input[type="checkbox"])'
+)
+.forEach(element=>{
+
+  element.addEventListener(
+    "input",
+    function(){
+
+      let value;
+
+      if(this.contentEditable==="true"){
+
+        value=this.innerText;
+
+      }else{
+
+        value=this.value;
+
+      }
+
+      saveData(
+        this.dataset.save,
+        value
+      );
+
+    }
+  );
+
+
+  element.addEventListener(
+    "change",
+    function(){
+
+      saveData(
+        this.dataset.save,
+        this.value
+      );
+
+    }
+  );
+
+});
+
+
+/* =====================================================
+   SAVE STATUS
+===================================================== */
 
 let saveTimer;
 
+
 function showSaved(){
 
-  const status =
+  const status=
     document.getElementById("saveStatus");
 
   status.classList.add("saved");
-  status.textContent = "✓ 已自動儲存";
+
+  status.textContent="✓ 已自動儲存";
 
   clearTimeout(saveTimer);
 
-  saveTimer = setTimeout(() => {
+  saveTimer=setTimeout(()=>{
 
     status.classList.remove("saved");
 
@@ -1755,37 +4785,178 @@ function showSaved(){
 }
 
 
-/* =========================================
-   清除全部資料
-   ========================================= */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
-function clearAllData(){
+function updateDashboard(){
 
-  const ok = confirm(
-    "確定要清除所有已儲存的行程、輸入內容與勾選嗎？\n\n此操作無法復原。"
-  );
-
-  if(!ok) return;
-
-  Object.keys(localStorage)
-    .filter(key =>
-      key.startsWith(STORAGE_PREFIX)
-    )
-    .forEach(key =>
-      localStorage.removeItem(key)
+  const checkboxes=
+    document.querySelectorAll(
+      'input[type="checkbox"][data-save]'
     );
 
-  location.reload();
+  const checked=
+    [...checkboxes]
+    .filter(item=>item.checked)
+    .length;
+
+
+  const reservationFields=
+    document.querySelectorAll(
+      ".reservation-status"
+    );
+
+
+  let reserved=0;
+  let pending=0;
+
+
+  reservationFields.forEach(field=>{
+
+    if(field.value==="reserved"){
+
+      reserved++;
+
+    }
+
+    if(field.value==="pending"){
+
+      pending++;
+
+    }
+
+  });
+
+
+  const totalEvents=
+    reservationFields.length;
+
+
+  document.getElementById(
+    "totalEvents"
+  ).textContent=totalEvents;
+
+
+  document.getElementById(
+    "reservedEvents"
+  ).textContent=reserved;
+
+
+  document.getElementById(
+    "pendingEvents"
+  ).textContent=pending;
+
+
+  document.getElementById(
+    "checkedItems"
+  ).textContent=checked;
+
 }
 
 
-/* =========================================
-   載入上次資料
-   ========================================= */
+/* =====================================================
+   RESERVATION STATUS
+===================================================== */
+
+document
+.querySelectorAll(".reservation-status")
+.forEach(select=>{
+
+  select.addEventListener(
+    "change",
+    function(){
+
+      saveData(
+        this.dataset.save,
+        this.value
+      );
+
+      updateReservationBadge(this);
+
+    }
+  );
+
+});
+
+
+function updateReservationBadge(select){
+
+  const value=select.value;
+
+  select.classList.remove(
+    "reserved",
+    "pending",
+    "none"
+  );
+
+  if(value==="reserved"){
+
+    select.classList.add("reserved");
+
+  }
+
+  if(value==="pending"){
+
+    select.classList.add("pending");
+
+  }
+
+  if(value==="none"){
+
+    select.classList.add("none");
+
+  }
+
+}
+
+
+/* =====================================================
+   CLEAR ALL DATA
+===================================================== */
+
+function clearAllData(){
+
+  const ok=confirm(
+    "確定要清除所有已儲存的行程、預約、輸入內容與勾選嗎？\n\n此操作無法復原。"
+  );
+
+  if(!ok)return;
+
+
+  Object.keys(localStorage)
+
+  .filter(
+    key=>key.startsWith(STORAGE_PREFIX)
+  )
+
+  .forEach(
+    key=>localStorage.removeItem(key)
+  );
+
+
+  location.reload();
+
+}
+
+
+/* =====================================================
+   DOM READY
+===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
-  loadData
+  ()=>{
+
+    loadData();
+
+    document
+    .querySelectorAll(".reservation-status")
+    .forEach(updateReservationBadge);
+
+    updateDashboard();
+
+  }
 );
 
 </script>
