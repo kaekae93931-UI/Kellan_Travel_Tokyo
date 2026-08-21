@@ -671,6 +671,160 @@ button{
     grid-template-columns:1fr;
   }
 }
+/* =========================================================
+   COMPLETION CHECK SYSTEM
+   行程完成／預約完成
+========================================================= */
+
+.item{
+  position:relative;
+  transition:
+    opacity .25s ease,
+    background .25s ease,
+    border-color .25s ease;
+}
+
+.item.completed{
+  opacity:.48;
+}
+
+.item.completed .content h3{
+  text-decoration:line-through;
+  text-decoration-color:rgba(34,211,238,.55);
+}
+
+.item.completed .time{
+  color:#64748b;
+}
+
+.complete-check{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:10px;
+  padding:5px 9px;
+  border-radius:7px;
+  color:var(--text-muted);
+  background:rgba(15,23,42,.55);
+  border:1px solid var(--border);
+  font-size:.64rem;
+  font-weight:800;
+  cursor:pointer;
+  user-select:none;
+  transition:.2s ease;
+}
+
+.complete-check:hover{
+  color:var(--cyan);
+  border-color:rgba(34,211,238,.35);
+  background:rgba(34,211,238,.06);
+}
+
+.complete-check input{
+  appearance:none;
+  -webkit-appearance:none;
+  width:15px;
+  height:15px;
+  margin:0;
+  border-radius:4px;
+  border:1px solid #64748b;
+  background:#080d1d;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.complete-check input::after{
+  content:"✓";
+  color:#031018;
+  font-size:10px;
+  font-weight:1000;
+  transform:scale(0);
+  transition:.15s ease;
+}
+
+.complete-check input:checked{
+  border-color:var(--cyan);
+  background:var(--cyan);
+  box-shadow:0 0 12px rgba(34,211,238,.25);
+}
+
+.complete-check input:checked::after{
+  transform:scale(1);
+}
+
+.item.completed .complete-check{
+  color:#67e8f9;
+  border-color:rgba(34,211,238,.25);
+  background:rgba(34,211,238,.045);
+}
+
+
+/* Booking checklist */
+
+.check{
+  padding-left:0;
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  cursor:pointer;
+  user-select:none;
+  transition:.2s ease;
+}
+
+.check::before{
+  display:none;
+}
+
+.booking-check{
+  appearance:none;
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  margin-top:2px;
+  flex:0 0 16px;
+  border-radius:4px;
+  border:1px solid #64748b;
+  background:#080d1d;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+
+.booking-check::after{
+  content:"✓";
+  color:#031018;
+  font-size:10px;
+  font-weight:1000;
+  transform:scale(0);
+  transition:.15s ease;
+}
+
+.booking-check:checked{
+  border-color:var(--green);
+  background:var(--green);
+  box-shadow:0 0 12px rgba(52,211,153,.2);
+}
+
+.booking-check:checked::after{
+  transform:scale(1);
+}
+
+.check.booking-done{
+  color:#64748b;
+  text-decoration:line-through;
+  text-decoration-color:rgba(52,211,153,.45);
+}
+
+
+/* Mobile */
+
+@media(max-width:650px){
+  .complete-check{
+    width:max-content;
+  }
+}
 </style>
 </head>
 
