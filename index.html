@@ -18,6 +18,7 @@
   --text:#f8fafc;
   --text-soft:#cbd5e1;
   --text-muted:#94a3b8;
+
   --cyan:#22d3ee;
   --blue:#38bdf8;
   --violet:#8b5cf6;
@@ -25,6 +26,7 @@
   --orange:#f59e0b;
   --green:#34d399;
   --red:#fb7185;
+
   --shadow:0 24px 70px rgba(0,0,0,.38);
   --radius:20px;
   --max:1180px;
@@ -38,7 +40,7 @@
 
 html{
   scroll-behavior:smooth;
-  scroll-padding-top:80px;
+  scroll-padding-top:90px;
 }
 
 body{
@@ -88,12 +90,16 @@ button{
   margin:auto;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .site-header{
   position:sticky;
   top:0;
   z-index:1000;
   border-bottom:1px solid rgba(148,163,184,.10);
-  background:rgba(5,8,22,.82);
+  background:rgba(5,8,22,.84);
   backdrop-filter:blur(20px);
 }
 
@@ -136,6 +142,10 @@ button{
   color:var(--cyan);
 }
 
+/* =========================
+   GENERAL
+========================= */
+
 .section{
   position:relative;
   padding:60px 0;
@@ -166,7 +176,7 @@ button{
 }
 
 .hero{
-  padding:70px 0 55px;
+  padding:70px 0 45px;
 }
 
 .hero-grid{
@@ -253,6 +263,10 @@ button{
   background:rgba(15,23,42,.6);
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .hero-card,
 .day-card,
 .info-card,
@@ -331,6 +345,95 @@ button{
   font-size:.65rem;
 }
 
+/* =========================
+   GLOBAL QUEST PROGRESS
+========================= */
+
+.quest-panel{
+  margin-top:25px;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(34,211,238,.18);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(34,211,238,.055),
+      rgba(139,92,246,.055)
+    );
+  box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.quest-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.quest-label{
+  font-size:.68rem;
+  color:#a5f3fc;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.quest-level{
+  padding:5px 9px;
+  border-radius:7px;
+  color:#fef08a;
+  background:rgba(250,204,21,.08);
+  border:1px solid rgba(250,204,21,.18);
+  font-size:.65rem;
+  font-weight:900;
+}
+
+.quest-bar{
+  height:14px;
+  margin-top:12px;
+  padding:2px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#020617;
+  border:1px solid rgba(148,163,184,.12);
+}
+
+.quest-fill{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:
+    linear-gradient(
+      90deg,
+      #22d3ee,
+      #38bdf8,
+      #8b5cf6,
+      #ec4899
+    );
+  box-shadow:
+    0 0 10px rgba(34,211,238,.5),
+    0 0 20px rgba(139,92,246,.25);
+  transition:width .5s ease;
+}
+
+.quest-bottom{
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+  color:var(--text-muted);
+  font-size:.65rem;
+}
+
+.quest-message{
+  margin-top:10px;
+  color:#c4b5fd;
+  font-size:.72rem;
+  font-weight:800;
+}
+
+/* =========================
+   DAY CARD
+========================= */
+
 .section-title{
   max-width:900px;
   margin-top:12px;
@@ -350,6 +453,27 @@ button{
   margin-top:28px;
   border-radius:20px;
   overflow:hidden;
+
+  /* 修正：所有 Day 使用完全相同底色 */
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,28,52,.88),
+      rgba(8,14,29,.80)
+    ) !important;
+}
+
+/* 不允許 Day 1 在手機版被套到不同背景 */
+#day1 .day-card,
+#day2 .day-card,
+#day3 .day-card,
+#day4 .day-card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,28,52,.88),
+      rgba(8,14,29,.80)
+    ) !important;
 }
 
 .day-header{
@@ -392,20 +516,95 @@ button{
   font-weight:800;
 }
 
+/* =========================
+   DAY PROGRESS
+========================= */
+
+.day-progress{
+  padding:16px 24px;
+  background:rgba(2,6,23,.38);
+  border-bottom:1px solid rgba(148,163,184,.08);
+}
+
+.day-progress-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.day-progress-title{
+  color:#c4b5fd;
+  font-size:.65rem;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.day-progress-percent{
+  color:var(--cyan);
+  font-size:.75rem;
+  font-weight:900;
+}
+
+.day-progress-track{
+  height:10px;
+  margin-top:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#020617;
+  border:1px solid rgba(148,163,184,.12);
+}
+
+.day-progress-fill{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:
+    linear-gradient(
+      90deg,
+      #22d3ee,
+      #38bdf8,
+      #8b5cf6
+    );
+  box-shadow:0 0 14px rgba(34,211,238,.4);
+  transition:width .4s ease;
+}
+
+.day-progress-status{
+  margin-top:7px;
+  color:var(--text-muted);
+  font-size:.62rem;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
 .timeline{
   padding:6px 24px 25px;
 }
 
 .item{
+  position:relative;
   display:grid;
-  grid-template-columns:130px 1fr;
+  grid-template-columns:130px 1fr 34px;
   gap:22px;
   padding:19px 0;
   border-bottom:1px solid rgba(148,163,184,.08);
+  transition:.2s ease;
 }
 
 .item:last-child{
   border-bottom:0;
+}
+
+.item.done{
+  opacity:.62;
+}
+
+.item.done .content h3{
+  text-decoration:line-through;
+  text-decoration-color:rgba(34,211,238,.55);
 }
 
 .time{
@@ -435,6 +634,44 @@ button{
   color:#7dd3fc!important;
 }
 
+/* =========================
+   CHECK BUTTON
+========================= */
+
+.task-check{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(148,163,184,.22);
+  color:transparent;
+  background:rgba(15,23,42,.65);
+  transition:.2s ease;
+  user-select:none;
+}
+
+.task-check:hover{
+  border-color:var(--cyan);
+  transform:scale(1.05);
+}
+
+.task-check.checked{
+  color:#031018;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  border-color:transparent;
+  box-shadow:0 0 18px rgba(34,211,238,.25);
+}
+
+.task-check span{
+  font-size:.85rem;
+  font-weight:1000;
+}
+
+/* =========================
+   INFO BOXES
+========================= */
+
 .warning{
   margin-top:10px;
   padding:10px 12px;
@@ -463,6 +700,7 @@ button{
   border:1px solid rgba(34,211,238,.15);
   font-size:.65rem;
   font-weight:800;
+  margin-top:7px;
 }
 
 .link:hover{
@@ -472,11 +710,17 @@ button{
 }
 
 .photo{
-  margin-top:10px;
-  padding:12px;
-  border-radius:10px;
-  background:rgba(139,92,246,.055);
-  border:1px solid rgba(139,92,246,.15);
+  margin-top:12px;
+  padding:14px;
+  border-radius:11px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.075),
+      rgba(34,211,238,.035)
+    );
+  border:1px solid rgba(139,92,246,.20);
+  box-shadow:inset 0 0 30px rgba(139,92,246,.025);
 }
 
 .photo-title{
@@ -488,6 +732,12 @@ button{
 
 .photo p{
   margin-top:5px;
+}
+
+.photo::before{
+  content:"📷";
+  float:right;
+  font-size:1.3rem;
 }
 
 .map{
@@ -527,75 +777,6 @@ button{
 }
 
 /* =========================
-   CHECKBOX / COMPLETION
-========================= */
-
-.task-check{
-  margin-top:11px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:var(--text-soft);
-  font-size:.68rem;
-  font-weight:800;
-  user-select:none;
-}
-
-.task-check input{
-  appearance:none;
-  -webkit-appearance:none;
-  width:17px;
-  height:17px;
-  flex-shrink:0;
-  border-radius:5px;
-  border:1px solid rgba(34,211,238,.35);
-  background:rgba(15,23,42,.75);
-  display:grid;
-  place-items:center;
-  transition:.18s ease;
-}
-
-.task-check input::after{
-  content:"✓";
-  color:#031018;
-  font-size:11px;
-  font-weight:1000;
-  transform:scale(0);
-  transition:.15s ease;
-}
-
-.task-check input:checked{
-  border-color:transparent;
-  background:linear-gradient(135deg,var(--cyan),var(--green));
-  box-shadow:0 0 14px rgba(34,211,238,.22);
-}
-
-.task-check input:checked::after{
-  transform:scale(1);
-}
-
-.item.is-done{
-  opacity:.62;
-}
-
-.item.is-done .content h3{
-  color:#94a3b8;
-}
-
-.item.is-done .content h3{
-  text-decoration:line-through;
-  text-decoration-color:rgba(34,211,238,.45);
-}
-
-.item.is-done .task-check{
-  color:var(--green);
-}
-
-.item.is-done .time{
-  color:#64748b;
-}
-
-/* =========================
    BOOKING
 ========================= */
 
@@ -627,122 +808,72 @@ button{
   margin-top:12px;
 }
 
-.check{
-  position:relative;
-  padding-left:30px;
-  color:var(--text-soft);
-  font-size:.76rem;
-  min-height:25px;
-  display:flex;
-  align-items:center;
-}
-
-.check::before{
-  display:none;
-}
-
+/* 預約項目真正可點擊 */
 .booking-check{
-  appearance:none;
-  -webkit-appearance:none;
-  position:absolute;
-  left:0;
-  top:2px;
-  width:18px;
-  height:18px;
-  border-radius:5px;
-  border:1px solid rgba(52,211,153,.35);
-  background:rgba(15,23,42,.8);
+  width:100%;
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px;
+  border-radius:9px;
+  border:1px solid transparent;
+  color:var(--text-soft);
+  background:rgba(15,23,42,.28);
+  text-align:left;
+  transition:.2s ease;
+}
+
+.booking-check:hover{
+  background:rgba(34,211,238,.045);
+  border-color:rgba(34,211,238,.12);
+}
+
+.booking-box{
+  flex:0 0 21px;
+  width:21px;
+  height:21px;
   display:grid;
   place-items:center;
-  cursor:pointer;
-}
-
-.booking-check::after{
-  content:"✓";
-  color:#031018;
-  font-size:11px;
+  border-radius:6px;
+  border:1px solid rgba(148,163,184,.28);
+  color:transparent;
+  background:#020617;
+  font-size:.7rem;
   font-weight:1000;
-  transform:scale(0);
-  transition:.15s ease;
 }
 
-.booking-check:checked{
+.booking-check.checked .booking-box{
+  color:#031018;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
   border-color:transparent;
-  background:linear-gradient(135deg,var(--green),var(--cyan));
-  box-shadow:0 0 14px rgba(52,211,153,.18);
+  box-shadow:0 0 14px rgba(34,211,238,.25);
 }
 
-.booking-check:checked::after{
-  transform:scale(1);
-}
-
-.check.done{
-  color:#64748b;
+.booking-check.checked .booking-text{
+  opacity:.55;
   text-decoration:line-through;
-  text-decoration-color:rgba(52,211,153,.4);
 }
 
-.booking-actions{
-  margin-top:18px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+.booking-text{
+  font-size:.76rem;
+  line-height:1.5;
 }
 
-.reset-btn{
-  min-height:34px;
-  padding:0 11px;
-  border-radius:8px;
-  color:#fecdd3;
-  background:rgba(251,113,133,.06);
-  border:1px solid rgba(251,113,133,.18);
-  font-size:.65rem;
-  font-weight:900;
+.booking-check .booking-status{
+  margin-left:auto;
+  color:#64748b;
+  font-size:.58rem;
+  white-space:nowrap;
 }
 
-.reset-btn:hover{
-  background:rgba(251,113,133,.12);
-  border-color:var(--red);
+.booking-check.checked .booking-status{
+  color:#86efac;
 }
 
-.progress-box{
-  margin-top:15px;
-  padding:13px;
-  border-radius:10px;
-  background:rgba(34,211,238,.035);
-  border:1px solid rgba(34,211,238,.12);
-}
-
-.progress-label{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  color:var(--text-muted);
-  font-size:.65rem;
-  font-weight:800;
-}
-
-.progress-label strong{
-  color:var(--cyan);
-}
-
-.progress-track{
-  height:6px;
-  margin-top:8px;
-  overflow:hidden;
-  border-radius:999px;
-  background:rgba(148,163,184,.10);
-}
-
-.progress-bar{
-  width:0;
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));
-  box-shadow:0 0 12px rgba(34,211,238,.35);
-  transition:.25s ease;
-}
+/* =========================
+   COST
+========================= */
 
 .cost-box{
   display:grid;
@@ -769,6 +900,36 @@ button{
   font-size:.63rem;
 }
 
+/* =========================
+   CONTROL BUTTONS
+========================= */
+
+.control-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+
+.reset-btn{
+  border:1px solid rgba(251,113,133,.22);
+  background:rgba(251,113,133,.06);
+  color:#fda4af;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:.65rem;
+  font-weight:900;
+}
+
+.reset-btn:hover{
+  background:rgba(251,113,133,.12);
+  border-color:var(--red);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer{
   padding:35px 0;
   border-top:1px solid var(--border);
@@ -781,7 +942,12 @@ button{
   color:#64748b;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:900px){
+
   .hero-grid{
     grid-template-columns:1fr;
   }
@@ -796,6 +962,7 @@ button{
 }
 
 @media(max-width:650px){
+
   .container{
     width:min(calc(100% - 28px),var(--max));
   }
@@ -832,9 +999,36 @@ button{
     flex-direction:column;
   }
 
+  /* 手機版仍然保持所有 Day 相同背景 */
+  #day1 .day-card,
+  #day2 .day-card,
+  #day3 .day-card,
+  #day4 .day-card{
+    background:
+      linear-gradient(
+        145deg,
+        rgba(18,28,52,.88),
+        rgba(8,14,29,.80)
+      ) !important;
+  }
+
   .item{
-    grid-template-columns:1fr;
-    gap:6px;
+    grid-template-columns:1fr 34px;
+    gap:8px;
+  }
+
+  .item .time{
+    grid-column:1 / -1;
+    margin-bottom:1px;
+  }
+
+  .item .content{
+    grid-column:1;
+  }
+
+  .item .task-check{
+    grid-column:2;
+    grid-row:2;
   }
 
   .timeline{
@@ -842,8 +1036,20 @@ button{
     padding-right:18px;
   }
 
+  .day-progress{
+    padding:14px 18px;
+  }
+
   .cost-box{
     grid-template-columns:1fr;
+  }
+
+  .quest-top{
+    align-items:flex-start;
+  }
+
+  .quest-panel{
+    padding:16px;
   }
 }
 </style>
@@ -942,6 +1148,28 @@ BUFFER INCLUDED
 
 </div>
 
+<div class="quest-panel">
+
+<div class="quest-top">
+<div class="quest-label">🎮 TOKYO QUEST PROGRESS</div>
+<div class="quest-level" id="globalLevel">LV.1</div>
+</div>
+
+<div class="quest-bar">
+<div class="quest-fill" id="globalFill"></div>
+</div>
+
+<div class="quest-bottom">
+<span id="globalText">0 / 0 任務完成</span>
+<span id="globalPercent">0%</span>
+</div>
+
+<div class="quest-message" id="globalMessage">
+⚔️ 冒險尚未開始。第一個任務等你打勾。
+</div>
+
+</div>
+
 </aside>
 
 </div>
@@ -973,526 +1201,328 @@ DAY 1
 
 <div class="day-header">
 <div>
-
 <div class="day-number">09/25 · FRIDAY</div>
-
-<div class="day-title">
-DAY 1｜東京初日
-</div>
-
+<div class="day-title">DAY 1｜東京初日</div>
 <div class="day-route">
 成田機場 → 東銀座 → 銀座 → 上野 → 淺草 → 押上
 </div>
-
 </div>
 
 <div class="day-badge">
 重點：不要趕第一班車
 </div>
+</div>
 
+<div class="day-progress">
+<div class="day-progress-head">
+<div class="day-progress-title">⚔️ DAY 1 QUEST</div>
+<div class="day-progress-percent" data-day-percent="day1">0%</div>
+</div>
+<div class="day-progress-track">
+<div class="day-progress-fill" data-day-fill="day1"></div>
+</div>
+<div class="day-progress-status" data-day-status="day1">
+0 個任務完成
+</div>
 </div>
 
 <div class="timeline">
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">11:15–12:30</div>
 <div class="content">
-
 <h3>抵達成田機場＋入境＋領行李</h3>
-
 <p>
 11:15 是「飛機落地時間」，不是可以直接搭車的時間。
 實際需要包含下機、入境審查、行李轉盤、海關、廁所、
 SIM/eSIM 確認，以及前往鐵路月台。
 </p>
-
 <div class="warning">
 不要把 11:15 視為「11:15 已經可以搭車」。
 第一段交通用 75 分鐘作為正常目標；如果入境較慢，
 直接搭下一班 Access Express，不要為了趕車一路奔跑。
 </div>
-
-<div class="rest">
-入境＋行李＋找車：75 分鐘
+<div class="rest">入境＋行李＋找車：75 分鐘</div>
+</div>
+<button class="task-check" aria-label="完成任務"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-01">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">12:30–13:45</div>
 <div class="content">
-
 <h3>成田 → 東銀座｜Keisei Access Express</h3>
-
 <p class="route">
 目標：Narita Airport → Higashi-Ginza。
 實際搭哪一班以 9/25 當日機場時刻表為準。
 </p>
-
 <p>
 單純列車時間約一小時左右，但這裡刻意把
 「走到月台＋等車＋實際乘車＋抵達後出站」
 全部納入 75 分鐘。
 </p>
-
-<div class="cost">
-交通：約 ¥1,318–1,330
-</div>
-
+<div class="cost">交通：約 ¥1,318–1,330</div>
 <div class="warning">
 這裡的 12:30 是「開始搭乘這一段交通的目標」，
 不是保證 12:30 已經坐上某一班車。
 </div>
-
 <a class="link"
 href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/directions/higashiginza.php"
 target="_blank">
 官方 Access Express
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-02">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">13:45–14:15</div>
 <div class="content">
-
 <h3>東銀座站 → Millennium Mitsui Garden Hotel Ginza</h3>
-
 <p>
-出站後步行前往飯店。
-這段不是只計 Google Maps 純步行時間，
+出站後步行前往飯店。這段不是只計 Google Maps 純步行時間，
 而是加入找出口、拖行李、紅綠燈及進飯店時間。
 </p>
-
-<div class="rest">
-先寄放行李，不強求提前 Check-in
-</div>
-
+<div class="rest">先寄放行李，不強求提前 Check-in</div>
 <p>
-正式入住時間以飯店規定為準。
-如果尚未到 Check-in 時間，直接寄放行李即可。
+正式入住時間以飯店規定為準。如果尚未到 Check-in 時間，
+直接寄放行李即可。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-03">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">14:15–15:00</div>
 <div class="content">
-
 <h3>午餐｜牛庵 銀座店</h3>
-
 <p>
-第一天不要排過長的午餐。
-重點是先吃東西、坐下來休息，再開始下午行程。
+第一天不要排過長的午餐。重點是先吃東西、坐下來休息，
+再開始下午行程。
 </p>
-
-<p>
-建議以和牛／牛肉類午餐為主。
-實際菜單與價格以 9 月當日店家公告為準。
-</p>
-
-<div class="rest">
-用餐＋休息：45 分鐘
-</div>
-
+<p>建議以和牛／牛肉類午餐為主。實際菜單與價格以 9 月當日店家公告為準。</p>
+<div class="rest">用餐＋休息：45 分鐘</div>
 <a class="map"
 href="https://www.google.com/maps/search/?api=1&query=牛庵+銀座店"
 target="_blank">
 Google Maps｜牛庵 銀座店
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-04">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">15:00–15:30</div>
 <div class="content">
-
 <h3>回飯店＋Check-in</h3>
-
 <p>
 取行李、正式 Check-in、放置戰利品、上廁所、補水。
 </p>
-
-<div class="rest">
-第一段完整休息：30 分鐘
+<div class="rest">第一段完整休息：30 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-05">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">15:30–16:05</div>
 <div class="content">
-
 <h3>東銀座 → 上野</h3>
-
 <p>
 搭東京 Metro 日比谷線方向前往上野。
 15:30 是開始移動時間，不是列車發車時間。
 </p>
-
 <p>
 這段時間包含走到月台、等車、乘車、出站及前往東京國立博物館的步行。
 </p>
-
-<div class="cost">
-IC：依當日實際票價為準
+<div class="cost">IC：依當日實際票價為準</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-06">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">16:05–17:35</div>
 <div class="content">
-
 <h3>東京國立博物館</h3>
-
 <p>
-這裡不是單純「進去看一下」。
-建議重點看本館日本美術、東洋館，以及當日開放的特別展／平成館周邊展覽。
+這裡不是單純「進去看一下」。建議重點看本館日本美術、
+東洋館，以及當日開放的特別展／平成館周邊展覽。
 </p>
-
 <p>
-9/25 為星期五，因此安排下午進館。
-即使有部分展館當日調整，也保留足夠時間讓行程不會因單一展館變動而崩掉。
+9/25 為星期五，因此安排下午進館。即使有部分展館當日調整，
+也保留足夠時間讓行程不會因單一展館變動而崩掉。
 </p>
-
-<div class="cost">
-成人常設展：約 ¥1,000
-</div>
-
+<div class="cost">成人常設展：約 ¥1,000</div>
 <div class="warning">
-大型行李不要帶進博物館。
-第一天已經先寄放飯店，因此這樣安排也比較輕鬆。
+大型行李不要帶進博物館。第一天已經先寄放飯店，因此這樣安排也比較輕鬆。
 </div>
-
-<a class="link"
-href="https://www.tnm.jp/"
-target="_blank">
+<a class="link" href="https://www.tnm.jp/" target="_blank">
 官方網站｜東京國立博物館
 </a>
-
-<a class="link"
-href="https://www.google.com/maps/search/?api=1&query=東京国立博物館"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=東京国立博物館" target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-07">
-完成這項行程
-</label>
-
+<div class="photo">
+<div class="photo-title">📷 拍照位置</div>
+<p>
+① 東京國立博物館正門附近<br>
+② 本館建築<br>
+③ 上野公園方向
+</p>
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">17:35–18:00</div>
 <div class="content">
-
 <h3>上野公園｜散步＋拍照</h3>
-
 <p>
-不用整座公園全部走。
-從東京國立博物館往上野方向慢慢移動，
+不用整座公園全部走。從東京國立博物館往上野方向慢慢移動，
 順便拍公園綠蔭、文化建築與街區。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照位置
-</div>
-
+<div class="photo-title">📷 拍照位置</div>
 <p>
 ① 東京國立博物館正門附近<br>
 ② 上野公園中央大道<br>
 ③ 不忍池方向：如果當天體力與時間足夠
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=上野公園"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=上野公園" target="_blank">
 Google Maps｜上野公園
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-08">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">18:00–18:35</div>
 <div class="content">
-
 <h3>上野 → 淺草</h3>
-
 <p>
-搭東京 Metro 銀座線往淺草。
-雖然列車時間不長，但完整排程包含走到月台、等車、乘車及出站。
+搭東京 Metro 銀座線往淺草。雖然列車時間不長，
+但完整排程包含走到月台、等車、乘車及出站。
 </p>
-
-<div class="cost">
-IC：約 ¥180 級距
+<div class="cost">IC：約 ¥180 級距</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-09">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">18:35–19:05</div>
 <div class="content">
-
 <h3>淺草寺｜雷門＋仲見世</h3>
-
 <p>
 這裡不安排整個淺草長時間逛街。
 以雷門、仲見世、寶藏門為主，快速完成最重要的照片。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照位置
-</div>
-
+<div class="photo-title">📷 拍照位置</div>
 <p>
 ① 雷門正面：巨大紅燈籠<br>
 ② 仲見世通：往寶藏門方向<br>
 ③ 寶藏門：拍五重塔＋寺院建築
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=浅草寺"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=浅草寺" target="_blank">
 Google Maps｜淺草寺
 </a>
-
+</div>
+<div class="rest">人潮＋拍照緩衝：包含在此 30 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<div class="rest">
-人潮＋拍照緩衝：包含在此 30 分鐘
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-10">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">19:05–19:35</div>
 <div class="content">
-
 <h3>淺草 → 押上／東京晴空塔</h3>
-
 <p>
-從淺草站往押上方向移動。
-這裡刻意抓 30 分鐘，包含走到車站、等車、乘車、出站與前往晴空塔入口。
+從淺草站往押上方向移動。這裡刻意抓 30 分鐘，
+包含走到車站、等車、乘車、出站與前往晴空塔入口。
 </p>
-
 <p>
-這一段不能壓成單純車程。
-第一天有行李與長時間步行後的疲勞，所以保留完整轉場時間。
+這一段不能壓成單純車程。第一天有行李與長時間步行後的疲勞，
+所以保留完整轉場時間。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-11">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">19:35–19:45</div>
 <div class="content">
-
 <h3>東京晴空塔｜進場＋前往餐廳</h3>
-
 <p>
 抵達後立即確認入場動線，前往天望 Deck 與 Sky Restaurant 634。
 </p>
-
-<p>
+<div class="warning">
 Sky Restaurant 634 的晚餐最終入店時間需要提前確認。
-本版不再安排 20:00 後才進餐廳，避免撞到最後入店限制。
-</p>
-
-<a class="link"
-href="https://www.tokyo-skytree.jp/ticket/"
-target="_blank">
+本版不再安排 20:00 後才進餐廳。
+</div>
+<a class="link" href="https://www.tokyo-skytree.jp/ticket/" target="_blank">
 官方｜東京晴空塔門票
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-12">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">19:45–21:00</div>
 <div class="content">
-
 <h3>Sky Restaurant 634｜345F 晚餐</h3>
-
 <p>
 這餐把「東京夜景＋正式晚餐」合併。
 餐廳位於東京晴空塔 345F，以東京景觀搭配正式餐飲為主。
 </p>
-
 <div class="warning">
-原始版本最大的問題是：
-抵達晴空塔已經 19:50，卻把餐廳安排到 20:05 才入店。
-這裡已經重新倒推，改成 19:45 左右完成進場。
+原始版本最大的問題是抵達晴空塔太晚，因此已經重新倒推，
+改成 19:45 左右完成進場。
 </div>
-
-<p>
-餐廳實際最終入店時間、指定席時間與套餐規則，
-出發前一定要再次確認。
-</p>
-
 <a class="link"
 href="https://www.tokyo-skytree.jp/shop-cafe-restaurant/restaurant/"
 target="_blank">
 官方｜Sky Restaurant 634
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-13">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">21:00–21:45</div>
 <div class="content">
-
 <h3>東京晴空塔｜夜景</h3>
-
 <p>
-用餐後繼續安排展望台。
-如果已購買 350m＋450m 套票，可以直接往更高樓層；
-若只買 Deck，則以 350m 為主。
+用餐後繼續安排展望台。如果已購買 350m＋450m 套票，
+可以直接往更高樓層；若只買 Deck，則以 350m 為主。
 </p>
-
-<div class="cost">
-天望 Deck：約 ¥1,800 起｜Deck＋回廊：約 ¥3,000 起
-</div>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 夜景拍照
-</div>
-
+<div class="photo-title">📷 夜景拍照</div>
 <p>
 ① 350m 天望 Deck：東京夜景全景<br>
 ② 玻璃窗邊：拍城市燈海<br>
 ③ 450m：如果已購票，拍更高視角
 </p>
-
 </div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-14">
-完成這項行程
-</label>
-
+<div class="cost">
+天望 Deck：約 ¥1,800 起｜Deck＋回廊：約 ¥3,000 起
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day1">
 <div class="time">21:45–22:30</div>
 <div class="content">
-
 <h3>押上 → 東銀座 → 飯店</h3>
-
 <p>
 搭都營淺草線方向返回東銀座。
-22:00 不代表 22:00 已經坐上車，
-因此這裡把下樓、找站、等車、乘車、出站與飯店步行一起算入。
+22:00 不代表 22:00 已經坐上車，因此這裡把下樓、找站、
+等車、乘車、出站與飯店步行一起算入。
 </p>
-
-<div class="rest">
-預計 22:30 左右回飯店
+<div class="rest">預計 22:30 左右回飯店</div>
 </div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d1-15">
-完成這項行程
-</label>
-
+<button class="task-check"><span>✓</span></button>
 </div>
-</div>
-
 
 </div>
 </div>
@@ -1514,544 +1544,317 @@ DAY 2
 </h2>
 
 <p class="section-desc">
-第二天是東京高空景觀日。
-上午先完成 Tokyo City View，下午一路往增上寺、芝公園與東京鐵塔，
-晚上再前往 SHIBUYA SKY。
-所有展望台均把「指定時間、找入口、排隊、電梯與出站」算入。
+第二天是東京高空景觀日。上午先完成 Tokyo City View，
+下午一路往增上寺、芝公園與東京鐵塔，晚上再前往 SHIBUYA SKY。
+所有展望台均把指定時間、找入口、排隊、電梯與出站算入。
 </p>
 
 <div class="day-card">
 
 <div class="day-header">
-
 <div>
-
 <div class="day-number">09/26 · SATURDAY</div>
-
-<div class="day-title">
-DAY 2｜東京高空景觀日
-</div>
-
+<div class="day-title">DAY 2｜東京高空景觀日</div>
 <div class="day-route">
-銀座 → 六本木 → 增上寺 → 芝公園 → 東京鐵塔 → 六本木 → 澀谷
+銀座 → 六本木 → 增上寺 → 芝公園 → 東京鐵塔 → 澀谷
+</div>
+</div>
+<div class="day-badge">重點：展望台指定時間</div>
 </div>
 
+<div class="day-progress">
+<div class="day-progress-head">
+<div class="day-progress-title">⚔️ DAY 2 QUEST</div>
+<div class="day-progress-percent" data-day-percent="day2">0%</div>
 </div>
-
-<div class="day-badge">
-重點：展望台指定時間
+<div class="day-progress-track">
+<div class="day-progress-fill" data-day-fill="day2"></div>
 </div>
-
+<div class="day-progress-status" data-day-status="day2">
+0 個任務完成
+</div>
 </div>
 
 <div class="timeline">
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">07:30–08:15</div>
 <div class="content">
-
 <h3>早餐</h3>
-
 <p>
-第二天不用像祭典日那麼早。
-吃完後整理相機、行動電源與雨具。
+第二天不用像祭典日那麼早。吃完後整理相機、行動電源與雨具。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-01">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">08:15–08:45</div>
 <div class="content">
-
 <h3>飯店整理＋出發</h3>
-
 <p>
-確認 Tokyo City View 指定入場票。
-上午第一個核心景點必須準時。
+確認 Tokyo City View 指定入場票。上午第一個核心景點必須準時。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-02">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">08:45–09:25</div>
 <div class="content">
-
 <h3>銀座 → 六本木之丘</h3>
-
 <p>
-以地鐵為主。
-這 40 分鐘包含飯店 → 車站、等車、乘車、轉乘、
-出站、步行與進入六本木 Hills。
+以地鐵為主。這 40 分鐘包含飯店 → 車站、等車、乘車、
+轉乘、出站、步行與進入六本木 Hills。
 </p>
-
-<div class="rest">
-完整交通緩衝：40 分鐘
+<div class="rest">完整交通緩衝：40 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-03">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">09:25–10:00</div>
 <div class="content">
-
 <h3>六本木之丘｜休息＋找入口</h3>
-
 <p>
-不要一抵達就衝展望台。
-先確認森大樓入口、票券、洗手間與咖啡。
+不要一抵達就衝展望台。先確認森大樓入口、票券、洗手間與咖啡。
 </p>
-
-<div class="rest">
-真正進入展望台前的緩衝：35 分鐘
+<div class="rest">真正進入展望台前的緩衝：35 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-04">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">10:00–11:00</div>
 <div class="content">
-
 <h3>Tokyo City View｜52F</h3>
-
 <p>
 2026/8/1–10/26 正在舉辦「藥屋少女的呢喃 × Tokyo City View」。
 展望台營業時間以官方當日公告為準。
 </p>
-
-<div class="cost">
-成人線上：約 ¥2,200 起
-</div>
-
-<p>
-這個展期採日時指定／預約制。
+<div class="cost">成人線上：約 ¥2,200 起</div>
+<div class="warning">
 9/26 的入場時間建議事先購票，不要現場才處理。
-</p>
-
-<div class="photo">
-
-<div class="photo-title">
-📷 Tokyo City View
 </div>
-
+<div class="photo">
+<div class="photo-title">📷 Tokyo City View</div>
 <p>
 ① 東京市區全景<br>
 ② 東京鐵塔方向<br>
 ③ 新宿高樓方向
 </p>
-
 </div>
-
 <a class="link"
 href="https://visit.mam-tcv-macg-hills.com/category/TCV/"
 target="_blank">
 官方｜Tokyo City View 預約
 </a>
-
-<a class="link"
+<a class="map"
 href="https://www.google.com/maps/search/?api=1&query=Tokyo+City+View"
 target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-05">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">11:00–12:00</div>
 <div class="content">
-
 <h3>六本木之丘｜商場＋休息</h3>
-
-<p>
-不要安排太多店。
-重點是逛六本木 Hills、拍建築與街景。
-</p>
-
+<p>不要安排太多店。重點是逛六本木 Hills、拍建築與街景。</p>
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照
-</div>
-
+<div class="photo-title">📷 拍照</div>
 <p>
 ① 六本木 Hills 大樓周邊<br>
 ② Mori Tower 外部<br>
 ③ 毛利庭園方向
 </p>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-06">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">12:00–13:00</div>
 <div class="content">
-
 <h3>六本木午餐</h3>
-
 <p>
-控制在 ¥1,500–2,500 左右。
-下午還有大量戶外拍攝，不要把午餐拖得太久。
+控制在 ¥1,500–2,500 左右。下午還有大量戶外拍攝，
+不要把午餐拖得太久。
 </p>
-
-<div class="rest">
-午餐：60 分鐘
+<div class="rest">午餐：60 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-07">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">13:00–13:40</div>
 <div class="content">
-
 <h3>六本木 → 增上寺</h3>
-
 <p>
-天氣舒服可以步行。
-如果炎熱、下雨或體力不足，再改搭地鐵。
-</p>
-
-<p>
+天氣舒服可以步行。如果炎熱、下雨或體力不足，再改搭地鐵。
 40 分鐘包含離開商場、找路、紅綠燈及抵達增上寺。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-08">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">13:40–14:30</div>
 <div class="content">
-
 <h3>增上寺</h3>
-
-<p>
-重點不是只進去參拜。
-要拍「寺院建築＋東京鐵塔」的組合。
-</p>
-
+<p>重點不是只進去參拜。要拍「寺院建築＋東京鐵塔」的組合。</p>
 <div class="photo">
-
-<div class="photo-title">
-📷 增上寺拍照位置
-</div>
-
+<div class="photo-title">📷 增上寺拍照位置</div>
 <p>
 ① 大殿前方：東京鐵塔在後方<br>
 ② 三解脫門方向：拍門與塔<br>
 ③ 增上寺境內往東京鐵塔方向
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=増上寺"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=増上寺" target="_blank">
 Google Maps｜增上寺
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-09">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">14:30–15:00</div>
 <div class="content">
-
 <h3>增上寺 → 芝公園</h3>
-
 <p>
-短距離步行。
-安排 30 分鐘，讓拍照不需要一路趕。
+短距離步行。安排 30 分鐘，讓拍照不需要一路趕。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-10">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">15:00–16:00</div>
 <div class="content">
-
 <h3>芝公園＋東京鐵塔拍照</h3>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 東京鐵塔最重要拍照位置
-</div>
-
+<div class="photo-title">📷 東京鐵塔最重要拍照位置</div>
 <p>
-① 芝公園 4 號地附近：適合拍完整東京鐵塔＋天空。<br>
-② 增上寺側：適合「日本寺院＋東京鐵塔」構圖。<br>
-③ 東京鐵塔下方：拍仰角，讓鐵塔看起來更高。<br>
-④ FootTown 周邊：適合拍塔身細節。
+① 芝公園 4 號地附近：完整東京鐵塔＋天空<br>
+② 增上寺側：日本寺院＋東京鐵塔<br>
+③ 東京鐵塔下方：仰角<br>
+④ FootTown 周邊：拍塔身細節
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=芝公園"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=芝公園" target="_blank">
 Google Maps｜芝公園
 </a>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=東京タワー"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=東京タワー" target="_blank">
 Google Maps｜東京鐵塔
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-11">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">16:00–17:15</div>
 <div class="content">
-
 <h3>東京鐵塔周邊休息＋自由拍照</h3>
-
 <p>
-這段刻意留白。
-可以進 FootTown、喝咖啡、坐下來休息。
+這段刻意留白。可以進 FootTown、喝咖啡、坐下來休息。
 </p>
-
-<div class="rest">
-休息：75 分鐘
+<div class="rest">休息：75 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-12">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">17:15–18:00</div>
 <div class="content">
-
 <h3>東京鐵塔傍晚＋點燈</h3>
-
 <p>
 把藍調天空與點燈後的東京鐵塔分開拍。
 不要為了趕晚餐而只拍一次。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 最佳拍攝方式
-</div>
-
+<div class="photo-title">📷 最佳拍攝方式</div>
 <p>
 17:15–17:40：藍調天空＋塔<br>
 17:40–18:00：完全點燈後再拍一次<br>
 整點附近：如果當日有特殊燈光演出，再等待拍攝
 </p>
-
 </div>
-
-<div class="warning">
+<p>
 東京鐵塔實際點燈及特殊燈光時間可能依日期變化。
 9/26 出發前再次確認官方當日資訊。
+</p>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-13">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">18:00–18:30</div>
 <div class="content">
-
 <h3>東京鐵塔 → 鰻の成瀨 六本木店</h3>
-
 <p>
-不要寫「走路 10 分鐘」。
-實際包含離開東京塔、找路、紅綠燈與進店。
+不要寫「走路 10 分鐘」。實際包含離開東京塔、找路、
+紅綠燈與進店。
 </p>
-
-<div class="rest">
-完整轉場：30 分鐘
+<div class="rest">完整轉場：30 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-14">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">18:30–19:25</div>
 <div class="content">
-
 <h3>鰻の成瀨 六本木店｜晚餐</h3>
-
 <p>
-官方菜單目前：
-梅 ¥1,900、竹 ¥2,500、松 ¥2,900。
+官方菜單目前：梅 ¥1,900、竹 ¥2,500、松 ¥2,900。
 松為整尾鰻魚。
 </p>
-
-<div class="cost">
-梅 ¥1,900｜竹 ¥2,500｜松 ¥2,900
-</div>
-
+<div class="cost">梅 ¥1,900｜竹 ¥2,500｜松 ¥2,900</div>
 <div class="warning">
-座位數較少。
-預約時間沒準時抵達可能讓其他客人先入座，建議提前預約。
+座位數較少。預約時間沒準時抵達可能讓其他客人先入座，建議提前預約。
 </div>
-
 <a class="link"
 href="https://unagi-naruse-roppongi.owst.jp/"
 target="_blank">
 官方｜鰻の成瀨六本木店
 </a>
-
-<a class="link"
+<a class="map"
 href="https://www.google.com/maps/search/?api=1&query=鰻の成瀨+六本木店"
 target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-15">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">19:25–20:00</div>
 <div class="content">
-
 <h3>六本木 → 澀谷</h3>
-
 <p>
-以地鐵為主。
-預留 35 分鐘包含進站、等車、轉乘、出站、
+以地鐵為主。預留 35 分鐘包含進站、等車、轉乘、出站、
 前往 SHIBUYA SCRAMBLE SQUARE 及找入口。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-16">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">20:00–21:20</div>
 <div class="content">
-
 <h3>SHIBUYA SKY｜夜景</h3>
-
 <p>
-這是第二天最需要守時間的行程。
-SHIBUYA SKY 最終入場時間與營業時間以官方當日公告為準。
+這是第二天最需要守時間的行程。SHIBUYA SKY 最終入場時間
+與營業時間以官方當日公告為準。
 </p>
-
-<div class="cost">
-成人 15:00 後：約 ¥3,400
-</div>
-
+<div class="cost">成人 15:00 後：約 ¥3,400</div>
 <div class="warning">
-指定入場時間遲到可能被拒絕入場。
-9/26 的票要依官方實際開賣時間提前搶票。
-不要把「20:00 到澀谷」理解成可以慢慢找入口。
+指定入場時間遲到可能被拒絕入場。9/26 的票要依官方實際開賣時間提前搶票。
 </div>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 SHIBUYA SKY 拍照
-</div>
-
+<div class="photo-title">📷 SHIBUYA SKY 拍照</div>
 <p>
 ① SKY STAGE：東京 360° 夜景<br>
 ② 渋谷十字路口方向<br>
@@ -2059,72 +1862,42 @@ SHIBUYA SKY 最終入場時間與營業時間以官方當日公告為準。
 ④ 東京鐵塔方向<br>
 ⑤ 如果提前入場：夕陽＋夜景轉換
 </p>
-
 </div>
-
 <a class="link"
 href="https://www.shibuya-scramble-square.com/sky/ticket/"
 target="_blank">
 官方｜SHIBUYA SKY 預約
 </a>
-
-<a class="link"
+<a class="map"
 href="https://www.google.com/maps/search/?api=1&query=SHIBUYA+SKY"
 target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-17">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">21:20–21:50</div>
 <div class="content">
-
 <h3>SHIBUYA SKY → 澀谷街區</h3>
-
 <p>
 從展望台下來後，安排 30 分鐘簡單逛澀谷。
 不要再塞大型景點。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-18">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day2">
 <div class="time">21:50–22:30</div>
 <div class="content">
-
 <h3>澀谷 → 銀座飯店</h3>
-
-<p>
-包含出站、地鐵、步行與回飯店。
-</p>
-
-<div class="rest">
-約 22:30 回飯店
+<p>包含出站、地鐵、步行與回飯店。</p>
+<div class="rest">約 22:30 回飯店</div>
 </div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d2-19">
-完成這項行程
-</label>
-
+<button class="task-check"><span>✓</span></button>
 </div>
-</div>
-
 
 </div>
 </div>
@@ -2155,701 +1928,398 @@ DAY 3
 <div class="day-card">
 
 <div class="day-header">
-
 <div>
-
 <div class="day-number">09/27 · SUNDAY</div>
-
-<div class="day-title">
-DAY 3｜根津神幸祭
-</div>
-
+<div class="day-title">DAY 3｜根津神幸祭</div>
 <div class="day-route">
 銀座 → 根津 → 人形町／小網神社 → 日本橋 → 東京站 → 新宿 → 都廳
 </div>
-
+</div>
+<div class="day-badge">特殊活動日</div>
 </div>
 
-<div class="day-badge">
-特殊活動日
+<div class="day-progress">
+<div class="day-progress-head">
+<div class="day-progress-title">⚔️ DAY 3 QUEST</div>
+<div class="day-progress-percent" data-day-percent="day3">0%</div>
 </div>
-
+<div class="day-progress-track">
+<div class="day-progress-fill" data-day-fill="day3"></div>
+</div>
+<div class="day-progress-status" data-day-status="day3">
+0 個任務完成
+</div>
 </div>
 
 <div class="timeline">
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">06:45–07:30</div>
 <div class="content">
-
 <h3>早餐</h3>
-
 <p>
-第三天一定要提早吃。
-因為根津神社 09:00 已經有神幸祭出御。
+第三天一定要提早吃。因為根津神社 09:00 已經有神幸祭出御。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-01">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">07:30–08:00</div>
 <div class="content">
-
 <h3>飯店整理＋出發準備</h3>
-
 <p>
-水、雨具、相機、行動電源。
-神社祭典人潮多，建議不要帶大包。
+水、雨具、相機、行動電源。神社祭典人潮多，建議不要帶大包。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-02">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">08:00–08:50</div>
 <div class="content">
-
 <h3>銀座 → 根津神社</h3>
-
 <p>
-建議搭地鐵前往根津站，再步行。
-整段排 50 分鐘，包含飯店 → 車站、等車、乘車、出站與步行。
+建議搭地鐵前往根津站，再步行。整段排 50 分鐘，
+包含飯店 → 車站、等車、乘車、出站與步行。
 </p>
-
-<p>
+<div class="warning">
 8:50 是「到神社周邊」目標，不是 8:50 才從飯店出發。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-03">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">08:50–09:15</div>
 <div class="content">
-
 <h3>根津神社｜找位置＋確認祭典動線</h3>
-
 <p>
-提前進場。
-先確認神幸祭隊伍位置與官方巡路資訊。
+提前進場。先確認神幸祭隊伍位置與官方巡路資訊。
 </p>
-
-<a class="link"
-href="https://nedujinja.or.jp/"
-target="_blank">
+<a class="link" href="https://nedujinja.or.jp/" target="_blank">
 根津神社官方
 </a>
-
-<a class="link"
-href="https://www.google.com/maps/search/?api=1&query=根津神社"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=根津神社" target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-04">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">09:15–11:30</div>
 <div class="content">
-
 <h3>根津神社例大祭／神幸祭</h3>
-
 <p>
-2026/9/27 的核心行程。
-官方活動資料所列神幸祭為 09:00 出御、16:00 還御。
-本行程不需要一路跟到 16:00，先看上午最重要的隊伍與祭典內容。
+2026/9/27 的核心行程。官方活動資料所列神幸祭為
+09:00 出御、16:00 還御。本行程不需要一路跟到 16:00，
+先看上午最重要的隊伍與祭典內容。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 根津神社拍照
-</div>
-
+<div class="photo-title">📷 根津神社拍照</div>
 <p>
 ① 唐門／樓門：拍祭典隊伍<br>
 ② 神社境內：拍神輿、祭典人物<br>
 ③ 千本鳥居：避開主祭典人群時拍攝<br>
 ④ 露店區：拍祭典生活感
 </p>
-
 </div>
-
 <div class="warning">
-祭典期間不要為了拍照擋住神輿通行路線。
-以工作人員指示為準。
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-05">
-完成這項行程
-</label>
-
+祭典期間不要為了拍照擋住神輿通行路線。以工作人員指示為準。
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">11:30–12:20</div>
 <div class="content">
-
 <h3>根津神社 → 小網神社</h3>
-
 <p>
-地鐵＋步行。
-假日＋祭典日交通與人流都可能比平常慢，
+地鐵＋步行。假日＋祭典日交通與人流都可能比平常慢，
 所以保留 50 分鐘。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-06">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">12:20–12:55</div>
 <div class="content">
-
 <h3>小網神社｜參拜</h3>
-
 <p>
-重點：
-御社殿、強運厄除の御守、東京大空襲中倖存的神社故事、
+重點：御社殿、強運厄除の御守、東京大空襲中倖存的神社故事、
 洗錢弁財天。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 小網神社拍照
-</div>
-
+<div class="photo-title">📷 小網神社拍照</div>
 <p>
 ① 神社正面<br>
 ② 社殿<br>
 ③ 銭洗い弁財天附近
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=小網神社"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=小網神社" target="_blank">
 Google Maps｜小網神社
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-07">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">12:55–13:20</div>
 <div class="content">
-
 <h3>小網神社 → 日本橋</h3>
-
-<p>
-步行＋短程交通。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-08">
-完成這項行程
-</label>
-
+<p>步行＋短程交通。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">13:20–14:30</div>
 <div class="content">
-
 <h3>日本橋午餐｜つじ半 日本橋本店</h3>
-
 <p>
-招牌「ぜいたく丼」。
-目前可參考：
+招牌「ぜいたく丼」。目前可參考：
 梅 ¥1,350、竹 ¥1,850、松 ¥2,500、特上 ¥3,900。
 </p>
-
 <div class="cost">
 梅 ¥1,350｜竹 ¥1,850｜松 ¥2,500｜特上 ¥3,900
 </div>
-
 <div class="warning">
-重要：不要假設可以預約。
-官方規則並非所有店舖都接受預約，因此一定要預留排隊時間。
-如果當天排隊過長，寧可調整午餐，也不要犧牲後面的東京站行程。
+重要：不要假設可以預約。官方規則並非所有店舖都接受預約，
+因此一定要預留排隊時間。如果當天排隊過長，寧可調整午餐，
+也不要犧牲後面的東京站行程。
 </div>
-
-<a class="link"
-href="https://www.tsujihan-jp.com/"
-target="_blank">
+<a class="link" href="https://www.tsujihan-jp.com/" target="_blank">
 官方｜つじ半
 </a>
-
-<a class="link"
-href="https://www.google.com/maps/search/?api=1&query=つじ半+日本橋本店"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=つじ半+日本橋本店" target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-09">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">14:30–14:55</div>
 <div class="content">
-
 <h3>日本橋散步＋拍照</h3>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 日本橋拍照
-</div>
-
+<div class="photo-title">📷 日本橋拍照</div>
 <p>
 ① 日本橋橋樑中央<br>
 ② 麒麟像<br>
 ③ 日本橋三越方向
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=日本橋"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=日本橋" target="_blank">
 Google Maps｜日本橋
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-10">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">14:55–15:20</div>
 <div class="content">
-
 <h3>日本橋 → 東京站</h3>
-
 <p>
-天氣好直接步行。
-這樣可以順便拍丸之內街景。
+天氣好直接步行。這樣可以順便拍丸之內街景。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-11">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">15:20–16:20</div>
 <div class="content">
-
 <h3>KITTE＋東京車站丸之內站舊站舍</h3>
-
 <p>
 KITTE 重點不是全部逛完，而是上樓看東京站。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 最佳拍照位置
-</div>
-
+<div class="photo-title">📷 最佳拍照位置</div>
 <p>
-KITTE 6F 屋上庭園：
-東京站丸之內站舍最佳高角度之一。<br>
+KITTE 6F 屋上庭園：東京站丸之內站舍最佳高角度之一。<br>
 丸之內站前：拍整座紅磚東京站。
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=KITTE+丸の内"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=KITTE東京" target="_blank">
 Google Maps｜KITTE
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-12">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">16:20–17:00</div>
 <div class="content">
-
 <h3>東京站 → 新宿</h3>
-
 <p>
-JR 中央線快速等方式。
-把東京站內走到月台、等車、乘車、出站一起算進去。
+JR 中央線快速等方式。把東京站內走到月台、等車、
+乘車、出站一起算進去。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-13">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">17:00–17:25</div>
 <div class="content">
-
 <h3>新宿站東口 → 新宿三丁目</h3>
-
-<p>
-步行為主。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-14">
-完成這項行程
-</label>
-
+<p>步行為主。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">17:25–18:00</div>
 <div class="content">
-
 <h3>新宿三丁目｜潮流服飾＋街景</h3>
-
 <p>
-只安排短逛。
-不要為了買衣服拖到後面的歌舞伎町。
+只安排短逛。不要為了買衣服拖到後面的歌舞伎町。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-15">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">18:00–18:30</div>
 <div class="content">
-
 <h3>歌舞伎町＋Godzilla Road</h3>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 哥吉拉拍照
-</div>
-
+<div class="photo-title">📷 哥吉拉拍照</div>
 <p>
 ① Godzilla Road 街口<br>
 ② 新宿東寶大樓前<br>
 ③ 歌舞伎町一番街招牌
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=Godzilla+Road+Shinjuku"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=Godzilla+Road+Shinjuku" target="_blank">
 Google Maps｜Godzilla Road
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-16">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">18:30–18:55</div>
 <div class="content">
-
 <h3>東急歌舞伎町 Tower</h3>
-
 <p>
-拍建築外觀與哥吉拉頭。
-如果要進商場，時間自行縮短。
+拍建築外觀與哥吉拉頭。如果要進商場，時間自行縮短。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照
-</div>
-
+<div class="photo-title">📷 拍照</div>
 <p>
 站在歌舞伎町一番街側拍整棟塔，
 再靠近建築拍哥吉拉頭。
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=東急歌舞伎町タワー"
-target="_blank">
+</div>
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=東急歌舞伎町タワー" target="_blank">
 Google Maps
 </a>
-
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-17">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">18:55–19:20</div>
 <div class="content">
-
 <h3>歌舞伎町 → 思出橫丁</h3>
-
 <p>
-步行約 15 分鐘級距。
-加入找路、紅綠燈與人潮緩衝。
+步行約 15 分鐘級距。加入找路、紅綠燈與人潮緩衝。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-18">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">19:20–20:00</div>
 <div class="content">
-
 <h3>思出橫丁＋晚餐</h3>
-
 <p>
-老東京小巷、居酒屋、燒鳥等。
-不要把店家寫死，因為小店座位、排隊與營業狀況變化很大。
+老東京小巷、居酒屋、燒鳥等。不把店家寫死，
+因為小店座位、排隊與營業狀況變化很大。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照
+<div class="photo-title">📷 拍照</div>
+<p>思出橫丁入口、窄巷、暖黃色燈光。</p>
 </div>
-
-<p>
-思出橫丁入口、窄巷、暖黃色燈光。
-</p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=思い出横丁"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=思い出横丁" target="_blank">
 Google Maps
 </a>
-
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-19">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">20:00–20:25</div>
 <div class="content">
-
 <h3>新宿 → 東京都廳</h3>
-
-<p>
-步行前往西新宿。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-20">
-完成這項行程
-</label>
-
+<p>步行前往西新宿。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">20:25–20:30</div>
 <div class="content">
-
 <h3>都民廣場找觀賞位置</h3>
-
 <p>
 TOKYO Night & Light 的觀看區域是東京都廳第一本廳舍前的都民廣場。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 光雕拍攝位置
-</div>
-
+<div class="photo-title">📷 光雕拍攝位置</div>
 <p>
-站在都民廣場正面，
-讓東京都廳第一本廳舍完整進入畫面。
+站在都民廣場正面，讓東京都廳第一本廳舍完整進入畫面。
 手機建議使用 1x～2x，不要只用超廣角。
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=都民広場"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=東京都庁+都民広場" target="_blank">
 Google Maps｜都民廣場
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-21">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">20:30–20:45</div>
 <div class="content">
-
 <h3>TOKYO Night & Light</h3>
-
 <p>
-免費戶外投影，不需要一般門票。
-實際 9/27 的作品與開始時間，以出發前 1–2 週官方當日時間表為準。
+免費戶外投影，不需要一般門票。實際 9/27 的作品與開始時間，
+以出發前 1–2 週官方當日時間表為準。
 </p>
-
 <div class="warning">
-不要把 20:30 視為永久固定場次。
-週末作品與開始時間可能輪替。
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-22">
-完成這項行程
-</label>
-
+不要把 20:30 視為永久固定場次。週末作品與開始時間可能輪替。
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">20:45–21:15</div>
 <div class="content">
-
 <h3>東京都廳周邊拍照＋休息</h3>
-
 <p>
-看完光雕後不要立即衝車站。
-坐下來休息、喝水、整理照片。
+看完光雕後不要立即衝車站。坐下來休息、喝水、整理照片。
 </p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-23">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day3">
 <div class="time">21:15–22:00</div>
 <div class="content">
-
 <h3>東京都廳 → 銀座飯店</h3>
-
-<p>
-地鐵＋步行＋回飯店。
-</p>
-
-<div class="rest">
-約 22:00 回飯店
+<p>地鐵＋步行＋回飯店。</p>
+<div class="rest">約 22:00 回飯店</div>
 </div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d3-24">
-完成這項行程
-</label>
-
+<button class="task-check"><span>✓</span></button>
 </div>
-</div>
-
 
 </div>
 </div>
@@ -2871,708 +2341,383 @@ DAY 4
 </h2>
 
 <p class="section-desc">
-最後一天不能排得太滿。
-上午完成銀座主要景點，下午午餐＋最後採買，
-16:00 左右回飯店拿行李，之後前往東京站搭 N'EX。
-21:15 起飛，因此目標不是「剛好趕到機場」，
+最後一天不能排得太滿。上午完成銀座主要景點，
+下午午餐＋最後採買，16:00 左右回飯店拿行李，
+之後前往東京站搭 N'EX。21:15 起飛，因此目標不是剛好趕到機場，
 而是盡量在 19:00 左右抵達成田，留下完整的 Check-in、托運、安檢與出境緩衝。
 </p>
 
 <div class="day-card">
 
 <div class="day-header">
-
 <div>
-
 <div class="day-number">09/28 · MONDAY</div>
-
-<div class="day-title">
-DAY 4｜銀座最後購物＋回機場
-</div>
-
+<div class="day-title">DAY 4｜銀座最後購物＋回機場</div>
 <div class="day-route">
 飯店 → 歌舞伎座 → 銀座四丁目 → GINZA SIX → 午餐 → 伊東屋 → 東京站 → 成田
 </div>
-
 </div>
 
-<div class="day-badge">
-重點：不能錯過 N'EX
+<div class="day-badge">重點：不能錯過 N'EX</div>
 </div>
 
+<div class="day-progress">
+<div class="day-progress-head">
+<div class="day-progress-title">⚔️ DAY 4 FINAL BOSS</div>
+<div class="day-progress-percent" data-day-percent="day4">0%</div>
+</div>
+<div class="day-progress-track">
+<div class="day-progress-fill" data-day-fill="day4"></div>
+</div>
+<div class="day-progress-status" data-day-status="day4">
+0 個任務完成
+</div>
 </div>
 
 <div class="timeline">
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">07:30–08:15</div>
 <div class="content">
-
 <h3>飯店早餐</h3>
-
-<p>
-最後一天也不要省。
-吃完後回房間整理。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-01">
-完成這項行程
-</label>
-
+<p>最後一天也不要省。吃完後回房間整理。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">08:15–09:30</div>
 <div class="content">
-
 <h3>回房間整理行李＋休息</h3>
-
-<p>
-把所有購物袋、護照、充電器、伴手禮全部整理好。
-</p>
-
-<div class="rest">
-最後一次完整休息：75 分鐘
+<p>把所有購物袋、護照、充電器、伴手禮全部整理好。</p>
+<div class="rest">最後一次完整休息：75 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-02">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">09:30–10:00</div>
 <div class="content">
-
 <h3>飯店退房＋寄放行李</h3>
-
-<p>
-退房後把大行李寄放飯店。
-只帶隨身包。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-03">
-完成這項行程
-</label>
-
+<p>退房後把大行李寄放飯店。只帶隨身包。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">10:00–10:30</div>
 <div class="content">
-
 <h3>飯店 → 歌舞伎座</h3>
-
-<p>
-步行。
-這段加入紅綠燈、拍照與進場緩衝。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-04">
-完成這項行程
-</label>
-
+<p>步行。這段加入紅綠燈、拍照與進場緩衝。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">10:30–11:00</div>
 <div class="content">
-
 <h3>歌舞伎座＋木挽町廣場</h3>
-
 <p>
 不要把這裡理解成參觀歌舞伎演出。
 主要看建築外觀、歌舞伎文化商品與地下木挽町廣場。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 拍照
-</div>
-
+<div class="photo-title">📷 拍照</div>
 <p>
 ① 歌舞伎座正面<br>
 ② 正面大門<br>
 ③ 木挽町廣場入口
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=歌舞伎座"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=歌舞伎座" target="_blank">
 Google Maps
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-05">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">11:00–11:15</div>
 <div class="content">
-
 <h3>歌舞伎座 → 銀座四丁目</h3>
-
-<p>
-步行。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-06">
-完成這項行程
-</label>
-
+<p>步行。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">11:15–11:40</div>
 <div class="content">
-
 <h3>WAKO＋銀座四丁目</h3>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 銀座經典照片
-</div>
-
+<div class="photo-title">📷 銀座經典照片</div>
 <p>
 站在銀座四丁目交叉口，
 把 WAKO 鐘塔＋銀座街景一起拍進去。
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=和光+銀座"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=和光+銀座" target="_blank">
 Google Maps
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-07">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">11:40–12:05</div>
 <div class="content">
-
 <h3>銀座三越</h3>
-
 <p>
-主要看外觀、入口與銀座街景。
-如果要購物，把時間控制在 25 分鐘。
+主要看外觀、入口與銀座街景。如果要購物，把時間控制在 25 分鐘。
 </p>
-
-<a class="link"
-href="https://www.mistore.jp/store/ginza.html"
-target="_blank">
+<a class="link" href="https://www.mistore.jp/store/ginza.html" target="_blank">
 官方｜銀座三越
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-08">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">12:05–12:20</div>
 <div class="content">
-
 <h3>步行 → 松屋銀座</h3>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-09">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">12:20–12:45</div>
 <div class="content">
-
 <h3>松屋銀座</h3>
-
-<p>
-重點是百貨外觀、銀座街景與快速購物。
-</p>
-
-<a class="link"
-href="https://www.matsuya.com/ginza/"
-target="_blank">
+<p>重點是百貨外觀、銀座街景與快速購物。</p>
+<a class="link" href="https://www.matsuya.com/ginza/" target="_blank">
 官方｜松屋銀座
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-10">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">12:45–13:00</div>
 <div class="content">
-
 <h3>步行 → GINZA SIX</h3>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-11">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">13:00–13:30</div>
 <div class="content">
-
 <h3>GINZA SIX＋屋頂花園</h3>
-
 <p>
 GINZA SIX 商店、咖啡與屋頂花園依當日開放狀況安排。
 這裡重點不是逛完整棟，而是拍照與快速採買。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 GINZA SIX 拍照
-</div>
-
+<div class="photo-title">📷 GINZA SIX 拍照</div>
 <p>
 ① GINZA SIX 外觀<br>
 ② 入口<br>
 ③ Rooftop Garden：拍銀座高樓
 </p>
-
-<a class="map"
-href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX" target="_blank">
 Google Maps
 </a>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-12">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">13:30–13:45</div>
 <div class="content">
-
 <h3>GINZA SIX → LV 銀座並木通</h3>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-13">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">13:45–14:10</div>
 <div class="content">
-
 <h3>LV＋並木通</h3>
-
 <p>
-主要拍建築、櫥窗與銀座高級品牌街景。
-不把購物時間寫死。
+主要拍建築、櫥窗與銀座高級品牌街景。不把購物時間寫死。
 </p>
-
 <div class="photo">
-
-<div class="photo-title">
-📷 並木通
-</div>
-
+<div class="photo-title">📷 並木通</div>
 <p>
 沿並木通拍 Louis Vuitton、CHANEL、Hermès、
 Cartier 等街區外觀。
 </p>
-
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-14">
-完成這項行程
-</label>
-
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">14:10–14:20</div>
 <div class="content">
-
 <h3>品牌外觀拍照＋移動緩衝</h3>
-
-<p>
-只拍外觀，不假設店內一定有空閒時間。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-15">
-完成這項行程
-</label>
-
+<p>只拍外觀，不假設店內一定有空閒時間。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">14:20–15:35</div>
 <div class="content">
-
 <h3>午餐｜牛の達人 GINZA</h3>
-
 <p>
-午間套餐以約 ¥3,500 作為預算基準，
-另依店家實際規則計算服務費。
+午間套餐以約 ¥3,500 作為預算基準，另依店家實際規則計算服務費。
 </p>
-
-<div class="cost">
-午間套餐：約 ¥3,500＋服務費
-</div>
-
+<div class="cost">午間套餐：約 ¥3,500＋服務費</div>
 <div class="warning">
-這餐建議預約。
-「用餐＋結帳＋離開」抓 75 分鐘，不要只寫 60 分鐘。
+這餐建議預約。「用餐＋結帳＋離開」抓 75 分鐘，不要只寫 60 分鐘。
 </div>
-
 <a class="link"
 href="https://www.hotpepper.jp/strJ003498749/course_cnod04/"
 target="_blank">
 預約｜牛の達人 GINZA
 </a>
-
-<a class="link"
+<a class="map"
 href="https://www.google.com/maps/search/?api=1&query=牛の達人+GINZA"
 target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-16">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">15:35–15:50</div>
 <div class="content">
-
 <h3>前往伊東屋</h3>
-
-<p>
-步行＋找入口。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-17">
-完成這項行程
-</label>
-
+<p>步行＋找入口。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">15:50–16:20</div>
 <div class="content">
-
 <h3>銀座 伊東屋本店</h3>
-
-<p>
-文具、紙品、設計用品。
-最後一天適合買伴手禮。
-</p>
-
-<a class="link"
-href="https://www.ito-ya.co.jp/ginza"
-target="_blank">
+<p>文具、紙品、設計用品。最後一天適合買伴手禮。</p>
+<a class="link" href="https://www.ito-ya.co.jp/ginza" target="_blank">
 官方｜銀座 伊東屋
 </a>
-
-<a class="link"
-href="https://www.google.com/maps/search/?api=1&query=伊東屋+銀座本店"
-target="_blank">
+<a class="map" href="https://www.google.com/maps/search/?api=1&query=伊東屋+銀座本店" target="_blank">
 Google Maps
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-18">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">16:20–16:50</div>
 <div class="content">
-
 <h3>伊東屋 → 飯店＋取行李</h3>
-
 <p>
-這裡刻意留 30 分鐘。
-拿行李、上廁所、補水、確認護照。
+這裡刻意留 30 分鐘。拿行李、上廁所、補水、確認護照。
 </p>
-
 <div class="warning">
-16:50 前必須離開飯店。
-不能因為購物拖延到 17:00 才開始去東京站。
-</div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-19">
-完成這項行程
-</label>
-
+16:50 前必須離開飯店。不能因為購物拖延到 17:00 才開始去東京站。
 </div>
 </div>
+<button class="task-check"><span>✓</span></button>
+</div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">16:50–17:25</div>
 <div class="content">
-
 <h3>飯店 → 東京站</h3>
-
-<p>
-搭地鐵／步行前往東京站。
-拖行李一定要把時間抓寬。
-</p>
-
-<div class="rest">
-完整交通緩衝：35 分鐘
+<p>搭地鐵／步行前往東京站。拖行李一定要把時間抓寬。</p>
+<div class="rest">完整交通緩衝：35 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-20">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">17:25–17:50</div>
 <div class="content">
-
 <h3>東京站｜找 N'EX 月台＋進站</h3>
-
 <p>
-東京站很大。
-這段包含進站、確認月台、找指定席、上廁所及最後補水。
+東京站很大。這段包含進站、確認月台、找指定席、上廁所及最後補水。
 </p>
-
-<div class="rest">
-機場交通安全緩衝：25 分鐘
+<div class="rest">機場交通安全緩衝：25 分鐘</div>
+</div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-21">
-完成這項行程
-</label>
-
-</div>
-</div>
-
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">17:50–19:00</div>
 <div class="content">
-
 <h3>N'EX｜東京 → 成田機場</h3>
-
 <p>
 實際車次一定以 9/28 當日時刻表為準。
 目標是搭乘約 17:50 左右出發、約 18:50–19:00 抵達成田方向的班次。
 </p>
-
-<p>
-如果符合資格，可以考慮 N'EX TOKYO Round Trip Ticket。
-實際價格與資格以 JR East 官方當日公告為準。
-</p>
-
 <div class="warning">
-21:15 起飛。
-這一天不建議把 18:30 才離開東京站當成計畫。
+21:15 起飛。這一天不建議把 18:30 才離開東京站當成計畫。
 寧可提早到機場，也不要讓 N'EX 延誤直接吃掉登機緩衝。
 </div>
-
-<a class="link"
-href="https://www.jreast.co.jp/"
-target="_blank">
+<a class="link" href="https://www.jreast.co.jp/" target="_blank">
 JR East 官方
 </a>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-22">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">19:00–19:20</div>
 <div class="content">
-
 <h3>成田機場 T1｜下車＋航廈確認</h3>
-
-<p>
-確認航班、航空公司櫃檯與托運行李位置。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-23">
-完成這項行程
-</label>
-
+<p>確認航班、航空公司櫃檯與托運行李位置。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">19:20–20:00</div>
 <div class="content">
-
 <h3>Check-in＋托運</h3>
-
-<p>
-完成登機手續與行李托運。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-24">
-完成這項行程
-</label>
-
+<p>完成登機手續與行李托運。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">20:00–20:35</div>
 <div class="content">
-
 <h3>安檢＋出境</h3>
-
-<p>
-週一晚間仍可能有人潮。
-不要把 20:30 才過安檢當目標。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-25">
-完成這項行程
-</label>
-
+<p>週一晚間仍可能有人潮。不要把 20:30 才過安檢當目標。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">20:35–20:55</div>
 <div class="content">
-
 <h3>免稅店＋最後休息</h3>
-
-<p>
-買伴手禮、喝水、上廁所。
-</p>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-26">
-完成這項行程
-</label>
-
+<p>買伴手禮、喝水、上廁所。</p>
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
 
-
-<div class="item">
+<div class="item" data-day="day4">
 <div class="time">20:55–21:15</div>
 <div class="content">
-
 <h3>前往登機門＋登機準備</h3>
-
 <p>
-21:15 起飛。
-實際登機時間通常早於起飛時間，
+21:15 起飛。實際登機時間通常早於起飛時間，
 所以不能把 21:15 當作「21:15 才走去登機門」。
 </p>
-
 <div class="warning">
 如果航空公司公告的登機時間更早，必須以航空公司通知為準。
 這裡的 21:15 是起飛時間，不是登機時間。
 </div>
-
-<label class="task-check">
-<input type="checkbox" class="task" data-task="d4-27">
-完成這項行程
-</label>
-
 </div>
+<button class="task-check"><span>✓</span></button>
 </div>
-
 
 </div>
 </div>
@@ -3587,9 +2732,7 @@ BOOKING
 <section id="booking" class="section">
 <div class="container">
 
-<div class="section-label">
-BOOKING CONTROL
-</div>
+<div class="section-label">BOOKING CONTROL</div>
 
 <h2 class="section-title">
 出發前一定要處理的預約。
@@ -3597,12 +2740,10 @@ BOOKING CONTROL
 
 <p class="section-desc">
 以下按照「一定要訂／建議訂／不能假設可以訂」分類。
-所有時間指定活動，出發前 1–2 週再次確認官方規則。
+每一筆都可以直接打勾，完成後會計入整體旅行進度。
 </p>
 
-
 <div class="resources">
-
 
 <div class="resource-card">
 
@@ -3610,43 +2751,37 @@ BOOKING CONTROL
 
 <div class="checklist">
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b1">
-SHIBUYA SKY — 9/26 20:00 左右
-</label>
+<button class="booking-check" data-booking="shibuya">
+<span class="booking-box">✓</span>
+<span class="booking-text">SHIBUYA SKY — 9/26 20:00 左右</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b2">
-Tokyo City View — 9/26 10:00
-</label>
+<button class="booking-check" data-booking="cityview">
+<span class="booking-box">✓</span>
+<span class="booking-text">Tokyo City View — 9/26 10:00</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b3">
-Sky Restaurant 634 — 9/25 晚餐
-</label>
+<button class="booking-check" data-booking="skytree">
+<span class="booking-box">✓</span>
+<span class="booking-text">Sky Restaurant 634 — 9/25 晚餐</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b4">
-牛の達人 GINZA — 9/28 午餐
-</label>
+<button class="booking-check" data-booking="gyunotatsujin">
+<span class="booking-box">✓</span>
+<span class="booking-text">牛の達人 GINZA — 9/28 午餐</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b5">
-N'EX — 9/28 東京 → 成田
-</label>
+<button class="booking-check" data-booking="nex">
+<span class="booking-box">✓</span>
+<span class="booking-text">N'EX — 9/28 東京 → 成田</span>
+<span class="booking-status">未完成</span>
+</button>
 
 </div>
-
 </div>
 
 
@@ -3656,43 +2791,37 @@ N'EX — 9/28 東京 → 成田
 
 <div class="checklist">
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b6">
-鰻の成瀨 六本木店
-</label>
+<button class="booking-check" data-booking="unagi">
+<span class="booking-box">✓</span>
+<span class="booking-text">鰻の成瀨 六本木店</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b7">
-東京晴空塔展望台
-</label>
+<button class="booking-check" data-booking="tower">
+<span class="booking-box">✓</span>
+<span class="booking-text">東京晴空塔展望台</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b8">
-東京國立博物館當日展覽
-</label>
+<button class="booking-check" data-booking="tnm">
+<span class="booking-box">✓</span>
+<span class="booking-text">東京國立博物館當日展覽</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b9">
-9/27 根津神社祭典巡路圖
-</label>
+<button class="booking-check" data-booking="nezuroute">
+<span class="booking-box">✓</span>
+<span class="booking-text">9/27 根津神社祭典巡路圖</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b10">
-Day 1 牛庵營業狀況
-</label>
+<button class="booking-check" data-booking="gyuan">
+<span class="booking-box">✓</span>
+<span class="booking-text">Day 1 牛庵營業狀況</span>
+<span class="booking-status">未完成</span>
+</button>
 
 </div>
-
 </div>
 
 
@@ -3702,36 +2831,31 @@ Day 1 牛庵營業狀況
 
 <div class="checklist">
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b11">
-つじ半日本橋本店 — 不要假設可以預約
-</label>
+<button class="booking-check" data-booking="tsujihan">
+<span class="booking-box">✓</span>
+<span class="booking-text">つじ半日本橋本店 — 不要假設可以預約</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b12">
-淺草寺 — 一般參拜不需要預約
-</label>
+<button class="booking-check" data-booking="sensoji">
+<span class="booking-box">✓</span>
+<span class="booking-text">淺草寺 — 一般參拜不需要預約</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b13">
-根津神社神幸祭 — 免費祭典，不是一般門票活動
-</label>
+<button class="booking-check" data-booking="nezufestival">
+<span class="booking-box">✓</span>
+<span class="booking-text">根津神社神幸祭 — 免費祭典，不是一般門票活動</span>
+<span class="booking-status">未完成</span>
+</button>
 
-<label class="check" data-booking>
-<input type="checkbox"
-class="booking-check"
-data-booking-id="b14">
-TOKYO Night & Light — 戶外免費觀賞
-</label>
+<button class="booking-check" data-booking="nightlight">
+<span class="booking-box">✓</span>
+<span class="booking-text">TOKYO Night & Light — 戶外免費觀賞</span>
+<span class="booking-status">未完成</span>
+</button>
 
 </div>
-
 </div>
 
 
@@ -3802,7 +2926,6 @@ JR East
 </a>
 
 </div>
-
 </div>
 
 </div>
@@ -3814,40 +2937,38 @@ BOOKING PROGRESS
 
 <div class="resource-card" style="margin-top:15px;">
 
-<h3>
-📋 預約完成進度
-</h3>
+<h3>🎮 預約任務進度</h3>
 
-<div class="progress-box">
+<div class="quest-panel">
 
-<div class="progress-label">
-<span>已處理預約</span>
-<strong id="bookingProgressText">0 / 14</strong>
+<div class="quest-top">
+<div class="quest-label">📋 BOOKING QUEST</div>
+<div class="quest-level" id="bookingLevel">0 / 14</div>
 </div>
 
-<div class="progress-track">
-<div class="progress-bar" id="bookingProgressBar"></div>
+<div class="quest-bar">
+<div class="quest-fill" id="bookingFill"></div>
+</div>
+
+<div class="quest-bottom">
+<span id="bookingText">0 / 14 項完成</span>
+<span id="bookingPercent">0%</span>
+</div>
+
+<div class="quest-message" id="bookingMessage">
+📌 還有預約任務尚未完成。
 </div>
 
 </div>
 
-<div class="booking-actions">
-
-<button
-type="button"
-class="reset-btn"
-id="resetBookings">
-清除預約勾選
+<div class="control-row">
+<button class="reset-btn" id="resetAll">
+↻ 重設全部旅行進度
 </button>
-
 </div>
 
 </div>
 
-
-<!-- =========================
-TRIP COST
-========================= -->
 
 <div class="section-label" style="margin-top:50px;">
 TRIP COST
@@ -3890,7 +3011,7 @@ TRIP COST
 </div>
 
 <div class="cost-item">
-<strong>¥3,500＋10%</strong>
+<strong>¥3,500＋服務費</strong>
 <span>牛の達人午間套餐＋服務費</span>
 </div>
 
@@ -3907,83 +3028,69 @@ TRIP COST
 </div>
 
 
-<!-- =========================
-TIME CONTROL
-========================= -->
-
 <div class="resource-card" style="margin-top:15px;">
 
-<h3>
-⚠️ 最重要的時間控制
-</h3>
+<h3>⚠️ 最重要的時間控制</h3>
 
 <div class="checklist">
 
 <div class="check">
-Day 1：成田 11:15 落地 ≠ 11:15 可以搭車。
+✓ Day 1：成田 11:15 落地 ≠ 11:15 可以搭車。
 </div>
 
 <div class="check">
-Day 1：Access Express 必須把入境、等車與出站一起算。
+✓ Day 1：Access Express 必須把入境、等車與出站一起算。
 </div>
 
 <div class="check">
-Day 1：Sky Restaurant 634 的最後入店時間不能忽略，
-因此已將淺草 → 晴空塔整段提前。
+✓ Day 1：Sky Restaurant 634 的最後入店時間不能忽略，因此已將淺草 → 晴空塔整段提前。
 </div>
 
 <div class="check">
-Day 2：Tokyo City View 10:00 指定入場必須提前抵達六本木 Hills。
+✓ Day 2：Tokyo City View 10:00 指定入場必須提前抵達六本木 Hills。
 </div>
 
 <div class="check">
-Day 2：SHIBUYA SKY 指定時間不能遲到。
+✓ Day 2：SHIBUYA SKY 指定時間不能遲到。
 </div>
 
 <div class="check">
-Day 3：9/27 根津神社是四年一次神幸祭，
-09:00 出御～16:00 還御。
+✓ Day 3：9/27 根津神社是四年一次神幸祭，09:00 出御～16:00 還御。
 </div>
 
 <div class="check">
-Day 3：つじ半不要假設有預約，要排隊。
+✓ Day 3：つじ半不要假設有預約，要排隊。
 </div>
 
 <div class="check">
-Day 3：TOKYO Night & Light 20:30 不視為永久固定場次。
+✓ Day 3：TOKYO Night & Light 20:30 不視為永久固定場次。
 </div>
 
 <div class="check">
-Day 4：21:15 飛機，不能把 19:30 抵達成田當成唯一安全標準。
+✓ Day 4：21:15 飛機，不能把 19:30 抵達成田當成唯一安全標準。
 </div>
 
 <div class="check">
-Day 4：東京站 N'EX 月台需要找路與拖行李緩衝。
+✓ Day 4：東京站 N'EX 月台需要找路與拖行李緩衝。
 </div>
 
 <div class="check">
-Day 4：21:15 是起飛時間，不是開始前往登機門的時間。
+✓ Day 4：21:15 是起飛時間，不是開始前往登機門的時間。
 </div>
 
 </div>
-
 </div>
-
 
 </div>
 </section>
-
 
 </main>
 
 
 <footer class="footer">
-
 <div class="container">
 
-<strong>
-Tokyo 2026｜09/25–09/28
-</strong>
+<strong>Tokyo 2026｜09/25–09/28</strong>
 
 <div class="small">
 行程原則：不把「純乘車時間」當成完整交通時間；
@@ -3996,214 +3103,620 @@ Tokyo 2026｜09/25–09/28
 </div>
 
 </div>
-
 </footer>
 
 
+<!-- =========================================================
+PROGRESS JAVASCRIPT
+========================================================= -->
+
 <script>
-/* =========================================================
-   CHECKBOX STORAGE
-   ========================================================= */
 
-(function(){
+const STORAGE_KEY = "tokyo2026_progress_v3";
 
-  const TASK_KEY = "tokyo2026_completed_tasks";
-  const BOOKING_KEY = "tokyo2026_completed_bookings";
+/* -------------------------
+   儲存
+------------------------- */
 
-  const tasks = document.querySelectorAll(".task");
-  const bookingChecks = document.querySelectorAll(".booking-check");
+function loadState(){
 
-  function getSaved(key){
-    try{
-      return JSON.parse(localStorage.getItem(key) || "{}");
-    }catch(error){
-      return {};
-    }
+  try{
+    return JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) || {
+      tasks:{},
+      bookings:{}
+    };
   }
 
-  function save(key,data){
-    try{
-      localStorage.setItem(key,JSON.stringify(data));
-    }catch(error){
-      console.warn("無法儲存勾選狀態。");
-    }
-  }
+  catch(e){
 
-
-  /* =========================
-     行程 Checkbox
-  ========================= */
-
-  function updateTaskVisual(checkbox){
-
-    const item = checkbox.closest(".item");
-
-    if(!item) return;
-
-    item.classList.toggle("is-done",checkbox.checked);
-  }
-
-
-  function loadTasks(){
-
-    const saved = getSaved(TASK_KEY);
-
-    tasks.forEach(function(checkbox){
-
-      const id = checkbox.dataset.task;
-
-      checkbox.checked = saved[id] === true;
-
-      updateTaskVisual(checkbox);
-
-    });
-  }
-
-
-  tasks.forEach(function(checkbox){
-
-    checkbox.addEventListener("change",function(){
-
-      const saved = getSaved(TASK_KEY);
-
-      saved[this.dataset.task] = this.checked;
-
-      save(TASK_KEY,saved);
-
-      updateTaskVisual(this);
-
-    });
-
-  });
-
-
-  /* =========================
-     預約 Checkbox
-  ========================= */
-
-  function updateBookingVisual(checkbox){
-
-    const row = checkbox.closest("[data-booking]");
-
-    if(!row) return;
-
-    row.classList.toggle("done",checkbox.checked);
+    return {
+      tasks:{},
+      bookings:{}
+    };
 
   }
 
+}
 
-  function updateBookingProgress(){
+let state = loadState();
 
-    const total = bookingChecks.length;
 
-    let done = 0;
+function saveState(){
 
-    bookingChecks.forEach(function(checkbox){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(state)
+  );
 
-      if(checkbox.checked){
-        done++;
+}
+
+
+/* -------------------------
+   任務 ID
+------------------------- */
+
+function getTaskId(button){
+
+  const item = button.closest(".item");
+
+  const day = item.dataset.day;
+
+  const items = [
+    ...document.querySelectorAll(
+      `.item[data-day="${day}"]`
+    )
+  ];
+
+  const index = items.indexOf(item);
+
+  return `${day}-task-${index}`;
+
+}
+
+
+/* -------------------------
+   初始化行程勾選
+------------------------- */
+
+function initTasks(){
+
+  document
+    .querySelectorAll(".item[data-day] .task-check")
+    .forEach(button => {
+
+      const id = getTaskId(button);
+
+      if(state.tasks[id]){
+
+        button.classList.add("checked");
+
+        button
+          .closest(".item")
+          .classList.add("done");
+
       }
 
+      button.addEventListener(
+        "click",
+        () => {
+
+          state.tasks[id] =
+            !state.tasks[id];
+
+          if(state.tasks[id]){
+
+            button.classList.add("checked");
+
+            button
+              .closest(".item")
+              .classList.add("done");
+
+          }
+
+          else{
+
+            button.classList.remove("checked");
+
+            button
+              .closest(".item")
+              .classList.remove("done");
+
+          }
+
+          saveState();
+          updateAllProgress();
+
+        }
+      );
+
     });
 
-    const text = document.getElementById("bookingProgressText");
-    const bar = document.getElementById("bookingProgressBar");
+}
 
-    if(text){
-      text.textContent = done + " / " + total;
+
+/* -------------------------
+   Booking
+------------------------- */
+
+function initBookings(){
+
+  document
+    .querySelectorAll(".booking-check")
+    .forEach(button => {
+
+      const id = button.dataset.booking;
+
+      updateBookingVisual(
+        button,
+        !!state.bookings[id]
+      );
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          state.bookings[id] =
+            !state.bookings[id];
+
+          updateBookingVisual(
+            button,
+            state.bookings[id]
+          );
+
+          saveState();
+          updateAllProgress();
+
+        }
+      );
+
+    });
+
+}
+
+
+function updateBookingVisual(
+  button,
+  checked
+){
+
+  if(checked){
+
+    button.classList.add("checked");
+
+    button
+      .querySelector(".booking-status")
+      .textContent = "✓ 已完成";
+
+  }
+
+  else{
+
+    button.classList.remove("checked");
+
+    button
+      .querySelector(".booking-status")
+      .textContent = "未完成";
+
+  }
+
+}
+
+
+/* -------------------------
+   Day Progress
+------------------------- */
+
+function updateDayProgress(day){
+
+  const items = [
+    ...document.querySelectorAll(
+      `.item[data-day="${day}"]`
+    )
+  ];
+
+  const total = items.length;
+
+  const completed = items.filter(
+    item =>
+      item
+        .querySelector(".task-check")
+        .classList
+        .contains("checked")
+  ).length;
+
+  const percent =
+    total === 0
+      ? 0
+      : Math.round(
+          completed / total * 100
+        );
+
+  const fill =
+    document.querySelector(
+      `[data-day-fill="${day}"]`
+    );
+
+  const percentText =
+    document.querySelector(
+      `[data-day-percent="${day}"]`
+    );
+
+  const status =
+    document.querySelector(
+      `[data-day-status="${day}"]`
+    );
+
+  if(fill)
+    fill.style.width =
+      `${percent}%`;
+
+  if(percentText)
+    percentText.textContent =
+      `${percent}%`;
+
+  if(status){
+
+    if(percent === 100){
+
+      status.textContent =
+        "🏆 BOSS CLEAR！今天全部打完！";
+
     }
 
-    if(bar){
+    else if(percent >= 75){
 
-      const percentage =
-        total === 0 ? 0 : (done / total) * 100;
+      status.textContent =
+        `🔥 快通關了！${completed} / ${total} 任務完成`;
 
-      bar.style.width = percentage + "%";
+    }
+
+    else if(percent >= 50){
+
+      status.textContent =
+        `⚔️ 已經打到一半！${completed} / ${total} 任務完成`;
+
+    }
+
+    else if(percent > 0){
+
+      status.textContent =
+        `🎮 冒險中！${completed} / ${total} 任務完成`;
+
+    }
+
+    else{
+
+      status.textContent =
+        "⚔️ 今天的怪物還沒開始打。";
 
     }
 
   }
 
+}
 
-  function loadBookings(){
 
-    const saved = getSaved(BOOKING_KEY);
+/* -------------------------
+   Global Progress
+------------------------- */
 
-    bookingChecks.forEach(function(checkbox){
+function updateGlobalProgress(){
 
-      const id = checkbox.dataset.bookingId;
+  const tasks =
+    document.querySelectorAll(
+      ".item[data-day] .task-check"
+    );
 
-      checkbox.checked = saved[id] === true;
+  const totalTasks =
+    tasks.length;
 
-      updateBookingVisual(checkbox);
+  const completedTasks =
+    [...tasks].filter(
+      button =>
+        button.classList.contains(
+          "checked"
+        )
+    ).length;
 
-    });
 
-    updateBookingProgress();
+  const bookings =
+    document.querySelectorAll(
+      ".booking-check"
+    );
+
+  const totalBookings =
+    bookings.length;
+
+  const completedBookings =
+    [...bookings].filter(
+      button =>
+        button.classList.contains(
+          "checked"
+        )
+    ).length;
+
+
+  const total =
+    totalTasks + totalBookings;
+
+  const completed =
+    completedTasks + completedBookings;
+
+  const percent =
+    total === 0
+      ? 0
+      : Math.round(
+          completed / total * 100
+        );
+
+
+  const fill =
+    document.getElementById(
+      "globalFill"
+    );
+
+  const text =
+    document.getElementById(
+      "globalText"
+    );
+
+  const percentText =
+    document.getElementById(
+      "globalPercent"
+    );
+
+  const level =
+    document.getElementById(
+      "globalLevel"
+    );
+
+  const message =
+    document.getElementById(
+      "globalMessage"
+    );
+
+
+  if(fill)
+    fill.style.width =
+      `${percent}%`;
+
+  if(text)
+    text.textContent =
+      `${completed} / ${total} 任務完成`;
+
+  if(percentText)
+    percentText.textContent =
+      `${percent}%`;
+
+
+  const lv =
+    Math.max(
+      1,
+      Math.floor(percent / 10) + 1
+    );
+
+  if(level)
+    level.textContent =
+      `LV.${lv}`;
+
+
+  if(message){
+
+    if(percent === 100){
+
+      message.textContent =
+        "🏆 LEGENDARY CLEAR！四天東京任務全部完成！";
+
+    }
+
+    else if(percent >= 90){
+
+      message.textContent =
+        "🔥 最終 Boss！只差一點點就全破！";
+
+    }
+
+    else if(percent >= 75){
+
+      message.textContent =
+        "⚔️ 後半段開始！你已經接近通關。";
+
+    }
+
+    else if(percent >= 50){
+
+      message.textContent =
+        "🔥 已突破一半！東京冒險進入後半段。";
+
+    }
+
+    else if(percent > 0){
+
+      message.textContent =
+        "🎮 冒險開始！每打一個勾，就是 XP。";
+
+    }
+
+    else{
+
+      message.textContent =
+        "⚔️ 冒險尚未開始。第一個任務等你打勾。";
+
+    }
 
   }
 
-
-  bookingChecks.forEach(function(checkbox){
-
-    checkbox.addEventListener("change",function(){
-
-      const saved = getSaved(BOOKING_KEY);
-
-      saved[this.dataset.bookingId] = this.checked;
-
-      save(BOOKING_KEY,saved);
-
-      updateBookingVisual(this);
-
-      updateBookingProgress();
-
-    });
-
-  });
+}
 
 
-  /* =========================
-     清除預約
-  ========================= */
+/* -------------------------
+   Booking Progress
+------------------------- */
 
-  const resetBookings =
-    document.getElementById("resetBookings");
+function updateBookingProgress(){
 
-  if(resetBookings){
+  const bookings =
+    document.querySelectorAll(
+      ".booking-check"
+    );
 
-    resetBookings.addEventListener("click",function(){
+  const total =
+    bookings.length;
 
-      const confirmed =
-        confirm("確定要清除所有預約勾選嗎？");
+  const completed =
+    [...bookings].filter(
+      b =>
+        b.classList.contains(
+          "checked"
+        )
+    ).length;
 
-      if(!confirmed) return;
+  const percent =
+    total === 0
+      ? 0
+      : Math.round(
+          completed / total * 100
+        );
 
-      localStorage.removeItem(BOOKING_KEY);
 
-      bookingChecks.forEach(function(checkbox){
+  const fill =
+    document.getElementById(
+      "bookingFill"
+    );
 
-        checkbox.checked = false;
+  const text =
+    document.getElementById(
+      "bookingText"
+    );
 
-        updateBookingVisual(checkbox);
+  const percentText =
+    document.getElementById(
+      "bookingPercent"
+    );
 
-      });
+  const level =
+    document.getElementById(
+      "bookingLevel"
+    );
 
-      updateBookingProgress();
+  const message =
+    document.getElementById(
+      "bookingMessage"
+    );
 
-    });
+
+  if(fill)
+    fill.style.width =
+      `${percent}%`;
+
+  if(text)
+    text.textContent =
+      `${completed} / ${total} 項完成`;
+
+  if(percentText)
+    percentText.textContent =
+      `${percent}%`;
+
+  if(level)
+    level.textContent =
+      `${completed} / ${total}`;
+
+
+  if(message){
+
+    if(percent === 100){
+
+      message.textContent =
+        "🏆 預約 Boss CLEAR！所有預約任務完成。";
+
+    }
+
+    else if(percent >= 75){
+
+      message.textContent =
+        "🔥 預約快清完了！";
+
+    }
+
+    else if(percent >= 50){
+
+      message.textContent =
+        "⚔️ 預約任務已經完成一半以上。";
+
+    }
+
+    else{
+
+      message.textContent =
+        "📌 還有預約任務尚未完成。";
+
+    }
 
   }
 
+}
 
-  /* =========================
-     初始載入
-  ========================= */
 
-  loadTasks();
-  loadBookings();
+/* -------------------------
+   更新全部
+------------------------- */
 
-})();
+function updateAllProgress(){
+
+  [
+    "day1",
+    "day2",
+    "day3",
+    "day4"
+  ].forEach(updateDayProgress);
+
+  updateGlobalProgress();
+  updateBookingProgress();
+
+}
+
+
+/* -------------------------
+   Reset
+------------------------- */
+
+document
+  .getElementById("resetAll")
+  .addEventListener(
+    "click",
+    () => {
+
+      const ok =
+        confirm(
+          "確定要把所有 Day 行程與預約勾選全部重設嗎？"
+        );
+
+      if(!ok)
+        return;
+
+      state = {
+        tasks:{},
+        bookings:{}
+      };
+
+      saveState();
+
+      location.reload();
+
+    }
+  );
+
+
+/* -------------------------
+   Start
+------------------------- */
+
+initTasks();
+initBookings();
+updateAllProgress();
+
 </script>
 
 </body>
