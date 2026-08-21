@@ -1326,7 +1326,43 @@ RESPONSIVE
     grid-template-columns:1fr;
   }
 }
+/* ===== Progress Animation Fix ===== */
 
+.progress-track{
+    width:100%;
+    height:16px;
+    background:#1f2937;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #38bdf8
+    );
+    transition:width .45s cubic-bezier(.22,1,.36,1);
+}
+
+.day-complete{
+    box-shadow:0 0 20px rgba(34,197,94,.25);
+}
+
+@media (max-width:768px){
+
+    .progress-track{
+        height:22px;
+    }
+
+    .day-progress .progress-track{
+        height:20px;
+    }
+
+}
 /* ===== TOKYO V8 REDESIGN ===== */
 .hero{position:relative;overflow:hidden;padding:72px 0 48px!important}
 .hero:before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1600&q=80') center/cover;opacity:.18}
@@ -4995,203 +5031,291 @@ Progress data is saved locally on this device.
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const STORAGE_KEY = "kellan_tokyo_progress";
+    const STORAGE_KEY = "kellan_tokyo_progress";
 
-  const checks = [...document.querySelectorAll(".task-check")];
-  const dayCards = [...document.querySelectorAll(".day-card")];
+    const checks = [
+        ...document.querySelectorAll(".task-check[data-task]")
+    ];
 
-  // ===== 載入 =====
-  function loadProgress() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  }
+    const bookingChecks = [
+        ...document.querySelectorAll(".booking-check")
+    ];
 
-  // ===== 儲存 =====
-  function saveProgress() {
-    const data = {};
+    const packingChecks = [
+        ...document.querySelectorAll(".packing-check")
+    ];
 
-    checks.forEach(cb => {
-      data[cb.dataset.task] = cb.checked;
-    });
+    const dayCards = [
+        ...document.querySelectorAll(".day-card")
+    ];
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
+    function load(){
 
-  // ===== 動畫設定 =====
-  function animateBar(bar, percent) {
-    if (!bar) return;
-
-    requestAnimationFrame(() => {
-      bar.style.width = percent + "%";
-    });
-  }
-
-  // ===== 更新全部 =====
-  function updateAllProgress() {
-
-    const saved = loadProgress();
-
-    let totalDone = 0;
-
-    checks.forEach(cb => {
-
-      cb.checked = !!saved[cb.dataset.task];
-
-      const item = cb.closest(".item");
-
-      if (item) {
-        item.classList.toggle("done", cb.checked);
-      }
-
-      if (cb.checked) totalDone++;
-
-    });
-
-    // ------------------------
-    // 每日進度
-    // ------------------------
-
-    dayCards.forEach(card => {
-
-      const day = card.id.replace("day-card-", "");
-
-      const dayChecks = checks.filter(cb =>
-        cb.dataset.task.startsWith("d" + day + "-")
-      );
-
-      const done = dayChecks.filter(cb => cb.checked).length;
-
-      const total = dayChecks.length;
-
-      const percent = total === 0 ? 0 : Math.round(done / total * 100);
-
-      const bar = document.getElementById("day" + day + "Progress");
-
-      const text = document.getElementById("day" + day + "Percent");
-
-      animateBar(bar, percent);
-
-      if (text) {
-        text.textContent = `${percent}% (${done}/${total})`;
-      }
-
-      card.classList.toggle("day-complete", done === total && total > 0);
-
-    });
-
-    // ------------------------
-    // 總進度
-    // ------------------------
-
-    const totalTasks = checks.length;
-
-    const totalPercent =
-      totalTasks === 0
-        ? 0
-        : Math.round(totalDone / totalTasks * 100);
-
-    animateBar(
-      document.getElementById("totalProgress"),
-      totalPercent
-    );
-
-    const totalPercentText =
-      document.getElementById("totalPercent");
-
-    if (totalPercentText) {
-      totalPercentText.textContent = totalPercent + "%";
-    }
-
-    const totalCount =
-      document.getElementById("totalCount");
-
-    if (totalCount) {
-      totalCount.textContent =
-        `${totalDone} / ${totalTasks} 任務`;
-    }
-
-    // ------------------------
-    // Boss Animation
-    // ------------------------
-
-    const godzilla = document.getElementById("godzilla");
-    const bossMessage = document.getElementById("bossMessage");
-
-    if (godzilla) {
-      godzilla.classList.toggle(
-        "defeated",
-        totalPercent === 100
-      );
-    }
-
-    if (bossMessage) {
-
-      if (totalPercent === 100) {
-        bossMessage.textContent =
-          "🏆 MISSION COMPLETE！東京征服成功";
-      }
-
-      else if (totalPercent >= 75) {
-        bossMessage.textContent =
-          "🔥 最終衝刺中";
-      }
-
-      else if (totalPercent >= 40) {
-        bossMessage.textContent =
-          "🚇 已完成一半以上";
-      }
-
-      else {
-        bossMessage.textContent =
-          "🗼 東京冒險開始";
-      }
+        return JSON.parse(
+            localStorage.getItem(STORAGE_KEY) || "{}"
+        );
 
     }
 
-  }
+    function save(){
 
-  // ===== Checkbox =====
+        const data = {};
 
-  checks.forEach(cb => {
+        checks.forEach(cb=>{
 
-    cb.addEventListener("change", () => {
+            data[cb.dataset.task] = cb.checked;
 
-      const data = loadProgress();
+        });
 
-      data[cb.dataset.task] = cb.checked;
+        bookingChecks.forEach(cb=>{
 
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-      );
+            data[cb.dataset.booking] = cb.checked;
 
-      updateAllProgress();
+        });
+
+        packingChecks.forEach(cb=>{
+
+            data[cb.dataset.pack] = cb.checked;
+
+        });
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+    }
+
+    function animateBar(bar, percent){
+
+        if(!bar) return;
+
+        const current = parseFloat(bar.style.width) || 0;
+
+        if(current === percent) return;
+
+        bar.style.width = current + "%";
+
+        requestAnimationFrame(()=>{
+
+            requestAnimationFrame(()=>{
+
+                bar.style.width = percent + "%";
+
+            });
+
+        });
+
+    }
+
+    function update(){
+
+        const data = load();
+
+        let totalDone = 0;
+
+        checks.forEach(cb=>{
+
+            cb.checked = !!data[cb.dataset.task];
+
+            const item = cb.closest(".item");
+
+            if(item){
+
+                item.classList.toggle(
+                    "done",
+                    cb.checked
+                );
+
+            }
+
+            if(cb.checked){
+
+                totalDone++;
+
+            }
+
+        });
+
+        bookingChecks.forEach(cb=>{
+
+            cb.checked = !!data[cb.dataset.booking];
+
+            const row = cb.closest(".check-row");
+
+            if(row){
+
+                row.classList.toggle(
+                    "done",
+                    cb.checked
+                );
+
+            }
+
+        });
+
+        packingChecks.forEach(cb=>{
+
+            cb.checked = !!data[cb.dataset.pack];
+
+            const row = cb.closest(".check-row");
+
+            if(row){
+
+                row.classList.toggle(
+                    "done",
+                    cb.checked
+                );
+
+            }
+
+        });
+
+        dayCards.forEach(card=>{
+
+            const day = card.id.replace(
+                "day-card-",
+                ""
+            );
+
+            const dayChecks = checks.filter(cb=>{
+
+                return cb.dataset.task.startsWith(
+                    "d" + day + "-"
+                );
+
+            });
+
+            const done = dayChecks.filter(cb=>cb.checked).length;
+
+            const total = dayChecks.length;
+
+            const percent = total === 0
+                ? 0
+                : Math.round(done / total * 100);
+
+            animateBar(
+                document.getElementById(
+                    "day" + day + "Progress"
+                ),
+                percent
+            );
+
+            const text = document.getElementById(
+                "day" + day + "Percent"
+            );
+
+            if(text){
+
+                text.textContent = percent + "%";
+
+            }
+
+            card.classList.toggle(
+                "day-complete",
+                done === total && total > 0
+            );
+
+        });
+
+        const total = checks.length;
+
+        const totalPercent = total === 0
+            ? 0
+            : Math.round(totalDone / total * 100);
+
+        animateBar(
+            document.getElementById("totalProgress"),
+            totalPercent
+        );
+
+        document.getElementById(
+            "totalPercent"
+        ).textContent = totalPercent + "%";
+
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            totalDone + " / " + total + " 任務";
+
+        const boss = document.getElementById("godzilla");
+
+        const bossMessage = document.getElementById("bossMessage");
+
+        if(boss){
+
+            boss.classList.toggle(
+                "defeated",
+                totalPercent === 100
+            );
+
+        }
+
+        if(bossMessage){
+
+            if(totalPercent === 100){
+
+                bossMessage.textContent =
+                    "恭喜！東京 2026 全部完成，哥吉拉已擊敗！";
+
+            }else if(totalPercent >= 75){
+
+                bossMessage.textContent =
+                    "最後衝刺！東京冒險即將完成。";
+
+            }else if(totalPercent >= 40){
+
+                bossMessage.textContent =
+                    "進度穩定推進中，繼續完成任務！";
+
+            }else{
+
+                bossMessage.textContent =
+                    "東京冒險開始！把每個行程完成，逐步清空任務。";
+
+            }
+
+        }
+
+    }
+
+    [
+        ...checks,
+        ...bookingChecks,
+        ...packingChecks
+    ].forEach(cb=>{
+
+        cb.addEventListener("change", ()=>{
+
+            save();
+
+            update();
+
+        });
 
     });
 
-  });
+    document
+        .querySelectorAll(".details-toggle")
+        .forEach(btn=>{
 
-  // ===== 詳細資訊 =====
+            btn.addEventListener("click", ()=>{
 
-  document.querySelectorAll(".details-toggle").forEach(btn => {
+                const detail =
+                    btn.nextElementSibling;
 
-    btn.addEventListener("click", () => {
+                detail.classList.toggle("open");
 
-      const detail = btn.nextElementSibling;
+                btn.textContent =
+                    detail.classList.contains("open")
+                    ? "－ 收合資訊"
+                    : "＋ 詳細資訊";
 
-      detail.classList.toggle("open");
+            });
 
-      btn.textContent =
-        detail.classList.contains("open")
-          ? "－ 收合資訊"
-          : "＋ 詳細資訊";
+        });
 
-    });
-
-  });
-
-  // ===== 初始化 =====
-
-  updateAllProgress();
+    update();
 
 });
 </script>
