@@ -1326,6 +1326,27 @@ RESPONSIVE
     grid-template-columns:1fr;
   }
 }
+
+/* ===== TOKYO V8 REDESIGN ===== */
+.hero{position:relative;overflow:hidden;padding:72px 0 48px!important}
+.hero:before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1600&q=80') center/cover;opacity:.18}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,22,.15),rgba(5,8,22,.92))}
+.hero>*{position:relative;z-index:2}
+.hero h1{font-size:clamp(3.2rem,7vw,5.5rem)!important;line-height:.92!important}
+.day-header{display:grid!important;grid-template-columns:1fr auto;gap:14px;padding:20px!important}
+.day-title{font-size:1.45rem!important}
+.item{grid-template-columns:104px 1fr!important;gap:18px!important;padding:18px 0!important}
+.time{display:flex;align-items:center;justify-content:center;padding:10px;border-radius:12px;background:#0f172a;border:1px solid rgba(56,189,248,.2);font-weight:800;line-height:1.25;text-align:center}
+.time.safe{background:rgba(34,197,94,.12);border-color:#22c55e;color:#bbf7d0}
+.time.move{background:rgba(56,189,248,.12);border-color:#38bdf8;color:#bae6fd}
+.time.tight{background:rgba(245,158,11,.14);border-color:#f59e0b;color:#fde68a}
+.time.danger{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fecaca}
+.progress-track{height:16px!important}.day-progress .progress-track{height:14px!important}
+.photo-grid img{height:120px!important;border-radius:10px}
+.risk-chip{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:.62rem;font-weight:800;margin-bottom:8px}
+.green{background:rgba(34,197,94,.15);color:#bbf7d0}.blue{background:rgba(56,189,248,.15);color:#bae6fd}.yellow{background:rgba(245,158,11,.15);color:#fde68a}.red{background:rgba(239,68,68,.15);color:#fecaca}
+@media(max-width:760px){.day-header{grid-template-columns:1fr!important}.item{grid-template-columns:1fr!important}.time{width:max-content}.progress-track{height:22px!important}.day-progress .progress-track{height:20px!important}}
+
 </style>
 </head>
 
@@ -1371,8 +1392,7 @@ HERO
       </div>
 
       <h1>
-        東京四日<br>
-        <span>實戰行程表。</span>
+        TOKYO<br><span>TRAVEL QUEST</span>
       </h1>
 
       <p class="hero-text">
@@ -1682,6 +1702,15 @@ DAY DATA
 最後以晴空塔夜景＋Sky Restaurant 634 收尾。
 </p>
 
+
+<div style="margin:18px 0 22px;padding:16px;border-radius:16px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1px solid rgba(148,163,184,.18)">
+<b style="font-size:1.05rem">🧭 DAY1 節奏分析（已計算緩衝）</b>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px">
+<div style="padding:10px;border-radius:10px;background:rgba(34,197,94,.08)">🟢 入境＋飯店<br><small>緩衝35分鐘</small></div>
+<div style="padding:10px;border-radius:10px;background:rgba(56,189,248,.08)">🔵 Access Express<br><small>正常交通</small></div>
+<div style="padding:10px;border-radius:10px;background:rgba(245,158,11,.08)">🟡 淺草停留<br><small>最多45分鐘</small></div>
+<div style="padding:10px;border-radius:10px;background:rgba(239,68,68,.08)">🔴 晴空塔晚餐<br><small>18:40前移動</small></div>
+</div></div>
 <div class="day-card" id="day-card-1">
 
 <div class="day-header">
@@ -1723,7 +1752,7 @@ DAY 1｜東京初日
 
 <div class="item" data-task="d1-1">
 
-<div class="time">11:15–12:30</div>
+<div class="time safe">11:15–12:30</div>
 
 <div class="content">
 
@@ -1735,8 +1764,7 @@ data-task="d1-1">
 
 <div class="task-name">
 
-<h3>
-抵達成田機場＋入境＋領行李
+<div class='risk-chip green'>🟢 緩衝充足</div><h3>抵達成田機場＋入境＋領行李
 </h3>
 
 <p>
@@ -1785,7 +1813,7 @@ NRT Terminal 1 → International Arrivals →
 
 <div class="item" data-task="d1-2">
 
-<div class="time">12:30–13:45</div>
+<div class="time move">12:30–13:45</div>
 
 <div class="content">
 
@@ -1794,8 +1822,7 @@ NRT Terminal 1 → International Arrivals →
 
 <div class="task-name">
 
-<h3>
-成田 → 東銀座｜Keisei Access Express
+<div class='risk-chip blue'>🔵 正常交通</div><h3>成田 → 東銀座｜Keisei Access Express
 </h3>
 
 <p>
@@ -1862,7 +1889,7 @@ Access Express 官方
 
 <div class="item" data-task="d1-3">
 
-<div class="time">13:45–14:15</div>
+<div class="time safe">13:45–14:15</div>
 
 <div class="content">
 
@@ -1905,7 +1932,7 @@ Access Express 官方
 
 <div class="item" data-task="d1-4">
 
-<div class="time">14:15–15:00</div>
+<div class="time safe">14:15–15:00</div>
 
 <div class="content">
 
@@ -1978,7 +2005,7 @@ Google Maps
 
 <div class="item" data-task="d1-6">
 
-<div class="time">15:30–16:05</div>
+<div class="time move">15:30–16:05</div>
 
 <div class="content">
 
@@ -2037,7 +2064,7 @@ Google Maps
 
 <div class="item" data-task="d1-7">
 
-<div class="time">16:05–17:35</div>
+<div class="time safe">16:05–17:35</div>
 
 <div class="content">
 
@@ -2046,8 +2073,7 @@ Google Maps
 
 <div class="task-name">
 
-<h3>
-東京國立博物館
+<div class='risk-chip yellow'>🟡 17:35前離館</div><h3>東京國立博物館
 </h3>
 
 <p>
@@ -2091,22 +2117,10 @@ Google Maps
 </div>
 
 <div class="photo-grid">
-
-<img
-src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80"
-alt="日本東京傳統建築">
-
-<img
-src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80"
-alt="日本街景">
-
-<img
-src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80"
-alt="日本文化建築">
-
-</div>
-
-</div>
+<img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80">
+<img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=700&q=80">
+<img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=700&q=80">
+</div></div>
 
 <div class="link-row">
 
@@ -2137,7 +2151,7 @@ Google Maps
 
 <div class="item" data-task="d1-8">
 
-<div class="time">17:35–18:00</div>
+<div class="time tight">17:35–18:00</div>
 
 <div class="content">
 
@@ -2341,8 +2355,7 @@ Google Maps
 
 <div class="task-name">
 
-<h3>
-東京晴空塔｜進場＋前往餐廳
+<div class='risk-chip red'>🔴 不可延誤</div><h3>東京晴空塔｜進場＋前往餐廳
 </h3>
 
 <p>
@@ -2423,8 +2436,7 @@ Sky Restaurant 634 官方
 
 <div class="task-name">
 
-<h3>
-東京晴空塔｜夜景
+<div class='risk-chip red'>🔴 不可延誤</div><h3>東京晴空塔｜夜景
 </h3>
 
 <p>
@@ -4948,427 +4960,124 @@ Progress data is saved locally on this device.
 </footer>
 
 
+
 <script>
-/* =========================================================
-TOKYO QUEST ENGINE
-========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const STORAGE_KEY = "tokyo2026-quest-v3";
+  const STORAGE_KEY = "tokyo-travel-progress";
+  const checks = [...document.querySelectorAll(".task-check")];
+  const days = [1,2,3,4];
 
-let saved = {};
-
-try{
-  saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-}catch(e){
-  saved = {};
-}
-
-if(!saved.tasks) saved.tasks = {};
-if(!saved.bookings) saved.bookings = {};
-if(!saved.packing) saved.packing = {};
-
-
-function save(){
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(saved)
-  );
-}
-
-
-function allTaskInputs(){
-  return [...document.querySelectorAll(".task-check[data-task]")];
-}
-
-
-function dayInputs(day){
-  return allTaskInputs()
-    .filter(input => input.dataset.task.startsWith(day + "-"));
-}
-
-
-function updateTaskVisual(input){
-
-  const item = input.closest(".item");
-
-  if(item){
-    item.classList.toggle(
-      "done",
-      input.checked
-    );
-  }
-}
-
-
-function updateBookingVisual(input){
-
-  const row = input.closest(".check-row");
-
-  if(row){
-    row.classList.toggle(
-      "done",
-      input.checked
-    );
-  }
-}
-
-
-function updateDay(day){
-
-  const inputs = dayInputs(day);
-
-  const total = inputs.length;
-
-  const complete = inputs.filter(
-    input => input.checked
-  ).length;
-
-  const percent = total
-    ? Math.round((complete / total) * 100)
-    : 0;
-
-  const percentEl =
-    document.getElementById(day + "Percent");
-
-  const progressEl =
-    document.getElementById(day + "Progress");
-
-  if(percentEl){
-    percentEl.textContent =
-      percent + "%";
+  // 讀取紀錄
+  function load(){
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   }
 
-  if(progressEl){
-    progressEl.style.width =
-      percent + "%";
+  // 儲存紀錄
+  function save(){
+    const data = {};
+    checks.forEach(c=>{
+      data[c.dataset.task] = c.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
-  const card =
-    document.getElementById(
-      "day-card-" + day.replace("d","")
-    );
+  // 更新全部進度
+  function updateProgress(){
 
-  if(card){
-    card.classList.toggle(
-      "day-complete",
-      total > 0 && complete === total
-    );
-  }
-}
+    const data = load();
+    let totalDone = 0;
 
+    // 還原 checkbox
+    checks.forEach(c=>{
+      c.checked = !!data[c.dataset.task];
 
-function updateTotal(){
+      const item = c.closest(".item");
+      item.classList.toggle("done", c.checked);
 
-  const inputs = allTaskInputs();
-
-  const total = inputs.length;
-
-  const complete = inputs.filter(
-    input => input.checked
-  ).length;
-
-  const percent = total
-    ? Math.round((complete / total) * 100)
-    : 0;
-
-  const percentEl =
-    document.getElementById("totalPercent");
-
-  const countEl =
-    document.getElementById("totalCount");
-
-  const progressEl =
-    document.getElementById("totalProgress");
-
-  if(percentEl){
-    percentEl.textContent =
-      percent + "%";
-  }
-
-  if(countEl){
-    countEl.textContent =
-      `${complete} / ${total} 任務`;
-  }
-
-  if(progressEl){
-    progressEl.style.width =
-      percent + "%";
-  }
-
-  const godzilla =
-    document.getElementById("godzilla");
-
-  const bossMessage =
-    document.getElementById("bossMessage");
-
-  if(percent === 100 && total > 0){
-
-    godzilla.classList.add("defeated");
-
-    bossMessage.textContent =
-      "QUEST CLEAR！全部行程完成，哥吉拉倒下！";
-
-  }else if(percent >= 75){
-
-    godzilla.classList.remove("defeated");
-
-    bossMessage.textContent =
-      "FINAL PHASE！已經接近東京 Quest 完成！";
-
-  }else if(percent >= 40){
-
-    godzilla.classList.remove("defeated");
-
-    bossMessage.textContent =
-      "中盤突破！繼續清任務。";
-
-  }else{
-
-    godzilla.classList.remove("defeated");
-
-    bossMessage.textContent =
-      "東京冒險開始！把每個行程完成，逐步清空任務。";
-  }
-}
-
-
-function updateAll(){
-
-  allTaskInputs().forEach(input=>{
-    updateTaskVisual(input);
-  });
-
-  document.querySelectorAll(".booking-check")
-    .forEach(input=>{
-      updateBookingVisual(input);
+      if(c.checked) totalDone++;
     });
 
-  document.querySelectorAll(".packing-check")
-    .forEach(input=>{
-      updateBookingVisual(input);
+    // ===== 總進度 =====
+    const total = checks.length;
+    const totalPercent = Math.round((totalDone / total) * 100);
+
+    document.getElementById("totalProgress").style.width =
+      totalPercent + "%";
+
+    document.getElementById("totalPercent").textContent =
+      totalPercent + "%";
+
+    document.getElementById("totalCount").textContent =
+      totalDone + " / " + total + " 任務";
+
+    // ===== 每一天 =====
+    days.forEach(day=>{
+
+      const dayChecks = checks.filter(c =>
+        c.dataset.task.startsWith("d"+day+"-")
+      );
+
+      const done = dayChecks.filter(c=>c.checked).length;
+      const percent = Math.round((done/dayChecks.length)*100);
+
+      const bar = document.getElementById("day"+day+"Progress");
+      const text = document.getElementById("day"+day+"Percent");
+      const card = document.getElementById("day-card-"+day);
+
+      if(bar) bar.style.width = percent + "%";
+
+      if(text){
+        text.textContent =
+          percent + "% (" + done + "/" + dayChecks.length + ")";
+      }
+
+      if(card){
+        card.classList.toggle(
+          "day-complete",
+          done === dayChecks.length
+        );
+      }
+
     });
 
-  ["d1","d2","d3","d4"].forEach(
-    updateDay
-  );
-
-  updateTotal();
-}
-
-
-/* =========================================================
-LOAD SAVED STATE
-========================================================= */
-
-document.querySelectorAll(
-  ".task-check[data-task]"
-).forEach(input=>{
-
-  const key = input.dataset.task;
-
-  input.checked =
-    saved.tasks[key] === true;
-
-});
-
-
-document.querySelectorAll(
-  ".booking-check"
-).forEach(input=>{
-
-  const key = input.dataset.booking;
-
-  input.checked =
-    saved.bookings[key] === true;
-
-});
-
-
-document.querySelectorAll(
-  ".packing-check"
-).forEach(input=>{
-
-  const key = input.dataset.pack;
-
-  input.checked =
-    saved.packing[key] === true;
-
-});
-
-
-/* =========================================================
-TASK EVENTS
-========================================================= */
-
-document.querySelectorAll(
-  ".task-check[data-task]"
-).forEach(input=>{
-
-  input.addEventListener("change",()=>{
-
-    const key = input.dataset.task;
-
-    saved.tasks[key] =
-      input.checked;
-
-    save();
-
-    updateTaskVisual(input);
-
-    ["d1","d2","d3","d4"].forEach(
-      updateDay
-    );
-
-    updateTotal();
-
-  });
-
-});
-
-
-/* =========================================================
-BOOKING EVENTS
-========================================================= */
-
-document.querySelectorAll(
-  ".booking-check"
-).forEach(input=>{
-
-  input.addEventListener("change",()=>{
-
-    const key =
-      input.dataset.booking;
-
-    saved.bookings[key] =
-      input.checked;
-
-    save();
-
-    updateBookingVisual(input);
-
-  });
-
-});
-
-
-/* =========================================================
-PACKING EVENTS
-========================================================= */
-
-document.querySelectorAll(
-  ".packing-check"
-).forEach(input=>{
-
-  input.addEventListener("change",()=>{
-
-    const key =
-      input.dataset.pack;
-
-    saved.packing[key] =
-      input.checked;
-
-    save();
-
-    updateBookingVisual(input);
-
-  });
-
-});
-
-
-/* =========================================================
-DETAIL TOGGLE
-========================================================= */
-
-document.querySelectorAll(
-  ".details-toggle"
-).forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    const details =
-      button.nextElementSibling;
-
-    if(!details) return;
-
-    details.classList.toggle("open");
-
-    button.textContent =
-      details.classList.contains("open")
-        ? "− 收起詳細資訊"
-        : "＋ 詳細資訊";
-
-  });
-
-});
-
-
-/* =========================================================
-INIT
-========================================================= */
-
-updateAll();
-
-
-/* =========================================================
-SMOOTH ACTIVE NAV
-========================================================= */
-
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
-
-const navLinks =
-  document.querySelectorAll(
-    ".nav-links a"
-  );
-
-const observer =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          navLinks.forEach(link=>{
-            link.style.color =
-              link.getAttribute("href") ===
-              "#" + entry.target.id
-                ? "#22d3ee"
-                : "";
-          });
-
-        }
-
-      });
-
-    },
-    {
-      rootMargin:"-30% 0px -60% 0px"
+    // ===== Boss =====
+    const boss = document.getElementById("godzilla");
+    const msg = document.getElementById("bossMessage");
+
+    if(totalPercent === 100){
+      boss.classList.add("defeated");
+      msg.textContent = "🏆 東京旅程全部完成！";
+    }else{
+      boss.classList.remove("defeated");
+      msg.textContent = "🗼 東京冒險進行中";
     }
-  );
 
-sections.forEach(
-  section => observer.observe(section)
-);
+  }
 
+  // Checkbox事件
+  checks.forEach(c=>{
+    c.addEventListener("change", ()=>{
+      save();
+      updateProgress();
+    });
+  });
 
-/* =========================================================
-PREVENT ACCIDENTAL DOUBLE TAP ZOOM ON BUTTONS
-========================================================= */
+  // 詳細資訊收合
+  document.querySelectorAll(".details-toggle").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const box = btn.nextElementSibling;
+      box.classList.toggle("open");
+      btn.textContent =
+        box.classList.contains("open")
+        ? "－ 收合資訊"
+        : "＋ 詳細資訊";
+    });
+  });
 
-document.querySelectorAll(
-  "button,.task-check"
-).forEach(el=>{
-  el.addEventListener(
-    "touchstart",
-    ()=>{},
-    {passive:true}
-  );
+  updateProgress();
+
 });
-
 </script>
 
 </body>
