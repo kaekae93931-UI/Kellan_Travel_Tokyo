@@ -10,15 +10,15 @@
 <style>
 :root{
   --bg:#050816;
-  --bg2:#080d1d;
-  --panel:rgba(13,20,39,.88);
-  --panel2:rgba(8,14,29,.94);
+  --bg2:#070b18;
+  --panel:#0b1222;
+  --panel2:#0e172a;
+  --panel3:#111c31;
   --border:rgba(148,163,184,.15);
   --border2:rgba(56,189,248,.30);
   --text:#f8fafc;
   --soft:#cbd5e1;
   --muted:#94a3b8;
-  --dim:#64748b;
   --cyan:#22d3ee;
   --blue:#38bdf8;
   --violet:#8b5cf6;
@@ -26,8 +26,8 @@
   --orange:#f59e0b;
   --green:#34d399;
   --red:#fb7185;
-  --gold:#fbbf24;
-  --shadow:0 20px 60px rgba(0,0,0,.32);
+  --yellow:#facc15;
+  --shadow:0 20px 55px rgba(0,0,0,.34);
   --radius:18px;
   --max:1180px;
 }
@@ -40,17 +40,16 @@
 
 html{
   scroll-behavior:smooth;
-  scroll-padding-top:78px;
+  scroll-padding-top:76px;
 }
 
 body{
   min-width:320px;
-  overflow-x:hidden;
   color:var(--text);
   background:
-    radial-gradient(circle at 10% 5%,rgba(34,211,238,.09),transparent 27%),
-    radial-gradient(circle at 90% 7%,rgba(139,92,246,.10),transparent 28%),
-    linear-gradient(180deg,#050816,#070b18 50%,#040611);
+    radial-gradient(circle at 10% 3%,rgba(34,211,238,.08),transparent 25%),
+    radial-gradient(circle at 90% 5%,rgba(139,92,246,.10),transparent 28%),
+    linear-gradient(180deg,var(--bg),var(--bg2) 50%,#040611);
   font-family:
     Inter,
     ui-sans-serif,
@@ -60,6 +59,7 @@ body{
     "Segoe UI",
     sans-serif;
   line-height:1.65;
+  overflow-x:hidden;
 }
 
 body::before{
@@ -68,12 +68,12 @@ body::before{
   inset:0;
   pointer-events:none;
   z-index:-1;
-  opacity:.55;
+  opacity:.65;
   background-image:
-    linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
-  background-size:40px 40px;
-  mask-image:linear-gradient(to bottom,black,transparent 90%);
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,black,transparent 92%);
 }
 
 a{
@@ -81,8 +81,12 @@ a{
   text-decoration:none;
 }
 
-button{
+button,
+input{
   font:inherit;
+}
+
+button{
   cursor:pointer;
 }
 
@@ -99,111 +103,113 @@ HEADER
   position:sticky;
   top:0;
   z-index:1000;
-  border-bottom:1px solid rgba(148,163,184,.10);
-  background:rgba(5,8,22,.84);
-  backdrop-filter:blur(20px);
+  background:rgba(5,8,22,.90);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(148,163,184,.12);
 }
 
 .nav{
-  min-height:68px;
+  min-height:66px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
+  gap:20px;
 }
 
 .brand{
+  flex:0 0 auto;
   display:flex;
   align-items:center;
   gap:9px;
   font-weight:900;
+  letter-spacing:-.03em;
 }
 
 .brand-mark{
-  width:32px;
-  height:32px;
+  width:31px;
+  height:31px;
   display:grid;
   place-items:center;
-  border-radius:9px;
+  border-radius:8px;
   color:#031018;
   background:linear-gradient(135deg,var(--cyan),var(--violet));
-  box-shadow:0 0 22px rgba(34,211,238,.20);
+  box-shadow:0 0 22px rgba(34,211,238,.2);
 }
 
 .nav-links{
+  min-width:0;
   display:flex;
-  gap:18px;
+  align-items:center;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding:4px 2px;
+}
+
+.nav-links::-webkit-scrollbar{
+  display:none;
+}
+
+.nav-links a{
+  flex:0 0 auto;
+  padding:7px 10px;
+  border-radius:8px;
   color:var(--muted);
-  font-size:.76rem;
-  font-weight:800;
+  font-size:.70rem;
+  font-weight:850;
+  white-space:nowrap;
 }
 
 .nav-links a:hover{
   color:var(--cyan);
+  background:rgba(34,211,238,.06);
 }
 
 /* =========================================================
-GENERAL
+GLOBAL
 ========================================================= */
 
 .section{
   position:relative;
-  padding:48px 0;
+  padding:54px 0;
 }
 
-.section + .section::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:50%;
-  width:min(calc(100% - 32px),var(--max));
-  height:1px;
-  transform:translateX(-50%);
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #6366f1 20%,
-      #ec4899 40%,
-      #f59e0b 50%,
-      #ec4899 60%,
-      #6366f1 80%,
-      transparent
-    );
-  box-shadow:0 0 16px rgba(236,72,153,.25);
+.section + .section{
+  border-top:1px solid rgba(148,163,184,.08);
 }
 
-.section-label,
-.eyebrow{
+.eyebrow,
+.section-label{
   display:inline-flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
   color:var(--cyan);
-  font-size:.63rem;
+  font-size:.65rem;
   font-weight:900;
-  letter-spacing:.15em;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
 
-.section-label::before,
-.eyebrow::before{
+.eyebrow::before,
+.section-label::before{
   content:"";
-  width:20px;
+  width:22px;
   height:1px;
   background:var(--cyan);
-  box-shadow:0 0 8px var(--cyan);
+  box-shadow:0 0 10px var(--cyan);
 }
 
 .section-title{
+  margin-top:10px;
   max-width:900px;
-  margin-top:9px;
-  font-size:clamp(1.65rem,3.5vw,2.65rem);
+  font-size:clamp(1.75rem,3.5vw,2.8rem);
   line-height:1.12;
   letter-spacing:-.045em;
 }
 
 .section-desc{
   max-width:900px;
-  margin-top:11px;
+  margin-top:12px;
   color:var(--muted);
   font-size:.82rem;
 }
@@ -213,19 +219,19 @@ HERO
 ========================================================= */
 
 .hero{
-  padding:48px 0 35px;
+  padding:52px 0 38px;
 }
 
 .hero-grid{
   display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:30px;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
   align-items:center;
 }
 
 .hero h1{
-  margin-top:10px;
-  font-size:clamp(2.5rem,6vw,4.7rem);
+  margin-top:13px;
+  font-size:clamp(2.7rem,6vw,5rem);
   line-height:.98;
   letter-spacing:-.065em;
 }
@@ -238,10 +244,10 @@ HERO
 }
 
 .hero-text{
-  max-width:760px;
-  margin-top:17px;
+  max-width:720px;
+  margin-top:19px;
   color:var(--muted);
-  font-size:.85rem;
+  font-size:.84rem;
 }
 
 .hero-actions{
@@ -259,7 +265,7 @@ HERO
   justify-content:center;
   border-radius:9px;
   border:1px solid var(--border);
-  font-size:.72rem;
+  font-size:.70rem;
   font-weight:850;
   transition:.2s ease;
 }
@@ -276,25 +282,16 @@ HERO
 }
 
 .btn-secondary{
-  background:rgba(15,23,42,.62);
-}
-
-.hero-card,
-.day-card,
-.info-card,
-.resource-card{
-  background:
-    linear-gradient(145deg,
-      rgba(18,28,52,.90),
-      rgba(8,14,29,.84));
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(18px);
+  background:rgba(15,23,42,.58);
 }
 
 .hero-card{
   padding:20px;
   border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(18,28,52,.9),rgba(8,14,29,.9));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
 .hero-card h3{
@@ -304,20 +301,20 @@ HERO
 .hero-card p{
   margin-top:6px;
   color:var(--muted);
-  font-size:.74rem;
+  font-size:.73rem;
 }
 
 .status{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  margin-top:11px;
+  margin-top:12px;
   padding:4px 8px;
   border-radius:999px;
   color:#86efac;
   background:rgba(34,197,94,.07);
   border:1px solid rgba(74,222,128,.17);
-  font-size:.55rem;
+  font-size:.58rem;
   font-weight:900;
 }
 
@@ -327,262 +324,344 @@ HERO
   height:6px;
   border-radius:50%;
   background:var(--green);
-  box-shadow:0 0 8px var(--green);
+  box-shadow:0 0 9px var(--green);
 }
 
 /* =========================================================
-TRIP CONTROL
+QUEST CONTROL
 ========================================================= */
 
-.control-panel{
-  margin-top:18px;
-  padding:16px;
-  border:1px solid var(--border);
-  border-radius:15px;
-  background:rgba(10,16,32,.72);
+.quest-panel{
+  margin-top:20px;
+  padding:18px;
+  border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(12,23,42,.96),rgba(8,13,27,.94));
+  border:1px solid rgba(139,92,246,.22);
+  box-shadow:var(--shadow);
 }
 
-.control-head{
+.quest-top{
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-between;
-  gap:15px;
+  gap:20px;
 }
 
-.control-title{
-  font-size:.75rem;
+.quest-kicker{
+  color:#c4b5fd;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.quest-title{
+  margin-top:3px;
+  font-size:1.05rem;
   font-weight:900;
 }
 
-.control-percent{
+.quest-count{
+  text-align:right;
+  color:var(--muted);
+  font-size:.65rem;
+}
+
+.quest-count strong{
+  display:block;
   color:var(--cyan);
-  font-size:1rem;
-  font-weight:950;
+  font-size:1.3rem;
+  line-height:1;
 }
 
 .progress-track{
+  position:relative;
+  width:100%;
   height:10px;
-  margin-top:10px;
+  margin-top:13px;
   overflow:hidden;
   border-radius:999px;
   background:#111827;
-  border:1px solid rgba(255,255,255,.07);
+  border:1px solid rgba(148,163,184,.13);
 }
 
 .progress-fill{
   width:0%;
   height:100%;
-  border-radius:999px;
+  border-radius:inherit;
   background:
-    linear-gradient(90deg,
-      var(--cyan),
-      var(--blue),
-      var(--violet),
-      var(--pink));
-  box-shadow:0 0 16px rgba(34,211,238,.35);
+    linear-gradient(90deg,var(--cyan),var(--blue),var(--violet),var(--pink));
+  box-shadow:0 0 15px rgba(56,189,248,.35);
   transition:width .45s ease;
 }
 
-.progress-caption{
-  display:flex;
-  justify-content:space-between;
-  margin-top:6px;
-  color:var(--dim);
-  font-size:.58rem;
-}
-
-.godzilla-box{
+.boss-area{
+  margin-top:15px;
   display:flex;
   align-items:center;
-  gap:12px;
-  margin-top:12px;
-  padding:9px 11px;
-  border-radius:11px;
-  background:rgba(236,72,153,.045);
-  border:1px solid rgba(236,72,153,.12);
+  gap:14px;
 }
 
 .godzilla{
-  width:48px;
-  height:48px;
-  flex:0 0 48px;
+  width:68px;
+  height:68px;
+  flex:0 0 68px;
   display:grid;
   place-items:center;
   border-radius:50%;
-  font-size:1.65rem;
+  font-size:2.5rem;
   background:
-    radial-gradient(circle at 35% 30%,#6ee7b7,#14532d 45%,#020617 72%);
-  border:2px solid rgba(52,211,153,.35);
-  box-shadow:0 0 18px rgba(52,211,153,.15);
+    radial-gradient(circle at 35% 30%,rgba(52,211,153,.25),transparent 40%),
+    rgba(16,24,39,.9);
+  border:1px solid rgba(52,211,153,.18);
+  filter:drop-shadow(0 0 10px rgba(52,211,153,.12));
   transition:.6s ease;
 }
 
-.godzilla-text strong{
-  display:block;
-  font-size:.7rem;
-}
-
-.godzilla-text span{
-  display:block;
-  margin-top:2px;
-  color:var(--muted);
-  font-size:.59rem;
-}
-
 .godzilla.defeated{
-  transform:rotate(90deg) translateY(5px);
-  filter:grayscale(.6);
-  opacity:.65;
+  transform:rotate(90deg) translateY(7px) scale(.86);
+  opacity:.58;
+  filter:grayscale(.7);
+}
+
+.boss-text{
+  min-width:0;
+}
+
+.boss-text strong{
+  display:block;
+  font-size:.77rem;
+}
+
+.boss-text span{
+  color:var(--muted);
+  font-size:.65rem;
 }
 
 /* =========================================================
 BASIC INFO
 ========================================================= */
 
+.info-section{
+  padding-top:35px;
+}
+
 .info-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-  margin-top:20px;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
 }
 
 .info-card{
-  padding:13px;
-  border-radius:13px;
+  padding:17px;
+  border-radius:15px;
+  background:linear-gradient(145deg,rgba(15,23,42,.94),rgba(8,14,29,.90));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
-.info-icon{
-  font-size:1rem;
+.info-card h3{
+  font-size:.88rem;
 }
 
-.info-card strong{
-  display:block;
-  margin-top:5px;
-  font-size:.72rem;
-}
-
-.info-card span{
-  display:block;
-  margin-top:3px;
+.info-card p{
   color:var(--muted);
-  font-size:.59rem;
-  line-height:1.55;
+  font-size:.70rem;
+  margin-top:5px;
 }
 
-.info-card .mini-link{
-  display:inline-flex;
+.flight-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:12px;
+}
+
+.flight{
+  padding:13px;
+  border-radius:11px;
+  background:rgba(15,23,42,.55);
+  border:1px solid var(--border);
+}
+
+.flight-code{
+  color:var(--cyan);
+  font-size:1.05rem;
+  font-weight:950;
+}
+
+.flight-date{
+  margin-top:2px;
+  color:#c4b5fd;
+  font-size:.61rem;
+  font-weight:900;
+}
+
+.flight-route{
   margin-top:6px;
-  color:#a5f3fc;
-  font-size:.58rem;
+  font-size:.73rem;
   font-weight:800;
 }
 
+.flight-time{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:.68rem;
+}
+
+.flight-meta{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:.61rem;
+  line-height:1.55;
+}
+
+.hotel-box{
+  margin-top:12px;
+  padding:13px;
+  border-radius:11px;
+  background:rgba(15,23,42,.55);
+  border:1px solid var(--border);
+}
+
+.hotel-name{
+  color:#f8fafc;
+  font-size:.82rem;
+  font-weight:900;
+}
+
+.hotel-address{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:.65rem;
+}
+
+.hotel-meta{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.hotel-meta div{
+  padding:8px;
+  border-radius:8px;
+  background:rgba(255,255,255,.025);
+}
+
+.hotel-meta strong{
+  display:block;
+  color:var(--cyan);
+  font-size:.62rem;
+}
+
+.hotel-meta span{
+  color:var(--muted);
+  font-size:.60rem;
+}
+
 /* =========================================================
-DAY
+DAY CARDS
 ========================================================= */
 
 .day-card{
-  margin-top:21px;
+  margin-top:22px;
   overflow:hidden;
-  border-radius:17px;
-  transition:.45s ease;
+  border-radius:18px;
+  background:
+    linear-gradient(145deg,rgba(17,27,48,.96),rgba(7,13,27,.94));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:.4s ease;
 }
 
 .day-card.day-complete{
   border-color:rgba(52,211,153,.42);
   box-shadow:
-    0 0 0 1px rgba(52,211,153,.07),
-    0 18px 60px rgba(16,185,129,.13);
+    0 0 0 1px rgba(52,211,153,.08),
+    0 20px 65px rgba(52,211,153,.10);
 }
 
 .day-header{
-  padding:17px;
+  padding:18px 19px;
   display:flex;
   align-items:flex-start;
   justify-content:space-between;
   gap:15px;
   border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.017);
+  background:rgba(255,255,255,.018);
 }
 
 .day-number{
   color:var(--cyan);
-  font-size:.58rem;
-  font-weight:900;
-  letter-spacing:.13em;
+  font-size:.60rem;
+  font-weight:950;
+  letter-spacing:.14em;
 }
 
 .day-title{
   margin-top:4px;
-  font-size:1.05rem;
+  font-size:1.15rem;
   line-height:1.25;
 }
 
 .day-route{
   margin-top:5px;
   color:var(--muted);
-  font-size:.62rem;
+  font-size:.67rem;
 }
 
 .day-badge{
-  flex-shrink:0;
-  padding:5px 8px;
+  flex:0 0 auto;
+  padding:6px 8px;
   border-radius:7px;
   color:#a5f3fc;
   background:rgba(34,211,238,.055);
   border:1px solid rgba(34,211,238,.14);
-  font-size:.53rem;
+  font-size:.57rem;
   font-weight:850;
 }
 
 .day-progress{
-  padding:10px 17px;
-  border-bottom:1px solid rgba(148,163,184,.07);
-  background:rgba(0,0,0,.10);
+  padding:10px 19px;
+  border-bottom:1px solid var(--border);
+  background:rgba(4,8,20,.28);
 }
 
-.day-progress-top{
+.day-progress-row{
   display:flex;
+  align-items:center;
   justify-content:space-between;
+  gap:10px;
   color:var(--muted);
-  font-size:.56rem;
+  font-size:.59rem;
+  font-weight:850;
 }
 
-.day-progress-top strong{
-  color:var(--green);
+.day-progress-row strong{
+  color:var(--cyan);
 }
 
-.day-progress-track{
-  height:6px;
-  margin-top:6px;
-  overflow:hidden;
-  border-radius:999px;
-  background:#111827;
-}
-
-.day-progress-fill{
-  width:0%;
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--cyan),var(--green));
-  transition:width .35s ease;
+.day-progress .progress-track{
+  height:7px;
+  margin-top:7px;
 }
 
 .timeline{
-  padding:3px 17px 18px;
+  padding:2px 19px 18px;
 }
 
 /* =========================================================
-ITEM
+QUEST ITEM
 ========================================================= */
 
 .item{
-  position:relative;
   display:grid;
-  grid-template-columns:105px 1fr;
+  grid-template-columns:106px 1fr;
   gap:17px;
   padding:15px 0;
-  border-bottom:1px solid rgba(148,163,184,.075);
+  border-bottom:1px solid rgba(148,163,184,.08);
   transition:.35s ease;
 }
 
@@ -591,37 +670,38 @@ ITEM
 }
 
 .item.done{
-  opacity:.68;
+  padding-left:9px;
+  padding-right:9px;
+  margin-left:-9px;
+  margin-right:-9px;
+  border-radius:10px;
   background:
-    linear-gradient(
-      90deg,
-      rgba(52,211,153,.10),
-      rgba(52,211,153,.025),
-      transparent);
+    linear-gradient(90deg,
+      rgba(52,211,153,.11),
+      rgba(52,211,153,.025));
+  border-color:rgba(52,211,153,.10);
 }
 
 .item.done .content h3{
   color:#86efac;
-  text-decoration:line-through;
-  text-decoration-thickness:1px;
 }
 
 .time{
   color:var(--cyan);
-  font-size:.61rem;
-  font-weight:900;
-  line-height:1.5;
+  font-size:.64rem;
+  font-weight:950;
+  line-height:1.45;
 }
 
 .content h3{
-  font-size:.78rem;
-  line-height:1.4;
+  font-size:.88rem;
+  line-height:1.35;
 }
 
 .content p{
   margin-top:5px;
   color:var(--muted);
-  font-size:.66rem;
+  font-size:.69rem;
   line-height:1.68;
 }
 
@@ -633,440 +713,317 @@ ITEM
   color:#7dd3fc!important;
 }
 
-.task-row{
+.task-line{
   display:flex;
   align-items:flex-start;
-  gap:8px;
+  gap:9px;
 }
 
 .task-check{
-  appearance:none;
-  width:18px;
-  height:18px;
-  flex:0 0 18px;
-  margin-top:1px;
-  border-radius:5px;
-  border:1px solid rgba(148,163,184,.35);
-  background:#0b1224;
   position:relative;
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  margin-top:1px;
+  appearance:none;
+  -webkit-appearance:none;
+  border-radius:6px;
+  border:1px solid rgba(56,189,248,.38);
+  background:#08101e;
+  cursor:pointer;
 }
 
-.task-check:checked{
-  background:var(--green);
-  border-color:var(--green);
-}
-
-.task-check:checked::after{
+.task-check::after{
   content:"✓";
   position:absolute;
   inset:0;
   display:grid;
   place-items:center;
-  color:#03140c;
+  color:#031018;
   font-size:.72rem;
   font-weight:950;
+  transform:scale(0);
+  transition:.15s ease;
 }
 
-.item.done::before{
-  content:"COMPLETED";
-  position:absolute;
-  right:0;
-  top:13px;
-  color:#6ee7b7;
-  font-size:.45rem;
-  font-weight:950;
-  letter-spacing:.1em;
+.task-check:checked{
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  border-color:transparent;
 }
 
-/* =========================================================
-DETAILS
-========================================================= */
+.task-check:checked::after{
+  transform:scale(1);
+}
 
-.details{
+.task-name{
+  min-width:0;
+}
+
+.details-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
   margin-top:8px;
-}
-
-.details summary{
-  width:max-content;
-  max-width:100%;
-  padding:5px 8px;
+  padding:4px 7px;
+  border:1px solid rgba(148,163,184,.12);
   border-radius:6px;
   color:#a5f3fc;
-  background:rgba(34,211,238,.045);
-  border:1px solid rgba(34,211,238,.12);
-  cursor:pointer;
-  list-style:none;
-  font-size:.58rem;
+  background:rgba(34,211,238,.035);
+  font-size:.59rem;
   font-weight:850;
 }
 
-.details summary::-webkit-details-marker{
+.details-toggle:hover{
+  border-color:rgba(34,211,238,.3);
+}
+
+.details{
   display:none;
+  margin-top:9px;
+  padding:11px;
+  border-radius:10px;
+  background:rgba(2,8,23,.46);
+  border:1px solid rgba(148,163,184,.09);
 }
 
-.details summary::before{
-  content:"＋ ";
+.details.open{
+  display:block;
 }
 
-.details[open] summary::before{
-  content:"− ";
+.detail-row{
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:7px;
+  padding:4px 0;
+  font-size:.64rem;
 }
 
-.detail-box{
-  margin-top:7px;
-  padding:9px;
-  border-radius:8px;
-  background:rgba(15,23,42,.48);
-  border:1px solid rgba(148,163,184,.10);
-}
-
-.detail-box p{
-  margin-top:0;
-}
-
-.route-box{
-  margin-top:7px;
-  padding:9px;
-  border-left:3px solid var(--blue);
-  border-radius:7px;
-  background:rgba(56,189,248,.045);
-}
-
-.route-title{
-  color:#7dd3fc;
-  font-size:.58rem;
+.detail-label{
+  color:#67e8f9;
   font-weight:900;
 }
 
-.route-box p{
-  margin-top:3px;
+.detail-value{
+  color:var(--muted);
+}
+
+.warning,
+.rest,
+.cost{
+  display:block;
+  margin-top:8px;
+  padding:8px 9px;
+  border-radius:7px;
+  font-size:.63rem!important;
 }
 
 .warning{
-  margin-top:8px;
-  padding:8px 10px;
   border-left:3px solid var(--orange);
-  border-radius:6px;
   background:rgba(245,158,11,.055);
   color:#fde68a!important;
-  font-size:.62rem!important;
 }
 
 .rest{
-  display:inline-flex;
-  margin-top:7px;
-  padding:4px 7px;
-  border-radius:5px;
-  color:#c4b5fd;
-  background:rgba(139,92,246,.07);
-  border:1px solid rgba(139,92,246,.13);
-  font-size:.56rem;
-  font-weight:800;
-}
-
-.cost{
-  display:inline-flex;
-  margin-top:7px;
-  padding:4px 7px;
-  border-radius:5px;
-  color:#86efac;
-  background:rgba(52,211,153,.055);
-  border:1px solid rgba(52,211,153,.13);
-  font-size:.56rem;
-  font-weight:850;
-}
-
-.photo{
-  margin-top:8px;
-  padding:8px;
-  border-radius:9px;
-  background:rgba(139,92,246,.045);
+  color:#c4b5fd!important;
+  background:rgba(139,92,246,.055);
   border:1px solid rgba(139,92,246,.12);
 }
 
+.cost{
+  color:#86efac!important;
+  background:rgba(52,211,153,.05);
+  border:1px solid rgba(52,211,153,.12);
+}
+
+.link-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+.link{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 8px;
+  border-radius:6px;
+  color:#a5f3fc;
+  background:rgba(34,211,238,.045);
+  border:1px solid rgba(34,211,238,.13);
+  font-size:.59rem;
+  font-weight:850;
+}
+
+.link:hover{
+  color:#fff;
+  border-color:var(--cyan);
+}
+
+.map{
+  color:#ddd6fe;
+  background:rgba(139,92,246,.06);
+  border-color:rgba(139,92,246,.15);
+}
+
+.photo-box{
+  margin-top:10px;
+}
+
 .photo-title{
+  margin-bottom:6px;
   color:#c4b5fd;
-  font-size:.58rem;
+  font-size:.61rem;
   font-weight:900;
-  letter-spacing:.04em;
+  letter-spacing:.06em;
 }
 
 .photo-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
-  margin-top:7px;
 }
 
-.photo-card{
-  overflow:hidden;
-  border-radius:7px;
-  border:1px solid rgba(255,255,255,.08);
-  background:#0b1020;
-}
-
-.photo-card img{
+.photo-grid img{
   width:100%;
-  height:82px;
-  display:block;
+  height:90px;
   object-fit:cover;
-  opacity:.9;
-}
-
-.photo-card span{
   display:block;
-  padding:4px 5px;
-  color:#cbd5e1;
-  font-size:.48rem;
-  line-height:1.4;
+  border-radius:7px;
+  border:1px solid rgba(148,163,184,.10);
+  opacity:.86;
+  transition:.2s ease;
 }
 
-.map,
-.link{
-  display:inline-flex;
-  align-items:center;
-  min-height:28px;
-  margin-top:7px;
-  margin-right:4px;
-  padding:0 8px;
-  border-radius:6px;
-  color:#a5f3fc;
-  background:rgba(34,211,238,.045);
-  border:1px solid rgba(34,211,238,.13);
-  font-size:.55rem;
-  font-weight:850;
-}
-
-.map:hover,
-.link:hover{
-  color:#fff;
-  border-color:var(--cyan);
+.photo-grid img:hover{
+  opacity:1;
+  transform:scale(1.015);
 }
 
 /* =========================================================
-CHECKLISTS
+FINAL MISSION
+========================================================= */
+
+.final-mission{
+  margin:18px 19px 0;
+  padding:14px;
+  border-radius:13px;
+  background:
+    linear-gradient(135deg,
+      rgba(251,113,133,.10),
+      rgba(245,158,11,.045));
+  border:1px solid rgba(251,113,133,.22);
+}
+
+.final-mission-kicker{
+  color:#fb7185;
+  font-size:.59rem;
+  font-weight:950;
+  letter-spacing:.15em;
+}
+
+.final-mission h3{
+  margin-top:3px;
+  font-size:1rem;
+}
+
+.flight-danger{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  margin-top:10px;
+}
+
+.flight-danger div{
+  padding:8px;
+  border-radius:7px;
+  background:rgba(2,8,23,.45);
+}
+
+.flight-danger strong{
+  display:block;
+  color:#fda4af;
+  font-size:.68rem;
+}
+
+.flight-danger span{
+  color:var(--muted);
+  font-size:.56rem;
+}
+
+/* =========================================================
+BOOKING / PACKING
 ========================================================= */
 
 .resources{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:10px;
+  gap:12px;
   margin-top:20px;
 }
 
 .resource-card{
-  padding:15px;
-  border-radius:13px;
+  padding:16px;
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(15,23,42,.94),rgba(8,14,29,.90));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
 .resource-card h3{
-  font-size:.76rem;
+  font-size:.82rem;
 }
 
 .resource-card p{
   margin-top:5px;
   color:var(--muted);
-  font-size:.63rem;
+  font-size:.66rem;
 }
 
 .checklist{
   display:grid;
   gap:7px;
-  margin-top:10px;
+  margin-top:11px;
 }
 
-.check{
+.check-row{
+  padding:8px;
+  border-radius:8px;
+  background:rgba(255,255,255,.018);
+  border:1px solid rgba(148,163,184,.08);
+}
+
+.check-main{
   display:flex;
   align-items:flex-start;
-  gap:7px;
+  gap:8px;
+}
+
+.check-label{
   color:var(--soft);
-  font-size:.62rem;
+  font-size:.67rem;
+  line-height:1.45;
 }
 
-.check input{
-  appearance:none;
-  width:17px;
-  height:17px;
-  flex:0 0 17px;
-  border-radius:5px;
-  border:1px solid rgba(148,163,184,.35);
-  background:#0b1224;
-  position:relative;
-}
-
-.check input:checked{
-  background:var(--green);
-  border-color:var(--green);
-}
-
-.check input:checked::after{
-  content:"✓";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#03140c;
-  font-size:.7rem;
-  font-weight:950;
-}
-
-.check label{
-  cursor:pointer;
-  line-height:1.5;
-}
-
-.check.done label{
-  color:#6ee7b7;
-  text-decoration:line-through;
-}
-
-/* =========================================================
-FLIGHT / HOTEL
-========================================================= */
-
-.flight-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:18px;
-}
-
-.flight{
-  padding:15px;
-  border-radius:13px;
-  background:rgba(15,23,42,.55);
-  border:1px solid var(--border);
-}
-
-.flight-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.flight-code{
-  color:var(--cyan);
-  font-size:1.05rem;
-  font-weight:950;
-}
-
-.flight-date{
-  color:var(--muted);
-  font-size:.57rem;
-}
-
-.flight-route{
-  margin-top:8px;
-  font-size:.72rem;
+.booking-link{
+  display:inline-flex;
+  margin-top:6px;
+  margin-left:27px;
+  color:#a5f3fc;
+  font-size:.58rem;
   font-weight:850;
+  text-decoration:underline;
+  text-underline-offset:3px;
 }
 
-.flight-time{
-  margin-top:3px;
-  color:#7dd3fc;
-  font-size:.62rem;
+.check-row.done{
+  background:rgba(52,211,153,.055);
+  border-color:rgba(52,211,153,.16);
 }
 
-.flight-meta{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-  margin-top:9px;
-}
-
-.flight-meta div{
-  padding:7px;
-  border-radius:7px;
-  background:rgba(255,255,255,.025);
-}
-
-.flight-meta strong{
-  display:block;
-  color:var(--soft);
-  font-size:.52rem;
-}
-
-.flight-meta span{
-  display:block;
-  margin-top:2px;
-  color:var(--muted);
-  font-size:.55rem;
-}
-
-.hotel-box{
-  margin-top:10px;
-  padding:15px;
-  border-radius:13px;
-  background:
-    linear-gradient(135deg,
-      rgba(139,92,246,.08),
-      rgba(15,23,42,.55));
-  border:1px solid rgba(139,92,246,.15);
-}
-
-.hotel-box h3{
-  font-size:.82rem;
-}
-
-.hotel-address{
-  margin-top:5px;
-  color:#c4b5fd;
-  font-size:.61rem;
-}
-
-.hotel-meta{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin-top:9px;
-}
-
-.hotel-meta div{
-  padding:7px;
-  border-radius:7px;
-  background:rgba(255,255,255,.025);
-}
-
-.hotel-meta strong{
-  display:block;
-  color:var(--soft);
-  font-size:.5rem;
-}
-
-.hotel-meta span{
-  display:block;
-  color:var(--muted);
-  font-size:.54rem;
-}
-
-/* =========================================================
-JAPAN NOTES
-========================================================= */
-
-.notes-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:18px;
-}
-
-.note{
-  padding:12px;
-  border-radius:11px;
-  background:rgba(15,23,42,.50);
-  border:1px solid var(--border);
-}
-
-.note h3{
-  font-size:.68rem;
-}
-
-.note p{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:.59rem;
-  line-height:1.65;
+.check-row.done .check-label{
+  color:#86efac;
+  text-decoration:line-through;
 }
 
 /* =========================================================
@@ -1076,26 +1033,56 @@ COST
 .cost-box{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:8px;
+  gap:9px;
   margin-top:18px;
 }
 
 .cost-item{
-  padding:11px;
+  padding:12px;
   border-radius:10px;
-  background:rgba(15,23,42,.50);
+  background:rgba(15,23,42,.56);
   border:1px solid var(--border);
 }
 
 .cost-item strong{
   display:block;
   color:var(--cyan);
-  font-size:.78rem;
+  font-size:.82rem;
 }
 
 .cost-item span{
   color:var(--muted);
-  font-size:.54rem;
+  font-size:.58rem;
+}
+
+/* =========================================================
+SURVIVAL GUIDE
+========================================================= */
+
+.guide-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:18px;
+}
+
+.guide-card{
+  padding:12px;
+  border-radius:10px;
+  background:rgba(15,23,42,.56);
+  border:1px solid var(--border);
+}
+
+.guide-card strong{
+  display:block;
+  font-size:.68rem;
+}
+
+.guide-card p{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.60rem;
+  line-height:1.6;
 }
 
 /* =========================================================
@@ -1103,10 +1090,10 @@ FOOTER
 ========================================================= */
 
 .footer{
-  padding:28px 0 38px;
+  padding:30px 0;
   border-top:1px solid var(--border);
   color:var(--muted);
-  font-size:.62rem;
+  font-size:.63rem;
 }
 
 .small{
@@ -1115,7 +1102,7 @@ FOOTER
 }
 
 /* =========================================================
-MOBILE
+RESPONSIVE
 ========================================================= */
 
 @media(max-width:900px){
@@ -1125,68 +1112,66 @@ MOBILE
   }
 
   .info-grid{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr;
   }
 
   .resources{
     grid-template-columns:1fr;
   }
 
-  .notes-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .cost-box{
-    grid-template-columns:1fr 1fr;
+  .guide-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:650px){
 
   .container{
-    width:min(calc(100% - 22px),var(--max));
+    width:min(calc(100% - 24px),var(--max));
+  }
+
+  .site-header{
+    position:sticky;
   }
 
   .nav{
-    min-height:62px;
+    min-height:58px;
+    gap:8px;
   }
 
   .brand{
-    font-size:.82rem;
+    font-size:.78rem;
+  }
+
+  .brand-mark{
+    width:28px;
+    height:28px;
   }
 
   .nav-links{
-    gap:14px;
-    width:100%;
-    overflow-x:auto;
-    padding-bottom:2px;
-    order:3;
+    max-width:62%;
+    gap:3px;
   }
 
   .nav-links a{
-    flex:0 0 auto;
-    white-space:nowrap;
+    padding:6px 7px;
     font-size:.58rem;
   }
 
-  .section{
-    padding:35px 0;
-  }
-
   .hero{
-    padding:34px 0 25px;
+    padding:36px 0 25px;
   }
 
   .hero h1{
-    font-size:clamp(2.2rem,12vw,3.3rem);
+    font-size:clamp(2.5rem,13vw,3.7rem);
   }
 
   .hero-text{
-    font-size:.75rem;
+    font-size:.72rem;
   }
 
-  .hero-card{
-    padding:14px;
+  .section{
+    padding:38px 0;
   }
 
   .section-title{
@@ -1194,24 +1179,38 @@ MOBILE
   }
 
   .section-desc{
-    font-size:.68rem;
+    font-size:.70rem;
   }
 
-  .info-grid{
-    grid-template-columns:1fr 1fr;
-    gap:6px;
+  .quest-panel{
+    padding:13px;
   }
 
-  .info-card{
-    padding:10px;
+  .quest-top{
+    gap:10px;
   }
 
-  .info-card strong{
-    font-size:.62rem;
+  .quest-title{
+    font-size:.88rem;
   }
 
-  .info-card span{
-    font-size:.51rem;
+  .quest-count strong{
+    font-size:1.05rem;
+  }
+
+  .progress-track{
+    height:13px;
+  }
+
+  .boss-area{
+    margin-top:11px;
+  }
+
+  .godzilla{
+    width:58px;
+    height:58px;
+    flex-basis:58px;
+    font-size:2.1rem;
   }
 
   .flight-grid{
@@ -1223,16 +1222,16 @@ MOBILE
   }
 
   .day-header{
-    padding:13px;
+    padding:14px;
     flex-direction:column;
   }
 
   .day-title{
-    font-size:.92rem;
+    font-size:1rem;
   }
 
   .day-route{
-    font-size:.55rem;
+    font-size:.60rem;
   }
 
   .day-badge{
@@ -1240,85 +1239,91 @@ MOBILE
   }
 
   .day-progress{
-    padding:9px 13px;
+    padding:9px 14px;
   }
 
   .timeline{
-    padding:2px 12px 13px;
+    padding-left:14px;
+    padding-right:14px;
   }
 
   .item{
-    grid-template-columns:74px 1fr;
-    gap:9px;
+    grid-template-columns:1fr;
+    gap:4px;
     padding:13px 0;
   }
 
+  .item.done{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
   .time{
-    font-size:.54rem;
-  }
-
-  .content h3{
-    font-size:.70rem;
-  }
-
-  .content p{
     font-size:.60rem;
   }
 
-  .item.done::before{
-    display:none;
+  .content h3{
+    font-size:.82rem;
   }
 
-  .task-check{
-    width:17px;
-    height:17px;
-    flex-basis:17px;
+  .content p{
+    font-size:.65rem;
+  }
+
+  .detail-row{
+    grid-template-columns:58px 1fr;
+    font-size:.59rem;
   }
 
   .photo-grid{
     grid-template-columns:repeat(3,1fr);
-    gap:4px;
   }
 
-  .photo-card img{
-    height:65px;
+  .photo-grid img{
+    height:68px;
   }
 
-  .photo-card span{
-    font-size:.42rem;
+  .flight-danger{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .map,
-  .link{
-    min-height:27px;
-    font-size:.51rem;
+  .final-mission{
+    margin:13px 14px 0;
   }
 
-  .notes-grid{
-    grid-template-columns:1fr;
+  .resources{
+    gap:9px;
+  }
+
+  .resource-card{
+    padding:13px;
   }
 
   .cost-box{
     grid-template-columns:1fr 1fr;
   }
 
-  .godzilla-box{
-    padding:8px;
+  .guide-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:390px){
+
+  .nav-links{
+    max-width:58%;
   }
 
-  .godzilla{
-    width:43px;
-    height:43px;
-    flex-basis:43px;
-    font-size:1.45rem;
+  .summary-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .progress-track{
-    height:12px;
+  .cost-box{
+    grid-template-columns:1fr;
   }
 
-  .control-percent{
-    font-size:1.05rem;
+  .guide-grid{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -1335,14 +1340,14 @@ MOBILE
     </a>
 
     <nav class="nav-links">
-      <a href="#basic">基本資料</a>
+      <a href="#basics">基本資料</a>
       <a href="#day1">DAY 1</a>
       <a href="#day2">DAY 2</a>
       <a href="#day3">DAY 3</a>
       <a href="#day4">DAY 4</a>
       <a href="#booking">預約</a>
       <a href="#packing">行李</a>
-      <a href="#notes">注意事項</a>
+      <a href="#guide">注意事項</a>
     </nav>
 
   </div>
@@ -1357,80 +1362,85 @@ HERO
 <section class="hero">
 <div class="container">
 
-<div class="hero-grid">
+  <div class="hero-grid">
 
-<div>
+    <div>
 
-<div class="eyebrow">
-TOKYO TRIP · 2026/09/25 — 09/28
-</div>
+      <div class="eyebrow">
+        TOKYO TRIP · 2026/09/25 — 09/28
+      </div>
 
-<h1>
-東京四日<br>
-<span>實戰行程表。</span>
-</h1>
+      <h1>
+        東京四日<br>
+        <span>實戰行程表。</span>
+      </h1>
 
-<p class="hero-text">
-不是只列景點，而是把早餐、步行、等車、轉乘、出口、
-入口、排隊、入場、拍照位置、購物區、休息、
-餐廳預約與機場緩衝全部放進同一份行程。
-</p>
+      <p class="hero-text">
+        不是只列景點，而是把早餐、步行、等車、轉乘、出口、
+        入口、排隊、入場、拍照位置、購物區、休息、
+        餐廳預約與機場緩衝全部放進同一份行程。
+      </p>
 
-<div class="hero-actions">
-<a href="#day1" class="btn btn-primary">開始 DAY 1</a>
-<a href="#basic" class="btn btn-secondary">先看基本資料</a>
-</div>
+      <div class="hero-actions">
+        <a href="#day1" class="btn btn-primary">開始 DAY 1</a>
+        <a href="#basics" class="btn btn-secondary">先看基本資料</a>
+      </div>
 
-</div>
+    </div>
 
-<aside class="hero-card">
+    <aside class="hero-card">
 
-<h3>🎮 TOKYO QUEST CONTROL</h3>
+      <h3>🎮 TOKYO QUEST CONTROL</h3>
 
-<p>
-每完成一個行程就打勾。
-完成整天後，整張 DAY 卡會亮起。
-全部完成後，哥吉拉倒下。
-</p>
+      <p>
+        每完成一個行程就打勾。
+        完成整天後，整張 DAY 卡會亮起。
+        全部完成後，哥吉拉倒下。
+      </p>
 
-<div class="status">
-BUFFER INCLUDED
-</div>
+      <div class="status">
+        BUFFER INCLUDED
+      </div>
 
-<div class="control-panel">
+      <div class="quest-panel">
 
-<div class="control-head">
-<div class="control-title">總旅程完成度</div>
-<div class="control-percent" id="overallPercent">0%</div>
-</div>
+        <div class="quest-top">
+          <div>
+            <div class="quest-kicker">TOTAL JOURNEY</div>
+            <div class="quest-title">總旅程完成度</div>
+          </div>
 
-<div class="progress-track">
-<div class="progress-fill" id="overallFill"></div>
-</div>
+          <div class="quest-count">
+            <strong id="totalPercent">0%</strong>
+            <span id="totalCount">0 / 0 任務</span>
+          </div>
+        </div>
 
-<div class="progress-caption">
-<span id="overallCount">0 / 0 任務</span>
-<span>FINAL BOSS：GODZILLA</span>
-</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="totalProgress"></div>
+        </div>
 
-<div class="godzilla-box">
+        <div class="boss-area">
 
-<div class="godzilla" id="godzilla">
-🦖
-</div>
+          <div class="godzilla" id="godzilla">
+            🦖
+          </div>
 
-<div class="godzilla-text">
-<strong id="godzillaTitle">東京冒險開始！</strong>
-<span id="godzillaText">把每個行程完成，逐步清空任務。</span>
-</div>
+          <div class="boss-text">
+            <strong>FINAL BOSS：GODZILLA</strong>
+            <span id="bossMessage">
+              東京冒險開始！把每個行程完成，逐步清空任務。
+            </span>
+          </div>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-</aside>
+    </aside>
 
-</div>
+  </div>
+
 </div>
 </section>
 
@@ -1439,7 +1449,7 @@ BUFFER INCLUDED
 BASIC INFORMATION
 ========================================================= -->
 
-<section id="basic" class="section">
+<section id="basics" class="section info-section">
 <div class="container">
 
 <div class="section-label">TRIP BASICS</div>
@@ -1449,19 +1459,29 @@ BASIC INFORMATION
 </h2>
 
 <p class="section-desc">
-這區就是旅行前最重要的「一眼確認」。出門前只要打開這裡，
-不用重新翻整份行程找航班與飯店資料。
+這區就是旅行前最重要的「一眼確認」。
+出門前只要打開這裡，不用重新翻整份行程找航班與飯店資料。
 </p>
 
+<div class="info-grid">
+
+<!-- FLIGHT -->
+
+<div class="info-card">
+
+<h3>✈️ 航班資訊</h3>
+
+<p>
+以下按照目前旅程資料整理。
+出發前 24 小時再次確認航班狀態、登機門與航廈。
+</p>
 
 <div class="flight-grid">
 
 <div class="flight">
 
-<div class="flight-top">
 <div class="flight-code">TR866</div>
 <div class="flight-date">09/25 · FRI</div>
-</div>
 
 <div class="flight-route">
 桃園 TPE → 東京成田 NRT
@@ -1472,52 +1492,30 @@ BASIC INFORMATION
 </div>
 
 <div class="flight-meta">
-
-<div>
-<strong>出發</strong>
-<span>桃園國際機場 T1</span>
+出發：桃園國際機場 T1<br>
+抵達：成田國際機場 T1<br>
+航空：Scoot / TR
 </div>
 
-<div>
-<strong>抵達</strong>
-<span>成田國際機場 T1</span>
-</div>
-
-<div>
-<strong>航空</strong>
-<span>Scoot / TR</span>
-</div>
-
-<div>
-<strong>注意</strong>
-<span>當地時間</span>
-</div>
-
-</div>
-
-<a
-class="link"
-href="https://www.flyscoot.com/"
-target="_blank">
+<div class="link-row">
+<a class="link" href="https://www.flyscoot.com/" target="_blank">
 Scoot 官方
 </a>
 
-<a
-class="link"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=Taoyuan+International+Airport+Terminal+1"
 target="_blank">
-桃園 T1 Maps
+TPE T1 Maps
 </a>
+</div>
 
 </div>
 
 
 <div class="flight">
 
-<div class="flight-top">
 <div class="flight-code">TR875</div>
 <div class="flight-date">09/28 · MON</div>
-</div>
 
 <div class="flight-route">
 東京成田 NRT → 桃園 TPE
@@ -1528,53 +1526,48 @@ target="_blank">
 </div>
 
 <div class="flight-meta">
-
-<div>
-<strong>出發</strong>
-<span>成田國際機場 T1</span>
+出發：成田國際機場 T1<br>
+抵達：桃園國際機場 T1<br>
+航空：Scoot / TR<br>
+<strong>最重要：19:00 左右抵達機場</strong>
 </div>
 
-<div>
-<strong>抵達</strong>
-<span>桃園國際機場 T1</span>
-</div>
-
-<div>
-<strong>航空</strong>
-<span>Scoot / TR</span>
-</div>
-
-<div>
-<strong>最重要</strong>
-<span>19:00 左右抵達機場</span>
-</div>
-
-</div>
-
-<a
-class="link"
-href="https://www.narita-airport.jp/en/flight/airline-search/tgw/"
+<div class="link-row">
+<a class="link"
+href="https://www.narita-airport.jp/en/flight/airline-search/tts/"
 target="_blank">
-成田 Scoot T1
+成田機場航空資訊
 </a>
 
-<a
-class="link"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=Narita+International+Airport+Terminal+1"
 target="_blank">
-成田 T1 Maps
+NRT T1 Maps
 </a>
+</div>
+
+</div>
 
 </div>
 
 </div>
 
+
+<!-- HOTEL -->
+
+<div class="info-card">
+
+<h3>🏨 Millennium Mitsui Garden Hotel Tokyo / Ginza</h3>
+
+<p>
+旅程四晚的行程核心住宿。
+</p>
 
 <div class="hotel-box">
 
-<h3>
-🏨 Millennium Mitsui Garden Hotel Tokyo / Ginza
-</h3>
+<div class="hotel-name">
+Millennium Mitsui Garden Hotel Tokyo / Ginza
+</div>
 
 <div class="hotel-address">
 〒104-0061 東京都中央区銀座5-11-1
@@ -1583,12 +1576,12 @@ target="_blank">
 <div class="hotel-meta">
 
 <div>
-<strong>Check-in</strong>
+<strong>CHECK-IN</strong>
 <span>15:00</span>
 </div>
 
 <div>
-<strong>Check-out</strong>
+<strong>CHECK-OUT</strong>
 <span>12:00</span>
 </div>
 
@@ -1598,7 +1591,7 @@ target="_blank">
 </div>
 
 <div>
-<strong>早餐最後入場</strong>
+<strong>最後入場</strong>
 <span>10:00</span>
 </div>
 
@@ -1614,20 +1607,20 @@ target="_blank">
 
 </div>
 
-<p style="margin-top:8px;color:#94a3b8;font-size:.61rem;">
-飯店官方資料：東銀座站東京 Metro 日比谷線／都營淺草線 A1 出口約 1 分鐘；
-銀座站 A5 出口約 2 分鐘。
+<p style="margin-top:10px;">
+飯店官方資料：東銀座站東京 Metro 日比谷線／都營淺草線
+A1 出口約 1 分鐘；銀座站 A5 出口約 2 分鐘。
 </p>
 
-<a
-class="link"
-href="https://www.gardenhotels.co.jp/millennium-tokyo/eng/"
+<div class="link-row">
+
+<a class="link"
+href="https://www.gardenhotels.co.jp/ginza/"
 target="_blank">
 飯店官方
 </a>
 
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=Millennium+Mitsui+Garden+Hotel+Tokyo+Ginza"
 target="_blank">
 Google Maps
@@ -1635,31 +1628,32 @@ Google Maps
 
 </div>
 
-
-<div class="info-grid">
-
-<div class="info-card">
-<div class="info-icon">🍳</div>
-<strong>早餐</strong>
-<span>飯店 ZEN HOUSE<br>06:30–10:30<br>最後入場 10:00</span>
 </div>
 
-<div class="info-card">
-<div class="info-icon">🚇</div>
-<strong>飯店最近站</strong>
-<span>東銀座<br>A1 出口<br>步行約 1 分鐘</span>
+<div class="hotel-meta">
+
+<div>
+<strong>🍳 早餐</strong>
+<span>ZEN HOUSE<br>06:30–10:30</span>
 </div>
 
-<div class="info-card">
-<div class="info-icon">🧳</div>
-<strong>Day 1</strong>
-<span>抵達後先寄放行李<br>15:00 後正式 Check-in</span>
+<div>
+<strong>🚇 最近站</strong>
+<span>東銀座<br>A1 出口</span>
 </div>
 
-<div class="info-card">
-<div class="info-icon">✈️</div>
-<strong>Day 4</strong>
-<span>12:00 前退房<br>行李寄放飯店</span>
+<div>
+<strong>🧳 DAY 1</strong>
+<span>抵達後先寄放行李<br>15:00 後 Check-in</span>
+</div>
+
+<div>
+<strong>✈️ DAY 4</strong>
+<span>12:00 前官方退房<br>本行程主動提前退房</span>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -1669,7 +1663,7 @@ Google Maps
 
 
 <!-- =========================================================
-DAY 1
+DAY DATA
 ========================================================= -->
 
 <section id="day1" class="section">
@@ -1682,20 +1676,27 @@ DAY 1
 </h2>
 
 <p class="section-desc">
-第一天不追求一下飛機就開始跑景點。先處理入境、行李、
-Access Express、飯店，再利用星期五東京國立博物館延長開館，
+第一天不追求一下飛機就開始跑景點。
+先處理入境、行李、Access Express、飯店，
+再利用星期五東京國立博物館延長開館，
 最後以晴空塔夜景＋Sky Restaurant 634 收尾。
 </p>
 
-<div class="day-card" data-day="day1">
+<div class="day-card" id="day-card-1">
 
 <div class="day-header">
 <div>
+
 <div class="day-number">09/25 · FRIDAY</div>
-<div class="day-title">DAY 1｜東京初日</div>
+
+<div class="day-title">
+DAY 1｜東京初日
+</div>
+
 <div class="day-route">
 成田機場 → 東銀座 → 銀座 → 上野 → 淺草 → 押上
 </div>
+
 </div>
 
 <div class="day-badge">
@@ -1704,28 +1705,39 @@ Access Express、飯店，再利用星期五東京國立博物館延長開館，
 </div>
 
 <div class="day-progress">
-<div class="day-progress-top">
+
+<div class="day-progress-row">
 <span>DAY 1 QUEST</span>
-<strong class="day-percent">0%</strong>
+<strong id="day1Percent">0%</strong>
 </div>
-<div class="day-progress-track">
-<div class="day-progress-fill"></div>
+
+<div class="progress-track">
+<div class="progress-fill" id="day1Progress"></div>
 </div>
+
 </div>
 
 <div class="timeline">
 
-
 <!-- 1 -->
 
 <div class="item" data-task="d1-1">
+
 <div class="time">11:15–12:30</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>抵達成田機場＋入境＋領行李</h3>
-</div>
+<div class="task-line">
+
+<input class="task-check"
+type="checkbox"
+data-task="d1-1">
+
+<div class="task-name">
+
+<h3>
+抵達成田機場＋入境＋領行李
+</h3>
 
 <p>
 11:15 是飛機落地，不是可以直接搭車。
@@ -1733,64 +1745,114 @@ Access Express、飯店，再利用星期五東京國立博物館延長開館，
 前往鐵路月台都要算進去。
 </p>
 
-<div class="route-box">
-<div class="route-title">📍 位置／動線</div>
-<p>
-NRT Terminal 1 → International Arrivals → 入境／海關 →
-B1F Narita Airport Station（JR / Keisei）。
-</p>
+<button class="details-toggle">
+＋ 詳細資訊
+</button>
+
+<div class="details">
+
+<div class="detail-row">
+<div class="detail-label">📍 位置</div>
+<div class="detail-value">
+NRT Terminal 1 → International Arrivals →
+入境／海關 → B1F Narita Airport Station（JR / Keisei）
+</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">⏱ 緩衝</div>
+<div class="detail-value">
+正常目標抓 75 分鐘。入境慢就搭下一班，不要奔跑。
+</div>
 </div>
 
 <div class="warning">
-正常目標抓 75 分鐘。入境慢就搭下一班，不要為了趕 Access Express 奔跑。
-</div>
-
-<div class="rest">
-入境＋行李＋找車：75 分鐘
+不要把 11:15 當成火車出發時間。
 </div>
 
 </div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 
 <!-- 2 -->
 
 <div class="item" data-task="d1-2">
+
 <div class="time">12:30–13:45</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>成田 → 東銀座｜Keisei Access Express</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-2">
 
-<p class="route">
+<div class="task-name">
+
+<h3>
+成田 → 東銀座｜Keisei Access Express
+</h3>
+
+<p>
 目標：Narita Airport → Higashi-Ginza。
 實際搭哪一班以 9/25 當日時刻表為準。
 </p>
 
-<div class="route-box">
-<div class="route-title">🚇 車站資訊</div>
-<p>
-成田機場 T1 B1F → Keisei 成田機場站 →
-Access Express → 東銀座站。
-</p>
+<button class="details-toggle">
+＋ 詳細資訊
+</button>
+
+<div class="details">
+
+<div class="detail-row">
+<div class="detail-label">🚉 起點</div>
+<div class="detail-value">
+成田機場 T1 B1F → Keisei 成田機場站
+</div>
 </div>
 
-<div class="cost">
+<div class="detail-row">
+<div class="detail-label">🚉 終點</div>
+<div class="detail-value">
+東銀座站
+</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">🚇 車種</div>
+<div class="detail-value">
+Keisei Access Express
+</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">💴</div>
+<div class="detail-value">
 約 ¥1,318–1,330
+</div>
 </div>
 
 <div class="warning">
-12:30 是交通開始目標，不代表一定搭到 12:30 那班車。
+12:30 是交通開始目標，不代表一定搭到 12:30 那班。
 </div>
 
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/directions/higashiginza.php"
 target="_blank">
 Access Express 官方
 </a>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -1799,29 +1861,40 @@ Access Express 官方
 <!-- 3 -->
 
 <div class="item" data-task="d1-3">
+
 <div class="time">13:45–14:15</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>東銀座站 → 飯店</h3>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-3">
+
+<div class="task-name">
+
+<h3>
+東銀座站 → 飯店
+</h3>
+
+<p>
+從東銀座站出站後前往 Millennium Mitsui Garden Hotel。
+</p>
+
+<div class="details open">
+
+<div class="detail-row">
+<div class="detail-label">🚪 出口</div>
+<div class="detail-value">
+東銀座站 A1 出口 → 飯店約 1 分鐘。
 </div>
-
-<p>
-從東銀座站出站後前往 Millennium Mitsui Garden Hotel Tokyo / Ginza。
-</p>
-
-<div class="route-box">
-<div class="route-title">🚇 出口</div>
-<p>
-<strong>東銀座站 A1 出口</strong> →
-飯店約 1 分鐘步行。
-拖行李不要走錯出口。
-</p>
 </div>
 
 <div class="rest">
-先寄放行李，不強求提前 Check-in
+先寄放行李，不強求提前 Check-in。
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
@@ -1831,13 +1904,19 @@ Access Express 官方
 <!-- 4 -->
 
 <div class="item" data-task="d1-4">
+
 <div class="time">14:15–15:00</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>午餐｜牛庵 銀座店</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-4">
+
+<div class="task-name">
+
+<h3>
+午餐｜牛庵 銀座店
+</h3>
 
 <p>
 第一天先吃飯、坐下來、補體力。
@@ -1848,12 +1927,16 @@ Access Express 官方
 用餐＋休息：45 分鐘
 </div>
 
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=牛庵+銀座店"
 target="_blank">
 Google Maps
 </a>
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -1862,13 +1945,19 @@ Google Maps
 <!-- 5 -->
 
 <div class="item" data-task="d1-5">
+
 <div class="time">15:00–15:30</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>回飯店＋Check-in</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-5">
+
+<div class="task-name">
+
+<h3>
+回飯店＋Check-in
+</h3>
 
 <p>
 取行李、正式入住、放戰利品、上廁所、補水。
@@ -1881,29 +1970,63 @@ Google Maps
 </div>
 </div>
 
+</div>
+</div>
+
 
 <!-- 6 -->
 
 <div class="item" data-task="d1-6">
+
 <div class="time">15:30–16:05</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>東銀座 → 上野</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-6">
+
+<div class="task-name">
+
+<h3>
+東銀座 → 上野
+</h3>
 
 <p>
 搭東京 Metro 日比谷線往上野。
 15:30 是開始移動，不是列車已經在月台。
 </p>
 
-<div class="route-box">
-<div class="route-title">🚇 交通</div>
-<p>
-東銀座站 → Hibiya Line → 上野站。
-下車後往 <strong>7 / 8 號出口</strong>方向可前往上野公園／東京國立博物館。
-</p>
+<button class="details-toggle">
+＋ 詳細資訊
+</button>
+
+<div class="details">
+
+<div class="detail-row">
+<div class="detail-label">🚉 起點</div>
+<div class="detail-value">東銀座站</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">🚇 路線</div>
+<div class="detail-value">東京 Metro 日比谷線</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">🚉 終點</div>
+<div class="detail-value">上野站</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">🚪 出口</div>
+<div class="detail-value">
+往 7 / 8 號出口方向可前往上野公園／東京國立博物館。
+</div>
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
@@ -1913,13 +2036,19 @@ Google Maps
 <!-- 7 -->
 
 <div class="item" data-task="d1-7">
+
 <div class="time">16:05–17:35</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>東京國立博物館</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-7">
+
+<div class="task-name">
+
+<h3>
+東京國立博物館
+</h3>
 
 <p>
 重點看本館日本美術、東洋館，以及當日開放的特別展／平成館。
@@ -1930,57 +2059,75 @@ Google Maps
 成人常設展：約 ¥1,000
 </div>
 
-<div class="route-box">
-<div class="route-title">📍 入口</div>
-<p>
+<button class="details-toggle">
+＋ 景點細節／拍照
+</button>
+
+<div class="details">
+
+<div class="detail-row">
+<div class="detail-label">📍 入口</div>
+<div class="detail-value">
 上野公園內，從 JR 上野站公園口／東京 Metro 上野站
 往上野公園方向，再步行至博物館。
-</p>
+</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">⭐ 特色</div>
+<div class="detail-value">
+日本美術、本館建築、東洋館與歷史文化收藏。
+</div>
 </div>
 
 <div class="warning">
-大型行李不要帶進館內。行李已經放飯店，所以這個安排最安全。
+大型行李不要帶進館內。行李已經放飯店。
 </div>
 
-<div class="photo">
-<div class="photo-title">📷 拍照重點</div>
+<div class="photo-box">
+
+<div class="photo-title">
+📷 拍照任務
+</div>
 
 <div class="photo-grid">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=80">
-<span>東京城市感</span>
-</div>
+<img
+src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80"
+alt="日本東京傳統建築">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=500&q=80">
-<span>日本街景</span>
-</div>
+<img
+src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80"
+alt="日本街景">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=500&q=80">
-<span>日式建築氛圍</span>
+<img
+src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80"
+alt="日本文化建築">
+
 </div>
 
 </div>
-</div>
 
-<a
-class="link"
+<div class="link-row">
+
+<a class="link"
 href="https://www.tnm.jp/"
 target="_blank">
 東京國立博物館官方
 </a>
 
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=東京国立博物館"
 target="_blank">
 Google Maps
 </a>
+
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -1989,34 +2136,49 @@ Google Maps
 <!-- 8 -->
 
 <div class="item" data-task="d1-8">
+
 <div class="time">17:35–18:00</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>上野公園｜散步＋拍照</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-8">
+
+<div class="task-name">
+
+<h3>
+上野公園｜散步＋拍照
+</h3>
 
 <p>
 不用整座公園走完。從博物館往上野方向移動，
 順便完成公園與文化建築照片。
 </p>
 
-<div class="photo">
-<div class="photo-title">📷 拍照位置</div>
+<div class="photo-box">
+
+<div class="photo-title">
+📷 拍照位置
+</div>
+
 <p>
 ① 東京國立博物館正門附近<br>
 ② 上野公園中央大道<br>
-③ 不忍池方向（時間足夠再去）
+③ 不忍池方向
 </p>
+
 </div>
 
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=上野公園"
 target="_blank">
 Google Maps
 </a>
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -2025,13 +2187,19 @@ Google Maps
 <!-- 9 -->
 
 <div class="item" data-task="d1-9">
+
 <div class="time">18:00–18:35</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>上野 → 淺草</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-9">
+
+<div class="task-name">
+
+<h3>
+上野 → 淺草
+</h3>
 
 <p>
 東京 Metro 銀座線往淺草。
@@ -2045,50 +2213,66 @@ IC：約 ¥180 級距
 </div>
 </div>
 
+</div>
+</div>
+
 
 <!-- 10 -->
 
 <div class="item" data-task="d1-10">
+
 <div class="time">18:35–19:05</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>淺草寺｜雷門＋仲見世＋寶藏門</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-10">
+
+<div class="task-name">
+
+<h3>
+淺草寺｜雷門＋仲見世＋寶藏門
+</h3>
 
 <p>
 重點不是慢慢逛整個淺草，而是完成最重要的景點照片。
 </p>
 
-<div class="route-box">
-<div class="route-title">🚇 出口</div>
-<p>
-東京 Metro 銀座線 <strong>淺草站 1 號出口</strong> →
-雷門方向步行。
-</p>
+<div class="details open">
+
+<div class="detail-row">
+<div class="detail-label">🚪 出口</div>
+<div class="detail-value">
+東京 Metro 銀座線淺草站 1 號出口 → 雷門方向。
+</div>
 </div>
 
-<div class="photo">
-<div class="photo-title">📷 必拍位置</div>
-<p>
+<div class="detail-row">
+<div class="detail-label">📷 必拍</div>
+<div class="detail-value">
 ① 雷門正面：巨大紅燈籠<br>
 ② 仲見世通：往寶藏門方向<br>
 ③ 寶藏門：五重塔＋寺院<br>
-④ 本堂：完成淺草寺核心照片
-</p>
+④ 本堂
+</div>
 </div>
 
 <div class="warning">
 祭典、觀光人潮很多時，不要停在主要通道中央拍照。
 </div>
 
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=浅草寺"
 target="_blank">
 Google Maps
 </a>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -2097,25 +2281,47 @@ Google Maps
 <!-- 11 -->
 
 <div class="item" data-task="d1-11">
+
 <div class="time">19:05–19:35</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>淺草 → 押上／東京晴空塔</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-11">
+
+<div class="task-name">
+
+<h3>
+淺草 → 押上／東京晴空塔
+</h3>
 
 <p>
 從淺草站往押上方向。
 把找路、等車、出站、前往晴空塔入口全部算入。
 </p>
 
-<div class="route-box">
-<div class="route-title">🚇 交通</div>
-<p>
-淺草站 → 都營淺草線方向 → 押上站。
-抵達後依 Tokyo Skytree Town 指示前往電梯／入場區。
-</p>
+<div class="details open">
+
+<div class="detail-row">
+<div class="detail-label">🚉 起點</div>
+<div class="detail-value">淺草站</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">🚇 路線</div>
+<div class="detail-value">都營淺草線方向 → 押上站</div>
+</div>
+
+<div class="detail-row">
+<div class="detail-label">📍 到達</div>
+<div class="detail-value">
+依 Tokyo Skytree Town 指示前往電梯／入場區。
+</div>
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
@@ -2125,13 +2331,19 @@ Google Maps
 <!-- 12 -->
 
 <div class="item" data-task="d1-12">
+
 <div class="time">19:35–19:45</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>東京晴空塔｜進場＋前往餐廳</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-12">
+
+<div class="task-name">
+
+<h3>
+東京晴空塔｜進場＋前往餐廳
+</h3>
 
 <p>
 抵達後立即確認展望台入場動線，再前往 Sky Restaurant 634。
@@ -2139,15 +2351,18 @@ Google Maps
 
 <div class="warning">
 餐廳指定時間一定要以預約確認單及官方當日規則為準。
-不要再使用原本 20:05 才進餐廳的排法。
 </div>
 
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.tokyo-skytree.jp/ticket/"
 target="_blank">
 晴空塔官方門票
 </a>
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -2156,13 +2371,19 @@ target="_blank">
 <!-- 13 -->
 
 <div class="item" data-task="d1-13">
+
 <div class="time">19:45–21:00</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>Sky Restaurant 634｜345F 晚餐</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-13">
+
+<div class="task-name">
+
+<h3>
+Sky Restaurant 634｜345F 晚餐
+</h3>
 
 <p>
 把正式晚餐與東京夜景一次完成。
@@ -2170,16 +2391,20 @@ target="_blank">
 </p>
 
 <div class="warning">
-實際最終入店時間、套餐、指定席時間，出發前再次確認。
-若預約時間變動，優先調整餐廳時間，不要把前面景點壓到危險程度。
+實際最終入店時間、套餐、指定席時間，
+出發前再次確認。若預約時間變動，優先調整餐廳時間。
 </div>
 
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.tokyo-skytree.jp/shop-cafe-restaurant/restaurant/"
 target="_blank">
 Sky Restaurant 634 官方
 </a>
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -2188,49 +2413,55 @@ Sky Restaurant 634 官方
 <!-- 14 -->
 
 <div class="item" data-task="d1-14">
+
 <div class="time">21:00–21:45</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>東京晴空塔｜夜景</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-14">
+
+<div class="task-name">
+
+<h3>
+東京晴空塔｜夜景
+</h3>
 
 <p>
-吃完後繼續展望台。
-如果已買 350m＋450m 套票，就繼續往上。
+吃完後繼續展望台。如果已買 350m＋450m 套票，就繼續往上。
 </p>
 
-<div class="photo">
-<div class="photo-title">📷 夜景拍照</div>
+<div class="photo-box">
+
+<div class="photo-title">
+📷 夜景拍照任務
+</div>
 
 <div class="photo-grid">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=500&q=80">
-<span>東京夜景</span>
-</div>
+<img
+src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80"
+alt="東京夜景">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=500&q=80">
-<span>東京城市</span>
-</div>
+<img
+src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=700&q=80"
+alt="東京城市夜景">
 
-<div class="photo-card">
-<img loading="lazy"
-src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=500&q=80">
-<span>東京高空</span>
-</div>
+<img
+src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=700&q=80"
+alt="東京高空夜景">
 
 </div>
 
-<p style="margin-top:6px;">
+<p>
 ① 350m 全景<br>
 ② 玻璃窗邊城市燈海<br>
 ③ 450m 高視角
 </p>
+
+</div>
+
+</div>
 </div>
 
 </div>
@@ -2240,13 +2471,19 @@ src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fi
 <!-- 15 -->
 
 <div class="item" data-task="d1-15">
+
 <div class="time">21:45–22:30</div>
+
 <div class="content">
 
-<div class="task-row">
-<input class="task-check" type="checkbox">
-<h3>押上 → 東銀座 → 飯店</h3>
-</div>
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d1-15">
+
+<div class="task-name">
+
+<h3>
+押上 → 東銀座 → 飯店
+</h3>
 
 <p>
 搭都營淺草線方向返回東銀座。
@@ -2255,6 +2492,9 @@ src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fi
 
 <div class="rest">
 約 22:30 回飯店
+</div>
+
+</div>
 </div>
 
 </div>
@@ -2285,12 +2525,17 @@ DAY 2
 晚上 SHIBUYA SKY 是全日最需要守時間的任務。
 </p>
 
-<div class="day-card" data-day="day2">
+<div class="day-card" id="day-card-2">
 
 <div class="day-header">
+
 <div>
 <div class="day-number">09/26 · SATURDAY</div>
-<div class="day-title">DAY 2｜東京高空景觀日</div>
+
+<div class="day-title">
+DAY 2｜東京高空景觀日
+</div>
+
 <div class="day-route">
 銀座 → 六本木 → 增上寺 → 芝公園 → 東京鐵塔 → 澀谷
 </div>
@@ -2299,165 +2544,147 @@ DAY 2
 <div class="day-badge">
 重點：展望台指定時間
 </div>
+
 </div>
 
 <div class="day-progress">
-<div class="day-progress-top">
+<div class="day-progress-row">
 <span>DAY 2 QUEST</span>
-<strong class="day-percent">0%</strong>
+<strong id="day2Percent">0%</strong>
 </div>
-<div class="day-progress-track">
-<div class="day-progress-fill"></div>
+<div class="progress-track">
+<div class="progress-fill" id="day2Progress"></div>
 </div>
 </div>
 
 <div class="timeline">
 
-
 <div class="item" data-task="d2-1">
 <div class="time">07:30–08:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-1">
+<div class="task-name">
 <h3>早餐</h3>
-</div>
-
 <p>
-飯店早餐 06:30–10:30。
-今天 07:30–08:15 吃最舒服。
+飯店早餐 06:30–10:30。今天 07:30–08:15 吃最舒服。
 吃完確認相機、行動電源、雨具。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-2">
 <div class="time">08:15–08:45</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-2">
+<div class="task-name">
 <h3>飯店整理＋出發</h3>
-</div>
-
 <p>
 確認 Tokyo City View 指定時間票券。
 今天第一個核心景點不能遲到。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-3">
 <div class="time">08:45–09:25</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-3">
+<div class="task-name">
 <h3>銀座 → 六本木之丘</h3>
-</div>
-
 <p>
 地鐵＋步行＋找入口，完整抓 40 分鐘。
 </p>
-
-<div class="route-box">
-<div class="route-title">🚇 建議動線</div>
-<p>
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">🚇 動線</div>
+<div class="detail-value">
 東銀座／銀座 → 地鐵轉乘 → 六本木站 →
-依 Roppongi Hills / Mori Tower 指示前進。
-</p>
-</div>
-
+依 Roppongi Hills / Mori Tower 指示。
 </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d2-4">
 <div class="time">09:25–10:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-4">
+<div class="task-name">
 <h3>六本木之丘｜找入口＋休息</h3>
-</div>
-
 <p>
 先確認 Mori Tower、Tokyo City View 入口、
 洗手間與票券。
 </p>
-
 <div class="rest">
 展望台前緩衝：35 分鐘
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-5">
 <div class="time">10:00–11:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-5">
+<div class="task-name">
 <h3>Tokyo City View｜52F</h3>
-</div>
-
 <p>
 2026/8/1–10/26 期間有「藥屋少女的呢喃 × Tokyo City View」。
 9/26 建議事先購票。
 </p>
-
-<div class="cost">
-成人線上：約 ¥2,200 起
-</div>
-
-<div class="photo">
-<div class="photo-title">📷 必拍</div>
-<p>
+<div class="cost">成人線上：約 ¥2,200 起</div>
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">📷 必拍</div>
+<div class="detail-value">
 ① 東京市區全景<br>
 ② 東京鐵塔方向<br>
 ③ 新宿高樓方向
-</p>
 </div>
-
-<a
-class="link"
+</div>
+</div>
+<div class="link-row">
+<a class="link"
 href="https://visit.mam-tcv-macg-hills.com/category/TCV/"
 target="_blank">
 Tokyo City View 官方
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=Tokyo+City+View"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d2-6">
 <div class="time">11:00–12:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-6">
+<div class="task-name">
 <h3>六本木 Hills｜商場＋休息</h3>
-</div>
-
 <p>
-不要整棟逛完。
-重點是六本木 Hills 建築、Mori Tower、毛利庭園。
+不要整棟逛完。重點是六本木 Hills 建築、
+Mori Tower、毛利庭園。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 拍照</div>
 <p>
 ① 六本木 Hills 大樓周邊<br>
@@ -2465,61 +2692,53 @@ Google Maps
 ③ 毛利庭園
 </p>
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-7">
 <div class="time">12:00–13:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-7">
+<div class="task-name">
 <h3>六本木午餐</h3>
-</div>
-
 <p>
-預算約 ¥1,500–2,500。
-控制 60 分鐘，不要影響下午戶外拍攝。
+預算約 ¥1,500–2,500。控制 60 分鐘，
+不要影響下午戶外拍攝。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-8">
 <div class="time">13:00–13:40</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-8">
+<div class="task-name">
 <h3>六本木 → 增上寺</h3>
-</div>
-
 <p>
-天氣舒服可以步行。
-下雨或太熱則改地鐵。
+天氣舒服可以步行。下雨或太熱則改地鐵。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-9">
 <div class="time">13:40–14:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-9">
+<div class="task-name">
 <h3>增上寺</h3>
-</div>
-
 <p>
 核心特色是「古寺＋東京鐵塔」。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 最重要構圖</div>
 <p>
 ① 大殿前方：東京鐵塔在後<br>
@@ -2527,272 +2746,240 @@ Google Maps
 ③ 境內往東京鐵塔方向
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Zojoji+Temple+Tokyo"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=増上寺"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d2-10">
 <div class="time">14:30–15:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-10">
+<div class="task-name">
 <h3>增上寺 → 芝公園</h3>
-</div>
-
 <p>
-短距離步行。
-留時間拍照，不需要趕。
+短距離步行。留時間拍照，不需要趕。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-11">
 <div class="time">15:00–16:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-11">
+<div class="task-name">
 <h3>芝公園＋東京鐵塔拍照</h3>
+<p>東京鐵塔四個拍攝任務：</p>
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">📷 ①</div>
+<div class="detail-value">芝公園 4 號地附近：完整東京鐵塔＋天空</div>
 </div>
-
-<div class="photo">
-<div class="photo-title">📷 東京鐵塔四個拍攝任務</div>
-<p>
-① 芝公園 4 號地附近：完整東京鐵塔＋天空<br>
-② 增上寺側：寺院＋鐵塔<br>
-③ 東京鐵塔下：仰角<br>
-④ FootTown：塔身細節
-</p>
+<div class="detail-row">
+<div class="detail-label">📷 ②</div>
+<div class="detail-value">增上寺側：寺院＋鐵塔</div>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Shiba+Park+Tokyo"
+<div class="detail-row">
+<div class="detail-label">📷 ③</div>
+<div class="detail-value">東京鐵塔下：仰角</div>
+</div>
+<div class="detail-row">
+<div class="detail-label">📷 ④</div>
+<div class="detail-value">FootTown：塔身細節</div>
+</div>
+</div>
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=芝公園"
 target="_blank">
 芝公園 Maps
 </a>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Tokyo+Tower"
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=東京タワー"
 target="_blank">
 東京鐵塔 Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-12">
 <div class="time">16:00–17:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-12">
+<div class="task-name">
 <h3>東京鐵塔周邊休息＋自由拍照</h3>
-</div>
-
 <p>
 進 FootTown、喝咖啡、坐下。
 刻意留白，不再塞景點。
 </p>
-
-<div class="rest">
-休息：75 分鐘
-</div>
-
+<div class="rest">休息：75 分鐘</div>
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-13">
 <div class="time">17:15–18:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-13">
+<div class="task-name">
 <h3>東京鐵塔傍晚＋點燈</h3>
-</div>
-
 <p>
 17:15–17:40 拍藍調天空。
 17:40–18:00 拍完整點燈後東京鐵塔。
 </p>
-
 <div class="warning">
 實際點燈／特殊燈光活動依 9/26 當日官方公告。
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-14">
 <div class="time">18:00–18:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-14">
+<div class="task-name">
 <h3>東京鐵塔 → 鰻の成瀨 六本木店</h3>
-</div>
-
 <p>
 離開東京塔、找路、紅綠燈、進店全部算入。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-15">
 <div class="time">18:30–19:25</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-15">
+<div class="task-name">
 <h3>鰻の成瀨 六本木店｜晚餐</h3>
-</div>
-
 <p>
 梅 ¥1,900｜竹 ¥2,500｜松 ¥2,900。
 松為整尾鰻魚。
 </p>
-
-<div class="warning">
+<p>
 座位數較少，建議提前預約。
-</div>
-
-<a
-class="link"
+</p>
+<div class="link-row">
+<a class="link"
 href="https://unagi-naruse-roppongi.owst.jp/"
 target="_blank">
 官方／預約
 </a>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=鰻の成瀨+六本木店"
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=鰻の成瀬+六本木店"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d2-16">
 <div class="time">19:25–20:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-16">
+<div class="task-name">
 <h3>六本木 → 澀谷</h3>
-</div>
-
 <p>
 地鐵＋找入口＋前往 SHIBUYA SCRAMBLE SQUARE。
-</p>
-
-<div class="warning">
 不要到澀谷後才開始找 SHIBUYA SKY 入口。
+</p>
 </div>
-
 </div>
 </div>
-
+</div>
 
 <div class="item" data-task="d2-17">
 <div class="time">20:00–21:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-17">
+<div class="task-name">
 <h3>SHIBUYA SKY｜夜景</h3>
-</div>
-
 <p>
 第二天最重要的時間指定行程。
 指定時間遲到可能無法入場。
 </p>
-
-<div class="cost">
-15:00 後成人：約 ¥3,400
-</div>
-
-<div class="photo">
+<div class="cost">15:00 後成人：約 ¥3,400</div>
+<div class="photo-box">
 <div class="photo-title">📷 SKY STAGE 拍照任務</div>
 <p>
 ① 360° 東京夜景<br>
 ② 渋谷十字路口<br>
 ③ 新宿高樓<br>
 ④ 東京鐵塔<br>
-⑤ 如果提前入場：夕陽→夜景轉換
+⑤ 夕陽→夜景轉換
 </p>
 </div>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.shibuya-scramble-square.com/sky/ticket/"
 target="_blank">
 SHIBUYA SKY 預約
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=SHIBUYA+SKY"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d2-18">
 <div class="time">21:20–21:50</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-18">
+<div class="task-name">
 <h3>SHIBUYA SKY → 澀谷街區</h3>
-</div>
-
 <p>
 下樓後簡單逛澀谷，不再塞大型景點。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d2-19">
 <div class="time">21:50–22:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d2-19">
+<div class="task-name">
 <h3>澀谷 → 銀座飯店</h3>
-</div>
-
 <p>
 地鐵＋出站＋步行。
+約 22:30 回飯店。
 </p>
-
-<div class="rest">
-約 22:30 回飯店
 </div>
-
+</div>
 </div>
 </div>
 
@@ -2817,16 +3004,20 @@ DAY 3
 
 <p class="section-desc">
 這一天不是普通神社日。9/27 是根津神社神幸祭核心日，
-上午優先保留祭典，再一路往日本橋、東京站、新宿、
-東京都廳。
+上午優先保留祭典，再一路往日本橋、東京站、新宿、東京都廳。
 </p>
 
-<div class="day-card" data-day="day3">
+<div class="day-card" id="day-card-3">
 
 <div class="day-header">
+
 <div>
 <div class="day-number">09/27 · SUNDAY</div>
-<div class="day-title">DAY 3｜根津神幸祭</div>
+
+<div class="day-title">
+DAY 3｜根津神幸祭
+</div>
+
 <div class="day-route">
 銀座 → 根津 → 人形町／小網神社 → 日本橋 → 東京站 → 新宿 → 都廳
 </div>
@@ -2835,130 +3026,116 @@ DAY 3
 <div class="day-badge">
 特殊活動日
 </div>
+
 </div>
 
 <div class="day-progress">
-<div class="day-progress-top">
+<div class="day-progress-row">
 <span>DAY 3 QUEST</span>
-<strong class="day-percent">0%</strong>
+<strong id="day3Percent">0%</strong>
 </div>
-<div class="day-progress-track">
-<div class="day-progress-fill"></div>
+<div class="progress-track">
+<div class="progress-fill" id="day3Progress"></div>
 </div>
 </div>
 
 <div class="timeline">
 
-
 <div class="item" data-task="d3-1">
 <div class="time">06:45–07:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-1">
+<div class="task-name">
 <h3>早餐</h3>
-</div>
-
 <p>
-今天提早吃。
-飯店早餐 06:30 開始，吃完立即準備祭典。
+今天提早吃。飯店早餐 06:30 開始，吃完立即準備祭典。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-2">
 <div class="time">07:30–08:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-2">
+<div class="task-name">
 <h3>飯店整理＋出發</h3>
-</div>
-
 <p>
 水、雨具、相機、行動電源。
 祭典人多，不要帶太大包。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-3">
 <div class="time">08:00–08:50</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-3">
+<div class="task-name">
 <h3>銀座 → 根津神社</h3>
-</div>
-
 <p>
 地鐵＋步行完整抓 50 分鐘。
 </p>
-
-<div class="route-box">
-<div class="route-title">🚇 目的地</div>
-<p>
-目標：根津站 → 步行前往根津神社。
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">🚉 目的地</div>
+<div class="detail-value">
+根津站 → 步行前往根津神社。
 8:50 是到神社周邊，不是 8:50 才離開飯店。
-</p>
-</div>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-4">
 <div class="time">08:50–09:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-4">
+<div class="task-name">
 <h3>根津神社｜找位置＋確認祭典動線</h3>
-</div>
-
 <p>
 先看工作人員與官方巡路資訊。
 不要等神輿開始才找位置。
 </p>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://nedujinja.or.jp/"
 target="_blank">
 根津神社官方
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=根津神社"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-5">
 <div class="time">09:15–11:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-5">
+<div class="task-name">
 <h3>根津神社例大祭／神幸祭</h3>
-</div>
-
 <p>
-2026/9/27 核心任務。
-官方資料所列神幸祭 09:00 出御、16:00 還御。
-這裡先完成上午最重要的隊伍與祭典內容。
+2026/9/27 核心任務。官方資料所列神幸祭
+09:00 出御、16:00 還御。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 祭典拍照位置</div>
 <p>
 ① 唐門／樓門：拍祭典隊伍<br>
@@ -2967,47 +3144,43 @@ Google Maps
 ④ 露店區：拍祭典生活感
 </p>
 </div>
-
 <div class="warning">
-不要站在神輿通行路線中央拍照，完全以現場工作人員指示為準。
+不要站在神輿通行路線中央拍照，
+完全以現場工作人員指示為準。
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-6">
 <div class="time">11:30–12:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-6">
+<div class="task-name">
 <h3>根津神社 → 小網神社</h3>
-</div>
-
 <p>
-地鐵＋步行。
-祭典日人潮可能讓交通變慢，所以保留 50 分鐘。
+地鐵＋步行。祭典日人潮可能讓交通變慢，
+所以保留 50 分鐘。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-7">
 <div class="time">12:20–12:55</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-7">
+<div class="task-name">
 <h3>小網神社｜參拜</h3>
-</div>
-
 <p>
-特色：強運厄除、御守、銭洗い弁財天，以及神社歷史故事。
+特色：強運厄除、御守、銭洗い弁財天，
+以及神社歷史故事。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 拍照</div>
 <p>
 ① 神社正面<br>
@@ -3015,83 +3188,73 @@ Google Maps
 ③ 銭洗い弁財天附近
 </p>
 </div>
-
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=小網神社"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-8">
 <div class="time">12:55–13:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-8">
+<div class="task-name">
 <h3>小網神社 → 日本橋</h3>
-</div>
-
 <p>
 步行＋短程交通。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-9">
 <div class="time">13:20–14:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-9">
+<div class="task-name">
 <h3>日本橋午餐｜つじ半 日本橋本店</h3>
-</div>
-
 <p>
 招牌「ぜいたく丼」。
 梅 ¥1,350｜竹 ¥1,850｜松 ¥2,500｜特上 ¥3,900。
 </p>
-
 <div class="warning">
-不要假設可以預約。
-一定要把排隊時間算進去。
+不要假設可以預約。一定要把排隊時間算進去。
 如果排隊過長，優先保住東京站行程。
 </div>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.tsujihan-jp.com/"
 target="_blank">
 つじ半官方
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=つじ半+日本橋本店"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-10">
 <div class="time">14:30–14:55</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-10">
+<div class="task-name">
 <h3>日本橋散步＋拍照</h3>
-</div>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 日本橋</div>
 <p>
 ① 日本橋橋樑中央<br>
@@ -3099,132 +3262,114 @@ Google Maps
 ③ 日本橋三越方向
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=日本橋+東京"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=日本橋東京"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-11">
 <div class="time">14:55–15:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-11">
+<div class="task-name">
 <h3>日本橋 → 東京站</h3>
-</div>
-
 <p>
-天氣好直接步行。
-一路順便拍丸之內街景。
+天氣好直接步行。一路順便拍丸之內街景。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-12">
 <div class="time">15:20–16:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-12">
+<div class="task-name">
 <h3>KITTE＋東京車站丸之內站舊站舍</h3>
-</div>
-
 <p>
-KITTE 不追求全部逛完。
-主要任務是拍東京站。
+KITTE 不追求全部逛完。主要任務是拍東京站。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 東京站最佳構圖</div>
 <p>
 ① KITTE 6F 屋上庭園：高角度看東京站<br>
 ② 丸之內站前：完整紅磚站舍
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=KITTE+Marunouchi"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=KITTE+丸の内"
 target="_blank">
 KITTE Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-13">
 <div class="time">16:20–17:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-13">
+<div class="task-name">
 <h3>東京站 → 新宿</h3>
-</div>
-
 <p>
 JR 中央線快速等方式。
 把東京站內走到月台、等車、乘車、出站全部算入。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-14">
 <div class="time">17:00–17:25</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-14">
+<div class="task-name">
 <h3>新宿站東口 → 新宿三丁目</h3>
-</div>
-
-<p>
-步行為主。
-</p>
-
+<p>步行為主。</p>
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-15">
 <div class="time">17:25–18:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-15">
+<div class="task-name">
 <h3>新宿三丁目｜潮流服飾＋街景</h3>
-</div>
-
 <p>
-只安排短逛。
-不要因購物拖延到歌舞伎町。
+只安排短逛。不要因購物拖延到歌舞伎町。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-16">
 <div class="time">18:00–18:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-16">
+<div class="task-name">
 <h3>歌舞伎町＋Godzilla Road</h3>
-</div>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 哥吉拉拍照</div>
 <p>
 ① Godzilla Road 街口<br>
@@ -3232,203 +3377,180 @@ JR 中央線快速等方式。
 ③ 歌舞伎町一番街招牌
 </p>
 </div>
-
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=Godzilla+Road+Shinjuku"
 target="_blank">
 Godzilla Road Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-17">
 <div class="time">18:30–18:55</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-17">
+<div class="task-name">
 <h3>東急歌舞伎町 Tower</h3>
-</div>
-
 <p>
 拍建築外觀與哥吉拉頭。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 拍照方式</div>
 <p>
 站在歌舞伎町一番街側拍整棟塔，
 再靠近建築拍哥吉拉頭。
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Tokyu+Kabukicho+Tower"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=東急歌舞伎町タワー"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-18">
 <div class="time">18:55–19:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-18">
+<div class="task-name">
 <h3>歌舞伎町 → 思出橫丁</h3>
-</div>
-
 <p>
 步行約 15 分鐘級距，加入人潮與紅綠燈緩衝。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-19">
 <div class="time">19:20–20:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-19">
+<div class="task-name">
 <h3>思出橫丁＋晚餐</h3>
-</div>
-
 <p>
 老東京小巷、居酒屋、燒鳥。
 不寫死店家，保留現場選擇。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 拍照</div>
 <p>
 入口、窄巷、暖黃色燈光。
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Omoide+Yokocho"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=思い出横丁"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-20">
 <div class="time">20:00–20:25</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-20">
+<div class="task-name">
 <h3>新宿 → 東京都廳</h3>
-</div>
-
 <p>
 步行前往西新宿。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-21">
 <div class="time">20:25–20:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-21">
+<div class="task-name">
 <h3>都民廣場找觀賞位置</h3>
-</div>
-
 <p>
 TOKYO Night & Light 觀看區域：
 東京都廳第一本廳舍前的都民廣場。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 光雕拍攝</div>
 <p>
-站在都民廣場正面，
-讓東京都廳第一本廳舍完整進入畫面。
+站在都民廣場正面，讓東京都廳第一本廳舍完整進入畫面。
 手機 1x～2x。
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Tokyo+Metropolitan+Government+Building+Citizens+Plaza"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=東京都庁+都民広場"
 target="_blank">
 都民廣場 Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d3-22">
 <div class="time">20:30–20:45</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-22">
+<div class="task-name">
 <h3>TOKYO Night & Light</h3>
-</div>
-
 <p>
 免費戶外投影，不需要一般門票。
 9/27 實際作品與開始時間，出發前再次確認官方時間表。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-23">
 <div class="time">20:45–21:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-23">
+<div class="task-name">
 <h3>東京都廳周邊拍照＋休息</h3>
-</div>
-
 <p>
-看完不要立即衝車站。
-喝水、坐下、整理照片。
+看完不要立即衝車站。喝水、坐下、整理照片。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d3-24">
 <div class="time">21:15–22:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d3-24">
+<div class="task-name">
 <h3>東京都廳 → 銀座飯店</h3>
-</div>
-
 <p>
 地鐵＋步行＋回飯店。
+約 22:00 回飯店。
 </p>
-
-<div class="rest">
-約 22:00 回飯店
 </div>
-
+</div>
 </div>
 </div>
 
@@ -3452,18 +3574,22 @@ DAY 4
 </h2>
 
 <p class="section-desc">
-最後一天不能排太滿。
-上午完成銀座主要景點，下午午餐＋最後採買，
-16:20 左右回飯店取行李，17:50 左右離開東京站，
-目標 19:00 左右到成田 T1。
+最後一天不能排太滿。上午完成銀座主要景點，
+下午午餐＋最後採買，16:20 左右回飯店取行李，
+17:50 左右離開東京站，目標 19:00 左右到成田 T1。
 </p>
 
-<div class="day-card" data-day="day4">
+<div class="day-card" id="day-card-4">
 
 <div class="day-header">
+
 <div>
 <div class="day-number">09/28 · MONDAY</div>
-<div class="day-title">DAY 4｜銀座最後購物＋回機場</div>
+
+<div class="day-title">
+DAY 4｜銀座最後購物＋回機場
+</div>
+
 <div class="day-route">
 飯店 → 歌舞伎座 → 銀座四丁目 → GINZA SIX → 午餐 → 伊東屋 → 東京站 → 成田
 </div>
@@ -3472,119 +3598,168 @@ DAY 4
 <div class="day-badge">
 重點：不能錯過 TR875
 </div>
+
 </div>
+
+<!-- FINAL MISSION 放在 Day 4 最前面 -->
+
+<div class="final-mission">
+
+<div class="final-mission-kicker">
+🚨 FINAL MISSION
+</div>
+
+<h3>
+TR875｜回台灣最後 Boss
+</h3>
+
+<div class="flight-danger">
+
+<div>
+<strong>21:15</strong>
+<span>成田起飛</span>
+</div>
+
+<div>
+<strong>19:00</strong>
+<span>目標抵達 NRT</span>
+</div>
+
+<div>
+<strong>17:50</strong>
+<span>目標 N'EX</span>
+</div>
+
+<div>
+<strong>16:50</strong>
+<span>硬性離開飯店</span>
+</div>
+
+</div>
+
+<div class="warning">
+購物再好買都不能吃掉 16:50 離開飯店的死線。
+</div>
+
+<div class="link-row">
+
+<a class="link"
+href="https://www.flyscoot.com/"
+target="_blank">
+Scoot 航班
+</a>
+
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=Narita+International+Airport+Terminal+1"
+target="_blank">
+NRT T1 Maps
+</a>
+
+</div>
+
+</div>
+
 
 <div class="day-progress">
-<div class="day-progress-top">
+
+<div class="day-progress-row">
 <span>DAY 4 QUEST</span>
-<strong class="day-percent">0%</strong>
+<strong id="day4Percent">0%</strong>
 </div>
-<div class="day-progress-track">
-<div class="day-progress-fill"></div>
+
+<div class="progress-track">
+<div class="progress-fill" id="day4Progress"></div>
 </div>
+
 </div>
+
 
 <div class="timeline">
-
 
 <div class="item" data-task="d4-1">
 <div class="time">07:30–08:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-1">
+<div class="task-name">
 <h3>飯店早餐</h3>
-</div>
-
 <p>
 飯店早餐 06:30–10:30，最後入場 10:00。
 今天 07:30–08:15 吃。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-2">
 <div class="time">08:15–09:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-2">
+<div class="task-name">
 <h3>回房間整理行李＋休息</h3>
-</div>
-
 <p>
 護照、充電器、伴手禮、購物袋全部整理。
 </p>
-
-<div class="rest">
-最後一次完整休息：75 分鐘
-</div>
-
+<div class="rest">最後一次完整休息：75 分鐘</div>
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-3">
 <div class="time">09:30–10:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-3">
+<div class="task-name">
 <h3>飯店退房＋寄放行李</h3>
-</div>
-
 <p>
-12:00 才是飯店官方 Check-out 上限，但今天主動提前退房，
-把大行李寄放櫃台。
+12:00 才是飯店官方 Check-out 上限，
+但今天主動提前退房，把大行李寄放櫃台。
 </p>
-
-<div class="route-box">
-<div class="route-title">📍 飯店</div>
-<p>
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">📍 飯店</div>
+<div class="detail-value">
 Millennium Mitsui Garden Hotel Tokyo / Ginza<br>
 5-11-1 Ginza, Chuo-ku, Tokyo 104-0061
-</p>
-</div>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-4">
 <div class="time">10:00–10:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-4">
+<div class="task-name">
 <h3>飯店 → 歌舞伎座</h3>
-</div>
-
 <p>
-步行。
-飯店就在歌舞伎座附近。
+步行。飯店就在歌舞伎座附近。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-5">
 <div class="time">10:30–11:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-5">
+<div class="task-name">
 <h3>歌舞伎座＋木挽町廣場</h3>
-</div>
-
 <p>
 不是看歌舞伎演出。
 主要看建築、歌舞伎文化商品與地下木挽町廣場。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 拍照</div>
 <p>
 ① 歌舞伎座正面<br>
@@ -3592,162 +3767,143 @@ Millennium Mitsui Garden Hotel Tokyo / Ginza<br>
 ③ 木挽町廣場入口
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=Kabukiza+Theatre+Tokyo"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=歌舞伎座"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-6">
 <div class="time">11:00–11:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-6">
+<div class="task-name">
 <h3>歌舞伎座 → 銀座四丁目</h3>
-</div>
-
 <p>步行。</p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-7">
 <div class="time">11:15–11:40</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-7">
+<div class="task-name">
 <h3>WAKO＋銀座四丁目</h3>
-</div>
-
 <p>
 站在銀座四丁目交叉口，
 把 WAKO 鐘塔＋銀座街景一起拍。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 銀座經典照片</div>
 <p>
-站在交叉口角落，
-不要站在車道邊，使用 1x 拍完整街景。
+站在交叉口角落，不要站在車道邊，
+使用 1x 拍完整街景。
 </p>
 </div>
-
-<a
-class="map"
-href="https://www.google.com/maps/search/?api=1&query=WAKO+Ginza"
+<div class="link-row">
+<a class="link map"
+href="https://www.google.com/maps/search/?api=1&query=和光+銀座"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-8">
 <div class="time">11:40–12:05</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-8">
+<div class="task-name">
 <h3>銀座三越</h3>
-</div>
-
 <p>
 主要看外觀、入口與銀座街景。
 需要購物就控制在 25 分鐘。
 </p>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.mistore.jp/store/ginza.html"
 target="_blank">
 銀座三越官方
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-9">
 <div class="time">12:05–12:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-9">
+<div class="task-name">
 <h3>步行 → 松屋銀座</h3>
-</div>
-
-<p>
-銀座街區短距離步行。
-</p>
-
+<p>銀座街區短距離步行。</p>
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-10">
 <div class="time">12:20–12:45</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-10">
+<div class="task-name">
 <h3>松屋銀座</h3>
-</div>
-
 <p>
 百貨外觀、銀座街景、快速購物。
 </p>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.matsuya.com/ginza/"
 target="_blank">
 松屋銀座官方
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-11">
 <div class="time">12:45–13:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-11">
+<div class="task-name">
 <h3>步行 → GINZA SIX</h3>
-</div>
-
 <p>銀座街區步行。</p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-12">
 <div class="time">13:00–13:30</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-12">
+<div class="task-name">
 <h3>GINZA SIX＋屋頂花園</h3>
-</div>
-
 <p>
-重點不是整棟逛完。
-拍照＋快速採買。
+重點不是整棟逛完。拍照＋快速採買。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 GINZA SIX</div>
 <p>
 ① 外觀<br>
@@ -3755,372 +3911,319 @@ target="_blank">
 ③ Rooftop Garden：拍銀座高樓
 </p>
 </div>
-
-<a
-class="map"
+<div class="link-row">
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-13">
 <div class="time">13:30–13:45</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-13">
+<div class="task-name">
 <h3>GINZA SIX → LV 銀座並木通</h3>
-</div>
-
 <p>步行＋找路。</p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-14">
 <div class="time">13:45–14:10</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-14">
+<div class="task-name">
 <h3>LV＋並木通</h3>
-</div>
-
 <p>
 拍建築、櫥窗與銀座高級品牌街景。
 </p>
-
-<div class="photo">
+<div class="photo-box">
 <div class="photo-title">📷 並木通</div>
 <p>
-Louis Vuitton、CHANEL、Hermès、Cartier
-等街區外觀。
+Louis Vuitton、CHANEL、Hermès、Cartier 等街區外觀。
 </p>
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-15">
 <div class="time">14:10–14:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-15">
+<div class="task-name">
 <h3>品牌外觀拍照＋移動緩衝</h3>
-</div>
-
 <p>
 只拍外觀，不假設店內一定有空閒時間。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-16">
 <div class="time">14:20–15:35</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-16">
+<div class="task-name">
 <h3>午餐｜牛の達人 GINZA</h3>
-</div>
-
 <p>
 午間套餐約 ¥3,500＋服務費。
 用餐＋結帳＋離開完整抓 75 分鐘。
 </p>
-
 <div class="warning">
 這餐建議提前預約。
 </div>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.hotpepper.jp/strJ003498749/course_cnod04/"
 target="_blank">
 預約／餐廳
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=牛の達人+GINZA"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-17">
 <div class="time">15:35–15:50</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-17">
+<div class="task-name">
 <h3>前往伊東屋</h3>
-</div>
-
-<p>
-步行＋找入口。
-</p>
-
+<p>步行＋找入口。</p>
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-18">
 <div class="time">15:50–16:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-18">
+<div class="task-name">
 <h3>銀座 伊東屋本店</h3>
-</div>
-
 <p>
-文具、紙品、設計用品。
-最後一天適合買伴手禮。
+文具、紙品、設計用品。最後一天適合買伴手禮。
 </p>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.ito-ya.co.jp/ginza"
 target="_blank">
 伊東屋官方
 </a>
-
-<a
-class="map"
+<a class="link map"
 href="https://www.google.com/maps/search/?api=1&query=伊東屋+銀座本店"
 target="_blank">
 Google Maps
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-19">
 <div class="time">16:20–16:50</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-19">
+<div class="task-name">
 <h3>伊東屋 → 飯店＋取行李</h3>
-</div>
-
 <p>
 拿行李、上廁所、補水、確認護照。
 </p>
-
 <div class="warning">
 16:50 前必須離開飯店。
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-20">
 <div class="time">16:50–17:25</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-20">
+<div class="task-name">
 <h3>飯店 → 東京站</h3>
-</div>
-
 <p>
-拖行李，不使用純步行時間。
-完整抓 35 分鐘。
+拖行李，不使用純步行時間。完整抓 35 分鐘。
 </p>
-
-<div class="route-box">
-<div class="route-title">🚇 東京站</div>
-<p>
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">🚇 東京站</div>
+<div class="detail-value">
 進站後不要直接找普通 JR 月台。
-N'EX 使用 JR 東日本東京站的總武快速線／地下月台區域，
+N'EX 使用 JR 東日本東京站總武快速線／地下月台區域，
 依站內 Narita Express 指示走。
-</p>
-</div>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-21">
 <div class="time">17:25–17:50</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-21">
+<div class="task-name">
 <h3>東京站｜找 N'EX 月台＋進站</h3>
-</div>
-
 <p>
 確認指定席、月台、廁所、補水。
 </p>
-
 <div class="warning">
-這 25 分鐘不能刪。
-東京站大，拖行李更需要緩衝。
-</div>
-
+這 25 分鐘不能刪。東京站大，拖行李更需要緩衝。
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-22">
 <div class="time">17:50–19:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-22">
+<div class="task-name">
 <h3>N'EX｜東京 → 成田機場 T1</h3>
-</div>
-
 <p>
 目標搭約 17:50 左右離開東京站，
 約 19:00 左右抵達成田方向。
 實際車次以 9/28 當日時刻表為準。
 </p>
-
 <div class="warning">
 TR875 21:15 起飛。
 不要把 18:30 才離開東京站當成計畫。
 </div>
-
-<a
-class="link"
+<div class="link-row">
+<a class="link"
 href="https://www.jreast.co.jp/"
 target="_blank">
 JR East 官方
 </a>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-23">
 <div class="time">19:00–19:20</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-23">
+<div class="task-name">
 <h3>成田機場 T1｜下車＋航廈確認</h3>
-</div>
-
 <p>
 確認 Scoot 航班 TR875、South Wing、Check-in 區域。
 </p>
-
-<div class="route-box">
-<div class="route-title">✈️ 成田 T1</div>
-<p>
-Scoot：<strong>Terminal 1 South Wing / 4F</strong>。
-機場鐵路在 T1 B1F。
-抵達後依 Departure / Scoot 指示前往 4F。
-</p>
-</div>
-
-<a
-class="link"
-href="https://www.narita-airport.jp/en/flight/airline-search/tgw/"
-target="_blank">
-成田 Scoot 官方位置
-</a>
-
+<div class="details open">
+<div class="detail-row">
+<div class="detail-label">✈️ T1</div>
+<div class="detail-value">
+Scoot：Terminal 1 South Wing / 4F。
+機場鐵路在 T1 B1F。抵達後依 Departure / Scoot
+指示前往 4F。
 </div>
 </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-24">
 <div class="time">19:20–20:00</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-24">
+<div class="task-name">
 <h3>Check-in＋托運</h3>
-</div>
-
 <p>
 完成登機手續、行李托運、取得登機證。
 </p>
-
 <div class="warning">
-Scoot 官方建議至少提前 120 分鐘抵達機場；
-TR875 21:15 起飛，因此 19:00 左右到達是合理的安全目標。
-</div>
-
+TR875 21:15 起飛，19:00 左右到達是安全目標。
 </div>
 </div>
-
+</div>
+</div>
+</div>
 
 <div class="item" data-task="d4-25">
 <div class="time">20:00–20:35</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-25">
+<div class="task-name">
 <h3>安檢＋出境</h3>
-</div>
-
 <p>
 週一晚間仍可能有人潮。
 不要把 20:30 才過安檢當目標。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-26">
 <div class="time">20:35–20:55</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-26">
+<div class="task-name">
 <h3>免稅店＋最後休息</h3>
-</div>
-
 <p>
 最後採買、喝水、上廁所、整理護照。
 </p>
-
 </div>
 </div>
-
+</div>
+</div>
 
 <div class="item" data-task="d4-27">
 <div class="time">20:55–21:15</div>
 <div class="content">
-
-<div class="task-row">
-<input class="task-check" type="checkbox">
+<div class="task-line">
+<input class="task-check" type="checkbox" data-task="d4-27">
+<div class="task-name">
 <h3>前往登機門＋登機準備</h3>
-</div>
-
 <p>
 21:15 是起飛時間，不是開始走去登機門。
 實際 Boarding Time 以 Scoot 登機證／機場公告為準。
 </p>
-
 <div class="warning">
 最後一個任務：不要停在免稅店區拖到最後才走登機門。
 </div>
-
 </div>
 </div>
-
+</div>
+</div>
 
 </div>
 </div>
@@ -4142,10 +4245,9 @@ BOOKING
 </h2>
 
 <p class="section-desc">
-只列真的需要提前處理的項目。
-每一項下面直接放預約／官方網址。
+只列真的需要提前處理的項目。每一項下面直接放預約／官方網址。
+打勾狀態會保存在這台裝置。
 </p>
-
 
 <div class="resources">
 
@@ -4155,73 +4257,84 @@ BOOKING
 
 <div class="checklist">
 
-<div class="check" data-check="booking-sky">
-<input type="checkbox" id="booking-sky">
-<label for="booking-sky">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b1">
+<div class="check-label">
 SHIBUYA SKY — 9/26 約 20:00
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.shibuya-scramble-square.com/sky/ticket/"
 target="_blank">
-直接預約
+直接預約／購票 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-city">
-<input type="checkbox" id="booking-city">
-<label for="booking-city">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b2">
+<div class="check-label">
 Tokyo City View — 9/26 10:00
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://visit.mam-tcv-macg-hills.com/category/TCV/"
 target="_blank">
-直接預約
+直接預約／購票 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-634">
-<input type="checkbox" id="booking-634">
-<label for="booking-634">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b3">
+<div class="check-label">
 Sky Restaurant 634 — 9/25 晚餐
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.tokyo-skytree.jp/shop-cafe-restaurant/restaurant/"
 target="_blank">
-官方
+官方／預約 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-yakiniku">
-<input type="checkbox" id="booking-yakiniku">
-<label for="booking-yakiniku">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b4">
+<div class="check-label">
 牛の達人 GINZA — 9/28 午餐
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.hotpepper.jp/strJ003498749/course_cnod04/"
 target="_blank">
-直接預約
+直接預約 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-nex">
-<input type="checkbox" id="booking-nex">
-<label for="booking-nex">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b5">
+<div class="check-label">
 N'EX — 9/28 東京 → 成田
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.jreast.co.jp/"
 target="_blank">
-JR East
+JR East →
 </a>
-</label>
 </div>
 
 </div>
@@ -4234,66 +4347,74 @@ JR East
 
 <div class="checklist">
 
-<div class="check" data-check="booking-naruse">
-<input type="checkbox" id="booking-naruse">
-<label for="booking-naruse">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b6">
+<div class="check-label">
 鰻の成瀨 六本木店
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://unagi-naruse-roppongi.owst.jp/"
 target="_blank">
-官方／預約
+官方／預約 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-skytree">
-<input type="checkbox" id="booking-skytree">
-<label for="booking-skytree">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b7">
+<div class="check-label">
 東京晴空塔展望台
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.tokyo-skytree.jp/ticket/"
 target="_blank">
-官方門票
+官方門票 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-tnm">
-<input type="checkbox" id="booking-tnm">
-<label for="booking-tnm">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b8">
+<div class="check-label">
 東京國立博物館
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://www.tnm.jp/"
 target="_blank">
-官方
+官方 →
 </a>
-</label>
 </div>
 
-
-<div class="check" data-check="booking-nezu">
-<input type="checkbox" id="booking-nezu">
-<label for="booking-nezu">
+<div class="check-row">
+<div class="check-main">
+<input class="task-check booking-check"
+type="checkbox"
+data-booking="b9">
+<div class="check-label">
 根津神社神幸祭巡路
-<br>
-<a class="link"
+</div>
+</div>
+<a class="booking-link"
 href="https://nedujinja.or.jp/"
 target="_blank">
-官方
+官方 →
 </a>
-</label>
 </div>
 
 </div>
 </div>
 
 </div>
-
 </div>
 </section>
 
@@ -4316,7 +4437,6 @@ PACKING
 打勾後會記住。
 </p>
 
-
 <div class="resources">
 
 <div class="resource-card">
@@ -4325,34 +4445,46 @@ PACKING
 
 <div class="checklist">
 
-<div class="check" data-check="pack-passport">
-<input type="checkbox" id="pack-passport">
-<label for="pack-passport">護照</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p1">
+<div class="check-label">護照</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-flight">
-<input type="checkbox" id="pack-flight">
-<label for="pack-flight">機票／電子登機證</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p2">
+<div class="check-label">機票／電子登機證</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-wallet">
-<input type="checkbox" id="pack-wallet">
-<label for="pack-wallet">信用卡＋日幣現金</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p3">
+<div class="check-label">信用卡＋日幣現金</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-phone">
-<input type="checkbox" id="pack-phone">
-<label for="pack-phone">手機</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p4">
+<div class="check-label">手機</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-power">
-<input type="checkbox" id="pack-power">
-<label for="pack-power">行動電源</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p5">
+<div class="check-label">行動電源</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-cable">
-<input type="checkbox" id="pack-cable">
-<label for="pack-cable">充電線／充電器</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p6">
+<div class="check-label">充電線／充電器</div>
+</div>
 </div>
 
 </div>
@@ -4365,34 +4497,46 @@ PACKING
 
 <div class="checklist">
 
-<div class="check" data-check="pack-umbrella">
-<input type="checkbox" id="pack-umbrella">
-<label for="pack-umbrella">折傘／雨具</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p7">
+<div class="check-label">折傘／雨具</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-camera">
-<input type="checkbox" id="pack-camera">
-<label for="pack-camera">相機</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p8">
+<div class="check-label">相機</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-battery">
-<input type="checkbox" id="pack-battery">
-<label for="pack-battery">備用電池</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p9">
+<div class="check-label">備用電池</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-bag">
-<input type="checkbox" id="pack-bag">
-<label for="pack-bag">折疊購物袋</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p10">
+<div class="check-label">折疊購物袋</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-tissues">
-<input type="checkbox" id="pack-tissues">
-<label for="pack-tissues">衛生紙／濕紙巾</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p11">
+<div class="check-label">衛生紙／濕紙巾</div>
+</div>
 </div>
 
-<div class="check" data-check="pack-medicine">
-<input type="checkbox" id="pack-medicine">
-<label for="pack-medicine">個人常用藥品</label>
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p12">
+<div class="check-label">個人常用藥品</div>
+</div>
 </div>
 
 </div>
@@ -4405,53 +4549,66 @@ PACKING
 
 <div class="checklist">
 
-<div class="check" data-check="pack-souvenir">
-<input type="checkbox" id="pack-souvenir">
-<label for="pack-souvenir">伴手禮全部收進行李</label>
-</div>
-
-<div class="check" data-check="pack-charger">
-<input type="checkbox" id="pack-charger">
-<label for="pack-charger">充電器沒有留在飯店</label>
-</div>
-
-<div class="check" data-check="pack-passport2">
-<input type="checkbox" id="pack-passport2">
-<label for="pack-passport2">護照重新確認</label>
-</div>
-
-<div class="check" data-check="pack-wallet2">
-<input type="checkbox" id="pack-wallet2">
-<label for="pack-wallet2">錢包重新確認</label>
-</div>
-
-<div class="check" data-check="pack-room">
-<input type="checkbox" id="pack-room">
-<label for="pack-room">房間抽屜／保險箱檢查</label>
-</div>
-
-<div class="check" data-check="pack-luggage">
-<input type="checkbox" id="pack-luggage">
-<label for="pack-luggage">飯店行李全部取回</label>
-</div>
-
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p13">
+<div class="check-label">伴手禮全部收進行李</div>
 </div>
 </div>
 
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p14">
+<div class="check-label">充電器沒有留在飯店</div>
+</div>
 </div>
 
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p15">
+<div class="check-label">護照重新確認</div>
+</div>
+</div>
+
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p16">
+<div class="check-label">錢包重新確認</div>
+</div>
+</div>
+
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p17">
+<div class="check-label">房間抽屜／保險箱檢查</div>
+</div>
+</div>
+
+<div class="check-row">
+<div class="check-main">
+<input class="task-check packing-check" type="checkbox" data-pack="p18">
+<div class="check-label">飯店行李全部取回</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 </div>
 </section>
 
 
 <!-- =========================================================
-JAPAN NOTES
+SURVIVAL GUIDE
 ========================================================= -->
 
-<section id="notes" class="section">
+<section id="guide" class="section">
 <div class="container">
 
-<div class="section-label">JAPAN SURVIVAL GUIDE</div>
+<div class="section-label">
+JAPAN SURVIVAL GUIDE
+</div>
 
 <h2 class="section-title">
 日本旅行最後注意事項。
@@ -4461,146 +4618,162 @@ JAPAN NOTES
 不是拿來嚇人的，是避免實際旅行中最常出現的破綻。
 </p>
 
+<div class="guide-grid">
 
-<div class="notes-grid">
-
-<div class="note">
-<h3>🚇 電車</h3>
+<div class="guide-card">
+<strong>🚇 電車</strong>
 <p>
 東京車站、上野、澀谷等大型站內移動很容易超過純車程。
 永遠把「出口→月台→等車→出站→步行」算進去。
 </p>
 </div>
 
-<div class="note">
-<h3>🚉 出口</h3>
+<div class="guide-card">
+<strong>🚉 出口</strong>
 <p>
-看到正確出口再出站。
-同一個車站不同出口可能差 5–15 分鐘。
+看到正確出口再出站。同一個車站不同出口可能差 5–15 分鐘。
 拖行李尤其不要隨便出第一個出口。
 </p>
 </div>
 
-<div class="note">
-<h3>💴 現金</h3>
+<div class="guide-card">
+<strong>💴 現金</strong>
 <p>
 部分小店、祭典攤位、神社仍可能偏好現金。
 每天保留少量現金，不要全部只靠信用卡。
 </p>
 </div>
 
-<div class="note">
-<h3>🔋 行動電源</h3>
+<div class="guide-card">
+<strong>🔋 行動電源</strong>
 <p>
 手機導航＋拍照很耗電。
 每天早上至少確認手機與行動電源滿電。
 </p>
 </div>
 
-<div class="note">
-<h3>☔ 天氣</h3>
+<div class="guide-card">
+<strong>☔ 天氣</strong>
 <p>
 9 月東京仍可能炎熱、潮濕或下雨。
 雨具放隨身包，不要每天塞在大行李。
 </p>
 </div>
 
-<div class="note">
-<h3>👟 鞋子</h3>
+<div class="guide-card">
+<strong>👟 鞋子</strong>
 <p>
 這份行程每天步行量不低。
 不要穿第一次穿的鞋。
 </p>
 </div>
 
-<div class="note">
-<h3>📸 拍照</h3>
+<div class="guide-card">
+<strong>📸 拍照</strong>
 <p>
 不要為了拍照站在車道、神輿路線、店家入口。
 人多時拍完就走，避免堵住動線。
 </p>
 </div>
 
-<div class="note">
-<h3>🍜 排隊</h3>
+<div class="guide-card">
+<strong>🍜 排隊</strong>
 <p>
 つじ半不要假設有預約。
 熱門餐廳排隊時間一定可能變動。
 </p>
 </div>
 
-<div class="note">
-<h3>🎟️ 指定時間票</h3>
+<div class="guide-card">
+<strong>🎟️ 指定時間票</strong>
 <p>
 SHIBUYA SKY、Tokyo City View 等指定時間票，
 不要把「抵達附近」當成「已經到入口」。
 </p>
 </div>
 
-<div class="note">
-<h3>🛍️ 購物</h3>
+<div class="guide-card">
+<strong>🛍️ 購物</strong>
 <p>
 Day 4 所有購物都必須服從 16:50 離開飯店的死線。
 買再多也不能吃掉 N'EX 緩衝。
 </p>
 </div>
 
-<div class="note">
-<h3>✈️ 成田</h3>
+<div class="guide-card">
+<strong>✈️ 成田</strong>
 <p>
 TR875 21:15 起飛。
-目標 19:00 左右到 NRT T1，不要把 20:00 才到機場當標準。
+目標 19:00 左右到 NRT T1，
+不要把 20:00 才到機場當標準。
 </p>
 </div>
 
-<div class="note">
-<h3>📱 航班</h3>
+<div class="guide-card">
+<strong>📱 航班</strong>
 <p>
-出發前 24 小時再次查看 Scoot 航班狀態、登機門、
-行李規定與最新航廈資訊。
+出發前 24 小時再次查看 Scoot 航班狀態、
+登機門、行李規定與最新航廈資訊。
 </p>
 </div>
 
 </div>
 
 
-<div class="resource-card" style="margin-top:12px;">
+<div class="info-card" style="margin-top:14px;">
 
 <h3>✈️ 航班最後確認</h3>
 
-<div class="checklist">
+<div class="hotel-meta">
 
-<div class="check">
-<span>TR866｜09/25｜TPE T1 → NRT T1｜06:45–11:15</span>
+<div>
+<strong>TR866</strong>
+<span>
+09/25｜TPE T1 → NRT T1<br>
+06:45–11:15
+</span>
 </div>
 
-<div class="check">
-<span>TR875｜09/28｜NRT T1 → TPE T1｜21:15–23:55</span>
+<div>
+<strong>TR875</strong>
+<span>
+09/28｜NRT T1 → TPE T1<br>
+21:15–23:55
+</span>
 </div>
 
-<div class="check">
-<span>成田 Scoot：T1 South Wing / 4F</span>
+<div>
+<strong>成田</strong>
+<span>
+Scoot<br>
+T1 South Wing / 4F
+</span>
 </div>
 
-<div class="check">
-<span>TR875 建議 19:00 左右抵達 NRT T1</span>
+<div>
+<strong>回程目標</strong>
+<span>
+19:00 左右抵達 NRT T1
+</span>
 </div>
 
 </div>
 
-<a
-class="link"
-href="https://www.flyscoot.com/en/plan/before-you-fly/checking-in"
+<div class="link-row">
+
+<a class="link"
+href="https://www.flyscoot.com/"
 target="_blank">
 Scoot Check-in
 </a>
 
-<a
-class="link"
-href="https://www.narita-airport.jp/en/flight/airline-search/tgw/"
+<a class="link"
+href="https://www.narita-airport.jp/en/flight/airline-search/"
 target="_blank">
-NRT Scoot 航廈
+NRT 航班／航廈
 </a>
+
+</div>
 
 </div>
 
@@ -4609,13 +4782,15 @@ NRT Scoot 航廈
 
 
 <!-- =========================================================
-FINAL COST
+TRIP COST
 ========================================================= -->
 
-<section id="cost" class="section">
+<section class="section">
 <div class="container">
 
-<div class="section-label">TRIP COST</div>
+<div class="section-label">
+TRIP COST
+</div>
 
 <h2 class="section-title">
 主要固定／半固定費用。
@@ -4670,61 +4845,71 @@ FINAL COST
 
 </div>
 
-</div>
-</section>
 
-
-<!-- =========================================================
-FINAL CONTROL
-========================================================= -->
-
-<section class="section">
-<div class="container">
-
-<div class="resource-card">
+<div class="info-card" style="margin-top:14px;">
 
 <h3>⚠️ 最重要時間控制</h3>
 
 <div class="checklist">
 
-<div class="check">
-<span>Day 1：TR866 11:15 落地 ≠ 11:15 可以搭車。</span>
+<div class="check-row">
+<div class="check-label">
+Day 1：TR866 11:15 落地 ≠ 11:15 可以搭車。
+</div>
 </div>
 
-<div class="check">
-<span>Day 1：Sky Restaurant 634 必須以實際預約時間／官方規則為準。</span>
+<div class="check-row">
+<div class="check-label">
+Day 1：Sky Restaurant 634 必須以實際預約時間／官方規則為準。
+</div>
 </div>
 
-<div class="check">
-<span>Day 2：Tokyo City View 指定時間不能拖。</span>
+<div class="check-row">
+<div class="check-label">
+Day 2：Tokyo City View 指定時間不能拖。
+</div>
 </div>
 
-<div class="check">
-<span>Day 2：SHIBUYA SKY 指定時間不能遲到。</span>
+<div class="check-row">
+<div class="check-label">
+Day 2：SHIBUYA SKY 指定時間不能遲到。
+</div>
 </div>
 
-<div class="check">
-<span>Day 3：根津神幸祭優先於其他景點。</span>
+<div class="check-row">
+<div class="check-label">
+Day 3：根津神幸祭優先於其他景點。
+</div>
 </div>
 
-<div class="check">
-<span>Day 3：つじ半不要假設可以預約。</span>
+<div class="check-row">
+<div class="check-label">
+Day 3：つじ半不要假設可以預約。
+</div>
 </div>
 
-<div class="check">
-<span>Day 4：16:50 前一定離開飯店。</span>
+<div class="check-row">
+<div class="check-label">
+Day 4：16:50 前一定離開飯店。
+</div>
 </div>
 
-<div class="check">
-<span>Day 4：17:50 左右目標搭 N'EX。</span>
+<div class="check-row">
+<div class="check-label">
+Day 4：17:50 左右目標搭 N'EX。
+</div>
 </div>
 
-<div class="check">
-<span>Day 4：19:00 左右抵達成田 T1。</span>
+<div class="check-row">
+<div class="check-label">
+Day 4：19:00 左右抵達成田 T1。
+</div>
 </div>
 
-<div class="check">
-<span>Day 4：TR875 21:15 起飛，不要把 21:15 當成開始走登機門。</span>
+<div class="check-row">
+<div class="check-label">
+Day 4：TR875 21:15 起飛，不要把 21:15 當成開始走登機門。
+</div>
 </div>
 
 </div>
@@ -4741,7 +4926,9 @@ FINAL CONTROL
 <footer class="footer">
 <div class="container">
 
-<strong>Tokyo 2026｜09/25–09/28</strong>
+<strong>
+Tokyo 2026｜09/25–09/28
+</strong>
 
 <div class="small">
 行程原則：不把純乘車時間當成完整交通時間；
@@ -4763,10 +4950,10 @@ Progress data is saved locally on this device.
 
 <script>
 /* =========================================================
-QUEST SYSTEM
+TOKYO QUEST ENGINE
 ========================================================= */
 
-const STORAGE_KEY = "tokyo2026_quest_v3";
+const STORAGE_KEY = "tokyo2026-quest-v3";
 
 let saved = {};
 
@@ -4776,306 +4963,263 @@ try{
   saved = {};
 }
 
+if(!saved.tasks) saved.tasks = {};
+if(!saved.bookings) saved.bookings = {};
+if(!saved.packing) saved.packing = {};
+
 
 function save(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(saved)
+  );
 }
 
 
-function setSaved(id,value){
-  saved[id] = value;
-  save();
+function allTaskInputs(){
+  return [...document.querySelectorAll(".task-check[data-task]")];
 }
 
 
-function loadSaved(id){
-  return !!saved[id];
+function dayInputs(day){
+  return allTaskInputs()
+    .filter(input => input.dataset.task.startsWith(day + "-"));
 }
 
 
-/* =========================================================
-ITEM CHECKBOXES
-========================================================= */
+function updateTaskVisual(input){
 
-document.querySelectorAll(".item[data-task]").forEach(item => {
+  const item = input.closest(".item");
 
-  const id = item.dataset.task;
-  const checkbox = item.querySelector(".task-check");
-
-  checkbox.checked = loadSaved(id);
-
-  updateItem(item);
-
-  checkbox.addEventListener("change",() => {
-
-    setSaved(id,checkbox.checked);
-
-    updateItem(item);
-    updateAllProgress();
-
-  });
-
-});
-
-
-function updateItem(item){
-
-  const checkbox = item.querySelector(".task-check");
-
-  if(checkbox.checked){
-    item.classList.add("done");
-  }else{
-    item.classList.remove("done");
+  if(item){
+    item.classList.toggle(
+      "done",
+      input.checked
+    );
   }
-
 }
 
 
-/* =========================================================
-BOOKING / PACKING CHECKBOXES
-========================================================= */
+function updateBookingVisual(input){
 
-document.querySelectorAll(".check input[type='checkbox']").forEach(input => {
+  const row = input.closest(".check-row");
 
-  const id = input.id;
-
-  input.checked = loadSaved(id);
-
-  updateChecklist(input);
-
-  input.addEventListener("change",() => {
-
-    setSaved(id,input.checked);
-
-    updateChecklist(input);
-    updateAllProgress();
-
-  });
-
-});
-
-
-function updateChecklist(input){
-
-  const parent = input.closest(".check");
-
-  if(!parent) return;
-
-  if(input.checked){
-    parent.classList.add("done");
-  }else{
-    parent.classList.remove("done");
+  if(row){
+    row.classList.toggle(
+      "done",
+      input.checked
+    );
   }
-
 }
 
 
-/* =========================================================
-DAY PROGRESS
-========================================================= */
+function updateDay(day){
 
-function updateDayProgress(dayCard){
+  const inputs = dayInputs(day);
 
-  const items = [...dayCard.querySelectorAll(".item[data-task]")];
+  const total = inputs.length;
 
-  const total = items.length;
-
-  const done = items.filter(item => {
-
-    const checkbox = item.querySelector(".task-check");
-
-    return checkbox && checkbox.checked;
-
-  }).length;
+  const complete = inputs.filter(
+    input => input.checked
+  ).length;
 
   const percent = total
-    ? Math.round(done / total * 100)
+    ? Math.round((complete / total) * 100)
     : 0;
 
-  const fill = dayCard.querySelector(".day-progress-fill");
-  const text = dayCard.querySelector(".day-percent");
+  const percentEl =
+    document.getElementById(day + "Percent");
 
-  if(fill){
-    fill.style.width = percent + "%";
+  const progressEl =
+    document.getElementById(day + "Progress");
+
+  if(percentEl){
+    percentEl.textContent =
+      percent + "%";
   }
 
-  if(text){
-    text.textContent = percent + "%";
+  if(progressEl){
+    progressEl.style.width =
+      percent + "%";
   }
+
+  const card =
+    document.getElementById(
+      "day-card-" + day.replace("d","")
+    );
+
+  if(card){
+    card.classList.toggle(
+      "day-complete",
+      total > 0 && complete === total
+    );
+  }
+}
+
+
+function updateTotal(){
+
+  const inputs = allTaskInputs();
+
+  const total = inputs.length;
+
+  const complete = inputs.filter(
+    input => input.checked
+  ).length;
+
+  const percent = total
+    ? Math.round((complete / total) * 100)
+    : 0;
+
+  const percentEl =
+    document.getElementById("totalPercent");
+
+  const countEl =
+    document.getElementById("totalCount");
+
+  const progressEl =
+    document.getElementById("totalProgress");
+
+  if(percentEl){
+    percentEl.textContent =
+      percent + "%";
+  }
+
+  if(countEl){
+    countEl.textContent =
+      `${complete} / ${total} 任務`;
+  }
+
+  if(progressEl){
+    progressEl.style.width =
+      percent + "%";
+  }
+
+  const godzilla =
+    document.getElementById("godzilla");
+
+  const bossMessage =
+    document.getElementById("bossMessage");
 
   if(percent === 100 && total > 0){
 
-    dayCard.classList.add("day-complete");
-
-  }else{
-
-    dayCard.classList.remove("day-complete");
-
-  }
-
-  return {
-    total,
-    done
-  };
-
-}
-
-
-/* =========================================================
-OVERALL PROGRESS
-========================================================= */
-
-function updateAllProgress(){
-
-  const days = [...document.querySelectorAll(".day-card")];
-
-  let total = 0;
-  let done = 0;
-
-  days.forEach(day => {
-
-    const result = updateDayProgress(day);
-
-    total += result.total;
-    done += result.done;
-
-  });
-
-  /*
-    Overall travel progress deliberately counts
-    only actual itinerary tasks.
-    Booking / packing are separate preparation quests.
-  */
-
-  const percent = total
-    ? Math.round(done / total * 100)
-    : 0;
-
-  const fill = document.getElementById("overallFill");
-  const percentText = document.getElementById("overallPercent");
-  const count = document.getElementById("overallCount");
-
-  if(fill){
-    fill.style.width = percent + "%";
-  }
-
-  if(percentText){
-    percentText.textContent = percent + "%";
-  }
-
-  if(count){
-    count.textContent = done + " / " + total + " 任務";
-  }
-
-  updateGodzilla(percent);
-
-}
-
-
-/* =========================================================
-GODZILLA
-========================================================= */
-
-function updateGodzilla(percent){
-
-  const godzilla = document.getElementById("godzilla");
-  const title = document.getElementById("godzillaTitle");
-  const text = document.getElementById("godzillaText");
-
-  if(!godzilla) return;
-
-  godzilla.classList.remove("defeated");
-
-  if(percent === 0){
-
-    godzilla.textContent = "🦖";
-
-    title.textContent = "東京冒險開始！";
-
-    text.textContent =
-      "把每個行程完成，逐步清空任務。";
-
-  }else if(percent < 25){
-
-    godzilla.textContent = "🦖";
-
-    title.textContent = "QUEST START!";
-
-    text.textContent =
-      "第一個任務已經開始。";
-
-  }else if(percent < 50){
-
-    godzilla.textContent = "🦖";
-
-    title.textContent = "哥吉拉開始警戒";
-
-    text.textContent =
-      "已經完成四分之一，繼續推進。";
-
-  }else if(percent < 75){
-
-    godzilla.textContent = "🦖";
-
-    title.textContent = "東京冒險過半！";
-
-    text.textContent =
-      "一半以上任務已經清掉。";
-
-  }else if(percent < 100){
-
-    godzilla.textContent = "🦖";
-
-    title.textContent = "FINAL BATTLE！";
-
-    text.textContent =
-      "最後一段，準備擊倒哥吉拉。";
-
-  }else{
-
-    godzilla.textContent = "💥";
-
     godzilla.classList.add("defeated");
 
-    title.textContent = "GODZILLA DEFEATED！";
+    bossMessage.textContent =
+      "QUEST CLEAR！全部行程完成，哥吉拉倒下！";
 
-    text.textContent =
-      "東京 2026 全行程完成。任務 100% Clear！";
+  }else if(percent >= 75){
 
+    godzilla.classList.remove("defeated");
+
+    bossMessage.textContent =
+      "FINAL PHASE！已經接近東京 Quest 完成！";
+
+  }else if(percent >= 40){
+
+    godzilla.classList.remove("defeated");
+
+    bossMessage.textContent =
+      "中盤突破！繼續清任務。";
+
+  }else{
+
+    godzilla.classList.remove("defeated");
+
+    bossMessage.textContent =
+      "東京冒險開始！把每個行程完成，逐步清空任務。";
   }
+}
 
+
+function updateAll(){
+
+  allTaskInputs().forEach(input=>{
+    updateTaskVisual(input);
+  });
+
+  document.querySelectorAll(".booking-check")
+    .forEach(input=>{
+      updateBookingVisual(input);
+    });
+
+  document.querySelectorAll(".packing-check")
+    .forEach(input=>{
+      updateBookingVisual(input);
+    });
+
+  ["d1","d2","d3","d4"].forEach(
+    updateDay
+  );
+
+  updateTotal();
 }
 
 
 /* =========================================================
-INITIAL
+LOAD SAVED STATE
 ========================================================= */
 
-updateAllProgress();
+document.querySelectorAll(
+  ".task-check[data-task]"
+).forEach(input=>{
+
+  const key = input.dataset.task;
+
+  input.checked =
+    saved.tasks[key] === true;
+
+});
+
+
+document.querySelectorAll(
+  ".booking-check"
+).forEach(input=>{
+
+  const key = input.dataset.booking;
+
+  input.checked =
+    saved.bookings[key] === true;
+
+});
+
+
+document.querySelectorAll(
+  ".packing-check"
+).forEach(input=>{
+
+  const key = input.dataset.pack;
+
+  input.checked =
+    saved.packing[key] === true;
+
+});
 
 
 /* =========================================================
-SMOOTH NAVIGATION
+TASK EVENTS
 ========================================================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+document.querySelectorAll(
+  ".task-check[data-task]"
+).forEach(input=>{
 
-  link.addEventListener("click",event => {
+  input.addEventListener("change",()=>{
 
-    const targetId = link.getAttribute("href");
+    const key = input.dataset.task;
 
-    if(targetId === "#") return;
+    saved.tasks[key] =
+      input.checked;
 
-    const target = document.querySelector(targetId);
+    save();
 
-    if(!target) return;
+    updateTaskVisual(input);
 
-    event.preventDefault();
+    ["d1","d2","d3","d4"].forEach(
+      updateDay
+    );
 
-    target.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
+    updateTotal();
 
   });
 
@@ -5083,30 +5227,148 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 /* =========================================================
-IMAGE FALLBACK
+BOOKING EVENTS
 ========================================================= */
 
-document.querySelectorAll(".photo-card img").forEach(img => {
+document.querySelectorAll(
+  ".booking-check"
+).forEach(input=>{
 
-  img.addEventListener("error",() => {
+  input.addEventListener("change",()=>{
 
-    img.style.display = "none";
+    const key =
+      input.dataset.booking;
 
-    const parent = img.closest(".photo-card");
+    saved.bookings[key] =
+      input.checked;
 
-    if(parent){
+    save();
 
-      parent.style.minHeight = "65px";
-      parent.style.display = "grid";
-      parent.style.placeItems = "center";
-      parent.style.background =
-        "linear-gradient(135deg,#111827,#1e293b)";
+    updateBookingVisual(input);
 
+  });
+
+});
+
+
+/* =========================================================
+PACKING EVENTS
+========================================================= */
+
+document.querySelectorAll(
+  ".packing-check"
+).forEach(input=>{
+
+  input.addEventListener("change",()=>{
+
+    const key =
+      input.dataset.pack;
+
+    saved.packing[key] =
+      input.checked;
+
+    save();
+
+    updateBookingVisual(input);
+
+  });
+
+});
+
+
+/* =========================================================
+DETAIL TOGGLE
+========================================================= */
+
+document.querySelectorAll(
+  ".details-toggle"
+).forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const details =
+      button.nextElementSibling;
+
+    if(!details) return;
+
+    details.classList.toggle("open");
+
+    button.textContent =
+      details.classList.contains("open")
+        ? "− 收起詳細資訊"
+        : "＋ 詳細資訊";
+
+  });
+
+});
+
+
+/* =========================================================
+INIT
+========================================================= */
+
+updateAll();
+
+
+/* =========================================================
+SMOOTH ACTIVE NAV
+========================================================= */
+
+const sections =
+  document.querySelectorAll(
+    "main section[id]"
+  );
+
+const navLinks =
+  document.querySelectorAll(
+    ".nav-links a"
+  );
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          navLinks.forEach(link=>{
+            link.style.color =
+              link.getAttribute("href") ===
+              "#" + entry.target.id
+                ? "#22d3ee"
+                : "";
+          });
+
+        }
+
+      });
+
+    },
+    {
+      rootMargin:"-30% 0px -60% 0px"
     }
+  );
 
-  });
+sections.forEach(
+  section => observer.observe(section)
+);
 
+
+/* =========================================================
+PREVENT ACCIDENTAL DOUBLE TAP ZOOM ON BUTTONS
+========================================================= */
+
+document.querySelectorAll(
+  "button,.task-check"
+).forEach(el=>{
+  el.addEventListener(
+    "touchstart",
+    ()=>{},
+    {passive:true}
+  );
 });
+
 </script>
 
 </body>
