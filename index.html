@@ -4964,118 +4964,203 @@ Progress data is saved locally on this device.
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const STORAGE_KEY = "tokyo-travel-progress";
-  const checks = [...document.querySelectorAll(".task-check")];
-  const days = [1,2,3,4];
+  const STORAGE_KEY = "kellan_tokyo_progress";
 
-  // 讀取紀錄
-  function load(){
+  const checks = [...document.querySelectorAll(".task-check")];
+  const dayCards = [...document.querySelectorAll(".day-card")];
+
+  // ===== 載入 =====
+  function loadProgress() {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   }
 
-  // 儲存紀錄
-  function save(){
+  // ===== 儲存 =====
+  function saveProgress() {
     const data = {};
-    checks.forEach(c=>{
-      data[c.dataset.task] = c.checked;
+
+    checks.forEach(cb => {
+      data[cb.dataset.task] = cb.checked;
     });
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
-  // 更新全部進度
-  function updateProgress(){
+  // ===== 動畫設定 =====
+  function animateBar(bar, percent) {
+    if (!bar) return;
 
-    const data = load();
+    requestAnimationFrame(() => {
+      bar.style.width = percent + "%";
+    });
+  }
+
+  // ===== 更新全部 =====
+  function updateAllProgress() {
+
+    const saved = loadProgress();
+
     let totalDone = 0;
 
-    // 還原 checkbox
-    checks.forEach(c=>{
-      c.checked = !!data[c.dataset.task];
+    checks.forEach(cb => {
 
-      const item = c.closest(".item");
-      item.classList.toggle("done", c.checked);
+      cb.checked = !!saved[cb.dataset.task];
 
-      if(c.checked) totalDone++;
+      const item = cb.closest(".item");
+
+      if (item) {
+        item.classList.toggle("done", cb.checked);
+      }
+
+      if (cb.checked) totalDone++;
+
     });
 
-    // ===== 總進度 =====
-    const total = checks.length;
-    const totalPercent = Math.round((totalDone / total) * 100);
+    // ------------------------
+    // 每日進度
+    // ------------------------
 
-    document.getElementById("totalProgress").style.width =
-      totalPercent + "%";
+    dayCards.forEach(card => {
 
-    document.getElementById("totalPercent").textContent =
-      totalPercent + "%";
+      const day = card.id.replace("day-card-", "");
 
-    document.getElementById("totalCount").textContent =
-      totalDone + " / " + total + " 任務";
-
-    // ===== 每一天 =====
-    days.forEach(day=>{
-
-      const dayChecks = checks.filter(c =>
-        c.dataset.task.startsWith("d"+day+"-")
+      const dayChecks = checks.filter(cb =>
+        cb.dataset.task.startsWith("d" + day + "-")
       );
 
-      const done = dayChecks.filter(c=>c.checked).length;
-      const percent = Math.round((done/dayChecks.length)*100);
+      const done = dayChecks.filter(cb => cb.checked).length;
 
-      const bar = document.getElementById("day"+day+"Progress");
-      const text = document.getElementById("day"+day+"Percent");
-      const card = document.getElementById("day-card-"+day);
+      const total = dayChecks.length;
 
-      if(bar) bar.style.width = percent + "%";
+      const percent = total === 0 ? 0 : Math.round(done / total * 100);
 
-      if(text){
-        text.textContent =
-          percent + "% (" + done + "/" + dayChecks.length + ")";
+      const bar = document.getElementById("day" + day + "Progress");
+
+      const text = document.getElementById("day" + day + "Percent");
+
+      animateBar(bar, percent);
+
+      if (text) {
+        text.textContent = `${percent}% (${done}/${total})`;
       }
 
-      if(card){
-        card.classList.toggle(
-          "day-complete",
-          done === dayChecks.length
-        );
-      }
+      card.classList.toggle("day-complete", done === total && total > 0);
 
     });
 
-    // ===== Boss =====
-    const boss = document.getElementById("godzilla");
-    const msg = document.getElementById("bossMessage");
+    // ------------------------
+    // 總進度
+    // ------------------------
 
-    if(totalPercent === 100){
-      boss.classList.add("defeated");
-      msg.textContent = "🏆 東京旅程全部完成！";
-    }else{
-      boss.classList.remove("defeated");
-      msg.textContent = "🗼 東京冒險進行中";
+    const totalTasks = checks.length;
+
+    const totalPercent =
+      totalTasks === 0
+        ? 0
+        : Math.round(totalDone / totalTasks * 100);
+
+    animateBar(
+      document.getElementById("totalProgress"),
+      totalPercent
+    );
+
+    const totalPercentText =
+      document.getElementById("totalPercent");
+
+    if (totalPercentText) {
+      totalPercentText.textContent = totalPercent + "%";
+    }
+
+    const totalCount =
+      document.getElementById("totalCount");
+
+    if (totalCount) {
+      totalCount.textContent =
+        `${totalDone} / ${totalTasks} 任務`;
+    }
+
+    // ------------------------
+    // Boss Animation
+    // ------------------------
+
+    const godzilla = document.getElementById("godzilla");
+    const bossMessage = document.getElementById("bossMessage");
+
+    if (godzilla) {
+      godzilla.classList.toggle(
+        "defeated",
+        totalPercent === 100
+      );
+    }
+
+    if (bossMessage) {
+
+      if (totalPercent === 100) {
+        bossMessage.textContent =
+          "🏆 MISSION COMPLETE！東京征服成功";
+      }
+
+      else if (totalPercent >= 75) {
+        bossMessage.textContent =
+          "🔥 最終衝刺中";
+      }
+
+      else if (totalPercent >= 40) {
+        bossMessage.textContent =
+          "🚇 已完成一半以上";
+      }
+
+      else {
+        bossMessage.textContent =
+          "🗼 東京冒險開始";
+      }
+
     }
 
   }
 
-  // Checkbox事件
-  checks.forEach(c=>{
-    c.addEventListener("change", ()=>{
-      save();
-      updateProgress();
+  // ===== Checkbox =====
+
+  checks.forEach(cb => {
+
+    cb.addEventListener("change", () => {
+
+      const data = loadProgress();
+
+      data[cb.dataset.task] = cb.checked;
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+      );
+
+      updateAllProgress();
+
     });
+
   });
 
-  // 詳細資訊收合
-  document.querySelectorAll(".details-toggle").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const box = btn.nextElementSibling;
-      box.classList.toggle("open");
+  // ===== 詳細資訊 =====
+
+  document.querySelectorAll(".details-toggle").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      const detail = btn.nextElementSibling;
+
+      detail.classList.toggle("open");
+
       btn.textContent =
-        box.classList.contains("open")
-        ? "－ 收合資訊"
-        : "＋ 詳細資訊";
+        detail.classList.contains("open")
+          ? "－ 收合資訊"
+          : "＋ 詳細資訊";
+
     });
+
   });
 
-  updateProgress();
+  // ===== 初始化 =====
+
+  updateAllProgress();
 
 });
 </script>
