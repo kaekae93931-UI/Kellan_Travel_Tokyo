@@ -2220,6 +2220,267 @@ body.direct-mode .direct-note{
   color: #777;
 }
 
+/* =========================================================
+   FINAL RESPONSIVE POLISH
+========================================================= */
+
+@media (min-width: 851px){
+
+  .hero-grid{
+    grid-template-columns:minmax(0,1.7fr) minmax(300px,.8fr);
+    gap:20px;
+  }
+
+  .hero-main{
+    padding:34px;
+  }
+
+  .hero-control{
+    padding:24px;
+  }
+
+  .check-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+  .delay-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+
+}
+
+
+@media (max-width: 850px){
+
+  .container{
+    width:calc(100% - 24px);
+  }
+
+  .hero{
+    padding:20px 0;
+  }
+
+  .hero-grid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .hero-main{
+    padding:24px 20px;
+    min-height:0;
+  }
+
+  .hero-control{
+    padding:20px;
+  }
+
+  .hero h1{
+    font-size:clamp(40px,11vw,54px);
+  }
+
+  .hero-meta{
+    gap:6px;
+  }
+
+  .meta-pill{
+    font-size:9px;
+    padding:6px 9px;
+  }
+
+  .day-header{
+    grid-template-columns:58px minmax(0,1fr);
+    gap:12px;
+  }
+
+  .day-number{
+    width:58px;
+    height:58px;
+  }
+
+  .day-progress{
+    grid-column:1/-1;
+    width:100%;
+    min-width:0;
+  }
+
+  .check-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .delay-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+
+@media (max-width: 560px){
+
+  .container{
+    width:calc(100% - 16px);
+  }
+
+  .topbar-inner{
+    width:calc(100% - 10px);
+    height:58px;
+  }
+
+  .nav{
+    gap:3px;
+  }
+
+  .nav a{
+    padding:6px 7px;
+    font-size:9px;
+  }
+
+  .hero{
+    padding:14px 0;
+  }
+
+  .hero-main{
+    padding:20px 16px;
+    border-radius:18px;
+  }
+
+  .hero h1{
+    font-size:40px;
+    line-height:.94;
+  }
+
+  .hero-sub{
+    font-size:11px;
+    line-height:1.6;
+  }
+
+  .hero-meta{
+    margin-top:16px;
+  }
+
+  .meta-pill{
+    padding:5px 7px;
+    font-size:8px;
+  }
+
+  .hero-control{
+    padding:17px;
+    border-radius:18px;
+  }
+
+  .big-progress{
+    font-size:42px;
+  }
+
+  .control-strip{
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+  }
+
+  .control-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    width:100%;
+  }
+
+  .control-buttons .action{
+    width:100%;
+  }
+
+  .weather-toggle{
+    width:100%;
+  }
+
+  .weather-toggle button{
+    flex:1;
+  }
+
+  .day{
+    margin:36px 0 46px;
+  }
+
+  .day-header{
+    grid-template-columns:52px minmax(0,1fr);
+    gap:10px;
+  }
+
+  .day-number{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+  }
+
+  .day-number span{
+    font-size:19px;
+  }
+
+  .day-title h2{
+    font-size:18px;
+  }
+
+  .day-title p{
+    font-size:9px;
+  }
+
+  .quest{
+    grid-template-columns:20px minmax(0,1fr);
+    gap:9px;
+  }
+
+  .quest-dot{
+    width:20px;
+    height:20px;
+    font-size:8px;
+  }
+
+  .timeline:before{
+    left:9px;
+  }
+
+  .quest-main{
+    padding:12px;
+  }
+
+  .quest-name{
+    font-size:14px;
+  }
+
+  .quest-summary{
+    font-size:10px;
+    line-height:1.55;
+  }
+
+  .quest-meta{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:5px;
+  }
+
+  .quest-actions{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .complete{
+    grid-column:1/-1;
+    margin-left:0;
+    justify-content:center;
+  }
+
+  .delay-grid{
+    grid-template-columns:1fr;
+  }
+
+  .check-grid{
+    grid-template-columns:1fr;
+  }
+
+  .final-boss{
+    padding:25px 15px;
+  }
+
+}
+
   
 </style>
 </head>
