@@ -170,7 +170,7 @@ button{
 ========================= */
 
 .hero{
-  padding:55px 0 28px;
+  padding:36px 0 22px;
 }
 
 .hero-grid{
@@ -183,10 +183,10 @@ button{
 .hero-main{
   position:relative;
   overflow:hidden;
-  min-height:380px;
+  min-height:320px;
   border:1px solid #252a34;
-  border-radius:28px;
-  padding:42px;
+  border-radius:24px;
+  padding:34px;
   background:
     linear-gradient(135deg,rgba(255,59,48,.12),transparent 42%),
     linear-gradient(180deg,#11151d,#0c0f15);
@@ -420,7 +420,7 @@ button{
 
 .day{
   scroll-margin-top:90px;
-  margin:55px 0 75px;
+  margin:40px 0 56px;
 }
 
 .day-header{
@@ -516,7 +516,7 @@ button{
   display:grid;
   grid-template-columns:28px 1fr;
   gap:15px;
-  margin-bottom:12px;
+  margin-bottom:9px;
 }
 
 .quest-dot{
@@ -556,7 +556,7 @@ button{
 }
 
 .quest-main{
-  padding:17px;
+  padding:14px 15px;
 }
 
 .quest-top{
@@ -1001,6 +1001,25 @@ button{
 }
 
 /* =========================
+   FIREWORKS OVERLAY
+========================= */
+
+#fireworksCanvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:9999;
+  opacity:0;
+  transition:opacity .6s ease;
+}
+
+#fireworksCanvas.active{
+  opacity:1;
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -1296,6 +1315,8 @@ footer{
 </head>
 
 <body>
+
+<canvas id="fireworksCanvas" aria-hidden="true"></canvas>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -2017,6 +2038,12 @@ footer{
           </div>
 
           <div class="quest-actions">
+
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Millennium+Mitsui+Garden+Hotel+Tokyo"
+               target="_blank">
+              📍 MAP
+            </a>
 
             <button class="action" onclick="toggleDetails(this)">
               DETAILS
@@ -4197,6 +4224,12 @@ footer{
 
           <div class="quest-actions">
 
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Millennium+Mitsui+Garden+Hotel+Tokyo"
+               target="_blank">
+              📍 MAP
+            </a>
+
             <label class="complete">
               <input type="checkbox"
                      data-task="d3-breakfast"
@@ -5437,7 +5470,7 @@ footer{
   <div class="timeline">
 
 
-    <!-- D4-1 -->
+    <!-- D4-01 -->
 
     <article class="quest" data-day="4" data-id="d4-breakfast">
 
@@ -5463,6 +5496,12 @@ footer{
 
           <div class="quest-actions">
 
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Millennium+Mitsui+Garden+Hotel+Tokyo"
+               target="_blank">
+              📍 MAP
+            </a>
+
             <label class="complete">
               <input type="checkbox"
                      data-task="d4-breakfast"
@@ -5479,7 +5518,7 @@ footer{
     </article>
 
 
-    <!-- D4-2 -->
+    <!-- D4-02 -->
 
     <article class="quest" data-day="4" data-id="d4-pack">
 
@@ -5510,27 +5549,27 @@ footer{
           <div class="subtasks">
 
             <label class="subtask">
-              <input type="checkbox" data-sub="passport">
+              <input type="checkbox" data-sub="d4-passport-am">
               護照
             </label>
 
             <label class="subtask">
-              <input type="checkbox" data-sub="charger">
+              <input type="checkbox" data-sub="d4-charger-am">
               充電器／行動電源
             </label>
 
             <label class="subtask">
-              <input type="checkbox" data-sub="souvenir">
+              <input type="checkbox" data-sub="d4-souvenir">
               伴手禮
             </label>
 
             <label class="subtask">
-              <input type="checkbox" data-sub="safe">
+              <input type="checkbox" data-sub="d4-safe">
               保險箱
             </label>
 
             <label class="subtask">
-              <input type="checkbox" data-sub="weight">
+              <input type="checkbox" data-sub="d4-weight">
               行李重量
             </label>
 
@@ -5554,7 +5593,7 @@ footer{
     </article>
 
 
-    <!-- D4-3 -->
+    <!-- D4-03 -->
 
     <article class="quest" data-day="4" data-id="d4-checkout">
 
@@ -5581,7 +5620,8 @@ footer{
 
           <div class="quest-summary">
             官方 Check-out 12:00。
-            09:30–10:00 主動退房，讓下午完全不用擔心行李。
+            09:30–10:00 主動退房，讓下午完全不用擔心行李，
+            只帶隨身小包出門逛銀座。
           </div>
 
           <div class="quest-actions">
@@ -5608,9 +5648,9 @@ footer{
     </article>
 
 
-    <!-- D4-4 -->
+    <!-- D4-04 -->
 
-    <article class="quest" data-day="4" data-id="d4-kabuki">
+    <article class="quest" data-day="4" data-id="d4-kabukiza">
 
       <div class="quest-dot">04</div>
 
@@ -5622,71 +5662,26 @@ footer{
 
             <div>
               <div class="time">10:00–10:20</div>
-              <div class="quest-name">飯店 → 歌舞伎座</div>
-              <div class="quest-location">步行</div>
-            </div>
-
-            <div class="badges">
-              <span class="badge green">🟢 WALK</span>
-            </div>
-
-          </div>
-
-          <div class="quest-actions">
-
-            <label class="complete">
-              <input type="checkbox"
-                     data-task="d4-kabuki"
-                     onchange="saveTask(this)">
-              COMPLETE
-            </label>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- D4-5 -->
-
-    <article class="quest" data-day="4" data-id="d4-kabukiza">
-
-      <div class="quest-dot">05</div>
-
-      <div class="quest-card">
-
-        <div class="quest-main">
-
-          <div class="quest-top">
-
-            <div>
-              <div class="time">10:20–10:50</div>
-              <div class="quest-name">歌舞伎座＋木挽町廣場</div>
-              <div class="quest-location">外觀／正面入口／商場</div>
+              <div class="quest-name">歌舞伎座</div>
+              <div class="quest-location">木挽町廣場・正門拍照</div>
             </div>
 
             <div class="badges">
               <span class="badge cyan">📸 PHOTO</span>
-              <span class="badge green">🟢 RAIN SAFE</span>
             </div>
 
+          </div>
+
+          <div class="quest-summary">
+            東京代表建築，早上人最少，拍照最佳時段，不需要入內看戲即可拍到完整外觀。
           </div>
 
           <div class="quest-actions">
 
             <a class="action"
-               href="https://www.google.com/maps/search/?api=1&query=Kabukiza+Theatre"
+               href="https://www.google.com/maps/search/?api=1&query=Kabukiza+Theatre+Tokyo"
                target="_blank">
               📍 MAP
-            </a>
-
-            <a class="action"
-               href="https://www.kabuki-za.co.jp/"
-               target="_blank">
-              🎭 OFFICIAL
             </a>
 
             <label class="complete">
@@ -5705,7 +5700,59 @@ footer{
     </article>
 
 
-    <!-- D4-6 -->
+    <!-- D4-05 -->
+
+    <article class="quest" data-day="4" data-id="d4-lv">
+
+      <div class="quest-dot">05</div>
+
+      <div class="quest-card">
+
+        <div class="quest-main">
+
+          <div class="quest-top">
+
+            <div>
+              <div class="time">10:20–10:45</div>
+              <div class="quest-name">Louis Vuitton Ginza Namiki</div>
+              <div class="quest-location">旗艦店外觀・櫥窗</div>
+            </div>
+
+            <div class="badges">
+              <span class="badge cyan">📸 MUST</span>
+            </div>
+
+          </div>
+
+          <div class="quest-summary">
+            世界級玻璃建築，銀座必拍，不建議花時間排隊入店。
+          </div>
+
+          <div class="quest-actions">
+
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Louis+Vuitton+Ginza+Namiki"
+               target="_blank">
+              📍 MAP
+            </a>
+
+            <label class="complete">
+              <input type="checkbox"
+                     data-task="d4-lv"
+                     onchange="saveTask(this)">
+              COMPLETE
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- D4-06 -->
 
     <article class="quest" data-day="4" data-id="d4-wako">
 
@@ -5718,22 +5765,25 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">10:50–11:30</div>
-              <div class="quest-name">銀座四丁目｜WAKO</div>
-              <div class="quest-location">WAKO Clock Tower</div>
+              <div class="time">10:45–11:00</div>
+              <div class="quest-name">WAKO 銀座鐘樓</div>
+              <div class="quest-location">銀座四丁目十字路口</div>
             </div>
 
             <div class="badges">
-              <span class="badge cyan">📸 PHOTO</span>
-              <span class="badge green">🟢 FLEX</span>
+              <span class="badge cyan">📸 ICONIC</span>
             </div>
 
+          </div>
+
+          <div class="quest-summary">
+            與 LV 同一路口，2 分鐘步行即可完成，銀座地標鐘樓打卡。
           </div>
 
           <div class="quest-actions">
 
             <a class="action"
-               href="https://www.google.com/maps/search/?api=1&query=Wako+Ginza+Tokyo"
+               href="https://www.google.com/maps/search/?api=1&query=Wako+Ginza+Main+Building"
                target="_blank">
               📍 MAP
             </a>
@@ -5754,9 +5804,9 @@ footer{
     </article>
 
 
-    <!-- D4-7 -->
+    <!-- D4-07 -->
 
-    <article class="quest" data-day="4" data-id="d4-mitsukoshi">
+    <article class="quest" data-day="4" data-id="d4-ginza6">
 
       <div class="quest-dot">07</div>
 
@@ -5767,99 +5817,20 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">11:30–11:50</div>
-              <div class="quest-name">銀座三越</div>
-              <div class="quest-location">最後採買</div>
+              <div class="time">11:00–12:20</div>
+              <div class="quest-name">GINZA SIX</div>
+              <div class="quest-location">BEAMS・Maison Kitsuné・屋頂花園</div>
             </div>
 
             <div class="badges">
-              <span class="badge green">🛍 SHOP</span>
-              <span class="badge yellow">🟡 TIME</span>
+              <span class="badge green">🛍 PREMIUM</span>
             </div>
 
           </div>
 
           <div class="quest-summary">
-            只買必要品，不開始大型購物。
-          </div>
-
-          <div class="quest-actions">
-
-            <a class="action"
-               href="https://www.google.com/maps/search/?api=1&query=Mitsukoshi+Ginza"
-               target="_blank">
-              📍 MAP
-            </a>
-
-            <a class="action"
-               href="https://www.mistore.jp/store/ginza.html"
-               target="_blank">
-              🛍 OFFICIAL
-            </a>
-
-            <label class="complete">
-              <input type="checkbox"
-                     data-task="d4-mitsukoshi"
-                     onchange="saveTask(this)">
-              COMPLETE
-            </label>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- D4-8 -->
-
-    <article class="quest" data-day="4" data-id="d4-ginza6">
-
-      <div class="quest-dot">08</div>
-
-      <div class="quest-card">
-
-        <div class="quest-main">
-
-          <div class="quest-top">
-
-            <div>
-              <div class="time">11:50–12:35</div>
-              <div class="quest-name">GINZA SIX</div>
-              <div class="quest-location">入口／外觀／Garden／購物</div>
-            </div>
-
-            <div class="badges">
-              <span class="badge green">🛍 SHOP</span>
-              <span class="badge cyan">🌿 GARDEN</span>
-            </div>
-
-          </div>
-
-          <div class="quest-meta">
-
-            <div class="meta-box">
-              <label>SHOPS</label>
-              <div>10:30–20:30</div>
-            </div>
-
-            <div class="meta-box">
-              <label>GARDEN</label>
-              <div>07:00–23:00</div>
-            </div>
-
-            <div class="meta-box">
-              <label>VISIT</label>
-              <div>45 min</div>
-            </div>
-
-            <div class="meta-box">
-              <label>RULE</label>
-              <div>不拖延</div>
-            </div>
-
+            真正推薦：BEAMS、Maison Kitsuné、N.HOOLYWOOD、中川政七商店。
+            屋頂花園可以順便休息拍照。
           </div>
 
           <div class="quest-actions">
@@ -5868,12 +5839,6 @@ footer{
                href="https://www.google.com/maps/search/?api=1&query=GINZA+SIX"
                target="_blank">
               📍 MAP
-            </a>
-
-            <a class="action"
-               href="https://ginza6.tokyo/"
-               target="_blank">
-              🛍 OFFICIAL
             </a>
 
             <label class="complete">
@@ -5892,11 +5857,11 @@ footer{
     </article>
 
 
-    <!-- D4-9 -->
+    <!-- D4-08 -->
 
     <article class="quest" data-day="4" data-id="d4-lunch">
 
-      <div class="quest-dot">09</div>
+      <div class="quest-dot">08</div>
 
       <div class="quest-card">
 
@@ -5911,57 +5876,22 @@ footer{
             </div>
 
             <div class="badges">
-              <span class="badge red">🔴 RESERVE</span>
-              <span class="badge cyan">🥩 LUNCH</span>
+              <span class="badge red">🥩 RESERVE</span>
             </div>
 
           </div>
 
           <div class="quest-summary">
-            約 70 分鐘。建議提前預約。
-          </div>
-
-          <div class="quest-meta">
-
-            <div class="meta-box">
-              <label>TIME</label>
-              <div>12:50–14:00</div>
-            </div>
-
-            <div class="meta-box">
-              <label>HOURS</label>
-              <div>11:00–23:00*</div>
-            </div>
-
-            <div class="meta-box">
-              <label>ADDRESS</label>
-              <div>銀座2-5-19</div>
-            </div>
-
-            <div class="meta-box">
-              <label>RULE</label>
-              <div>預約優先</div>
-            </div>
-
+            12:20 從 GINZA SIX 步行約 10–15 分鐘抵達，保留候位緩衝，準時入座。
           </div>
 
           <div class="quest-actions">
 
             <a class="action"
-               href="https://www.google.com/maps/search/?api=1&query=牛の達人+GINZA"
+               href="https://www.google.com/maps/search/?api=1&query=牛の達人+銀座店"
                target="_blank">
               📍 MAP
             </a>
-
-            <a class="action"
-               href="https://shop.gyro.holdings/detail/gyutatsu007/"
-               target="_blank">
-              🥩 OFFICIAL
-            </a>
-
-            <button class="action" onclick="toggleDetails(this)">
-              DETAILS
-            </button>
 
             <label class="complete">
               <input type="checkbox"
@@ -5974,20 +5904,55 @@ footer{
 
         </div>
 
-        <div class="details">
+      </div>
 
-          <div class="detail">
-            <h4>交通</h4>
-            <p>
-              銀座一丁目站 5 號出口直結；銀座站約步行 5 分鐘。
-            </p>
+    </article>
+
+
+    <!-- D4-09 -->
+
+    <article class="quest" data-day="4" data-id="d4-dsm">
+
+      <div class="quest-dot">09</div>
+
+      <div class="quest-card">
+
+        <div class="quest-main">
+
+          <div class="quest-top">
+
+            <div>
+              <div class="time">14:10–15:20</div>
+              <div class="quest-name">Dover Street Market Ginza</div>
+              <div class="quest-location">潮流旗艦選物</div>
+            </div>
+
+            <div class="badges">
+              <span class="badge green">🛍 HYPE</span>
+            </div>
+
           </div>
 
-          <div class="detail">
-            <h4>注意</h4>
-            <p>
-              餐廳實際營業與最後點餐仍應於出發前確認。
-            </p>
+          <div class="quest-summary">
+            COMME des GARÇONS、Stüssy、Nike、Sacai、Margiela，
+            這裡比三越更值得逛。
+          </div>
+
+          <div class="quest-actions">
+
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Dover+Street+Market+Ginza"
+               target="_blank">
+              📍 MAP
+            </a>
+
+            <label class="complete">
+              <input type="checkbox"
+                     data-task="d4-dsm"
+                     onchange="saveTask(this)">
+              COMPLETE
+            </label>
+
           </div>
 
         </div>
@@ -5999,7 +5964,7 @@ footer{
 
     <!-- D4-10 -->
 
-    <article class="quest" data-day="4" data-id="d4-itoya">
+    <article class="quest" data-day="4" data-id="d4-uniqlo">
 
       <div class="quest-dot">10</div>
 
@@ -6010,63 +5975,32 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">14:00–15:15</div>
-              <div class="quest-name">銀座 伊東屋本店</div>
-              <div class="quest-location">銀座 2-7-15</div>
+              <div class="time">15:20–15:35</div>
+              <div class="quest-name">UNIQLO TOKYO</div>
+              <div class="quest-location">最後補貨</div>
             </div>
 
             <div class="badges">
-              <span class="badge green">🛍 LAST SHOP</span>
-              <span class="badge yellow">🟡 TIME</span>
+              <span class="badge green">💴 BEST VALUE</span>
             </div>
 
           </div>
 
           <div class="quest-summary">
-            文具／伴手禮最後採買。
-          </div>
-
-          <div class="quest-meta">
-
-            <div class="meta-box">
-              <label>VISIT</label>
-              <div>75 min</div>
-            </div>
-
-            <div class="meta-box">
-              <label>WEEKDAY</label>
-              <div>10:00–20:00*</div>
-            </div>
-
-            <div class="meta-box">
-              <label>ADDRESS</label>
-              <div>銀座2-7-15</div>
-            </div>
-
-            <div class="meta-box">
-              <label>RULE</label>
-              <div>最後採買</div>
-            </div>
-
+            UT、日本限定 T-Shirt、襪子、內搭，比機場買划算，快速掃貨即可。
           </div>
 
           <div class="quest-actions">
 
             <a class="action"
-               href="https://www.google.com/maps/search/?api=1&query=Itoya+Ginza"
+               href="https://www.google.com/maps/search/?api=1&query=UNIQLO+TOKYO+Ginza"
                target="_blank">
               📍 MAP
             </a>
 
-            <a class="action"
-               href="https://www.ito-ya.co.jp/ginza"
-               target="_blank">
-              ✏️ OFFICIAL
-            </a>
-
             <label class="complete">
               <input type="checkbox"
-                     data-task="d4-itoya"
+                     data-task="d4-uniqlo"
                      onchange="saveTask(this)">
               COMPLETE
             </label>
@@ -6082,7 +6016,7 @@ footer{
 
     <!-- D4-11 -->
 
-    <article class="quest" data-day="4" data-id="d4-last-free">
+    <article class="quest" data-day="4" data-id="d4-itoya">
 
       <div class="quest-dot">11</div>
 
@@ -6093,8 +6027,8 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">15:15–15:35</div>
-              <div class="quest-name">銀座最後自由時間</div>
+              <div class="time">15:35–15:50</div>
+              <div class="quest-name">ITOYA 銀座文具店｜備用自由時間</div>
               <div class="quest-location">補買臨時漏掉的東西</div>
             </div>
 
@@ -6106,13 +6040,20 @@ footer{
 
           <div class="quest-summary">
             只有「已經知道要買什麼」才使用這段。
+            時間不夠可直接跳過，提前回飯店。
           </div>
 
           <div class="quest-actions">
 
+            <a class="action"
+               href="https://www.google.com/maps/search/?api=1&query=Itoya+Ginza"
+               target="_blank">
+              📍 MAP
+            </a>
+
             <label class="complete">
               <input type="checkbox"
-                     data-task="d4-last-free"
+                     data-task="d4-itoya"
                      onchange="saveTask(this)">
               COMPLETE
             </label>
@@ -6139,7 +6080,7 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">15:35–16:50</div>
+              <div class="time">15:50–16:50</div>
               <div class="quest-name">回飯店｜取行李＋最終確認</div>
               <div class="quest-location">銀座 5-11-1</div>
             </div>
@@ -6153,14 +6094,14 @@ footer{
 
           <div class="quest-summary">
             16:50 前離開飯店。
-            若東京下大雨，16:30 就開始回飯店。
+            若東京下大雨，16:30 就開始回飯店，不再購物。
           </div>
 
           <div class="quest-meta">
 
             <div class="meta-box">
               <label>RETURN</label>
-              <div>15:35</div>
+              <div>15:50</div>
             </div>
 
             <div class="meta-box">
@@ -6183,7 +6124,7 @@ footer{
           <div class="subtasks">
 
             <label class="subtask">
-              <input type="checkbox" data-sub="d4-passport">
+              <input type="checkbox" data-sub="d4-passport-pm">
               護照
             </label>
 
@@ -6203,7 +6144,7 @@ footer{
             </label>
 
             <label class="subtask">
-              <input type="checkbox" data-sub="d4-charger">
+              <input type="checkbox" data-sub="d4-charger-pm">
               充電器／行動電源
             </label>
 
@@ -6255,7 +6196,7 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">16:50–17:25</div>
+              <div class="time">16:50–17:15</div>
               <div class="quest-name">飯店 → 東京站</div>
               <div class="quest-location">建議計程車</div>
             </div>
@@ -6268,7 +6209,8 @@ footer{
           </div>
 
           <div class="quest-summary">
-            拖大行李不建議步行。雨天更應直接搭計程車。
+            拖大行李不建議步行或轉乘。雨天更應直接搭計程車，
+            車程約 15–20 分鐘（含上下車與交通狀況緩衝）。
           </div>
 
           <div class="quest-actions">
@@ -6308,9 +6250,9 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">17:25–17:50</div>
-              <div class="quest-name">東京站｜JR 總武快速線</div>
-              <div class="quest-location">N'EX / Narita Express</div>
+              <div class="time">17:15–17:40</div>
+              <div class="quest-name">東京站｜JR 總武快速線地下月台</div>
+              <div class="quest-location">N'EX / Narita Express 售票／候車</div>
             </div>
 
             <div class="badges">
@@ -6321,14 +6263,14 @@ footer{
           </div>
 
           <div class="quest-summary">
-            找 JR 總武快速線地下區域，確認 N'EX 指定席與當日車次。
+            前往 JR 總武快速線地下區域，確認 N'EX 指定席與當日車次，先上廁所、補水。
           </div>
 
           <div class="quest-meta">
 
             <div class="meta-box">
               <label>WINDOW</label>
-              <div>17:25–17:50</div>
+              <div>17:15–17:40</div>
             </div>
 
             <div class="meta-box">
@@ -6378,7 +6320,7 @@ footer{
             <div class="detail">
               <h4>不要寫死車次</h4>
               <p>
-                本頁只指定「17:50 左右的 N'EX 目標窗口」，
+                本頁只指定「17:40 左右的 N'EX 目標窗口」，
                 不把尚未在當日確認的車次號碼寫成保證。
               </p>
             </div>
@@ -6412,7 +6354,7 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">約 17:50 → 19:00</div>
+              <div class="time">約 17:45 → 18:40</div>
               <div class="quest-name">N'EX｜東京 → 成田 T1</div>
               <div class="quest-location">Narita Express</div>
             </div>
@@ -6425,15 +6367,15 @@ footer{
           </div>
 
           <div class="quest-summary">
-            目標約 19:00 抵達成田 T1。
+            車程約 55 分鐘，目標約 18:40 抵達成田 T1。
             實際車次與到達時間以當日 JR 指定席資料為準。
           </div>
 
           <div class="quest-meta">
 
             <div class="meta-box">
-              <label>TARGET</label>
-              <div>17:50 左右</div>
+              <label>DEPART</label>
+              <div>17:45 左右</div>
             </div>
 
             <div class="meta-box">
@@ -6443,7 +6385,7 @@ footer{
 
             <div class="meta-box">
               <label>TARGET ARRIVE</label>
-              <div>約 19:00</div>
+              <div>約 18:40</div>
             </div>
 
             <div class="meta-box">
@@ -6476,7 +6418,7 @@ footer{
 
           <div class="risk hard">
             🔴 HARD DEADLINE：
-            這裡不是「19:00 一定到」的保證，而是安全目標。
+            這裡不是「18:40 一定到」的保證，而是安全目標。
             若東京站發生重大延誤，立即放棄所有非必要行程，
             以最近可行的機場交通方案為優先。
           </div>
@@ -6501,7 +6443,7 @@ footer{
           <div class="quest-top">
 
             <div>
-              <div class="time">約 19:00–21:15</div>
+              <div class="time">約 18:40–21:15</div>
               <div class="quest-name">成田 T1｜報到／托運／安檢／出境</div>
               <div class="quest-location">Narita International Airport Terminal 1</div>
             </div>
@@ -6515,6 +6457,7 @@ footer{
 
           <div class="quest-summary">
             21:15 TR875。
+            保留約 2.5 小時登機緩衝；
             航班、櫃檯、登機門與報到截止時間必須以航空公司當日資訊為準。
           </div>
 
@@ -6580,12 +6523,12 @@ footer{
 
       <div class="delay-card">
         <strong>① 取消</strong>
-        <span>最後自由購物</span>
+        <span>ITOYA 自由購物</span>
       </div>
 
       <div class="delay-card">
         <strong>② 縮短</strong>
-        <span>伊東屋</span>
+        <span>GINZA SIX／DSM 逛街時間</span>
       </div>
 
       <div class="delay-card">
@@ -6602,7 +6545,7 @@ footer{
 
     <div class="priority">
       <b>Priority：</b>
-      航班 ＞ 機場安全 ＞ N'EX／替代交通 ＞ 取行李 ＞ 購物。
+      航班 ＞ 機場安全緩衝 ＞ N'EX／東京站交通 ＞ 取行李 ＞ 銀座購物（GINZA SIX／DSM／UNIQLO／ITOYA）。
     </div>
 
   </div>
@@ -6610,6 +6553,7 @@ footer{
 </div>
 
 </section>
+
 
 
 <!-- =========================================================
@@ -7039,6 +6983,128 @@ function saveTask(el){
 
 
 /* =========================================================
+   FIREWORKS (100% COMPLETION — LOOPS CONTINUOUSLY)
+========================================================= */
+
+const fwCanvas = document.getElementById("fireworksCanvas");
+const fwCtx = fwCanvas.getContext("2d");
+let fwParticles = [];
+let fwRunning = false;
+let fwRAF = null;
+let fwSpawnTimer = null;
+
+function fwResize(){
+  fwCanvas.width = window.innerWidth;
+  fwCanvas.height = window.innerHeight;
+}
+window.addEventListener("resize", fwResize);
+fwResize();
+
+const fwColors = ["#ff3b30","#ff9f43","#ffd166","#35d07f","#4da3ff","#a78bfa","#44d7e8","#ffffff"];
+
+function fwLaunchRocket(){
+
+  const startX = Math.random() * fwCanvas.width;
+  const targetY = fwCanvas.height * (0.15 + Math.random() * 0.35);
+  const color = fwColors[Math.floor(Math.random() * fwColors.length)];
+  const particleCount = 46 + Math.floor(Math.random() * 30);
+
+  for(let i = 0; i < particleCount; i++){
+
+    const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.2;
+    const speed = 2 + Math.random() * 3.4;
+
+    fwParticles.push({
+      x: startX,
+      y: targetY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 1,
+      decay: 0.012 + Math.random() * 0.012,
+      color: color,
+      size: 1.6 + Math.random() * 1.8
+    });
+
+  }
+
+}
+
+function fwTick(){
+
+  fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+  fwCtx.globalCompositeOperation = "lighter";
+
+  fwParticles.forEach(p => {
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.045;
+    p.vx *= 0.985;
+    p.life -= p.decay;
+
+    if(p.life > 0){
+      fwCtx.beginPath();
+      fwCtx.fillStyle = p.color;
+      fwCtx.globalAlpha = Math.max(p.life, 0);
+      fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      fwCtx.fill();
+    }
+
+  });
+
+  fwCtx.globalAlpha = 1;
+  fwCtx.globalCompositeOperation = "source-over";
+
+  fwParticles = fwParticles.filter(
+    p => p.life > 0 && p.y < fwCanvas.height + 50
+  );
+
+  if(fwRunning){
+    fwRAF = requestAnimationFrame(fwTick);
+  }
+
+}
+
+function startFireworks(){
+
+  if(fwRunning) return;
+
+  fwRunning = true;
+  fwCanvas.classList.add("active");
+  fwResize();
+  fwLaunchRocket();
+
+  fwSpawnTimer = setInterval(() => {
+
+    if(fwRunning){
+      fwLaunchRocket();
+      if(Math.random() < 0.4) fwLaunchRocket();
+    }
+
+  }, 850);
+
+  fwTick();
+
+}
+
+function stopFireworks(){
+
+  if(!fwRunning) return;
+
+  fwRunning = false;
+  fwCanvas.classList.remove("active");
+  clearInterval(fwSpawnTimer);
+  cancelAnimationFrame(fwRAF);
+
+  setTimeout(() => {
+    fwParticles = [];
+    fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
+  }, 650);
+
+}
+
+
+/* =========================================================
    PERSIST
 ========================================================= */
 
@@ -7104,6 +7170,8 @@ function updateProgress(){
       .innerHTML =
       "ALL QUESTS COMPLETE.<br>YOU SURVIVED TOKYO.";
 
+    startFireworks();
+
   }else{
 
     globalStatus.textContent =
@@ -7111,6 +7179,8 @@ function updateProgress(){
 
     document.getElementById("finalBoss")
       .classList.remove("completed");
+
+    stopFireworks();
 
     document.getElementById("finalStatus")
       .textContent =
