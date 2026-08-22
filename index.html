@@ -1650,6 +1650,58 @@ body.direct-mode .hide-in-direct .quest-name:after{
 body.direct-mode .direct-note{
   display:block;
 }
+
+/* =========================
+   TRAVEL NOTES
+========================= */
+
+.travel-notes{
+  margin-top:18px;
+  padding:14px;
+  border:1px solid #252c38;
+  border-radius:14px;
+  background:#0d1117;
+  position:relative;
+  z-index:2;
+}
+
+.travel-notes-title{
+  margin-bottom:8px;
+  color:var(--red2);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+
+#travelNote{
+  display:block;
+  width:100%;
+  min-height:90px;
+  box-sizing:border-box;
+  padding:10px 11px;
+  resize:vertical;
+
+  background:#080b10;
+  border:1px solid #252c38;
+  border-radius:10px;
+
+  color:#f4f6fa;
+  font:inherit;
+  font-size:12px;
+  line-height:1.6;
+
+  outline:none;
+}
+
+#travelNote:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 2px rgba(255,59,48,.08);
+}
+
+#travelNote::placeholder{
+  color:#687386;
+}
+
 .travel-notes {
   margin: 18px auto 0;
   max-width: 900px;
@@ -1758,14 +1810,17 @@ body.direct-mode .direct-note{
       </div>
 
       <div class="travel-notes">
-      <div class="travel-notes-title">📝 TRAVEL NOTES</div>
-    
-      <textarea
-        id="travelNote"
-        placeholder="輸入旅行備註……"
-      ></textarea>
-    </div>
-
+        <div class="travel-notes-title">📝 TRAVEL NOTES</div>
+      
+        <textarea
+          id="travelNote"
+          placeholder="輸入旅行備註……"
+        ></textarea>
+      </div>
+      
+      </div>
+      
+      
       <aside class="hero-control">
 
         <div class="control-label">QUEST CONTROL</div>
@@ -7323,15 +7378,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   if(travelNote){
 
     travelNote.addEventListener("input", () => {
-
+    
       saved.travel_note = travelNote.value;
-
+    
       clearTimeout(window.travelNoteTimer);
-
-      window.travelNoteTimer = setTimeout(() => {
-        persist();
+    
+      window.travelNoteTimer = setTimeout(async () => {
+    
+        try {
+          await persist();
+          console.log("Travel note saved:", saved.travel_note);
+        } catch (error) {
+          console.error("Travel note save failed:", error);
+        }
+    
       }, 500);
-
+    
     });
 
   }
