@@ -1650,8 +1650,44 @@ body.direct-mode .hide-in-direct .quest-name:after{
 body.direct-mode .direct-note{
   display:block;
 }
+.travel-notes {
+  margin: 18px auto 0;
+  max-width: 900px;
+  padding: 14px;
+  border: 1px solid rgba(255, 60, 60, 0.35);
+  background: rgba(10, 10, 10, 0.72);
+}
 
+.travel-notes-title {
+  color: #ff3b30;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
 
+#travelNote {
+  width: 100%;
+  min-height: 90px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #050505;
+  color: #f5f5f5;
+  padding: 12px;
+  font: inherit;
+  outline: none;
+}
+
+#travelNote:focus {
+  border-color: #ff3b30;
+}
+
+#travelNote::placeholder {
+  color: #777;
+}
+
+  
 </style>
 </head>
 
@@ -7282,10 +7318,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadCloudState();
 
+  const travelNote = document.getElementById("travelNote");
+
+  if(travelNote){
+
+    travelNote.addEventListener("input", () => {
+
+      saved.travel_note = travelNote.value;
+
+      clearTimeout(window.travelNoteTimer);
+
+      window.travelNoteTimer = setTimeout(() => {
+        persist();
+      }, 500);
+
+    });
+
+  }
+
   initQuestVisuals();
   restoreState();
   renderRainSuggestions();
 
+
+  }
+  
   if(saved["direct_mode"]){
     document.body.classList.add("direct-mode");
     const cb = document.getElementById("directModeToggle");
@@ -7862,6 +7919,12 @@ async function loadCloudState(){
     saved = data.value;
   }
 
+  const travelNote = document.getElementById("travelNote");
+
+  if(travelNote){
+    travelNote.value = saved.travel_note || "";
+  }
+
 }
 
 
@@ -7897,9 +7960,15 @@ function startRealtimeSync(){
       payload => {
 
         if(payload.new && payload.new.value){
-
+        
           saved = payload.new.value;
-
+        
+          const travelNote = document.getElementById("travelNote");
+        
+          if(travelNote){
+            travelNote.value = saved.travel_note || "";
+          }
+        
           restoreState();
 
           document.querySelectorAll("[data-sub]").forEach(el => {
