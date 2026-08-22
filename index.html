@@ -1311,12 +1311,354 @@ footer{
     background:white;
   }
 }
+
+/* =========================================================
+   QUEST PHOTO BANNER (auto-injected per quest)
+========================================================= */
+
+.quest-photo{
+  position:relative;
+  height:96px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding:10px 13px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 0%,rgba(255,255,255,.14),transparent 55%),
+    var(--photo-grad,linear-gradient(135deg,#232b38,#141922));
+}
+
+.quest-photo:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px);
+  opacity:.5;
+  mix-blend-mode:overlay;
+}
+
+.quest-photo:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(8,9,13,.55) 100%);
+}
+
+.quest-photo .qp-icon{
+  position:absolute;
+  right:10px;
+  top:6px;
+  font-size:46px;
+  opacity:.34;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));
+  transform:rotate(-6deg);
+  z-index:1;
+}
+
+.quest-photo .qp-cat{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 9px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  background:rgba(8,9,13,.5);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  backdrop-filter:blur(4px);
+}
+
+article.quest[data-cat="airport"] .quest-photo{ --photo-grad:linear-gradient(135deg,#1a3f7a,#0c1a33); }
+article.quest[data-cat="hotel"]   .quest-photo{ --photo-grad:linear-gradient(135deg,#3c2a63,#171225); }
+article.quest[data-cat="food"]    .quest-photo{ --photo-grad:linear-gradient(135deg,#7a3418,#2c1409); }
+article.quest[data-cat="shrine"]  .quest-photo{ --photo-grad:linear-gradient(135deg,#7a1f1f,#2b0d0d); }
+article.quest[data-cat="park"]    .quest-photo{ --photo-grad:linear-gradient(135deg,#146b47,#0b2a1e); }
+article.quest[data-cat="view"]    .quest-photo{ --photo-grad:linear-gradient(135deg,#3a2270,#150e2c); }
+article.quest[data-cat="shop"]    .quest-photo{ --photo-grad:linear-gradient(135deg,#0f6e63,#0a2a26); }
+article.quest[data-cat="museum"]  .quest-photo{ --photo-grad:linear-gradient(135deg,#1f4f8a,#0c1f36); }
+article.quest[data-cat="festival"].quest-photo,
+article.quest[data-cat="festival"] .quest-photo{ --photo-grad:linear-gradient(135deg,#9a2a1f,#33100a); }
+article.quest[data-cat="transit"] .quest-photo{ --photo-grad:linear-gradient(135deg,#204a72,#0e1e30); }
+article.quest[data-cat="photo"]   .quest-photo{ --photo-grad:linear-gradient(135deg,#4a2a63,#1a1029); }
+article.quest[data-cat="general"] .quest-photo{ --photo-grad:linear-gradient(135deg,#2a2f3a,#14171f); }
+
+.quest.completed .quest-photo:after{
+  background:linear-gradient(180deg,transparent 30%,rgba(6,20,13,.7) 100%);
+}
+
+
+/* =========================================================
+   SKIP / OPTIONAL SYSTEM
+========================================================= */
+
+.action.skip{
+  background:transparent;
+  border:1px dashed #3a4250;
+  color:#8b95a6;
+}
+
+.action.skip:hover{
+  border-color:#5b6577;
+  color:#c7ceda;
+}
+
+.quest.skipped .quest-card{
+  opacity:.5;
+  filter:grayscale(.55);
+}
+
+.quest.skipped .quest-name:after{
+  content:" · SKIPPED";
+  color:#8b95a6;
+  font-size:10px;
+  letter-spacing:.08em;
+  font-weight:900;
+}
+
+.quest.skipped .action.skip{
+  background:rgba(255,255,255,.06);
+  color:#dfe5ed;
+  border-style:solid;
+}
+
+.quest.rain-suggest .quest-card{
+  border-color:rgba(255,209,102,.4);
+  box-shadow:0 0 0 1px rgba(255,209,102,.12) inset;
+}
+
+.rain-flag{
+  display:none;
+  align-items:center;
+  gap:5px;
+  margin-left:6px;
+  padding:3px 7px;
+  border-radius:6px;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:.05em;
+  background:rgba(255,209,102,.12);
+  border:1px solid rgba(255,209,102,.3);
+  color:#ffd166;
+  white-space:nowrap;
+}
+
+.rain-mode .quest.rain-suggest .rain-flag{
+  display:inline-flex;
+}
+
+
+/* =========================================================
+   AUTO RAIN-TIP BANNER (auto-injected, level-aware)
+========================================================= */
+
+.rain-tip{
+  display:none;
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:12px;
+  font-size:11px;
+  gap:8px;
+  align-items:flex-start;
+}
+
+.rain-mode .rain-tip{
+  display:flex;
+}
+
+.rain-tip .rt-ic{
+  font-size:14px;
+  line-height:1.3;
+}
+
+.rain-tip[data-level="ok"]{
+  background:rgba(53,208,127,.08);
+  border:1px solid rgba(53,208,127,.2);
+  color:#a2ecc0;
+}
+
+.rain-tip[data-level="caution"]{
+  background:rgba(255,209,102,.09);
+  border:1px solid rgba(255,209,102,.24);
+  color:#ffdd9a;
+}
+
+.rain-tip[data-level="critical"]{
+  background:rgba(255,59,48,.09);
+  border:1px solid rgba(255,59,48,.26);
+  color:#ffaba5;
+}
+
+
+/* =========================================================
+   MICRO FEEDBACK / TOASTS
+========================================================= */
+
+.toast-stack{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:10001;
+  display:flex;
+  flex-direction:column-reverse;
+  gap:8px;
+  pointer-events:none;
+  width:min(92vw,380px);
+}
+
+.toast{
+  pointer-events:auto;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:12px 15px;
+  border-radius:14px;
+  background:rgba(15,18,25,.92);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  box-shadow:0 14px 34px rgba(0,0,0,.45);
+  font-size:12px;
+  font-weight:800;
+  color:#fff;
+  animation:toastIn .35s cubic-bezier(.2,.9,.3,1.3);
+}
+
+.toast.leaving{
+  animation:toastOut .3s ease forwards;
+}
+
+.toast .t-ic{
+  font-size:18px;
+  flex:none;
+}
+
+.toast.win{ border-color:rgba(53,208,127,.4); }
+.toast.day{ border-color:rgba(255,159,67,.45); }
+.toast.info{ border-color:rgba(77,163,255,.4); }
+.toast.skip{ border-color:rgba(139,149,166,.4); }
+
+@keyframes toastIn{
+  from{ opacity:0; transform:translateY(16px) scale(.92); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes toastOut{
+  to{ opacity:0; transform:translateY(-10px) scale(.94); }
+}
+
+@keyframes questPop{
+  0%{ transform:scale(1); }
+  35%{ transform:scale(1.018); }
+  100%{ transform:scale(1); }
+}
+
+.quest-card.just-completed{
+  animation:questPop .45s ease;
+  box-shadow:0 0 0 1px rgba(53,208,127,.5),0 0 34px rgba(53,208,127,.25);
+}
+
+@keyframes dayGlow{
+  0%{ box-shadow:0 0 0 rgba(255,159,67,0); }
+  40%{ box-shadow:0 0 46px rgba(255,159,67,.55); }
+  100%{ box-shadow:0 0 0 rgba(255,159,67,0); }
+}
+
+.day-number.day-clear{
+  animation:dayGlow 1.4s ease;
+}
+
+
+/* =========================================================
+   FIREWORKS — SCREEN FLASH
+========================================================= */
+
+.fw-flash{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  opacity:0;
+  pointer-events:none;
+  z-index:9998;
+  mix-blend-mode:screen;
+}
+
+.fw-flash.on{
+  animation:fwFlashPulse .5s ease;
+}
+
+@keyframes fwFlashPulse{
+  0%{ opacity:0; }
+  10%{ opacity:.55; }
+  100%{ opacity:0; }
+}
+
+
+/* =========================================================
+   DAY4 — DIRECT-TO-AIRPORT MODE
+========================================================= */
+
+.direct-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  padding:9px 12px;
+  border-radius:12px;
+  background:rgba(167,139,250,.08);
+  border:1px solid rgba(167,139,250,.3);
+  cursor:pointer;
+  font-size:11px;
+  font-weight:900;
+  color:#d8ccff;
+}
+
+.direct-toggle input{
+  accent-color:var(--purple);
+}
+
+body.direct-mode .hide-in-direct{
+  opacity:.4;
+  filter:grayscale(.6);
+}
+
+body.direct-mode .hide-in-direct .quest-name:after{
+  content:" · 可跳過（已用行李宅配）";
+  font-size:10px;
+  color:#8b95a6;
+  font-weight:900;
+}
+
+.direct-note{
+  display:none;
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:12px;
+  background:rgba(167,139,250,.09);
+  border:1px solid rgba(167,139,250,.28);
+  color:#d8ccff;
+  font-size:11px;
+}
+
+body.direct-mode .direct-note{
+  display:block;
+}
+
+
 </style>
 </head>
 
 <body>
 
 <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
+<div class="fw-flash" id="fwFlash" aria-hidden="true"></div>
+<div class="toast-stack" id="toastStack" aria-hidden="true"></div>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -1525,7 +1867,7 @@ footer{
 
     <!-- D1-1 -->
 
-    <article class="quest" data-day="1" data-id="d1-arrival">
+    <article class="quest" data-day="1" data-id="d1-arrival" data-cat="airport" data-icon="✈️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">01</div>
 
@@ -1640,7 +1982,7 @@ footer{
 
     <!-- D1-2 -->
 
-    <article class="quest" data-day="1" data-id="d1-transfer">
+    <article class="quest" data-day="1" data-id="d1-transfer" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">02</div>
 
@@ -1745,7 +2087,7 @@ footer{
 
     <!-- D1-3 -->
 
-    <article class="quest" data-day="1" data-id="d1-hotel-drop">
+    <article class="quest" data-day="1" data-id="d1-hotel-drop" data-cat="general" data-icon="📍" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">03</div>
 
@@ -1865,7 +2207,7 @@ footer{
 
     <!-- D1-4 -->
 
-    <article class="quest" data-day="1" data-id="d1-sushi">
+    <article class="quest" data-day="1" data-id="d1-sushi" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">04</div>
 
@@ -1985,7 +2327,7 @@ footer{
 
     <!-- D1-5 -->
 
-    <article class="quest" data-day="1" data-id="d1-checkin">
+    <article class="quest" data-day="1" data-id="d1-checkin" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">05</div>
 
@@ -2083,7 +2425,7 @@ footer{
 
     <!-- D1-6 -->
 
-    <article class="quest" data-day="1" data-id="d1-ueno">
+    <article class="quest" data-day="1" data-id="d1-ueno" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">06</div>
 
@@ -2177,7 +2519,7 @@ footer{
 
     <!-- D1-7 -->
 
-    <article class="quest" data-day="1" data-id="d1-museum">
+    <article class="quest" data-day="1" data-id="d1-museum" data-cat="park" data-icon="🌳" data-rain-level="ok" data-rain-note="室內博物館，雨天完全不受影響，甚至是最佳雨天去處。">
 
       <div class="quest-dot">07</div>
 
@@ -2297,7 +2639,7 @@ footer{
 
     <!-- D1-8 -->
 
-    <article class="quest" data-day="1" data-id="d1-ueno-park">
+    <article class="quest" data-day="1" data-id="d1-ueno-park" data-cat="park" data-icon="🌳" data-rain-level="critical" data-rain-note="公園散步型行程，雨天直接跳過（SKIP），不影響 Day 1 核心（晴空塔／晚餐）。" data-optional="1">
 
       <div class="quest-dot">08</div>
 
@@ -2387,7 +2729,7 @@ footer{
 
     <!-- D1-9 -->
 
-    <article class="quest" data-day="1" data-id="d1-oshiage">
+    <article class="quest" data-day="1" data-id="d1-oshiage" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">09</div>
 
@@ -2468,7 +2810,7 @@ footer{
 
     <!-- D1-10 -->
 
-    <article class="quest" data-day="1" data-id="d1-top-tree">
+    <article class="quest" data-day="1" data-id="d1-top-tree" data-cat="view" data-icon="🗼" data-rain-level="ok" data-rain-note="室內餐廳＋展望空間，雨天不影響用餐與預約。">
 
       <div class="quest-dot">10</div>
 
@@ -2587,7 +2929,7 @@ footer{
 
     <!-- D1-11 -->
 
-    <article class="quest" data-day="1" data-id="d1-dinner">
+    <article class="quest" data-day="1" data-id="d1-dinner" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">11</div>
 
@@ -2662,7 +3004,7 @@ footer{
 
     <!-- D1-12 -->
 
-    <article class="quest" data-day="1" data-id="d1-skytree">
+    <article class="quest" data-day="1" data-id="d1-skytree" data-cat="view" data-icon="🗼" data-rain-level="ok" data-rain-note="室內展望台，雨天仍正常營運；能見度可能下降，以現場公告為準。">
 
       <div class="quest-dot">12</div>
 
@@ -2783,7 +3125,7 @@ footer{
 
     <!-- D1-13 -->
 
-    <article class="quest" data-day="1" data-id="d1-return">
+    <article class="quest" data-day="1" data-id="d1-return" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">13</div>
 
@@ -2943,7 +3285,7 @@ footer{
 
     <!-- D2-1 -->
 
-    <article class="quest" data-day="2" data-id="d2-azabudai">
+    <article class="quest" data-day="2" data-id="d2-azabudai" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">01</div>
 
@@ -3024,7 +3366,7 @@ footer{
 
     <!-- D2-2 -->
 
-    <article class="quest" data-day="2" data-id="d2-azabudai-walk">
+    <article class="quest" data-day="2" data-id="d2-azabudai-walk" data-cat="general" data-icon="📍" data-rain-level="caution" data-rain-note="戶外廣場散步，雨天縮短為 5 分鐘拍照即可，或直接 SKIP 銜接下一段。" data-optional="1">
 
       <div class="quest-dot">02</div>
 
@@ -3113,7 +3455,7 @@ footer{
 
     <!-- D2-3 -->
 
-    <article class="quest" data-day="2" data-id="d2-lunch">
+    <article class="quest" data-day="2" data-id="d2-lunch" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">03</div>
 
@@ -3206,7 +3548,7 @@ footer{
 
     <!-- D2-4 -->
 
-    <article class="quest" data-day="2" data-id="d2-zojoji">
+    <article class="quest" data-day="2" data-id="d2-zojoji" data-cat="shrine" data-icon="🛕" data-rain-level="caution" data-rain-note="戶外寺院，雨天可縮短停留，屋簷下仍可拍照。">
 
       <div class="quest-dot">04</div>
 
@@ -3289,7 +3631,7 @@ footer{
 
     <!-- D2-5 -->
 
-    <article class="quest" data-day="2" data-id="d2-shiba">
+    <article class="quest" data-day="2" data-id="d2-shiba" data-cat="park" data-icon="🌳" data-rain-level="caution" data-rain-note="戶外神社＋公園取景，雨天可 SKIP，不影響東京鐵塔點燈行程。" data-optional="1">
 
       <div class="quest-dot">05</div>
 
@@ -3366,7 +3708,7 @@ footer{
 
     <!-- D2-6 -->
 
-    <article class="quest" data-day="2" data-id="d2-atago">
+    <article class="quest" data-day="2" data-id="d2-atago" data-cat="shrine" data-icon="⛩️" data-rain-level="caution" data-rain-note="戶外石階神社，雨天石階濕滑，建議 SKIP 或改用手扶梯側路。" data-optional="1">
 
       <div class="quest-dot">06</div>
 
@@ -3458,7 +3800,7 @@ footer{
 
     <!-- D2-7 -->
 
-    <article class="quest" data-day="2" data-id="d2-tower-area">
+    <article class="quest" data-day="2" data-id="d2-tower-area" data-cat="park" data-icon="🌳" data-rain-level="caution" data-rain-note="戶外周邊散策，雨天可 SKIP，直接前往鐵塔室內樓層等待點燈。" data-optional="1">
 
       <div class="quest-dot">07</div>
 
@@ -3536,7 +3878,7 @@ footer{
 
     <!-- D2-8 -->
 
-    <article class="quest" data-day="2" data-id="d2-tower-light">
+    <article class="quest" data-day="2" data-id="d2-tower-light" data-cat="view" data-icon="🗼" data-rain-level="critical" data-rain-note="需在戶外／室內窗邊等待點燈，雷雨時以室內展望樓層為主，避免久留戶外。">
 
       <div class="quest-dot">08</div>
 
@@ -3630,7 +3972,7 @@ footer{
 
     <!-- D2-9 -->
 
-    <article class="quest" data-day="2" data-id="d2-unagi">
+    <article class="quest" data-day="2" data-id="d2-unagi" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">09</div>
 
@@ -3707,7 +4049,7 @@ footer{
 
     <!-- D2-10 -->
 
-    <article class="quest" data-day="2" data-id="d2-dinner">
+    <article class="quest" data-day="2" data-id="d2-dinner" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">10</div>
 
@@ -3790,7 +4132,7 @@ footer{
 
     <!-- D2-11 -->
 
-    <article class="quest" data-day="2" data-id="d2-shibuya-transfer">
+    <article class="quest" data-day="2" data-id="d2-shibuya-transfer" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">11</div>
 
@@ -3867,7 +4209,7 @@ footer{
 
     <!-- D2-12 -->
 
-    <article class="quest" data-day="2" data-id="d2-sky">
+    <article class="quest" data-day="2" data-id="d2-sky" data-cat="view" data-icon="🗼" data-rain-level="ok" data-rain-note="室內＋半戶外屋頂展望台，大雨或雷雨時屋頂區可能封閉，以現場公告為準，室內樓層仍可欣賞夜景。">
 
       <div class="quest-dot">12</div>
 
@@ -3992,7 +4334,7 @@ footer{
 
     <!-- D2-13 -->
 
-    <article class="quest" data-day="2" data-id="d2-shibuya">
+    <article class="quest" data-day="2" data-id="d2-shibuya" data-cat="general" data-icon="📍" data-rain-level="caution" data-rain-note="戶外街景，雨天可 SKIP 或縮短為路過拍照。" data-optional="1">
 
       <div class="quest-dot">13</div>
 
@@ -4045,7 +4387,7 @@ footer{
 
     <!-- D2-14 -->
 
-    <article class="quest" data-day="2" data-id="d2-return">
+    <article class="quest" data-day="2" data-id="d2-return" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">14</div>
 
@@ -4196,7 +4538,7 @@ footer{
 
     <!-- D3-1 -->
 
-    <article class="quest" data-day="3" data-id="d3-breakfast">
+    <article class="quest" data-day="3" data-id="d3-breakfast" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">01</div>
 
@@ -4248,7 +4590,7 @@ footer{
 
     <!-- D3-2 -->
 
-    <article class="quest" data-day="3" data-id="d3-nezu-transfer">
+    <article class="quest" data-day="3" data-id="d3-nezu-transfer" data-cat="shrine" data-icon="⛩️" data-rain-level="ok" data-rain-note="地鐵移動為主，雨天僅需留意月台濕滑與雨具收納。">
 
       <div class="quest-dot">02</div>
 
@@ -4325,7 +4667,7 @@ footer{
 
     <!-- D3-3 -->
 
-    <article class="quest" data-day="3" data-id="d3-nezu">
+    <article class="quest" data-day="3" data-id="d3-nezu" data-cat="shrine" data-icon="⛩️" data-rain-level="caution" data-rain-note="神社腹地大部分有屋簷或樹蔭，小雨可正常參拜；大雨建議縮短停留。">
 
       <div class="quest-dot">03</div>
 
@@ -4447,7 +4789,7 @@ footer{
 
     <!-- D3-4 -->
 
-    <article class="quest" data-day="3" data-id="d3-festival">
+    <article class="quest" data-day="3" data-id="d3-festival" data-cat="shrine" data-icon="⛩️" data-rain-level="critical" data-rain-note="戶外宮神輿渡御，路線與是否如期舉行以官方當日公告為準；大雨／雷雨時視為 WATCH 而非 CORE，改以淺草寺室內／半戶外行程銜接。">
 
       <div class="quest-dot">04</div>
 
@@ -4532,7 +4874,7 @@ footer{
 
     <!-- D3-5 -->
 
-    <article class="quest" data-day="3" data-id="d3-asakusa">
+    <article class="quest" data-day="3" data-id="d3-asakusa" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">05</div>
 
@@ -4585,7 +4927,7 @@ footer{
 
     <!-- D3-6 -->
 
-    <article class="quest" data-day="3" data-id="d3-sensoji">
+    <article class="quest" data-day="3" data-id="d3-sensoji" data-cat="shrine" data-icon="🛕" data-rain-level="caution" data-rain-note="雷門與仲見世有頂棚遮蔽，本堂與寶藏門為戶外，雨天仍可完整參拜，僅需撐傘。">
 
       <div class="quest-dot">06</div>
 
@@ -4644,7 +4986,7 @@ footer{
 
     <!-- D3-7 -->
 
-    <article class="quest" data-day="3" data-id="d3-nihombashi">
+    <article class="quest" data-day="3" data-id="d3-nihombashi" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">07</div>
 
@@ -4686,7 +5028,7 @@ footer{
 
     <!-- D3-8 -->
 
-    <article class="quest" data-day="3" data-id="d3-tsujihan">
+    <article class="quest" data-day="3" data-id="d3-tsujihan" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">08</div>
 
@@ -4769,7 +5111,7 @@ footer{
 
     <!-- D3-9 -->
 
-    <article class="quest" data-day="3" data-id="d3-nihonbashi">
+    <article class="quest" data-day="3" data-id="d3-nihonbashi" data-cat="photo" data-icon="📸" data-rain-level="caution" data-rain-note="橋樑戶外拍照點，雨天可 SKIP，不影響前往東京站。" data-optional="1">
 
       <div class="quest-dot">09</div>
 
@@ -4822,7 +5164,7 @@ footer{
 
     <!-- D3-10 -->
 
-    <article class="quest" data-day="3" data-id="d3-tokyo">
+    <article class="quest" data-day="3" data-id="d3-tokyo" data-cat="transit" data-icon="🚇" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">10</div>
 
@@ -4883,7 +5225,7 @@ footer{
 
     <!-- D3-11 -->
 
-    <article class="quest" data-day="3" data-id="d3-kitte">
+    <article class="quest" data-day="3" data-id="d3-kitte" data-cat="photo" data-icon="📸" data-rain-level="ok" data-rain-note="室內商場＋屋上庭園，屋上庭園雨天封閉時可留在室內樓層欣賞東京車站夜景，Rain Safe 行程。">
 
       <div class="quest-dot">11</div>
 
@@ -4942,7 +5284,7 @@ footer{
 
     <!-- D3-12 -->
 
-    <article class="quest" data-day="3" data-id="d3-shinjuku">
+    <article class="quest" data-day="3" data-id="d3-shinjuku" data-cat="transit" data-icon="🚆" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">12</div>
 
@@ -4989,7 +5331,7 @@ footer{
 
     <!-- D3-13 -->
 
-    <article class="quest" data-day="3" data-id="d3-kabukicho">
+    <article class="quest" data-day="3" data-id="d3-kabukicho" data-cat="general" data-icon="📍" data-rain-level="caution" data-rain-note="戶外街景拍照，雨天可 SKIP 或縮短為快速路過。" data-optional="1">
 
       <div class="quest-dot">13</div>
 
@@ -5048,7 +5390,7 @@ footer{
 
     <!-- D3-14 -->
 
-    <article class="quest" data-day="3" data-id="d3-yokocho">
+    <article class="quest" data-day="3" data-id="d3-yokocho" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">14</div>
 
@@ -5090,7 +5432,7 @@ footer{
 
     <!-- D3-15 -->
 
-    <article class="quest" data-day="3" data-id="d3-dinner">
+    <article class="quest" data-day="3" data-id="d3-dinner" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">15</div>
 
@@ -5167,7 +5509,7 @@ footer{
 
     <!-- D3-16 -->
 
-    <article class="quest" data-day="3" data-id="d3-metropolitan">
+    <article class="quest" data-day="3" data-id="d3-metropolitan" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">16</div>
 
@@ -5210,7 +5552,7 @@ footer{
 
     <!-- D3-17 -->
 
-    <article class="quest" data-day="3" data-id="d3-nightlight">
+    <article class="quest" data-day="3" data-id="d3-nightlight" data-cat="view" data-icon="🗼" data-rain-level="critical" data-rain-note="戶外都民廣場投影／點燈活動，強風大雨時官方可能取消或縮短，請以當日公告為準；取消時可在都廳室內展望台看夜景替代。" data-optional="1">
 
       <div class="quest-dot">17</div>
 
@@ -5331,7 +5673,7 @@ footer{
 
     <!-- D3-18 -->
 
-    <article class="quest" data-day="3" data-id="d3-return">
+    <article class="quest" data-day="3" data-id="d3-return" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">18</div>
 
@@ -5459,7 +5801,7 @@ footer{
     </div>
 
     <p>
-      16:50 前一定離開飯店。
+      16:50 前一定離開飯店（或直接從最後景點出發）。
       21:15 航班是全旅程最高級別 HARD DEADLINE。
       最後一天不允許用購物時間去交換機場安全緩衝。
     </p>
@@ -5467,12 +5809,18 @@ footer{
   </div>
 
 
+  <label class="direct-toggle">
+    <input type="checkbox" id="directModeToggle">
+    🚀 直達模式：已用飯店行李宅配寄送成田機場，購物結束後不繞回飯店，直接前往東京站
+  </label>
+
+
   <div class="timeline">
 
 
     <!-- D4-01 -->
 
-    <article class="quest" data-day="4" data-id="d4-breakfast">
+    <article class="quest" data-day="4" data-id="d4-breakfast" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">01</div>
 
@@ -5520,7 +5868,7 @@ footer{
 
     <!-- D4-02 -->
 
-    <article class="quest" data-day="4" data-id="d4-pack">
+    <article class="quest" data-day="4" data-id="d4-pack" data-cat="general" data-icon="📍" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">02</div>
 
@@ -5595,7 +5943,7 @@ footer{
 
     <!-- D4-03 -->
 
-    <article class="quest" data-day="4" data-id="d4-checkout">
+    <article class="quest" data-day="4" data-id="d4-checkout" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">03</div>
 
@@ -5622,6 +5970,18 @@ footer{
             官方 Check-out 12:00。
             09:30–10:00 主動退房，讓下午完全不用擔心行李，
             只帶隨身小包出門逛銀座。
+            若飯店櫃檯提供機場宅配（送機服務／黑貓宅急便機場配送），
+            可在退房時一併辦理，下午即可開啟「🚀 直達模式」，
+            從最後一個景點直接前往東京站，不必繞回飯店。
+          </div>
+
+          <div class="subtasks">
+
+            <label class="subtask">
+              <input type="checkbox" data-sub="d4-luggage-forward">
+              （可選）已辦理行李機場宅配／已確認可開啟直達模式
+            </label>
+
           </div>
 
           <div class="quest-actions">
@@ -5650,7 +6010,7 @@ footer{
 
     <!-- D4-04 -->
 
-    <article class="quest" data-day="4" data-id="d4-kabukiza">
+    <article class="quest" data-day="4" data-id="d4-kabukiza" data-cat="photo" data-icon="📸" data-rain-level="caution" data-rain-note="建築外觀拍照，雨天撐傘即可完成，時間充裕才進行，緊繃時直接 SKIP。" data-optional="1">
 
       <div class="quest-dot">04</div>
 
@@ -5702,7 +6062,7 @@ footer{
 
     <!-- D4-05 -->
 
-    <article class="quest" data-day="4" data-id="d4-lv">
+    <article class="quest" data-day="4" data-id="d4-lv" data-cat="shop" data-icon="🛍️" data-rain-level="caution" data-rain-note="旗艦店外觀拍照，雨天可縮短為快拍，緊繃時直接 SKIP。" data-optional="1">
 
       <div class="quest-dot">05</div>
 
@@ -5754,7 +6114,7 @@ footer{
 
     <!-- D4-06 -->
 
-    <article class="quest" data-day="4" data-id="d4-wako">
+    <article class="quest" data-day="4" data-id="d4-wako" data-cat="shop" data-icon="🛍️" data-rain-level="caution" data-rain-note="街角地標拍照，雨天可縮短為快拍，緊繃時直接 SKIP。" data-optional="1">
 
       <div class="quest-dot">06</div>
 
@@ -5806,7 +6166,7 @@ footer{
 
     <!-- D4-07 -->
 
-    <article class="quest" data-day="4" data-id="d4-ginza6">
+    <article class="quest" data-day="4" data-id="d4-ginza6" data-cat="shop" data-icon="🛍️" data-rain-level="ok" data-rain-note="室內百貨，雨天最佳去處，可延長停留取代戶外拍照時間。">
 
       <div class="quest-dot">07</div>
 
@@ -5859,7 +6219,7 @@ footer{
 
     <!-- D4-08 -->
 
-    <article class="quest" data-day="4" data-id="d4-lunch">
+    <article class="quest" data-day="4" data-id="d4-lunch" data-cat="food" data-icon="🍽️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">08</div>
 
@@ -5911,7 +6271,7 @@ footer{
 
     <!-- D4-09 -->
 
-    <article class="quest" data-day="4" data-id="d4-dsm">
+    <article class="quest" data-day="4" data-id="d4-dsm" data-cat="shop" data-icon="🛍️" data-rain-level="ok" data-rain-note="室內選物店，完全不受降雨影響。">
 
       <div class="quest-dot">09</div>
 
@@ -5964,7 +6324,7 @@ footer{
 
     <!-- D4-10 -->
 
-    <article class="quest" data-day="4" data-id="d4-uniqlo">
+    <article class="quest" data-day="4" data-id="d4-uniqlo" data-cat="shop" data-icon="🛍️" data-rain-level="ok" data-rain-note="室內商場，完全不受降雨影響。">
 
       <div class="quest-dot">10</div>
 
@@ -6016,7 +6376,7 @@ footer{
 
     <!-- D4-11 -->
 
-    <article class="quest" data-day="4" data-id="d4-itoya">
+    <article class="quest" data-day="4" data-id="d4-itoya" data-cat="shop" data-icon="🛍️" data-rain-level="caution" data-rain-note="備用自由時間，雨天優先 SKIP，直接提早回飯店取行李，保住機場緩衝。" data-optional="1">
 
       <div class="quest-dot">11</div>
 
@@ -6040,7 +6400,15 @@ footer{
 
           <div class="quest-summary">
             只有「已經知道要買什麼」才使用這段。
-            時間不夠可直接跳過，提前回飯店。
+            時間不夠可直接跳過，提前回飯店；
+            這是購物段最後一站，之後行程直接進入回程流程。
+          </div>
+
+          <div class="direct-note">
+            🚀 直達模式已開啟：此站是全程最後一個景點。
+            結束後不需回飯店，直接步行或搭計程車前往東京站
+            （銀座 → 東京站約 1.5 公里，步行約 15–20 分鐘／計程車約 5–10 分鐘），
+            銜接下方「東京站」與「N'EX」行程即可。
           </div>
 
           <div class="quest-actions">
@@ -6049,6 +6417,12 @@ footer{
                href="https://www.google.com/maps/search/?api=1&query=Itoya+Ginza"
                target="_blank">
               📍 MAP
+            </a>
+
+            <a class="action"
+               href="https://www.google.com/maps/dir/?api=1&origin=Itoya+Ginza&destination=Tokyo+Station&travelmode=walking"
+               target="_blank">
+              🚶 直達東京站
             </a>
 
             <label class="complete">
@@ -6069,7 +6443,7 @@ footer{
 
     <!-- D4-12 -->
 
-    <article class="quest" data-day="4" data-id="d4-hotel">
+    <article class="quest hide-in-direct" data-day="4" data-id="d4-hotel" data-cat="hotel" data-icon="🏨" data-rain-level="ok" data-rain-note="室內作業，雨天只會讓你「提前」出發，不會延後機場時間；如已辦理行李機場宅配，本段與下一段可一併 SKIP，從最後景點直接前往東京站。" data-optional="1">
 
       <div class="quest-dot">12</div>
 
@@ -6095,6 +6469,8 @@ footer{
           <div class="quest-summary">
             16:50 前離開飯店。
             若東京下大雨，16:30 就開始回飯店，不再購物。
+            已辦理行李宅配並開啟「🚀 直達模式」者，此段與下一段（飯店→東京站）
+            可直接按下方 SKIP，從 ITOYA 直接前往東京站。
           </div>
 
           <div class="quest-meta">
@@ -6185,7 +6561,7 @@ footer{
 
     <!-- D4-13 -->
 
-    <article class="quest" data-day="4" data-id="d4-taxi">
+    <article class="quest hide-in-direct" data-day="4" data-id="d4-taxi" data-cat="transit" data-icon="🚕" data-rain-level="ok" data-rain-note="計程車移動，雨天更建議搭計程車而非步行／轉乘；如已使用行李宅配可 SKIP 此段，改由最後景點直接搭車或步行至東京站。" data-optional="1">
 
       <div class="quest-dot">13</div>
 
@@ -6211,6 +6587,8 @@ footer{
           <div class="quest-summary">
             拖大行李不建議步行或轉乘。雨天更應直接搭計程車，
             車程約 15–20 分鐘（含上下車與交通狀況緩衝）。
+            直達模式（行李已宅配）者可 SKIP 此段，
+            改為從 ITOYA／最後景點步行或搭計程車前往東京站。
           </div>
 
           <div class="quest-actions">
@@ -6239,7 +6617,7 @@ footer{
 
     <!-- D4-14 -->
 
-    <article class="quest" data-day="4" data-id="d4-tokyo-station">
+    <article class="quest" data-day="4" data-id="d4-tokyo-station" data-cat="transit" data-icon="🚆" data-rain-level="ok" data-rain-note="交通移動，雨天建議預留額外時間，行李較多時改搭計程車。">
 
       <div class="quest-dot">14</div>
 
@@ -6343,7 +6721,7 @@ footer{
 
     <!-- D4-15 -->
 
-    <article class="quest" data-day="4" data-id="d4-nex">
+    <article class="quest" data-day="4" data-id="d4-nex" data-cat="airport" data-icon="✈️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">15</div>
 
@@ -6432,7 +6810,7 @@ footer{
 
     <!-- D4-16 -->
 
-    <article class="quest" data-day="4" data-id="d4-airport">
+    <article class="quest" data-day="4" data-id="d4-airport" data-cat="airport" data-icon="✈️" data-rain-level="ok" data-rain-note="室內或不受天氣影響的行程，正常進行。">
 
       <div class="quest-dot">16</div>
 
@@ -6890,7 +7268,22 @@ let saved = JSON.parse(
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  initQuestVisuals();
   restoreState();
+  renderRainSuggestions();
+
+  if(saved["direct_mode"]){
+    document.body.classList.add("direct-mode");
+    const cb = document.getElementById("directModeToggle");
+    if(cb) cb.checked = true;
+  }
+
+  const directToggle = document.getElementById("directModeToggle");
+  if(directToggle){
+    directToggle.addEventListener("change", () => {
+      setDirectMode(directToggle.checked);
+    });
+  }
 
   document.querySelectorAll("[data-sub]").forEach(el => {
 
@@ -6973,6 +7366,34 @@ function saveTask(el){
       el.checked
     );
 
+    if(el.checked){
+
+      const card = quest.querySelector(".quest-card");
+
+      if(card){
+        card.classList.remove("just-completed");
+        void card.offsetWidth;
+        card.classList.add("just-completed");
+      }
+
+      const rect = el.getBoundingClientRect();
+      fwBurstAt(
+        rect.left + rect.width / 2,
+        rect.top + rect.height / 2,
+        { count: 22, power: 2.6 }
+      );
+
+      if(navigator.vibrate) navigator.vibrate(18);
+
+      const name = quest.querySelector(".quest-name");
+      toast(
+        (name ? name.textContent.trim() : "任務") + " 完成！",
+        "win",
+        "✅"
+      );
+
+    }
+
   }
 
   persist();
@@ -6980,6 +7401,238 @@ function saveTask(el){
   updateProgress();
 
 }
+
+/* =========================================================
+   TOAST SYSTEM
+========================================================= */
+
+function toast(msg, type = "info", icon = "✅"){
+
+  const stack = document.getElementById("toastStack");
+  if(!stack) return;
+
+  const el = document.createElement("div");
+  el.className = "toast " + type;
+  el.innerHTML = `<span class="t-ic">${icon}</span><span>${msg}</span>`;
+  stack.appendChild(el);
+
+  setTimeout(() => {
+    el.classList.add("leaving");
+    setTimeout(() => el.remove(), 320);
+  }, 2600);
+
+}
+
+
+/* =========================================================
+   LOCALIZED CONFETTI BURST (checkbox feedback / day clear)
+========================================================= */
+
+function fwBurstAt(x, y, opts = {}){
+
+  const count = opts.count || 34;
+  const power = opts.power || 3.4;
+  const colors = opts.colors || fwColors;
+
+  for(let i = 0; i < count; i++){
+
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 1 + Math.random() * power;
+
+    fwParticles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 1.2,
+      life: 1,
+      decay: 0.018 + Math.random() * 0.02,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 1.4 + Math.random() * 2.2
+    });
+
+  }
+
+  if(!fwRunning){
+    fwCanvas.classList.add("active");
+    burstOnlyTick();
+  }
+
+}
+
+let burstOnlyRAF = null;
+
+function burstOnlyTick(){
+
+  fwTickFrame();
+
+  if(fwParticles.length > 0){
+    burstOnlyRAF = requestAnimationFrame(burstOnlyTick);
+  }else if(!fwRunning){
+    fwCanvas.classList.remove("active");
+    cancelAnimationFrame(burstOnlyRAF);
+  }
+
+}
+
+function fwFlash(){
+  const f = document.getElementById("fwFlash");
+  if(!f) return;
+  f.classList.remove("on");
+  void f.offsetWidth;
+  f.classList.add("on");
+}
+
+
+/* =========================================================
+   QUEST VISUALS — PHOTO BANNER / RAIN TIP / SKIP BUTTON
+========================================================= */
+
+const RAIN_ICON = { ok:"🟢", caution:"🟡", critical:"🔴" };
+
+function initQuestVisuals(){
+
+  document.querySelectorAll("article.quest").forEach(article => {
+
+    const card = article.querySelector(".quest-card");
+    const main = article.querySelector(".quest-main");
+    if(!card || !main) return;
+
+    const icon = article.dataset.icon || "📍";
+    const cat = article.dataset.cat || "general";
+    const nameEl = article.querySelector(".quest-name");
+    const label = nameEl ? nameEl.textContent.trim() : "";
+
+    // photo banner
+    const photo = document.createElement("div");
+    photo.className = "quest-photo";
+    photo.innerHTML =
+      `<span class="qp-icon">${icon}</span>` +
+      `<span class="qp-cat">${icon} ${cat.toUpperCase()}</span>`;
+    card.insertBefore(photo, main);
+
+    // rain tip banner (auto-generated, level aware)
+    const level = article.dataset.rainLevel;
+    const note = article.dataset.rainNote;
+
+    if(note){
+
+      const tip = document.createElement("div");
+      tip.className = "rain-tip";
+      tip.dataset.level = level;
+      tip.innerHTML =
+        `<span class="rt-ic">${RAIN_ICON[level] || "☔"}</span><span>${note}</span>`;
+      main.appendChild(tip);
+
+      if(level === "caution" || level === "critical"){
+        article.classList.add("rain-watchable");
+      }
+
+    }
+
+    // skip button for optional quests
+    if(article.dataset.optional === "1"){
+
+      const actions = main.querySelector(".quest-actions");
+      const completeLabel = main.querySelector(".complete");
+
+      if(actions && completeLabel){
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "action skip";
+        btn.textContent = "跳過 SKIP";
+        btn.onclick = () => toggleSkip(article, btn);
+        actions.insertBefore(btn, completeLabel);
+
+        const qid = article.dataset.id;
+        if(saved["skip_" + qid]){
+          article.classList.add("skipped");
+          btn.textContent = "已跳過 ↺";
+        }
+
+      }
+
+    }
+
+  });
+
+}
+
+function toggleSkip(article, btn){
+
+  const qid = article.dataset.id;
+  const skipped = article.classList.toggle("skipped");
+
+  saved["skip_" + qid] = skipped;
+  persist();
+
+  btn.textContent = skipped ? "已跳過 ↺" : "跳過 SKIP";
+
+  toast(
+    skipped ? "已跳過此項，不計入進度" : "已恢復此項",
+    "skip",
+    skipped ? "⏭" : "↺"
+  );
+
+  updateProgress();
+
+}
+
+
+/* =========================================================
+   RAIN-MODE SUGGESTIONS (auto switch, shared state)
+========================================================= */
+
+function renderRainSuggestions(){
+
+  const inRain = document.body.classList.contains("rain-mode");
+
+  document.querySelectorAll("article.quest[data-optional='1']").forEach(article => {
+
+    const level = article.dataset.rainLevel;
+    const suggest = inRain && (level === "caution" || level === "critical");
+
+    article.classList.toggle("rain-suggest", suggest);
+
+    let flag = article.querySelector(".rain-flag");
+
+    if(suggest && !flag){
+      const badges = article.querySelector(".badges");
+      if(badges){
+        flag = document.createElement("span");
+        flag.className = "rain-flag";
+        flag.textContent = "☔ 建議跳過";
+        badges.appendChild(flag);
+      }
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   DAY4 — DIRECT TO AIRPORT MODE
+========================================================= */
+
+function setDirectMode(on){
+
+  document.body.classList.toggle("direct-mode", on);
+  saved["direct_mode"] = on;
+  persist();
+
+  const cb = document.getElementById("directModeToggle");
+  if(cb) cb.checked = on;
+
+  toast(
+    on
+      ? "直達模式：已用行李宅配，可從最後景點直接前往東京站"
+      : "已切換回一般模式：從飯店取行李後再前往東京站",
+    "info",
+    on ? "🚀" : "🏨"
+  );
+
+}
+
 
 
 /* =========================================================
@@ -7000,36 +7653,81 @@ function fwResize(){
 window.addEventListener("resize", fwResize);
 fwResize();
 
-const fwColors = ["#ff3b30","#ff9f43","#ffd166","#35d07f","#4da3ff","#a78bfa","#44d7e8","#ffffff"];
+const fwColors = ["#ff3b30","#ff9f43","#ffd166","#35d07f","#4da3ff","#a78bfa","#44d7e8","#ffffff","#ff6bd6"];
 
-function fwLaunchRocket(){
+function fwLaunchRocket(mega = false){
 
-  const startX = Math.random() * fwCanvas.width;
-  const targetY = fwCanvas.height * (0.15 + Math.random() * 0.35);
+  const startX = fwCanvas.width * (0.12 + Math.random() * 0.76);
+  const targetY = fwCanvas.height * (0.12 + Math.random() * 0.32);
   const color = fwColors[Math.floor(Math.random() * fwColors.length)];
-  const particleCount = 46 + Math.floor(Math.random() * 30);
+  const color2 = fwColors[Math.floor(Math.random() * fwColors.length)];
+  const shells = mega ? 2 : 1;
+  const baseCount = mega ? 90 : 60;
+  const particleCount = baseCount + Math.floor(Math.random() * 30);
 
-  for(let i = 0; i < particleCount; i++){
+  for(let s = 0; s < shells; s++){
 
-    const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.2;
-    const speed = 2 + Math.random() * 3.4;
+    const shellColor = s === 0 ? color : color2;
+    const shellRadius = s === 0 ? 1 : 0.55;
 
-    fwParticles.push({
-      x: startX,
-      y: targetY,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      life: 1,
-      decay: 0.012 + Math.random() * 0.012,
-      color: color,
-      size: 1.6 + Math.random() * 1.8
-    });
+    for(let i = 0; i < particleCount; i++){
+
+      const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.22;
+      const speed = (2.4 + Math.random() * 4.2) * shellRadius;
+      const isGlitter = Math.random() < 0.22;
+
+      fwParticles.push({
+        x: startX,
+        y: targetY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: isGlitter ? 0.006 + Math.random() * 0.01 : 0.011 + Math.random() * 0.013,
+        color: isGlitter ? "#ffffff" : shellColor,
+        size: isGlitter ? 0.9 + Math.random() * 1.1 : 2 + Math.random() * 2.4,
+        trail: isGlitter,
+        flicker: isGlitter
+      });
+
+    }
 
   }
 
+  // secondary crackle pops, staggered after the main burst
+  const crackles = mega ? 5 : 3;
+  for(let c = 0; c < crackles; c++){
+
+    setTimeout(() => {
+
+      if(!fwRunning) return;
+
+      const cx = startX + (Math.random() - 0.5) * 140;
+      const cy = targetY + (Math.random() - 0.5) * 110;
+      const cColor = fwColors[Math.floor(Math.random() * fwColors.length)];
+
+      for(let i = 0; i < 18; i++){
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1 + Math.random() * 2.2;
+        fwParticles.push({
+          x: cx, y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          decay: 0.03 + Math.random() * 0.02,
+          color: cColor,
+          size: 1 + Math.random() * 1.4
+        });
+      }
+
+    }, 180 + c * (140 + Math.random() * 160));
+
+  }
+
+  fwFlash();
+
 }
 
-function fwTick(){
+function fwTickFrame(){
 
   fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
   fwCtx.globalCompositeOperation = "lighter";
@@ -7038,14 +7736,27 @@ function fwTick(){
 
     p.x += p.vx;
     p.y += p.vy;
-    p.vy += 0.045;
-    p.vx *= 0.985;
+    p.vy += 0.05;
+    p.vx *= 0.986;
     p.life -= p.decay;
 
     if(p.life > 0){
+
+      const alpha = p.flicker
+        ? Math.max(p.life, 0) * (0.4 + Math.random() * 0.6)
+        : Math.max(p.life, 0);
+
+      if(p.trail){
+        fwCtx.beginPath();
+        fwCtx.fillStyle = p.color;
+        fwCtx.globalAlpha = alpha * 0.35;
+        fwCtx.arc(p.x - p.vx, p.y - p.vy, p.size * 1.6, 0, Math.PI * 2);
+        fwCtx.fill();
+      }
+
       fwCtx.beginPath();
       fwCtx.fillStyle = p.color;
-      fwCtx.globalAlpha = Math.max(p.life, 0);
+      fwCtx.globalAlpha = alpha;
       fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       fwCtx.fill();
     }
@@ -7058,6 +7769,12 @@ function fwTick(){
   fwParticles = fwParticles.filter(
     p => p.life > 0 && p.y < fwCanvas.height + 50
   );
+
+}
+
+function fwTick(){
+
+  fwTickFrame();
 
   if(fwRunning){
     fwRAF = requestAnimationFrame(fwTick);
@@ -7072,16 +7789,19 @@ function startFireworks(){
   fwRunning = true;
   fwCanvas.classList.add("active");
   fwResize();
-  fwLaunchRocket();
+  fwLaunchRocket(true);
+  setTimeout(() => fwRunning && fwLaunchRocket(true), 260);
+  setTimeout(() => fwRunning && fwLaunchRocket(), 520);
 
   fwSpawnTimer = setInterval(() => {
 
     if(fwRunning){
       fwLaunchRocket();
-      if(Math.random() < 0.4) fwLaunchRocket();
+      if(Math.random() < 0.55) fwLaunchRocket();
+      if(Math.random() < 0.18) fwLaunchRocket(true);
     }
 
-  }, 850);
+  }, 620);
 
   fwTick();
 
@@ -7122,12 +7842,17 @@ function persist(){
    PROGRESS
 ========================================================= */
 
+let dayPrevPercent = { 1:0, 2:0, 3:0, 4:0 };
+
 function updateProgress(){
 
   const quests =
     Array.from(
       document.querySelectorAll("[data-task]")
-    );
+    ).filter(el => {
+      const q = el.closest(".quest");
+      return !q || !q.classList.contains("skipped");
+    });
 
   const total = quests.length;
 
@@ -7200,7 +7925,10 @@ function updateProgress(){
         document.querySelectorAll(
           `.quest[data-day="${day}"] [data-task]`
         )
-      );
+      ).filter(el => {
+        const q = el.closest(".quest");
+        return !q || !q.classList.contains("skipped");
+      });
 
     const dayTotal = dayTasks.length;
 
@@ -7232,6 +7960,29 @@ function updateProgress(){
     if(p) p.textContent = dayPercent + "%";
     if(b) b.style.width = dayPercent + "%";
     if(mini) mini.textContent = dayPercent + "%";
+
+    if(dayPercent === 100 && dayPrevPercent[day] < 100 && dayTotal > 0){
+
+      const dayHeader = document.querySelector(`#day${day} .day-number`);
+
+      if(dayHeader){
+        dayHeader.classList.remove("day-clear");
+        void dayHeader.offsetWidth;
+        dayHeader.classList.add("day-clear");
+
+        const rect = dayHeader.getBoundingClientRect();
+        fwBurstAt(
+          rect.left + rect.width / 2,
+          rect.top + rect.height / 2,
+          { count: 46, power: 4.2 }
+        );
+      }
+
+      toast(`DAY ${day} 全部完成！小型煙火發射 🎆`, "day", "🎉");
+
+    }
+
+    dayPrevPercent[day] = dayPercent;
 
   }
 
@@ -7271,6 +8022,8 @@ function setWeather(mode){
   const rain =
     document.getElementById("rainBtn");
 
+  const wasRain = document.body.classList.contains("rain-mode");
+
   if(mode === "rain"){
 
     document.body.classList.add("rain-mode");
@@ -7295,6 +8048,22 @@ function setWeather(mode){
       "dry"
     );
 
+  }
+
+  if(typeof renderRainSuggestions === "function"){
+    renderRainSuggestions();
+  }
+
+  const isRainNow = mode === "rain";
+
+  if(document.readyState !== "loading" && wasRain !== isRainNow){
+    toast(
+      isRainNow
+        ? "雨天模式：已自動套用戶外行程建議與備案"
+        : "一般模式：已切換回標準行程",
+      "info",
+      isRainNow ? "☔" : "☀️"
+    );
   }
 
 }
@@ -7350,10 +8119,17 @@ const modalData = {
 
       <ul>
         <li>每個行程都有獨立 COMPLETE 狀態。</li>
-        <li>完成狀態會儲存在瀏覽器 localStorage。</li>
-        <li>重新整理或關閉網頁後不會消失。</li>
-        <li>DAY 1–4 會自動計算完成率。</li>
-        <li>全部任務完成後 FINAL BOSS 解鎖。</li>
+        <li>完成狀態會儲存在瀏覽器 localStorage，重新整理或關閉網頁後不會消失。</li>
+        <li>DAY 1–4 與全局進度會自動計算完成率；每天首次達成 100% 會有專屬小煙火慶祝。</li>
+        <li>標記「跳過 SKIP」的行程不會計入進度分母，即使跳過所有 OPTIONAL 行程，
+            仍然可以達成 100% 並解鎖 FINAL BOSS。</li>
+        <li>雨天模式（☔）與一般模式共用同一份完成／跳過紀錄——切換模式不會遺失或重算任何進度，
+            只會即時顯示／隱藏每個行程的雨天建議。</li>
+        <li>雨天模式會自動為「戶外、可跳過」的行程加上「☔ 建議跳過」標記，
+            但仍由你自己按 SKIP 決定，系統不會強制跳過。</li>
+        <li>Day 4 提供「🚀 直達模式」：若已將行李機場宅配，可一鍵讓「回飯店」與「飯店→東京站」
+            兩段變成可跳過，從最後一個景點直接前往東京站。</li>
+        <li>全部任務完成後 FINAL BOSS 解鎖，全螢幕煙火持續播放。</li>
       </ul>
 
       <h4>最重要的設計原則</h4>
