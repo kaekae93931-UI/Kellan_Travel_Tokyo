@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7255,18 +7256,23 @@ body.direct-mode .direct-note{
    STORAGE
 ========================================================= */
 
-const STORAGE_KEY = "tokyo_quest_2026_v3";
+const SUPABASE_URL = "https://orfitvaaatzgtffqnkpq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_HCUX40pDVQHzicw_wg7rRg_2fZgtg_c";
 
-let saved = JSON.parse(
-  localStorage.getItem(STORAGE_KEY) || "{}"
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
+let saved = {};
 
 /* =========================================================
    INIT
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+  await loadCloudState();
 
   initQuestVisuals();
   restoreState();
@@ -7279,6 +7285,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const directToggle = document.getElementById("directModeToggle");
+
   if(directToggle){
     directToggle.addEventListener("change", () => {
       setDirectMode(directToggle.checked);
@@ -7320,6 +7327,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   updateProgress();
+
+  startRealtimeSync();
 
 });
 
@@ -7828,12 +7837,78 @@ function stopFireworks(){
    PERSIST
 ========================================================= */
 
-function persist(){
+async function loadCloudState(){
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(saved)
-  );
+  const { data, error } = await supabaseClient
+    .from("trip_state")
+    .select("value")
+    .eq("id", "tokyo_quest_2026")
+    .maybeSingle();
+
+  if(error){
+    console.error("Supabase load error:", error);
+    return;
+  }
+
+  if(data && data.value){
+    saved = data.value;
+  }
+
+}
+
+
+async function persist(){
+
+  const { error } = await supabaseClient
+    .from("trip_state")
+    .upsert({
+      id: "tokyo_quest_2026",
+      value: saved,
+      updated_at: new Date().toISOString()
+    });
+
+  if(error){
+    console.error("Supabase save error:", error);
+  }
+
+}
+
+
+function startRealtimeSync(){
+
+  supabaseClient
+    .channel("tokyo-quest-sync")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "trip_state",
+        filter: "id=eq.tokyo_quest_2026"
+      },
+      payload => {
+
+        if(payload.new && payload.new.value){
+
+          saved = payload.new.value;
+
+          restoreState();
+
+          document.querySelectorAll("[data-sub]").forEach(el => {
+            el.checked = !!saved["sub_" + el.dataset.sub];
+          });
+
+          document.querySelectorAll("[data-global]").forEach(el => {
+            el.checked = !!saved["global_" + el.dataset.global];
+          });
+
+          updateProgress();
+
+        }
+
+      }
+    )
+    .subscribe();
 
 }
 
