@@ -2169,7 +2169,6 @@ BASIC INFORMATION
 <div class="section-label">TRIP BASICS</div>
 
 <h2 class="section-title">
-機票、航廈、飯店、早餐全部先放在最前面。
 </h2>
 
 <p class="section-desc">
@@ -6749,6 +6748,123 @@ JR East 官方
 </section>
 
 <!-- =========================================================
+BOOKING
+========================================================= -->
+<section id="booking" class="section">
+  <div class="container">
+
+    <div class="section-label">BOOKING QUEST</div>
+
+    <h2 class="section-title">
+      東京預約總整理
+    </h2>
+
+    <p class="section-desc">
+      重要預約集中在這裡，完成後打勾，狀態會保存在本機。
+    </p>
+
+    <div class="resources">
+
+      <div class="resource-card">
+        <h3>🗼 Day 1｜09/25</h3>
+
+        <div class="checklist">
+
+          <label class="check-row">
+            <div class="check-main">
+              <input
+                class="task-check booking-check"
+                type="checkbox"
+                data-booking="b1"
+              >
+              <div class="check-label">
+                Sky Restaurant 634｜19:45
+              </div>
+            </div>
+
+            <a
+              class="booking-link"
+              href="https://www.tokyo-skytree.jp/en/restaurant/skyrestaurant634/"
+              target="_blank"
+            >
+              官方資訊
+            </a>
+          </label>
+
+        </div>
+      </div>
+
+
+      <div class="resource-card">
+        <h3>🌃 Day 2｜09/26</h3>
+
+        <div class="checklist">
+
+          <label class="check-row">
+            <div class="check-main">
+              <input
+                class="task-check booking-check"
+                type="checkbox"
+                data-booking="b2"
+              >
+              <div class="check-label">
+                Tokyo City View｜10:00
+              </div>
+            </div>
+          </label>
+
+          <label class="check-row">
+            <div class="check-main">
+              <input
+                class="task-check booking-check"
+                type="checkbox"
+                data-booking="b3"
+              >
+              <div class="check-label">
+                SHIBUYA SKY｜20:00
+              </div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+
+      <div class="resource-card">
+        <h3>🥩 Day 4｜09/28</h3>
+
+        <div class="checklist">
+
+          <label class="check-row">
+            <div class="check-main">
+              <input
+                class="task-check booking-check"
+                type="checkbox"
+                data-booking="b4"
+              >
+              <div class="check-label">
+                牛の達人 GINZA｜14:20
+              </div>
+            </div>
+
+            <a
+              class="booking-link"
+              href="https://www.hotpepper.jp/strJ003498749/course_cnod04/"
+              target="_blank"
+            >
+              預約／餐廳
+            </a>
+          </label>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+  
+<!-- =========================================================
 PACKING
 ========================================================= -->
 
@@ -7284,7 +7400,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const STORAGE_KEY = "kellan_tokyo_progress";
 
     const checks = [
-        ...document.querySelectorAll(".task-check[data-task]")
+      ...document.querySelectorAll(
+        ".task-check[data-task], .task-check[data-booking]"
+      )
     ];
 
     const bookingChecks = [
