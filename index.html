@@ -7506,20 +7506,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         bookingChecks.forEach(cb=>{
-
             cb.checked = !!data[cb.dataset.booking];
-
+        
             const row = cb.closest(".check-row");
-
+        
             if(row){
-
                 row.classList.toggle(
                     "done",
                     cb.checked
                 );
-
             }
-
+        
+            if(cb.checked){
+                totalDone++;
+            }
         });
 
         packingChecks.forEach(cb=>{
@@ -7586,7 +7586,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
-        const total = checks.length;
+        const total = checks.length + bookingChecks.length;
 
         const totalPercent = total === 0
             ? 0
