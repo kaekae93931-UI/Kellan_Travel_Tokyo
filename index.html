@@ -2548,17 +2548,17 @@ body.direct-mode .direct-note{
           <span class="meta-pill">☔ 雨天分流</span>
           <span class="meta-pill">🔴 HARD DEADLINE 管理</span>
         </div>
-
-      </div>
-
-      <div class="travel-notes">
-        <div class="travel-notes-title">📝 TRAVEL NOTES</div>
-      
-        <textarea
-          id="travelNote"
-          placeholder="輸入旅行備註……"
-        ></textarea>
-      </div>
+        
+        <div class="travel-notes">
+          <div class="travel-notes-title">📝 TRAVEL NOTES</div>
+        
+          <textarea
+            id="travelNote"
+            placeholder="輸入旅行備註……"
+          ></textarea>
+        </div>
+        
+        </div>
       
       </div>
       
@@ -8769,22 +8769,29 @@ function startRealtimeSync(){
         
           const travelNote = document.getElementById("travelNote");
         
-          if(travelNote){
+          /*
+           * 正在編輯備註時，不要讓 Realtime
+           * 把 Supabase 回傳的資料重新寫進 textarea。
+           */
+          if(
+            travelNote &&
+            document.activeElement !== travelNote
+          ){
             travelNote.value = saved.travel_note || "";
           }
         
           restoreState();
-
+        
           document.querySelectorAll("[data-sub]").forEach(el => {
             el.checked = !!saved["sub_" + el.dataset.sub];
           });
-
+        
           document.querySelectorAll("[data-global]").forEach(el => {
             el.checked = !!saved["global_" + el.dataset.global];
           });
-
+        
           updateProgress();
-
+        
         }
 
       }
