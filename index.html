@@ -6810,8 +6810,7 @@ BOOKING
               <div class="check-label">
                 Tokyo City View｜10:00
               </div>
-            </div>
-          </label>
+            </div><a class="booking-link" href="https://tcv.roppongihills.com/en/" target="_blank">官方預約</a></label>
 
           <label class="check-row">
             <div class="check-main">
@@ -6823,8 +6822,7 @@ BOOKING
               <div class="check-label">
                 SHIBUYA SKY｜20:00
               </div>
-            </div>
-          </label>
+            </div><a class="booking-link" href="https://www.shibuya-scramble-square.com/sky/en/" target="_blank">官方預約</a></label>
 
         </div>
       </div>
@@ -7396,295 +7394,95 @@ Progress data is saved locally on this device.
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-    const STORAGE_KEY = "kellan_tokyo_progress";
-
-    const checks = [
-      ...document.querySelectorAll(
-        ".task-check[data-task], .task-check[data-booking]"
-      )
-    ];
-
-    const bookingChecks = [
-        ...document.querySelectorAll(".booking-check")
-    ];
-
-    const packingChecks = [
-        ...document.querySelectorAll(".packing-check")
-    ];
-
-    const dayCards = [
-        ...document.querySelectorAll(".day-card")
-    ];
-
-    function load(){
-
-        return JSON.parse(
-            localStorage.getItem(STORAGE_KEY) || "{}"
-        );
-
-    }
-
-    function save(){
-
-        const data = {};
-
-        checks.forEach(cb=>{
-
-            data[cb.dataset.task] = cb.checked;
-
-        });
-
-        bookingChecks.forEach(cb=>{
-
-            data[cb.dataset.booking] = cb.checked;
-
-        });
-
-        packingChecks.forEach(cb=>{
-
-            data[cb.dataset.pack] = cb.checked;
-
-        });
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(data)
-        );
-
-    }
-
-    function animateBar(bar, percent){
-
-        if(!bar) return;
-
-        const current = parseFloat(bar.style.width) || 0;
-
-        if(current === percent) return;
-
-        bar.style.width = current + "%";
-
-        requestAnimationFrame(()=>{
-
-            requestAnimationFrame(()=>{
-
-                bar.style.width = percent + "%";
-
-            });
-
-        });
-
-    }
-
-    function update(){
-
-        const data = load();
-
-        let totalDone = 0;
-
-        checks.forEach(cb=>{
-
-            cb.checked = !!data[cb.dataset.task];
-
-            const item = cb.closest(".item");
-
-            if(item){
-
-                item.classList.toggle(
-                    "done",
-                    cb.checked
-                );
-
-            }
-
-            if(cb.checked){
-
-                totalDone++;
-
-            }
-
-        });
-
-        bookingChecks.forEach(cb=>{
-            cb.checked = !!data[cb.dataset.booking];
-        
-            const row = cb.closest(".check-row");
-        
-            if(row){
-                row.classList.toggle(
-                    "done",
-                    cb.checked
-                );
-            }
-        
-            if(cb.checked){
-                totalDone++;
-            }
-        });
-
-        packingChecks.forEach(cb=>{
-
-            cb.checked = !!data[cb.dataset.pack];
-
-            const row = cb.closest(".check-row");
-
-            if(row){
-
-                row.classList.toggle(
-                    "done",
-                    cb.checked
-                );
-
-            }
-
-        });
-
-        dayCards.forEach(card=>{
-
-            const day = card.id.replace(
-                "day-card-",
-                ""
-            );
-
-            const dayChecks = checks.filter(cb=>{
-
-                return cb.dataset.task.startsWith(
-                    "d" + day + "-"
-                );
-
-            });
-
-            const done = dayChecks.filter(cb=>cb.checked).length;
-
-            const total = dayChecks.length;
-
-            const percent = total === 0
-                ? 0
-                : Math.round(done / total * 100);
-
-            animateBar(
-                document.getElementById(
-                    "day" + day + "Progress"
-                ),
-                percent
-            );
-
-            const text = document.getElementById(
-                "day" + day + "Percent"
-            );
-
-            if(text){
-
-                text.textContent = percent + "%";
-
-            }
-
-            card.classList.toggle(
-                "day-complete",
-                done === total && total > 0
-            );
-
-        });
-
-        const total = checks.length + bookingChecks.length;
-
-        const totalPercent = total === 0
-            ? 0
-            : Math.round(totalDone / total * 100);
-
-        animateBar(
-            document.getElementById("totalProgress"),
-            totalPercent
-        );
-
-        document.getElementById(
-            "totalPercent"
-        ).textContent = totalPercent + "%";
-
-        document.getElementById(
-            "totalCount"
-        ).textContent =
-            totalDone + " / " + total + " 任務";
-
-        const boss = document.getElementById("godzilla");
-
-        const bossMessage = document.getElementById("bossMessage");
-
-        if(boss){
-
-            boss.classList.toggle(
-                "defeated",
-                totalPercent === 100
-            );
-
-        }
-
-        if(bossMessage){
-
-            if(totalPercent === 100){
-
-                bossMessage.textContent =
-                    "恭喜！東京 2026 全部完成，哥吉拉已擊敗！";
-
-            }else if(totalPercent >= 75){
-
-                bossMessage.textContent =
-                    "最後衝刺！東京冒險即將完成。";
-
-            }else if(totalPercent >= 40){
-
-                bossMessage.textContent =
-                    "進度穩定推進中，繼續完成任務！";
-
-            }else{
-
-                bossMessage.textContent =
-                    "東京冒險開始！把每個行程完成，逐步清空任務。";
-
-            }
-
-        }
-
-    }
-
-    [
-        ...checks,
-        ...bookingChecks,
-        ...packingChecks
-    ].forEach(cb=>{
-
-        cb.addEventListener("change", ()=>{
-
-            save();
-
-            update();
-
-        });
-
+  const STORAGE_KEY = "kellan_tokyo_progress";
+
+  const taskChecks=[...document.querySelectorAll('.task-check[data-task]')];
+  const bookingChecks=[...document.querySelectorAll('.booking-check[data-booking]')];
+  const packingChecks=[...document.querySelectorAll('.packing-check[data-pack]')];
+  const dayCards=[...document.querySelectorAll('.day-card')];
+
+  const load=()=>JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+
+  function save(){
+    const data={};
+    taskChecks.forEach(cb=>data[cb.dataset.task]=cb.checked);
+    bookingChecks.forEach(cb=>data[cb.dataset.booking]=cb.checked);
+    packingChecks.forEach(cb=>data[cb.dataset.pack]=cb.checked);
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+  }
+
+  function animateBar(bar,percent){
+    if(bar) bar.style.width=percent+'%';
+  }
+
+  function update(){
+    const data=load();
+    let totalDone=0;
+
+    taskChecks.forEach(cb=>{
+      cb.checked=!!data[cb.dataset.task];
+      const item=cb.closest('.item');
+      if(item) item.classList.toggle('done',cb.checked);
+      if(cb.checked) totalDone++;
     });
 
-    document
-        .querySelectorAll(".details-toggle")
-        .forEach(btn=>{
+    bookingChecks.forEach(cb=>{
+      cb.checked=!!data[cb.dataset.booking];
+      const row=cb.closest('.check-row');
+      if(row) row.classList.toggle('done',cb.checked);
+      if(cb.checked) totalDone++;
+    });
 
-            btn.addEventListener("click", ()=>{
+    packingChecks.forEach(cb=>{
+      cb.checked=!!data[cb.dataset.pack];
+      const row=cb.closest('.check-row');
+      if(row) row.classList.toggle('done',cb.checked);
+    });
 
-                const detail =
-                    btn.nextElementSibling;
+    dayCards.forEach(card=>{
+      const day=card.id.replace('day-card-','');
+      const dayChecks=taskChecks.filter(cb=>cb.dataset.task && cb.dataset.task.startsWith('d'+day+'-'));
+      const done=dayChecks.filter(cb=>cb.checked).length;
+      const total=dayChecks.length;
+      const percent=total?Math.round(done/total*100):0;
+      animateBar(document.getElementById('day'+day+'Progress'),percent);
+      const txt=document.getElementById('day'+day+'Percent');
+      if(txt) txt.textContent=percent+'%';
+      card.classList.toggle('day-complete', total>0 && done===total);
+    });
 
-                detail.classList.toggle("open");
+    const total=taskChecks.length+bookingChecks.length;
+    const totalPercent=total?Math.round(totalDone/total*100):0;
 
-                btn.textContent =
-                    detail.classList.contains("open")
-                    ? "－ 收合資訊"
-                    : "＋ 詳細資訊";
+    animateBar(document.getElementById('totalProgress'),totalPercent);
+    document.getElementById('totalPercent').textContent=totalPercent+'%';
+    document.getElementById('totalCount').textContent=`${totalDone} / ${total} 任務`;
 
-            });
+    const boss=document.getElementById('godzilla');
+    const msg=document.getElementById('bossMessage');
+    if(boss) boss.classList.toggle('defeated',totalPercent===100);
+    if(msg){
+      msg.textContent=totalPercent===100?'恭喜！東京 2026 全部完成，哥吉拉已擊敗！':
+      totalPercent>=75?'最後衝刺！東京冒險即將完成。':
+      totalPercent>=40?'進度穩定推進中，繼續完成任務！':
+      '東京冒險開始！把每個行程完成，逐步清空任務。';
+    }
+  }
 
-        });
+  [...taskChecks,...bookingChecks,...packingChecks].forEach(cb=>{
+    cb.addEventListener('change',()=>{save();update();});
+  });
 
-    update();
+  document.querySelectorAll('.details-toggle').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const detail=btn.nextElementSibling;
+      if(!detail) return;
+      detail.classList.toggle('open');
+      btn.textContent=detail.classList.contains('open')?'－ 收合資訊':'＋ 詳細資訊';
+    });
+  });
 
+  update();
 });
 </script>
 
