@@ -8218,6 +8218,210 @@ body.direct-mode .direct-note{
 
 
 <script>
+/* =========================================================
+   SCROLL POSITION
+   ========================================================= */
+
+(function(){
+
+  const SCROLL_KEY = "tokyo_scroll_position";
+
+  let saveTimer = null;
+
+  /* 防止瀏覽器自己恢復位置 */
+  if("scrollRestoration" in history){
+    history.scrollRestoration = "manual";
+  }
+
+
+  /* 取得目前頁面位置 */
+  function getScrollY(){
+
+    return window.pageYOffset ||
+           document.documentElement.scrollTop ||
+           document.body.scrollTop ||
+           0;
+
+  }
+
+
+  /* 儲存目前位置 */
+  function saveScrollPosition(){
+
+    try{
+
+      sessionStorage.setItem(
+        SCROLL_KEY,
+        String(getScrollY())
+      );
+
+    }catch(e){
+
+      console.warn(
+        "儲存 Scroll Position 失敗:",
+        e
+      );
+
+    }
+
+  }
+
+
+  /* 讀取並恢復位置 */
+  function restoreScrollPosition(){
+
+    let savedY = null;
+
+    try{
+
+      savedY = sessionStorage.getItem(
+        SCROLL_KEY
+      );
+
+    }catch(e){
+
+      console.warn(
+        "讀取 Scroll Position 失敗:",
+        e
+      );
+
+    }
+
+
+    if(savedY === null){
+      return;
+    }
+
+
+    const y = Number(savedY);
+
+    if(!Number.isFinite(y)){
+      return;
+    }
+
+
+    /* 連續恢復，避免 Supabase 載入後位置被推走 */
+
+    const restore = () => {
+
+      window.scrollTo(0, y);
+
+      document.documentElement.scrollTop = y;
+      document.body.scrollTop = y;
+
+    };
+
+
+    restore();
+
+    requestAnimationFrame(() => {
+
+      restore();
+
+      requestAnimationFrame(() => {
+
+        restore();
+
+      });
+
+    });
+
+
+    setTimeout(restore, 100);
+    setTimeout(restore, 300);
+    setTimeout(restore, 600);
+    setTimeout(restore, 1000);
+    setTimeout(restore, 1500);
+    setTimeout(restore, 2500);
+
+  }
+
+
+  /* 使用者滑動時儲存位置 */
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      clearTimeout(saveTimer);
+
+      saveTimer = setTimeout(() => {
+
+        saveScrollPosition();
+
+      }, 50);
+
+    },
+    {
+      passive:true
+    }
+  );
+
+
+  /* 離開頁面前儲存 */
+
+  window.addEventListener(
+    "beforeunload",
+    saveScrollPosition
+  );
+
+
+  /* iPhone Safari 很重要 */
+
+  window.addEventListener(
+    "pagehide",
+    saveScrollPosition
+  );
+
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if(document.visibilityState === "hidden"){
+
+        saveScrollPosition();
+
+      }
+
+    }
+  );
+
+
+  /* DOM 完成後恢復 */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+      restoreScrollPosition();
+
+    }
+  );
+
+
+  /* 所有圖片、CSS 等載入完成後再恢復 */
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      restoreScrollPosition();
+
+    }
+  );
+
+
+  /* 提供給你的主程式使用 */
+
+  window.restoreTokyoScroll =
+    restoreScrollPosition;
+
+  window.saveTokyoScroll =
+    saveScrollPosition;
+
+})();
+
 
 /* =========================================================
    STORAGE
@@ -8402,7 +8606,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   startRealtimeSync();
 
+
+
 });
+
+
 
 /* =========================================================
    RESTORE
