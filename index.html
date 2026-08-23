@@ -1860,12 +1860,9 @@ article.quest[data-cat="general"] .quest-photo{ --photo-grad:linear-gradient(135
   #travelNote{
     white-space:pre-line;
     line-height:1.6;
-    padding-left:22px;
-  
-    #travelNote{
-      border-left:3px solid #39ff88;
-      padding-left:12px;
-    }
+    border-left:3px solid #39ff88;
+    padding-left:12px;
+  }
 
   /* QUEST CONTROL */
 
@@ -2225,13 +2222,6 @@ body.direct-mode .direct-note{
   border-radius:10px;
 
   background-color:#050505;
-
-  background-image:
-    radial-gradient(circle,#39ff88 2.5px,transparent 3px);
-
-  background-size:12px 1.6em;
-  background-repeat:repeat-y;
-  background-position:8px 0.8em;
 
   color:#f5f5f5;
   font:inherit;
@@ -8245,20 +8235,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function restoreState(){
 
-  document.querySelectorAll("[data-task]").forEach(el => {
+  document.querySelectorAll("[data-task]").forEach(el=>{
+    const key="task_"+el.dataset.task;
+    el.checked=!!saved[key];
 
-    const key = "task_" + el.dataset.task;
-
-    el.checked = !!saved[key];
-
-    const quest = el.closest(".quest");
-
+    const quest=el.closest(".quest");
     if(quest && el.checked){
       quest.classList.add("completed");
     }
-
   });
 
+  const travelNote=document.getElementById("travelNote");
+  if(travelNote){
+    travelNote.value=saved.travel_note || "";
+    travelNote.style.height="auto";
+    travelNote.style.height=travelNote.scrollHeight+"px";
+  }
 }
 
 
