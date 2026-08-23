@@ -2253,19 +2253,88 @@ body.direct-mode .direct-note{
   min-height:1.6em;
   padding-left:2px;
 }
-
 #travelNote .note-line::before{
   content:"";
   position:absolute;
-  left:-20px;
-  top:.55em;
-  width:6px;
-  height:6px;
+  left:-21px;
+  top:.48em;
+
+  width:8px;
+  height:8px;
+
   border-radius:50%;
-  background:#39ff88;
+
+  background:#b8ffd9;
+
   box-shadow:
-    0 0 6px rgba(57,255,136,.85),
-    0 0 12px rgba(57,255,136,.35);
+    0 0 3px #ffffff,
+    0 0 7px #39ff88,
+    0 0 14px #39ff88,
+    0 0 24px rgba(57,255,136,.95),
+    0 0 40px rgba(57,255,136,.65);
+
+  animation:travelNoteGlow 1.4s ease-in-out infinite alternate;
+}
+
+#travelNote .note-line::after{
+  content:"";
+  position:absolute;
+  left:-24px;
+  top:calc(.48em - 3px);
+
+  width:14px;
+  height:14px;
+
+  border:1px solid rgba(57,255,136,.55);
+  border-radius:50%;
+
+  box-shadow:
+    0 0 10px rgba(57,255,136,.55),
+    inset 0 0 8px rgba(57,255,136,.25);
+
+  animation:travelNoteRing 2s ease-out infinite;
+}
+
+@keyframes travelNoteGlow{
+  from{
+    transform:scale(.82);
+    opacity:.75;
+
+    box-shadow:
+      0 0 3px #ffffff,
+      0 0 7px #39ff88,
+      0 0 14px #39ff88,
+      0 0 24px rgba(57,255,136,.75);
+  }
+
+  to{
+    transform:scale(1.18);
+    opacity:1;
+
+    box-shadow:
+      0 0 4px #ffffff,
+      0 0 10px #39ff88,
+      0 0 20px #39ff88,
+      0 0 34px rgba(57,255,136,1),
+      0 0 52px rgba(57,255,136,.65);
+  }
+}
+
+@keyframes travelNoteRing{
+  0%{
+    transform:scale(.65);
+    opacity:.8;
+  }
+
+  70%{
+    transform:scale(1.35);
+    opacity:0;
+  }
+
+  100%{
+    transform:scale(1.35);
+    opacity:0;
+  }
 }
 
 
