@@ -8437,6 +8437,7 @@ const supabaseClient = window.supabase.createClient(
 
 let saved = {};
 let travelNoteEditing = false;
+let autoResumeDone = false;
 
 
 /* =========================================================
@@ -8669,37 +8670,79 @@ function restoreState(){
 
 
   /* =====================================================
-     RESTORE LAST COMPLETED DAY
+     RESTORE CURRENT QUEST POSITION
   ===================================================== */
 
-  if(saved.last_completed_task){
+  restoreCurrentQuestPosition();
 
-    const lastTask =
-      document.querySelector(
-        `[data-task="${saved.last_completed_task}"]`
-      );
+}
 
-    if(lastTask){
+function restoreCurrentQuestPosition(){
 
-      const day =
-        lastTask.closest(".day-section");
-
-      if(day){
-
-        setTimeout(() => {
-
-          day.scrollIntoView({
-            behavior:"auto",
-            block:"start"
-          });
-
-        },300);
-
-      }
-
-    }
-
+  if(autoResumeDone){
+    return;
   }
+
+  const tasks = Array.from(
+    document.querySelectorAll(
+      'article.quest input[type="checkbox"][data-task]'
+    )
+  ).filter(task => {
+
+    const quest = task.closest("article.quest");
+
+    return quest &&
+           !quest.classList.contains("skipped");
+
+  });
+
+  if(tasks.length === 0){
+    return;
+  }
+
+  const hasProgress = tasks.some(task => task.checked);
+
+  if(!hasProgress){
+    return;
+  }
+
+  let targetTask = tasks.find(task => !task.checked);
+
+  if(!targetTask){
+    targetTask = tasks[tasks.length - 1];
+  }
+
+  const targetQuest =
+    targetTask.closest("article.quest");
+
+  if(!targetQuest){
+    return;
+  }
+
+  autoResumeDone = true;
+
+  const moveToTarget = () => {
+
+    const top =
+      targetQuest.getBoundingClientRect().top +
+      window.pageYOffset -
+      Math.max(90, window.innerHeight * 0.22);
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "auto"
+    });
+
+  };
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(moveToTarget);
+  });
+
+  setTimeout(moveToTarget, 300);
+  setTimeout(moveToTarget, 900);
+  setTimeout(moveToTarget, 1800);
+  setTimeout(moveToTarget, 2800);
 
 }
 
