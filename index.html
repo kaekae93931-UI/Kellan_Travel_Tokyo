@@ -8230,6 +8230,8 @@ const supabaseClient = window.supabase.createClient(
 );
 
 let saved = {};
+let travelNoteEditing = false;
+
 
 /* =========================================================
    INIT
@@ -8279,10 +8281,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadCloudState();
 
-  const travelNote = document.getElementById("travelNote");
+	const travelNote = document.getElementById("travelNote");
+	if(travelNote){
 
-  if(travelNote){
-    travelNote.addEventListener("input", () => {
+	  travelNote.addEventListener("focus", () => {
+		travelNoteEditing = true;
+	  });
+
+	  travelNote.addEventListener("blur", () => {
+		travelNoteEditing = false;
+	  });
+
+	  travelNote.addEventListener("input", () => {
+
 
 	  if(!travelNote.querySelector(".note-line")){
 
