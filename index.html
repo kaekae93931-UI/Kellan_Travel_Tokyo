@@ -8166,22 +8166,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       travelNote.style.height = travelNote.scrollHeight + "px";
   
       saved.travel_note = travelNote.value;
-    
+  
       clearTimeout(window.travelNoteTimer);
-    
+  
       window.travelNoteTimer = setTimeout(async () => {
-    
+  
         try {
           await persist();
           console.log("Travel note saved:", saved.travel_note);
         } catch (error) {
           console.error("Travel note save failed:", error);
         }
-    
+  
       }, 500);
-    
+  
     });
-
+  
   }
 
   initQuestVisuals();
