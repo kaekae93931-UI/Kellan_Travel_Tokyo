@@ -8408,7 +8408,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 /* =========================================================
    RESTORE
 ========================================================= */
-
 function restoreState(){
 
   document.querySelectorAll("[data-task]").forEach(el=>{
@@ -8460,41 +8459,8 @@ function restoreState(){
     travelNote.style.height=travelNote.scrollHeight+"px";
   }
 
-  if(saved.last_completed_task){
+}
 
-    const lastTask =
-      document.querySelector(
-        `[data-task="${saved.last_completed_task}"]`
-      );
-
-    if(lastTask){
-
-      const day =
-        lastTask.closest(".day-section");
-
-      if(day){
-
-        const firstTask =
-          day.querySelector("[data-task]");
-
-        if(firstTask){
-
-          setTimeout(() => {
-
-            firstTask.scrollIntoView({
-              behavior:"auto",
-              block:"center"
-            });
-
-          },100);
-
-        }
-
-      }
-
-    }
-
-  }
 
 
 
