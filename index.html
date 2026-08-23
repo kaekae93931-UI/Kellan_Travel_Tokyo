@@ -8467,25 +8467,32 @@ function restoreState(){
 
     if(lastTask){
 
-      const quest = lastTask.closest(".quest");
+      const day =
+        lastTask.closest(".day-section");
 
-      if(quest){
+      if(day){
 
-        setTimeout(() => {
+        const firstTask =
+          day.querySelector("[data-task]");
 
-          quest.scrollIntoView({
-            behavior:"auto",
-            block:"center"
-          });
+        if(firstTask){
 
-        }, 100);
+          setTimeout(() => {
+
+            firstTask.scrollIntoView({
+              behavior:"auto",
+              block:"center"
+            });
+
+          },100);
+
+        }
 
       }
 
     }
 
   }
-}
 
 
 
