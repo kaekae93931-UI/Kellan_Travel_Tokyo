@@ -2211,26 +2211,54 @@ body.direct-mode .direct-note{
   width:100%;
   min-height:42px;
   max-height:420px;
+
   box-sizing:border-box;
 
-  padding:10px 12px 10px 24px;
+  padding:10px 12px 10px 30px;
 
-  resize:none;
-  overflow-y:hidden;
+  overflow-y:auto;
 
   border:1px solid rgba(255,255,255,.18);
   border-radius:10px;
 
   background-color:#050505;
-
   color:#f5f5f5;
+
   font:inherit;
   font-size:12px;
   line-height:1.6;
-  outline:none;
 
-  white-space:pre-line;
+  outline:none;
+  white-space:pre-wrap;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
+
+#travelNote:focus{
+  border-color:#ff3b30;
+  box-shadow:0 0 0 2px rgba(255,59,48,.08);
+}
+
+#travelNote:empty::before{
+  content:attr(data-placeholder);
+  color:#777;
+  pointer-events:none;
+}
+#travelNote .note-line{
+  position:relative;
+  min-height:1.6em;
+}
+
+#travelNote .note-line::before{
+  content:"▪";
+  position:absolute;
+  left:-20px;
+  color:#35d07f;
+  font-weight:900;
+}
+
 
   transition:
     border-color .2s ease,
@@ -8136,6 +8164,46 @@ let saved = {};
    INIT
 ========================================================= */
 
+travelNote.addEventListener("keydown", (e) => {
+
+  if(e.key !== "Enter") return;
+
+  e.preventDefault();
+
+  const line = document.createElement("div");
+  line.className = "note-line";
+  line.innerHTML = "<br>";
+
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+
+  let currentLine =
+    range.startContainer.nodeType === Node.TEXT_NODE
+      ? range.startContainer.parentElement
+      : range.startContainer;
+
+  currentLine = currentLine.closest(".note-line");
+
+  if(currentLine){
+    currentLine.after(line);
+  }else{
+    travelNote.appendChild(line);
+  }
+
+  const newRange = document.createRange();
+  newRange.setStart(line, 0);
+  newRange.collapse(true);
+
+  selection.removeAllRanges();
+  selection.addRange(newRange);
+
+  travelNote.dispatchEvent(new Event("input", {
+    bubbles:true
+  }));
+
+});
+
+  
 document.addEventListener("DOMContentLoaded", async () => {
 
   await loadCloudState();
@@ -8148,7 +8216,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       travelNote.style.height = "auto";
       travelNote.style.height = travelNote.scrollHeight + "px";
   
-      saved.travel_note = travelNote.value;
+      saved.travel_note = travelNote.innerText;
+
   
       clearTimeout(window.travelNoteTimer);
   
@@ -8246,11 +8315,32 @@ function restoreState(){
   });
 
   const travelNote=document.getElementById("travelNote");
+  
   if(travelNote){
-    travelNote.value=saved.travel_note || "";
+  
+    const text = saved.travel_note || "";
+  
+    travelNote.innerHTML = "";
+  
+    text.split("\n").forEach(line => {
+  
+      const div = document.createElement("div");
+      div.className = "note-line";
+  
+      if(line){
+        div.textContent = line;
+      }else{
+        div.innerHTML = "<br>";
+      }
+  
+      travelNote.appendChild(div);
+  
+    });
+  
     travelNote.style.height="auto";
     travelNote.style.height=travelNote.scrollHeight+"px";
   }
+
 }
 
 
@@ -8756,7 +8846,23 @@ async function loadCloudState(){
   
   if(travelNote){
   
-    travelNote.value = saved.travel_note || "";
+    travelNote.innerHTML = "";
+
+    (saved.travel_note || "").split("\n").forEach(line => {
+    
+      const div = document.createElement("div");
+      div.className = "note-line";
+    
+      if(line){
+        div.textContent = line;
+      }else{
+        div.innerHTML = "<br>";
+      }
+    
+      travelNote.appendChild(div);
+    
+    });
+
   
     travelNote.style.height = "auto";
     travelNote.style.height = travelNote.scrollHeight + "px";
