@@ -2664,11 +2664,16 @@ body.direct-mode .direct-note{
         </p>
 
         <div class="hero-meta">
-          <span class="meta-pill">📍 東京</span>
-          <span class="meta-pill">🏨 銀座基地</span>
-          <span class="meta-pill">🚆 電車中心</span>
-          <span class="meta-pill">☔ 雨天分流</span>
-          <span class="meta-pill">🔴 HARD DEADLINE 管理</span>
+
+		<div class="control-buttons">  
+		  <button
+			class="action"
+			type="button"
+			onclick="jumpToLastQuest()"
+		  >
+			🔴🔴--->按下可以跳到最後一個打勾行程🔴🔴
+		  </button>	
+		  </div>
         </div>
         
         <div class="travel-notes">
@@ -2746,33 +2751,34 @@ body.direct-mode .direct-note{
 
     <div class="control-strip">
 
-      <div class="control-buttons">
-        <button class="action primary" onclick="openModal('emergency')">
-          🚨 延誤處理
-        </button>
+		<div class="control-buttons">
 
-        <button class="action" onclick="openModal('booking')">
-          🎫 預約總表
-        </button>
+		  <button class="action primary" onclick="openModal('emergency')">
+			🚨 延誤處理
+		  </button>
 
-        <button class="action" onclick="openModal('transport')">
-          🚆 交通規則
-        </button>
+		  <button class="action" onclick="openModal('booking')">
+			🎫 預約總表
+		  </button>
 
-        <button class="action" onclick="window.print()">
-          🖨 列印
-        </button>
-      </div>
+		  <button class="action" onclick="openModal('transport')">
+			🚆 交通規則
+		  </button>
 
-      <div class="weather-toggle">
-        <button id="dryBtn" class="active" onclick="setWeather('dry')">
-          ☀️ NORMAL
-        </button>
+		  <button class="action" onclick="window.print()">
+			🖨 列印
+		  </button>
 
-        <button id="rainBtn" onclick="setWeather('rain')">
-          ☔ RAIN
-        </button>
-      </div>
+		  <button
+			class="action"
+			type="button"
+			onclick="jumpToLastQuest()"
+		  >
+			📍 跳到 最後一個行程
+		  </button>
+
+		</div>
+
 
     </div>
 
@@ -8288,52 +8294,6 @@ body.direct-mode .direct-note{
     }
 
 
-    if(savedY === null){
-      return;
-    }
-
-
-    const y = Number(savedY);
-
-    if(!Number.isFinite(y)){
-      return;
-    }
-
-
-    /* 連續恢復，避免 Supabase 載入後位置被推走 */
-
-    const restore = () => {
-
-      window.scrollTo(0, y);
-
-      document.documentElement.scrollTop = y;
-      document.body.scrollTop = y;
-
-    };
-
-
-    restore();
-
-    requestAnimationFrame(() => {
-
-      restore();
-
-      requestAnimationFrame(() => {
-
-        restore();
-
-      });
-
-    });
-
-
-    setTimeout(restore, 100);
-    setTimeout(restore, 300);
-    setTimeout(restore, 600);
-    setTimeout(restore, 1000);
-    setTimeout(restore, 1500);
-    setTimeout(restore, 2500);
-
   }
 
 
@@ -8673,7 +8633,7 @@ function restoreState(){
      RESTORE CURRENT QUEST POSITION
   ===================================================== */
 
-  restoreCurrentQuestPosition();
+  //restoreCurrentQuestPosition();
 
 }
 
@@ -8812,6 +8772,65 @@ function saveTask(el){
   persist();
 
   updateProgress(el);
+
+}
+
+
+function jumpToLastQuest(){
+
+  const tasks = Array.from(
+    document.querySelectorAll(
+      'article.quest input[type="checkbox"][data-task]'
+    )
+  ).filter(task => {
+
+    const quest =
+      task.closest("article.quest");
+
+    return quest &&
+           !quest.classList.contains("skipped");
+
+  });
+
+  if(tasks.length === 0){
+    return;
+  }
+
+  const hasProgress =
+    tasks.some(task => task.checked);
+
+  if(!hasProgress){
+    return;
+  }
+
+  let targetTask =
+    tasks.find(task => !task.checked);
+
+  if(!targetTask){
+    targetTask =
+      tasks[tasks.length - 1];
+  }
+
+  const targetQuest =
+    targetTask.closest("article.quest");
+
+  if(!targetQuest){
+    return;
+  }
+
+  const rect =
+    targetQuest.getBoundingClientRect();
+
+  const targetTop =
+    window.pageYOffset +
+    rect.top -
+    (window.innerHeight * 0.35);
+
+  window.scrollTo({
+    top: Math.max(0, targetTop),
+    left: 0,
+    behavior: "smooth"
+  });
 
 }
 
