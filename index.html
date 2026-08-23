@@ -2259,9 +2259,10 @@ body.direct-mode .direct-note{
   position:absolute;
   left:-20px;
   top:0;
-  color:#35d07f;
+  color:#39ff88 !important;
   font-weight:900;
 }
+
 
 
 /* =========================================================
@@ -2602,7 +2603,7 @@ body.direct-mode .direct-note{
 			  role="textbox"
 			  aria-multiline="true"
 			  data-placeholder="輸入旅行備註……"
-			></div>
+			><div class="note-line"><br></div></div>
 
         </div>
         
@@ -8207,6 +8208,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if(travelNote){
     travelNote.addEventListener("input", () => {
+
+	  if(!travelNote.querySelector(".note-line")){
+
+		const text=travelNote.innerText;
+
+		travelNote.innerHTML="";
+
+		const div=document.createElement("div");
+		div.className="note-line";
+		div.textContent=text;
+
+		travelNote.appendChild(div);
+
+	  }
+
   
       travelNote.style.height = "auto";
       travelNote.style.height = travelNote.scrollHeight + "px";
@@ -8311,32 +8327,45 @@ function restoreState(){
 
   const travelNote=document.getElementById("travelNote");
   
-  if(travelNote){
+  if(travelNote && document.activeElement !== travelNote){
   
     const text = saved.travel_note || "";
   
     travelNote.innerHTML = "";
   
-    text.split("\n").forEach(line => {
+    if(text){
+  
+      text.split("\n").forEach(line => {
+  
+        const div = document.createElement("div");
+        div.className = "note-line";
+  
+        if(line){
+          div.textContent = line;
+        }else{
+          div.innerHTML = "<br>";
+        }
+  
+        travelNote.appendChild(div);
+  
+      });
+  
+    }else{
   
       const div = document.createElement("div");
       div.className = "note-line";
-  
-      if(line){
-        div.textContent = line;
-      }else{
-        div.innerHTML = "<br>";
-      }
+      div.innerHTML = "<br>";
   
       travelNote.appendChild(div);
   
-    });
+    }
   
     travelNote.style.height="auto";
     travelNote.style.height=travelNote.scrollHeight+"px";
   }
 
 }
+
 
 
 /* =========================================================
