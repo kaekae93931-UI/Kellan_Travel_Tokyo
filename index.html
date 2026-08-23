@@ -8313,7 +8313,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       travelNote.style.height = "auto";
       travelNote.style.height = travelNote.scrollHeight + "px";
   
-      saved.travel_note = travelNote.innerText;
+      saved.travel_note = Array.from(
+        travelNote.querySelectorAll(".note-line")
+      ).map(line => line.innerText.replace(/\n/g, ""))
+       .join("\n");
+
 
   
       clearTimeout(window.travelNoteTimer);
@@ -8363,6 +8367,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     el.addEventListener("change", () => {
 
       saved[key] = el.checked;
+	  if(el.checked){
+		saved.last_completed_task = el.dataset.task;
+	  }
+
 
       persist();
 
@@ -8450,7 +8458,35 @@ function restoreState(){
     travelNote.style.height=travelNote.scrollHeight+"px";
   }
 
+  if(saved.last_completed_task){
+
+    const lastTask =
+      document.querySelector(
+        `[data-task="${saved.last_completed_task}"]`
+      );
+
+    if(lastTask){
+
+      const quest = lastTask.closest(".quest");
+
+      if(quest){
+
+        setTimeout(() => {
+
+          quest.scrollIntoView({
+            behavior:"auto",
+            block:"center"
+          });
+
+        }, 100);
+
+      }
+
+    }
+
+  }
 }
+
 
 
 
