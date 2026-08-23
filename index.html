@@ -9106,9 +9106,10 @@ function resetAll(){
 
   if(!yes) return;
 
-  localStorage.removeItem(STORAGE_KEY);
-
+  saved = {};
+  persist();
   location.reload();
+
 
 }
 
