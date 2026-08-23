@@ -8203,148 +8203,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadCloudState();
 
-	const travelNote = document.getElementById("travelNote");
+  const travelNote = document.getElementById("travelNote");
 
-	if(travelNote){
+  if(travelNote){
+    travelNote.addEventListener("input", () => {
+  
+      travelNote.style.height = "auto";
+      travelNote.style.height = travelNote.scrollHeight + "px";
+  
+      saved.travel_note = travelNote.innerText;
 
-	  function setTravelNote(text){
-
-		travelNote.innerHTML = "";
-
-		const lines = String(text || "").split("\n");
-
-		if(!lines.length) return;
-
-		lines.forEach(line => {
-
-		  const div = document.createElement("div");
-		  div.className = "note-line";
-
-		  if(line){
-			div.textContent = line;
-		  }else{
-			div.innerHTML = "<br>";
-		  }
-
-		  travelNote.appendChild(div);
-
-		});
-
-		travelNote.style.height = "auto";
-		travelNote.style.height =
-		  Math.min(travelNote.scrollHeight, 420) + "px";
-	  }
-
-
-	  function getTravelNote(){
-
-		return Array.from(
-		  travelNote.querySelectorAll(".note-line")
-		)
-		.map(line => line.innerText.replace(/\n$/, ""))
-		.join("\n");
-
-	  }
-
-
-	  travelNote.addEventListener("keydown", e => {
-
-		if(e.key !== "Enter") return;
-
-		e.preventDefault();
-
-		const selection = window.getSelection();
-
-		if(!selection.rangeCount) return;
-
-		const range = selection.getRangeAt(0);
-
-		let currentLine =
-		  range.startContainer.nodeType === Node.TEXT_NODE
-			? range.startContainer.parentElement
-			: range.startContainer;
-
-		currentLine =
-		  currentLine.closest(".note-line");
-
-		const newLine =
-		  document.createElement("div");
-
-		newLine.className = "note-line";
-		newLine.innerHTML = "<br>";
-
-		if(currentLine){
-
-		  currentLine.after(newLine);
-
-		}else{
-
-		  travelNote.appendChild(newLine);
-
-		}
-
-		const newRange =
-		  document.createRange();
-
-		newRange.setStart(newLine, 0);
-		newRange.collapse(true);
-
-		selection.removeAllRanges();
-		selection.addRange(newRange);
-
-		travelNote.dispatchEvent(
-		  new Event("input", { bubbles:true })
-		);
-
-	  });
-
-
-	  travelNote.addEventListener("input", () => {
-
-		travelNote.style.height = "auto";
-		travelNote.style.height =
-		  Math.min(travelNote.scrollHeight, 420) + "px";
-
-		saved.travel_note = getTravelNote();
-
-		/* LOCAL BACKUP */
-		localStorage.setItem(
-		  "tokyo_quest_2026",
-		  JSON.stringify(saved)
-		);
-
-		clearTimeout(window.travelNoteTimer);
-
-		window.travelNoteTimer = setTimeout(async () => {
-
-		  try{
-
-			await persist();
-
-			console.log(
-			  "Travel note saved:",
-			  saved.travel_note
-			);
-
-		  }catch(error){
-
-			console.error(
-			  "Travel note save failed:",
-			  error
-			);
-
-		  }
-
-		}, 500);
-
-	  });
-
-
-	  travelNote._setTravelNote = setTravelNote;
-	  travelNote._getTravelNote = getTravelNote;
-
-	}
-
+  
+      clearTimeout(window.travelNoteTimer);
+  
+      window.travelNoteTimer = setTimeout(async () => {
+  
+        try {
+          await persist();
+          console.log("Travel note saved:", saved.travel_note);
+        } catch (error) {
+          console.error("Travel note save failed:", error);
+        }
+  
+      }, 500);
+  
+    });
+  
+  }
 
   initQuestVisuals();
   restoreState();
