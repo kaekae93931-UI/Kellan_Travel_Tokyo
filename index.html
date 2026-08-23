@@ -8468,7 +8468,6 @@ function restoreState(){
 /* =========================================================
    SAVE TASK
 ========================================================= */
-
 function saveTask(el){
 
   const key = "task_" + el.dataset.task;
@@ -8489,12 +8488,17 @@ function saveTask(el){
       const card = quest.querySelector(".quest-card");
 
       if(card){
+
         card.classList.remove("just-completed");
+
         void card.offsetWidth;
+
         card.classList.add("just-completed");
+
       }
 
       const rect = el.getBoundingClientRect();
+
       fwBurstAt(
         rect.left + rect.width / 2,
         rect.top + rect.height / 2,
@@ -8504,6 +8508,7 @@ function saveTask(el){
       if(navigator.vibrate) navigator.vibrate(18);
 
       const name = quest.querySelector(".quest-name");
+
       toast(
         (name ? name.textContent.trim() : "任務") + " 完成！",
         "win",
@@ -8516,9 +8521,10 @@ function saveTask(el){
 
   persist();
 
-  updateProgress();
+  updateProgress(el);
 
 }
+
 
 /* =========================================================
    TOAST SYSTEM
@@ -8545,6 +8551,80 @@ function toast(msg, type = "info", icon = "✅"){
 /* =========================================================
    LOCALIZED CONFETTI BURST (checkbox feedback / day clear)
 ========================================================= */
+function fwDayBurstAt(x, y){
+
+  const colors = [
+    "#ff3b30",
+    "#ff9f43",
+    "#ffd166",
+    "#35d07f",
+    "#4da3ff",
+    "#a78bfa",
+    "#44d7e8",
+    "#ff6bd6"
+  ];
+
+  const count = 120;
+
+  for(let i = 0; i < count; i++){
+
+    const angle =
+      (Math.PI * 2 * i) / count
+      + (Math.random() - 0.5) * 0.12;
+
+    const speed =
+      3.2 + Math.random() * 5.2;
+
+    fwParticles.push({
+
+      x,
+      y,
+
+      vx:
+        Math.cos(angle) *
+        speed,
+
+      vy:
+        Math.sin(angle) *
+        speed,
+
+      life: 1,
+
+      decay:
+        0.006 +
+        Math.random() * 0.006,
+
+      color:
+        colors[
+          Math.floor(
+            Math.random() *
+            colors.length
+          )
+        ],
+
+      size:
+        2.2 +
+        Math.random() * 2.8,
+
+      trail: true,
+
+      flicker:
+        Math.random() < 0.28
+
+    });
+
+  }
+
+  fwCanvas.classList.add("active");
+
+  if(!fwRunning){
+
+    burstOnlyTick();
+
+  }
+
+}
+
 
 function fwBurstAt(x, y, opts = {}){
 
@@ -9095,14 +9175,13 @@ function startRealtimeSync(){
 
 }
 
-
 /* =========================================================
    PROGRESS
 ========================================================= */
 
 let dayPrevPercent = { 1:0, 2:0, 3:0, 4:0 };
 
-function updateProgress(){
+function updateProgress(triggerElement = null){
 
   const quests =
     Array.from(
@@ -9216,27 +9295,66 @@ function updateProgress(){
       );
 
     if(p) p.textContent = dayPercent + "%";
+
     if(b) b.style.width = dayPercent + "%";
+
     if(mini) mini.textContent = dayPercent + "%";
 
-    if(dayPercent === 100 && dayPrevPercent[day] < 100 && dayTotal > 0){
 
-      const dayHeader = document.querySelector(`#day${day} .day-number`);
+    if(
+      dayPercent === 100 &&
+      dayPrevPercent[day] < 100 &&
+      dayTotal > 0
+    ){
 
-      if(dayHeader){
-        dayHeader.classList.remove("day-clear");
-        void dayHeader.offsetWidth;
-        dayHeader.classList.add("day-clear");
+      const triggerQuest =
+        triggerElement
+          ? triggerElement.closest(".quest")
+          : null;
 
-        const rect = dayHeader.getBoundingClientRect();
-        fwBurstAt(
+      if(
+        triggerQuest &&
+        triggerQuest.dataset.day === String(day)
+      ){
+
+        const card =
+          triggerQuest.querySelector(".quest-card");
+
+        const rect =
+          card
+            ? card.getBoundingClientRect()
+            : triggerQuest.getBoundingClientRect();
+
+        if(card){
+
+          card.classList.remove("day-clear-burst");
+
+          void card.offsetWidth;
+
+          card.classList.add("day-clear-burst");
+
+          setTimeout(() => {
+
+            card.classList.remove(
+              "day-clear-burst"
+            );
+
+          }, 1800);
+
+        }
+
+        fwDayBurstAt(
           rect.left + rect.width / 2,
-          rect.top + rect.height / 2,
-          { count: 46, power: 4.2 }
+          rect.top + rect.height / 2
         );
+
       }
 
-      toast(`DAY ${day} 全部完成！小型煙火發射 🎆`, "day", "🎉");
+      toast(
+        `DAY ${day} 全部完成！小型煙火發射 🎆`,
+        "day",
+        "🎉"
+      );
 
     }
 
