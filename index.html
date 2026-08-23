@@ -8404,10 +8404,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-
 /* =========================================================
    RESTORE
 ========================================================= */
+
 function restoreState(){
 
   document.querySelectorAll("[data-task]").forEach(el=>{
@@ -8459,6 +8459,40 @@ function restoreState(){
     travelNote.style.height=travelNote.scrollHeight+"px";
   }
 
+
+  /* =====================================================
+     RESTORE LAST COMPLETED DAY
+  ===================================================== */
+
+  if(saved.last_completed_task){
+
+    const lastTask =
+      document.querySelector(
+        `[data-task="${saved.last_completed_task}"]`
+      );
+
+    if(lastTask){
+
+      const day =
+        lastTask.closest(".day-section");
+
+      if(day){
+
+        setTimeout(() => {
+
+          day.scrollIntoView({
+            behavior:"auto",
+            block:"start"
+          });
+
+        },300);
+
+      }
+
+    }
+
+  }
+
 }
 
 
@@ -8473,6 +8507,11 @@ function saveTask(el){
   const key = "task_" + el.dataset.task;
 
   saved[key] = el.checked;
+
+  if(el.checked){
+    saved.last_completed_task = el.dataset.task;
+  }
+
 
   const quest = el.closest(".quest");
 
